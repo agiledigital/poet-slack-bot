@@ -10,11 +10,11 @@ public class Application extends Controller {
         return ok("Hi!");
     }
 
-    public Result QA(String ques) throws IOException,
+    public Result QA(String question) throws IOException,
             ClassNotFoundException, NoSuchMethodException,
             InvocationTargetException,IllegalAccessException{
 
-        String answer = services.languageProcessor.Processor.processQuestion(ques);
+        String answer = services.languageProcessor.Processor.processQuestion(question);
 
         return ok(answer);
     }
