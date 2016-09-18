@@ -21,9 +21,9 @@ class TaskMap{
     This method requests ticket info and returns it to the calling method
      */
     public String description_of_ticket(String ticket){
-        String answer = "You will get the description of the ticket " + ticket;
+        String answer = "Description of the ticket " + ticket;
         System.out.println(answer);
-        //myFunction("description", ticket);
+        //String ans = JIRAconnector.getDescription(ticket);
         return answer;
     }
 
@@ -31,8 +31,9 @@ class TaskMap{
     This method requests assignee of ticket and returns it to the calling method
      */
     public String assignee_of_ticket(String ticket){
-        String answer = "The person working on this ticket "+ ticket +" is ...";
+        String answer = "The person working on this ticket "+ ticket +" is ";
         System.out.println(answer);
+        //String assignee = JIRAconnector.getAssignee(ticket);
         return answer;
     }
 }
