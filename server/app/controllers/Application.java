@@ -1,14 +1,18 @@
 package controllers;
 
-import play.*;
 import play.mvc.*;
-
-import views.html.*;
+import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 
 public class Application extends Controller {
 
-    public Result index() {
-        return ok(index.render("Your new application is ready."));
+    public Result index() throws IOException,
+            ClassNotFoundException, NoSuchMethodException,
+            InvocationTargetException,IllegalAccessException{
+
+        String answer = services.languageProcessor.Processor.processQuestion("What is POET-1?");
+
+        return ok(answer);
     }
 
 }
