@@ -1,5 +1,6 @@
 package services.languageProcessor;
 import java.lang.reflect.*;
+//import httpclient;
 
 class TaskMap{
 
@@ -31,7 +32,7 @@ class TaskMap{
     This method requests assignee of ticket and returns it to the calling method
      */
     public String assignee_of_ticket(String ticket){
-        String answer = "The person working on this ticket "+ ticket +" is ";
+        String answer = "The person working on "+ ticket +" is ";
         System.out.println(answer);
         //String assignee = JIRAconnector.getAssignee(ticket);
         return answer;
