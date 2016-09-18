@@ -1,3 +1,4 @@
 #!/bin/bash
 
-HUBOT_SLACK_TOKEN=xoxb-70900186496-923prbEpwFZbJU0aNR9UHGex ./bin/hubot --adapter slack
+#!/bin/bash  slack_token=$1  HUBOT_SLACK_TOKEN=$slack_token ./bin/hubot --adapter slack 
+
