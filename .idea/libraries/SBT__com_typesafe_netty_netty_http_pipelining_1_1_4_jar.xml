@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="SBT: com.typesafe.netty:netty-http-pipelining:1.1.4:jar">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../../activator-dist-1.3.10/repository/com.typesafe.netty/netty-http-pipelining/1.1.4/jars/netty-http-pipelining.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.ivy2/cache/com.typesafe.netty/netty-http-pipelining/srcs/netty-http-pipelining-1.1.4-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
