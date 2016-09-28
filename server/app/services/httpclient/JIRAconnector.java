@@ -3,25 +3,27 @@ package services.httpclient;
 import java.io.*;
 import java.net.*;
 
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonPrimitive;
-import com.google.gson.Gson;
+import javax.inject.Inject;
+
+import play.mvc.*;
+import play.libs.ws.*;
+import java.util.concurrent.CompletionStage;
 
 
+public class JIRAconnector extends Controller{
 
-public class JIRAconnector{
-
-    public static String getHTML(String urlToRead) throws Exception {
+    @Inject
+    WSClient ws;
+    /*
+    public static String temp(String urlToRead) throws Exception {
         StringBuilder result = new StringBuilder();
         String userPassword = "xuwang" + ":" + "woshishui";
         String encoding = new sun.misc.BASE64Encoder().encode(userPassword.getBytes());
-        Gson gson = new Gson();
+
 
 
         URL url = new URL(urlToRead);
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-
 
         conn.setRequestProperty("Authorization", "Basic " + encoding);
         conn.setRequestMethod("GET");
@@ -31,33 +33,45 @@ public class JIRAconnector{
         while ((line = rd.readLine()) != null) {
             result.append(line);
         }
-
-        //System.out.println(result);
         rd.close();
-
         return result.toString();
+    }*/
+
+
+    public String temp(){
+
+        // WSRequest complexRequest = ws.url("jira.agiledigital.com.au/rest/api/latest/issue/POET-3").setAuth("xuwang", "woshishui", WSAuthScheme.BASIC);
+        //CompletionStage<WSResponse> responsePromise = complexRequest.get();
+
+
+        WSRequest request = ws.url("https://jira.agiledigital.com.au/rest/api/latest/issue/POET-3");
+        //WSRequest request = ws.url("http://google.com");
+        //WSRequest complexRequest = request.setAuth("xuwang", "woshishui", WSAuthScheme.BASIC);
+
+        //CompletionStage<WSResponse> request = ws.url("jira.agiledigital.com.au/rest/api/latest/issue/POET-3").setAuth("xuwang", "woshishui", WSAuthScheme.BASIC).get();
+
+        //CompletionStage<WSResponse> responsePromise = complexRequest.get();
+        //play.libs.F.Promise<WSResponse> responsePromise = complexRequest.get();
+
+        //CompletionStage<WSResponse> responsePromise = complexRequest.get();
+
+
+        //String ans  = responsePromise.toString();
+        // String ans = "12";
+
+
+
+
+        //System.out.println("\n\n\n\nThis is the answers ==========\n" + ans +"\n\n\n\n\n");
+        return "";
     }
 
-    public static String getDescription(String id)throws Exception{
-        Gson gson = new Gson();
-        String result = getHTML("https://jira.agiledigital.com.au/rest/api/latest/issue/" + id);
-        Tickets tickets = gson.fromJson(result,Tickets.class);
 
-        String description = tickets.getFields().getIssuetype().getDescription();
-
-        return description;
+    /*public static void main(String[] args) {
+        JIRAconnector jirAconnector = new JIRAconnector();
+        jirAconnector.temp();
     }
-
-    public static String getAssignee(String id) throws  Exception{
-        Gson gson = new Gson();
-        String result = getHTML("https://jira.agiledigital.com.au/rest/api/latest/issue/" + id);
-        Tickets tickets = gson.fromJson(result,Tickets.class);
-
-        String assignee = tickets.getFields().getAssignee().getName();
-
-        return assignee;
-
-    }
+    */
 
 
 }
