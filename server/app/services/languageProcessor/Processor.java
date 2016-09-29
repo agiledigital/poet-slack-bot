@@ -28,7 +28,7 @@ public class Processor {
    * @throws InvocationTargetException
    * @throws IllegalAccessException
    */
-	public static String processQuestion(String question) throws IOException,
+	public static String[] processQuestion(String question) throws IOException,
 			ClassNotFoundException, NoSuchMethodException,
 			InvocationTargetException,IllegalAccessException {
 		
@@ -89,7 +89,10 @@ public class Processor {
 			System.out.println(dt.traverse(keywords_found) + "(" + keyword + ")");
 
 
-      String answer = TaskMap.questionMapping(dt.traverse(keywords_found), keyword);
+      //String answer = TaskMap.questionMapping(dt.traverse(keywords_found), keyword);
+			String answer[] = new String[2];
+      answer[0] = dt.traverse(keywords_found);
+      answer[1] = keyword;
 
       return answer;
 

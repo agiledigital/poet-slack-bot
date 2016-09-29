@@ -26,7 +26,8 @@ public class Application extends Controller {
     ClassNotFoundException, NoSuchMethodException,
     InvocationTargetException, IllegalAccessException {
 
-    String answer = services.languageProcessor.Processor.processQuestion(question);
+    String question_mapping = services.languageProcessor.Processor.processQuestion(question)[0];
+    String ticket_id = services.languageProcessor.Processor.processQuestion(question)[1];
 
     WSRequest request = ws.url("https://jira.agiledigital.com.au/rest/api/latest/issue/POET-3");
     WSRequest complexRequest = request.setAuth("xuwang", "woshishui", WSAuthScheme.BASIC);
@@ -36,9 +37,12 @@ public class Application extends Controller {
       ok("PI value computed: " + pi.getBody())
     );
 
+    /*
+    Convert the response to JSON
+     */
 
-/%
-    %/
+    String answer = services.languageProcessor.TaskMap.questionMapping(question_mapping, ticket_id /*, raw JSON information*/);
+
 
     // parse the JSON as a JsonNode
     JsonNode json = Json.parse("{\"answer\":\"" +answer+ "\"}");

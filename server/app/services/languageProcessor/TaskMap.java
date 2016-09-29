@@ -1,7 +1,7 @@
 package services.languageProcessor;
 import java.lang.reflect.*;
 
-class TaskMap{
+public class TaskMap{
 
   /**
    * This method calls appropriate method on run time based on the
@@ -30,10 +30,11 @@ class TaskMap{
    * @param ticket
    * @return
    */
-    public String description_of_ticket(String ticket){
+    public String description_of_ticket(String ticket /*,raw JSON object*/){
+        //process the raw JSON object to get only the required key,value pair
+
         String answer = "Description of the ticket " + ticket;
         System.out.println(answer);
-        //String ans = JIRAconnector.getDescription(ticket);
         return answer;
     }
 
@@ -42,7 +43,9 @@ class TaskMap{
    * @param ticket
    * @return
    */
-  public String assignee_of_ticket(String ticket){
+  public String assignee_of_ticket(String ticket /*,raw JSON object*/){
+      //process the raw JSON object to get only the required key,value pair
+
         String answer = "The person working on "+ ticket +" is ";
         System.out.println(answer);
         return answer;
