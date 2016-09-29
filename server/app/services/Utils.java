@@ -1,9 +1,6 @@
 package services;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.Properties;
 
 /**
@@ -33,6 +30,20 @@ public class Utils {
       // I/O error
     }
     return jiraInfo;
+  }
+
+  public static void writeMissedQuery(String missedQuestion){
+    try {
+      BufferedWriter out = new BufferedWriter
+        (new FileWriter("logs/missedQuery.log", true));
+      out.write(missedQuestion+"\n");
+      out.close();
+    } catch (FileNotFoundException e) {
+      System.out.println(System.getProperty("user.dir"));
+      e.printStackTrace();
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
   }
 }
 

@@ -13,9 +13,11 @@ import services.Utils;
 import services.languageProcessor.Processor;
 
 import javax.inject.Inject;
+import javax.rmi.CORBA.Util;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.concurrent.CompletionStage;
+import java.util.concurrent.TimeUnit;
 
 public class Application extends Controller {
 
@@ -38,10 +40,15 @@ public class Application extends Controller {
 
     CompletionStage<JsonNode> responsePromise = null;
 
+    if (question_mapping == null){
+      Utils.writeMissedQuery(question);
+      return (CompletionStage<Result>) ok("");
+    }
+
     if( question_mapping.startsWith("description") || question_mapping.startsWith("assignee")){
         responsePromise =  getTicketInfo(ticket_id);
     } else if (false){}
-    else {}
+    else {return null;}
 
     CompletionStage<Result> promiseOfResult = responsePromise.thenApply(response -> {
         try {
@@ -68,7 +75,6 @@ public class Application extends Controller {
 
     // parse the JSON as a JsonNode
     JsonNode json = Json.parse("{\"answer\":\"" +answer+ "\"}");
-
     return responseBody;
   }
 }
