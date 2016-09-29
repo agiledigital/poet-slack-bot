@@ -1,0 +1,1542 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="ivy-report.xsl"?>
+<ivy-report version="1.0">
+	<info
+		organisation="default"
+		module="server-build"
+		revision="0.1-SNAPSHOT"
+		extra-scalaVersion="2.10"
+		extra-sbtVersion="0.13"
+		conf="test"
+		confs="compile, runtime, test, provided, optional, compile-internal, runtime-internal, test-internal, plugin, sources, docs, pom, scala-tool"
+		date="20160929235013"/>
+	<dependencies>
+		<module organisation="com.typesafe.sbt" name="sbt-play-enhancer">
+			<revision name="1.1.0" status="release" pubdate="20150527125634" resolver="sbt-chain" artresolver="sbt-chain" homepage="https://github.com/playframework/play-enhancer" extra-scalaVersion="2.10" extra-sbtVersion="0.13" downloaded="false" searched="false" default="false" conf="compile, default(compile)" position="105">
+				<license name="Apache-2.0" url="http://www.apache.org/licenses/LICENSE-2.0.html"/>
+				<metadata-artifact status="no" details="" size="1975" time="0" location="/Users/wangxu/.ivy2/cache/scala_2.10/sbt_0.13/com.typesafe.sbt/sbt-play-enhancer/ivy-1.1.0.xml" searched="false" origin-is-local="false" origin-location="https://repo.scala-sbt.org/scalasbt/sbt-plugin-releases/com.typesafe.sbt/sbt-play-enhancer/scala_2.10/sbt_0.13/1.1.0/ivys/ivy.xml"/>
+				<caller organisation="default" name="server-build" conf="test, compile, runtime" rev="1.1.0" rev-constraint-default="1.1.0" rev-constraint-dynamic="1.1.0" callerrev="0.1-SNAPSHOT" extra-scalaVersion="2.10" extra-sbtVersion="0.13"/>
+				<artifacts>
+					<artifact name="sbt-play-enhancer" type="jar" ext="jar" status="no" details="" size="25408" time="0" location="/Users/wangxu/.ivy2/cache/scala_2.10/sbt_0.13/com.typesafe.sbt/sbt-play-enhancer/jars/sbt-play-enhancer-1.1.0.jar">
+						<origin-location is-local="false" location="https://repo.scala-sbt.org/scalasbt/sbt-plugin-releases/com.typesafe.sbt/sbt-play-enhancer/scala_2.10/sbt_0.13/1.1.0/jars/sbt-play-enhancer.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="com.typesafe.play" name="play-enhancer">
+			<revision name="1.1.0" status="release" pubdate="20150526225632" resolver="sbt-chain" artresolver="sbt-chain" homepage="https://github.com/playframework/play-enhancer" downloaded="false" searched="false" default="false" conf="default, compile, runtime, default(compile), master" position="106">
+				<license name="Apache-2.0" url="http://www.apache.org/licenses/LICENSE-2.0.html"/>
+				<metadata-artifact status="no" details="" size="2660" time="0" location="/Users/wangxu/.ivy2/cache/com.typesafe.play/play-enhancer/ivy-1.1.0.xml" searched="false" origin-is-local="true" origin-location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/com.typesafe.play/play-enhancer/1.1.0/ivys/ivy.xml"/>
+				<caller organisation="com.typesafe.sbt" name="sbt-play-enhancer" conf="compile" rev="1.1.0" rev-constraint-default="1.1.0" rev-constraint-dynamic="1.1.0" callerrev="1.1.0"/>
+				<artifacts>
+					<artifact name="play-enhancer" type="jar" ext="jar" status="no" details="" size="7812" time="0" location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/com.typesafe.play/play-enhancer/1.1.0/jars/play-enhancer.jar">
+						<origin-location is-local="true" location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/com.typesafe.play/play-enhancer/1.1.0/jars/play-enhancer.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.javassist" name="javassist">
+			<revision name="3.18.2-GA" status="release" pubdate="20140527125509" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://www.javassist.org/" downloaded="false" searched="false" default="false" conf="compile, runtime(*), master(compile), runtime, compile(*), master" position="107">
+				<license name="MPL 1.1" url="http://www.mozilla.org/MPL/MPL-1.1.html"/>
+				<license name="LGPL 2.1" url="http://www.gnu.org/licenses/lgpl-2.1.html"/>
+				<license name="Apache License 2.0" url="http://www.apache.org/licenses/"/>
+				<metadata-artifact status="no" details="" size="3186" time="0" location="/Users/wangxu/.ivy2/cache/org.javassist/javassist/ivy-3.18.2-GA.xml" searched="false" origin-is-local="false" origin-location="file:/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.javassist/javassist/3.18.2-GA/ivys/ivy.xml"/>
+				<caller organisation="com.typesafe.play" name="play-enhancer" conf="default, compile, runtime, master" rev="3.18.2-GA" rev-constraint-default="3.18.2-GA" rev-constraint-dynamic="3.18.2-GA" callerrev="1.1.0"/>
+				<artifacts>
+					<artifact name="javassist" type="bundle" ext="jar" status="no" details="" size="714524" time="0" location="/Users/wangxu/.ivy2/cache/org.javassist/javassist/bundles/javassist-3.18.2-GA.jar">
+						<origin-location is-local="false" location="file:/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.javassist/javassist/3.18.2-GA/bundles/javassist.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="com.typesafe.sbt" name="sbt-mocha">
+			<revision name="1.1.0" status="release" pubdate="20150507145500" resolver="sbt-chain" artresolver="sbt-chain" homepage="https://github.com/sbt/sbt-mocha" extra-scalaVersion="2.10" extra-sbtVersion="0.13" downloaded="false" searched="false" default="false" conf="compile, default(compile)" position="101">
+				<license name="Apache-2.0" url="http://www.apache.org/licenses/LICENSE-2.0.html"/>
+				<metadata-artifact status="no" details="" size="2063" time="0" location="/Users/wangxu/.ivy2/cache/scala_2.10/sbt_0.13/com.typesafe.sbt/sbt-mocha/ivy-1.1.0.xml" searched="false" origin-is-local="false" origin-location="https://repo.scala-sbt.org/scalasbt/sbt-plugin-releases/com.typesafe.sbt/sbt-mocha/scala_2.10/sbt_0.13/1.1.0/ivys/ivy.xml"/>
+				<caller organisation="default" name="server-build" conf="test, compile, runtime" rev="1.1.0" rev-constraint-default="1.1.0" rev-constraint-dynamic="1.1.0" callerrev="0.1-SNAPSHOT" extra-scalaVersion="2.10" extra-sbtVersion="0.13"/>
+				<artifacts>
+					<artifact name="sbt-mocha" type="jar" ext="jar" status="no" details="" size="172187" time="0" location="/Users/wangxu/.ivy2/cache/scala_2.10/sbt_0.13/com.typesafe.sbt/sbt-mocha/jars/sbt-mocha-1.1.0.jar">
+						<origin-location is-local="false" location="https://repo.scala-sbt.org/scalasbt/sbt-plugin-releases/com.typesafe.sbt/sbt-mocha/scala_2.10/sbt_0.13/1.1.0/jars/sbt-mocha.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.webjars" name="mocha">
+			<revision name="1.17.1" status="release" pubdate="20140228124534" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://webjars.org" downloaded="false" searched="false" default="false" conf="default, compile, runtime, default(compile), master" position="102">
+				<license name="MIT" url="https://github.com/visionmedia/mocha/blob/master/LICENSE"/>
+				<metadata-artifact status="no" details="" size="3752" time="0" location="/Users/wangxu/.ivy2/cache/org.webjars/mocha/ivy-1.17.1.xml" searched="false" origin-is-local="true" origin-location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.webjars/mocha/1.17.1/ivys/ivy.xml"/>
+				<caller organisation="com.typesafe.sbt" name="sbt-mocha" conf="compile" rev="1.17.1" rev-constraint-default="1.17.1" rev-constraint-dynamic="1.17.1" callerrev="1.1.0"/>
+				<artifacts>
+					<artifact name="mocha" type="jar" ext="jar" status="no" details="" size="58303" time="0" location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.webjars/mocha/1.17.1/jars/mocha.jar">
+						<origin-location is-local="true" location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.webjars/mocha/1.17.1/jars/mocha.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.webjars" name="diff">
+			<revision name="1.0.7" status="release" pubdate="20140228124035" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://webjars.org" downloaded="false" searched="false" default="false" conf="compile, runtime(*), master(compile), runtime, compile(*), master" position="104">
+				<license name="BSD" url="https://github.com/kpdecker/jsdiff/blob/master/LICENSE"/>
+				<metadata-artifact status="no" details="" size="3442" time="0" location="/Users/wangxu/.ivy2/cache/org.webjars/diff/ivy-1.0.7.xml" searched="false" origin-is-local="true" origin-location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.webjars/diff/1.0.7/ivys/ivy.xml"/>
+				<caller organisation="org.webjars" name="mocha" conf="default, compile, runtime, master" rev="1.0.7" rev-constraint-default="1.0.7" rev-constraint-dynamic="1.0.7" callerrev="1.17.1"/>
+				<artifacts>
+					<artifact name="diff" type="jar" ext="jar" status="no" details="" size="6969" time="0" location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.webjars/diff/1.0.7/jars/diff.jar">
+						<origin-location is-local="true" location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.webjars/diff/1.0.7/jars/diff.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.webjars" name="debug">
+			<revision name="0.7.4" status="release" pubdate="20140228124129" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://webjars.org" downloaded="false" searched="false" default="false" conf="compile, runtime(*), master(compile), runtime, compile(*), master" position="103">
+				<license name="MIT" url="https://github.com/visionmedia/debug/blob/master/LICENSE"/>
+				<metadata-artifact status="no" details="" size="3448" time="0" location="/Users/wangxu/.ivy2/cache/org.webjars/debug/ivy-0.7.4.xml" searched="false" origin-is-local="true" origin-location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.webjars/debug/0.7.4/ivys/ivy.xml"/>
+				<caller organisation="org.webjars" name="mocha" conf="default, compile, runtime, master" rev="0.7.4" rev-constraint-default="0.7.4" rev-constraint-dynamic="0.7.4" callerrev="1.17.1"/>
+				<artifacts>
+					<artifact name="debug" type="jar" ext="jar" status="no" details="" size="4688" time="0" location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.webjars/debug/0.7.4/jars/debug.jar">
+						<origin-location is-local="true" location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.webjars/debug/0.7.4/jars/debug.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="com.typesafe.sbt" name="sbt-digest">
+			<revision name="1.1.0" status="release" pubdate="20141029141102" resolver="sbt-chain" artresolver="sbt-chain" extra-scalaVersion="2.10" extra-sbtVersion="0.13" downloaded="false" searched="false" default="false" conf="compile, default(compile)" position="100">
+				<metadata-artifact status="no" details="" size="1570" time="0" location="/Users/wangxu/.ivy2/cache/scala_2.10/sbt_0.13/com.typesafe.sbt/sbt-digest/ivy-1.1.0.xml" searched="false" origin-is-local="false" origin-location="https://repo.scala-sbt.org/scalasbt/sbt-plugin-releases/com.typesafe.sbt/sbt-digest/scala_2.10/sbt_0.13/1.1.0/ivys/ivy.xml"/>
+				<caller organisation="default" name="server-build" conf="test, compile, runtime" rev="1.1.0" rev-constraint-default="1.1.0" rev-constraint-dynamic="1.1.0" callerrev="0.1-SNAPSHOT" extra-scalaVersion="2.10" extra-sbtVersion="0.13"/>
+				<artifacts>
+					<artifact name="sbt-digest" type="jar" ext="jar" status="no" details="" size="79532" time="0" location="/Users/wangxu/.ivy2/cache/scala_2.10/sbt_0.13/com.typesafe.sbt/sbt-digest/jars/sbt-digest-1.1.0.jar">
+						<origin-location is-local="false" location="https://repo.scala-sbt.org/scalasbt/sbt-plugin-releases/com.typesafe.sbt/sbt-digest/scala_2.10/sbt_0.13/1.1.0/jars/sbt-digest.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="com.typesafe.sbt" name="sbt-rjs">
+			<revision name="1.0.7" status="release" pubdate="20141022105304" resolver="sbt-chain" artresolver="sbt-chain" extra-scalaVersion="2.10" extra-sbtVersion="0.13" downloaded="false" searched="false" default="false" conf="compile, default(compile)" position="98">
+				<metadata-artifact status="no" details="" size="1652" time="0" location="/Users/wangxu/.ivy2/cache/scala_2.10/sbt_0.13/com.typesafe.sbt/sbt-rjs/ivy-1.0.7.xml" searched="false" origin-is-local="false" origin-location="https://repo.scala-sbt.org/scalasbt/sbt-plugin-releases/com.typesafe.sbt/sbt-rjs/scala_2.10/sbt_0.13/1.0.7/ivys/ivy.xml"/>
+				<caller organisation="default" name="server-build" conf="test, compile, runtime" rev="1.0.7" rev-constraint-default="1.0.7" rev-constraint-dynamic="1.0.7" callerrev="0.1-SNAPSHOT" extra-scalaVersion="2.10" extra-sbtVersion="0.13"/>
+				<artifacts>
+					<artifact name="sbt-rjs" type="jar" ext="jar" status="no" details="" size="72155" time="0" location="/Users/wangxu/.ivy2/cache/scala_2.10/sbt_0.13/com.typesafe.sbt/sbt-rjs/jars/sbt-rjs-1.0.7.jar">
+						<origin-location is-local="false" location="https://repo.scala-sbt.org/scalasbt/sbt-plugin-releases/com.typesafe.sbt/sbt-rjs/scala_2.10/sbt_0.13/1.0.7/jars/sbt-rjs.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.webjars" name="rjs">
+			<revision name="2.1.15" status="release" pubdate="20140917141811" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://webjars.org" downloaded="false" searched="false" default="false" conf="default, compile, runtime, default(compile), master" position="99">
+				<license name="The &quot;New&quot; BSD License or MIT License" url="https://github.com/jrburke/r.js/blob/master/LICENSE"/>
+				<metadata-artifact status="no" details="" size="3495" time="0" location="/Users/wangxu/.ivy2/cache/org.webjars/rjs/ivy-2.1.15.xml" searched="false" origin-is-local="true" origin-location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.webjars/rjs/2.1.15/ivys/ivy.xml"/>
+				<caller organisation="com.typesafe.sbt" name="sbt-rjs" conf="compile" rev="2.1.15" rev-constraint-default="2.1.15" rev-constraint-dynamic="2.1.15" callerrev="1.0.7"/>
+				<artifacts>
+					<artifact name="rjs" type="jar" ext="jar" status="no" details="" size="221456" time="0" location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.webjars/rjs/2.1.15/jars/rjs.jar">
+						<origin-location is-local="true" location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.webjars/rjs/2.1.15/jars/rjs.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="com.typesafe.sbt" name="sbt-jshint">
+			<revision name="1.0.3" status="release" pubdate="20150127110254" resolver="sbt-chain" artresolver="sbt-chain" extra-scalaVersion="2.10" extra-sbtVersion="0.13" downloaded="false" searched="false" default="false" conf="compile, default(compile)" position="93">
+				<metadata-artifact status="no" details="" size="1782" time="0" location="/Users/wangxu/.ivy2/cache/scala_2.10/sbt_0.13/com.typesafe.sbt/sbt-jshint/ivy-1.0.3.xml" searched="false" origin-is-local="false" origin-location="https://repo.scala-sbt.org/scalasbt/sbt-plugin-releases/com.typesafe.sbt/sbt-jshint/scala_2.10/sbt_0.13/1.0.3/ivys/ivy.xml"/>
+				<caller organisation="default" name="server-build" conf="test, compile, runtime" rev="1.0.3" rev-constraint-default="1.0.3" rev-constraint-dynamic="1.0.3" callerrev="0.1-SNAPSHOT" extra-scalaVersion="2.10" extra-sbtVersion="0.13"/>
+				<artifacts>
+					<artifact name="sbt-jshint" type="jar" ext="jar" status="no" details="" size="18904" time="0" location="/Users/wangxu/.ivy2/cache/scala_2.10/sbt_0.13/com.typesafe.sbt/sbt-jshint/jars/sbt-jshint-1.0.3.jar">
+						<origin-location is-local="false" location="https://repo.scala-sbt.org/scalasbt/sbt-plugin-releases/com.typesafe.sbt/sbt-jshint/scala_2.10/sbt_0.13/1.0.3/jars/sbt-jshint.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.webjars" name="strip-json-comments">
+			<revision name="1.0.2-1" status="release" pubdate="20150104194729" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://webjars.org" downloaded="false" searched="false" default="false" conf="default, compile, runtime, default(compile), master" position="97">
+				<license name="MIT" url="https://github.com/sindresorhus/strip-json-comments/blob/master/license"/>
+				<metadata-artifact status="no" details="" size="3525" time="0" location="/Users/wangxu/.ivy2/cache/org.webjars/strip-json-comments/ivy-1.0.2-1.xml" searched="false" origin-is-local="true" origin-location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.webjars/strip-json-comments/1.0.2-1/ivys/ivy.xml"/>
+				<caller organisation="com.typesafe.sbt" name="sbt-jshint" conf="compile" rev="1.0.2-1" rev-constraint-default="1.0.2-1" rev-constraint-dynamic="1.0.2-1" callerrev="1.0.3"/>
+				<artifacts>
+					<artifact name="strip-json-comments" type="jar" ext="jar" status="no" details="" size="4271" time="0" location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.webjars/strip-json-comments/1.0.2-1/jars/strip-json-comments.jar">
+						<origin-location is-local="true" location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.webjars/strip-json-comments/1.0.2-1/jars/strip-json-comments.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.webjars" name="jshint-node">
+			<revision name="2.4.3" status="release" pubdate="20140207004611" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://webjars.org" downloaded="false" searched="false" default="false" conf="default, compile, runtime, default(compile), master" position="94">
+				<license name="Copyright 2012 Anton Kovalyov" url="https://github.com/jshint/jshint/blob/master/LICENSE"/>
+				<metadata-artifact status="no" details="" size="3808" time="0" location="/Users/wangxu/.ivy2/cache/org.webjars/jshint-node/ivy-2.4.3.xml" searched="false" origin-is-local="true" origin-location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.webjars/jshint-node/2.4.3/ivys/ivy.xml"/>
+				<caller organisation="com.typesafe.sbt" name="sbt-jshint" conf="compile" rev="2.4.3" rev-constraint-default="2.4.3" rev-constraint-dynamic="2.4.3" callerrev="1.0.3"/>
+				<artifacts>
+					<artifact name="jshint-node" type="jar" ext="jar" status="no" details="" size="168934" time="0" location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.webjars/jshint-node/2.4.3/jars/jshint-node.jar">
+						<origin-location is-local="true" location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.webjars/jshint-node/2.4.3/jars/jshint-node.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.webjars" name="console-browserify">
+			<revision name="0.1.6-1" status="release" pubdate="20140119075957" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://webjars.org" downloaded="false" searched="false" default="false" conf="compile, runtime(*), master(compile), runtime, compile(*), master" position="96">
+				<license name="MIT" url="https://github.com/substack/console-browserify/blob/master/LICENCE"/>
+				<metadata-artifact status="no" details="" size="3520" time="0" location="/Users/wangxu/.ivy2/cache/org.webjars/console-browserify/ivy-0.1.6-1.xml" searched="false" origin-is-local="true" origin-location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.webjars/console-browserify/0.1.6-1/ivys/ivy.xml"/>
+				<caller organisation="org.webjars" name="jshint-node" conf="default, compile, runtime, master" rev="0.1.6-1" rev-constraint-default="0.1.6-1" rev-constraint-dynamic="0.1.6-1" callerrev="2.4.3"/>
+				<artifacts>
+					<artifact name="console-browserify" type="jar" ext="jar" status="no" details="" size="4510" time="0" location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.webjars/console-browserify/0.1.6-1/jars/console-browserify.jar">
+						<origin-location is-local="true" location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.webjars/console-browserify/0.1.6-1/jars/console-browserify.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.webjars" name="underscorejs">
+			<revision name="1.5.2-2" status="release" pubdate="20140119075512" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://webjars.org" downloaded="false" searched="false" default="false" conf="compile, runtime(*), master(compile), runtime, compile(*), master" position="95">
+				<license name="Copyright (c) 2009-2012 Jeremy Ashkenas, DocumentCloud" url="https://github.com/documentcloud/underscore/blob/master/LICENSE"/>
+				<metadata-artifact status="no" details="" size="3480" time="0" location="/Users/wangxu/.ivy2/cache/org.webjars/underscorejs/ivy-1.5.2-2.xml" searched="false" origin-is-local="true" origin-location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.webjars/underscorejs/1.5.2-2/ivys/ivy.xml"/>
+				<caller organisation="org.webjars" name="jshint-node" conf="default, compile, runtime, master" rev="1.5.2-2" rev-constraint-default="1.5.2-2" rev-constraint-dynamic="1.5.2-2" callerrev="2.4.3"/>
+				<artifacts>
+					<artifact name="underscorejs" type="jar" ext="jar" status="no" details="" size="29786" time="0" location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.webjars/underscorejs/1.5.2-2/jars/underscorejs.jar">
+						<origin-location is-local="true" location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.webjars/underscorejs/1.5.2-2/jars/underscorejs.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="com.typesafe.sbt" name="sbt-less">
+			<revision name="1.0.6" status="release" pubdate="20150105160308" resolver="sbt-chain" artresolver="sbt-chain" extra-scalaVersion="2.10" extra-sbtVersion="0.13" downloaded="false" searched="false" default="false" conf="compile, default(compile)" position="88">
+				<metadata-artifact status="no" details="" size="1951" time="0" location="/Users/wangxu/.ivy2/cache/scala_2.10/sbt_0.13/com.typesafe.sbt/sbt-less/ivy-1.0.6.xml" searched="false" origin-is-local="false" origin-location="https://repo.scala-sbt.org/scalasbt/sbt-plugin-releases/com.typesafe.sbt/sbt-less/scala_2.10/sbt_0.13/1.0.6/ivys/ivy.xml"/>
+				<caller organisation="default" name="server-build" conf="test, compile, runtime" rev="1.0.6" rev-constraint-default="1.0.6" rev-constraint-dynamic="1.0.6" callerrev="0.1-SNAPSHOT" extra-scalaVersion="2.10" extra-sbtVersion="0.13"/>
+				<artifacts>
+					<artifact name="sbt-less" type="jar" ext="jar" status="no" details="" size="38918" time="0" location="/Users/wangxu/.ivy2/cache/scala_2.10/sbt_0.13/com.typesafe.sbt/sbt-less/jars/sbt-less-1.0.6.jar">
+						<origin-location is-local="false" location="https://repo.scala-sbt.org/scalasbt/sbt-plugin-releases/com.typesafe.sbt/sbt-less/scala_2.10/sbt_0.13/1.0.6/jars/sbt-less.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.webjars" name="clean-css">
+			<revision name="2.2.7" status="release" pubdate="20140714143847" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://webjars.org" downloaded="false" searched="false" default="false" conf="default, compile, runtime, default(compile), master" position="92">
+				<license name="MIT" url="https://raw.githubusercontent.com/GoalSmashers/clean-css/master/LICENSE"/>
+				<metadata-artifact status="no" details="" size="3491" time="0" location="/Users/wangxu/.ivy2/cache/org.webjars/clean-css/ivy-2.2.7.xml" searched="false" origin-is-local="true" origin-location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.webjars/clean-css/2.2.7/ivys/ivy.xml"/>
+				<caller organisation="com.typesafe.sbt" name="sbt-less" conf="compile" rev="2.2.7" rev-constraint-default="2.2.7" rev-constraint-dynamic="2.2.7" callerrev="1.0.6"/>
+				<artifacts>
+					<artifact name="clean-css" type="jar" ext="jar" status="no" details="" size="45610" time="0" location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.webjars/clean-css/2.2.7/jars/clean-css.jar">
+						<origin-location is-local="true" location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.webjars/clean-css/2.2.7/jars/clean-css.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.webjars" name="source-map">
+			<revision name="0.1.31-2" status="release" pubdate="20140122064643" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://webjars.org" downloaded="false" searched="false" default="false" conf="default, compile, runtime, default(compile), master" position="90">
+				<license name="Mozilla" url="https://github.com/mozilla/source-map/blob/master/LICENSE"/>
+				<metadata-artifact status="no" details="" size="3595" time="0" location="/Users/wangxu/.ivy2/cache/org.webjars/source-map/ivy-0.1.31-2.xml" searched="false" origin-is-local="true" origin-location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.webjars/source-map/0.1.31-2/ivys/ivy.xml"/>
+				<caller organisation="com.typesafe.sbt" name="sbt-less" conf="compile" rev="0.1.31-2" rev-constraint-default="0.1.31-2" rev-constraint-dynamic="0.1.31-2" callerrev="1.0.6"/>
+				<artifacts>
+					<artifact name="source-map" type="jar" ext="jar" status="no" details="" size="23920" time="0" location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.webjars/source-map/0.1.31-2/jars/source-map.jar">
+						<origin-location is-local="true" location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.webjars/source-map/0.1.31-2/jars/source-map.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.webjars" name="amdefine">
+			<revision name="0.1.0-1" status="release" pubdate="20140122063922" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://webjars.org" downloaded="false" searched="false" default="false" conf="compile, runtime(*), master(compile), runtime, compile(*), master" position="91">
+				<license name="BSD" url="https://github.com/jrburke/amdefine/blob/master/LICENSE"/>
+				<metadata-artifact status="no" details="" size="3396" time="0" location="/Users/wangxu/.ivy2/cache/org.webjars/amdefine/ivy-0.1.0-1.xml" searched="false" origin-is-local="true" origin-location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.webjars/amdefine/0.1.0-1/ivys/ivy.xml"/>
+				<caller organisation="org.webjars" name="source-map" conf="default, compile, runtime, master" rev="0.1.0-1" rev-constraint-default="0.1.0-1" rev-constraint-dynamic="0.1.0-1" callerrev="0.1.31-2"/>
+				<artifacts>
+					<artifact name="amdefine" type="jar" ext="jar" status="no" details="" size="7160" time="0" location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.webjars/amdefine/0.1.0-1/jars/amdefine.jar">
+						<origin-location is-local="true" location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.webjars/amdefine/0.1.0-1/jars/amdefine.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.webjars" name="less-node">
+			<revision name="1.7.5" status="release" pubdate="20140909214426" resolver="sbt-chain" artresolver="sbt-chain" homepage="" downloaded="false" searched="false" default="false" conf="default, compile, runtime, default(compile), master" position="89">
+				<license name="Apache v2.0" url="https://github.com/cloudhead/less.js/blob/master/LICENSE"/>
+				<metadata-artifact status="no" details="" size="3932" time="0" location="/Users/wangxu/.ivy2/cache/org.webjars/less-node/ivy-1.7.5.xml" searched="false" origin-is-local="true" origin-location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.webjars/less-node/1.7.5/ivys/ivy.xml"/>
+				<caller organisation="com.typesafe.sbt" name="sbt-less" conf="compile" rev="1.7.5" rev-constraint-default="1.7.5" rev-constraint-dynamic="1.7.5" callerrev="1.0.6"/>
+				<artifacts>
+					<artifact name="less-node" type="jar" ext="jar" status="no" details="" size="109556" time="0" location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.webjars/less-node/1.7.5/jars/less-node.jar">
+						<origin-location is-local="true" location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.webjars/less-node/1.7.5/jars/less-node.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="com.typesafe.sbt" name="sbt-coffeescript">
+			<revision name="1.0.0" status="release" pubdate="20140528152306" resolver="sbt-chain" artresolver="sbt-chain" extra-scalaVersion="2.10" extra-sbtVersion="0.13" downloaded="false" searched="false" default="false" conf="compile, default(compile)" position="85">
+				<metadata-artifact status="no" details="" size="1804" time="0" location="/Users/wangxu/.ivy2/cache/scala_2.10/sbt_0.13/com.typesafe.sbt/sbt-coffeescript/ivy-1.0.0.xml" searched="false" origin-is-local="false" origin-location="https://repo.scala-sbt.org/scalasbt/sbt-plugin-releases/com.typesafe.sbt/sbt-coffeescript/scala_2.10/sbt_0.13/1.0.0/ivys/ivy.xml"/>
+				<caller organisation="default" name="server-build" conf="test, compile, runtime" rev="1.0.0" rev-constraint-default="1.0.0" rev-constraint-dynamic="1.0.0" callerrev="0.1-SNAPSHOT" extra-scalaVersion="2.10" extra-sbtVersion="0.13"/>
+				<artifacts>
+					<artifact name="sbt-coffeescript" type="jar" ext="jar" status="no" details="" size="18232" time="0" location="/Users/wangxu/.ivy2/cache/scala_2.10/sbt_0.13/com.typesafe.sbt/sbt-coffeescript/jars/sbt-coffeescript-1.0.0.jar">
+						<origin-location is-local="false" location="https://repo.scala-sbt.org/scalasbt/sbt-plugin-releases/com.typesafe.sbt/sbt-coffeescript/scala_2.10/sbt_0.13/1.0.0/jars/sbt-coffeescript.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.webjars" name="mkdirp">
+			<revision name="0.3.5" status="release" pubdate="20140225210459" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://webjars.org" downloaded="false" searched="false" default="false" conf="default, compile, runtime, default(compile), master" position="87">
+				<license name="MIT/X11" url="https://github.com/substack/node-mkdirp/blob/master/LICENCE"/>
+				<metadata-artifact status="no" details="" size="3465" time="0" location="/Users/wangxu/.ivy2/cache/org.webjars/mkdirp/ivy-0.3.5.xml" searched="false" origin-is-local="true" origin-location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.webjars/mkdirp/0.3.5/ivys/ivy.xml"/>
+				<caller organisation="com.typesafe.sbt" name="sbt-less" conf="compile" rev="0.3.5" rev-constraint-default="0.3.5" rev-constraint-dynamic="0.3.5" callerrev="1.0.6"/>
+				<caller organisation="com.typesafe.sbt" name="sbt-coffeescript" conf="compile" rev="0.3.5" rev-constraint-default="0.3.5" rev-constraint-dynamic="0.3.5" callerrev="1.0.0"/>
+				<artifacts>
+					<artifact name="mkdirp" type="jar" ext="jar" status="no" details="" size="4156" time="0" location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.webjars/mkdirp/0.3.5/jars/mkdirp.jar">
+						<origin-location is-local="true" location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.webjars/mkdirp/0.3.5/jars/mkdirp.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.webjars" name="coffee-script-node">
+			<revision name="1.7.1" status="release" pubdate="20140310223807" resolver="sbt-chain" artresolver="sbt-chain" homepage="" downloaded="false" searched="false" default="false" conf="default, compile, runtime, default(compile), master" position="86">
+				<license name="CoffeeScript" url="https://github.com/jashkenas/coffee-script/blob/master/LICENSE"/>
+				<metadata-artifact status="no" details="" size="3549" time="0" location="/Users/wangxu/.ivy2/cache/org.webjars/coffee-script-node/ivy-1.7.1.xml" searched="false" origin-is-local="true" origin-location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.webjars/coffee-script-node/1.7.1/ivys/ivy.xml"/>
+				<caller organisation="com.typesafe.sbt" name="sbt-coffeescript" conf="compile" rev="1.7.1" rev-constraint-default="1.7.1" rev-constraint-dynamic="1.7.1" callerrev="1.0.0"/>
+				<artifacts>
+					<artifact name="coffee-script-node" type="jar" ext="jar" status="no" details="" size="84846" time="0" location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.webjars/coffee-script-node/1.7.1/jars/coffee-script-node.jar">
+						<origin-location is-local="true" location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.webjars/coffee-script-node/1.7.1/jars/coffee-script-node.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.scala-lang" name="scala-compiler">
+			<revision name="2.10.4" status="release" pubdate="20160422111051" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://www.scala-lang.org/" downloaded="false" searched="false" default="false" conf="compile, runtime(*), master(compile), runtime, compile(*), master" position="13">
+				<license name="BSD-like" url="http://www.scala-lang.org/downloads/license.html    "/>
+				<metadata-artifact status="no" details="" size="2816" time="0" location="/Users/wangxu/.ivy2/cache/org.scala-lang/scala-compiler/ivy-2.10.4.xml" searched="false" origin-is-local="false" origin-location="file:/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.scala-lang/scala-compiler/2.10.4/ivys/ivy.xml"/>
+				<caller organisation="com.typesafe.play" name="twirl-compiler_2.10" conf="default, compile, runtime, master" rev="2.10.4" rev-constraint-default="2.10.4" rev-constraint-dynamic="2.10.5" callerrev="1.1.1"/>
+				<artifacts>
+					<artifact name="scala-compiler" type="jar" ext="jar" status="no" details="" size="14445780" time="0" location="/Users/wangxu/.ivy2/cache/org.scala-lang/scala-compiler/jars/scala-compiler-2.10.4.jar">
+						<origin-location is-local="false" location="file:/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.scala-lang/scala-compiler/2.10.4/jars/scala-compiler.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.scala-lang" name="scala-reflect">
+			<revision name="2.10.4" status="release" pubdate="20160422111054" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://www.scala-lang.org/" extra-info.apiURL="http://www.scala-lang.org/api/2.10.4/" downloaded="false" searched="false" default="false" conf="compile, runtime(*), master(compile), runtime, compile(*), master" position="14">
+				<license name="BSD-like" url="http://www.scala-lang.org/downloads/license.html    "/>
+				<metadata-artifact status="no" details="" size="2822" time="0" location="/Users/wangxu/.ivy2/cache/org.scala-lang/scala-reflect/ivy-2.10.4.xml" searched="false" origin-is-local="false" origin-location="file:/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.scala-lang/scala-reflect/2.10.4/ivys/ivy.xml"/>
+				<caller organisation="org.scala-lang" name="scala-compiler" conf="compile, runtime" rev="2.10.4" rev-constraint-default="2.10.4" rev-constraint-dynamic="2.10.4" callerrev="2.10.4"/>
+				<artifacts>
+					<artifact name="scala-reflect" type="jar" ext="jar" status="no" details="" size="3203471" time="0" location="/Users/wangxu/.ivy2/cache/org.scala-lang/scala-reflect/jars/scala-reflect-2.10.4.jar">
+						<origin-location is-local="false" location="file:/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.scala-lang/scala-reflect/2.10.4/jars/scala-reflect.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="com.typesafe.play" name="sbt-plugin">
+			<revision name="2.5.0" status="release" pubdate="20160303080914" resolver="sbt-chain" artresolver="sbt-chain" homepage="https://playframework.com" extra-scalaVersion="2.10" extra-sbtVersion="0.13" downloaded="false" searched="false" default="false" conf="compile, default(compile)" position="0">
+				<license name="Apache-2.0" url="http://www.apache.org/licenses/LICENSE-2.0.html"/>
+				<metadata-artifact status="no" details="" size="3442" time="0" location="/Users/wangxu/.ivy2/cache/scala_2.10/sbt_0.13/com.typesafe.play/sbt-plugin/ivy-2.5.0.xml" searched="false" origin-is-local="false" origin-location="https://repo.scala-sbt.org/scalasbt/sbt-plugin-releases/com.typesafe.play/sbt-plugin/scala_2.10/sbt_0.13/2.5.0/ivys/ivy.xml"/>
+				<caller organisation="default" name="server-build" conf="test, compile, runtime" rev="2.5.0" rev-constraint-default="2.5.0" rev-constraint-dynamic="2.5.0" callerrev="0.1-SNAPSHOT" extra-scalaVersion="2.10" extra-sbtVersion="0.13"/>
+				<artifacts>
+					<artifact name="sbt-plugin" type="jar" ext="jar" status="no" details="" size="379071" time="0" location="/Users/wangxu/.ivy2/cache/scala_2.10/sbt_0.13/com.typesafe.play/sbt-plugin/jars/sbt-plugin-2.5.0.jar">
+						<origin-location is-local="false" location="https://repo.scala-sbt.org/scalasbt/sbt-plugin-releases/com.typesafe.play/sbt-plugin/scala_2.10/sbt_0.13/2.5.0/jars/sbt-plugin.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="com.typesafe.sbt" name="sbt-js-engine">
+			<revision name="1.1.3" status="release" pubdate="20150622140624" resolver="sbt-chain" artresolver="sbt-chain" homepage="https://github.com/sbt/sbt-js-engine" extra-scalaVersion="2.10" extra-sbtVersion="0.13" downloaded="false" searched="false" default="false" conf="compile, default(compile)" position="56">
+				<license name="Apache-2.0" url="http://www.apache.org/licenses/LICENSE-2.0.html"/>
+				<metadata-artifact status="no" details="" size="2358" time="0" location="/Users/wangxu/.ivy2/cache/scala_2.10/sbt_0.13/com.typesafe.sbt/sbt-js-engine/ivy-1.1.3.xml" searched="false" origin-is-local="false" origin-location="https://repo.scala-sbt.org/scalasbt/sbt-plugin-releases/com.typesafe.sbt/sbt-js-engine/scala_2.10/sbt_0.13/1.1.3/ivys/ivy.xml"/>
+				<caller organisation="com.typesafe.sbt" name="sbt-less" conf="compile" rev="1.0.1" rev-constraint-default="1.0.1" rev-constraint-dynamic="1.0.1" callerrev="1.0.6" extra-scalaVersion="2.10" extra-sbtVersion="0.13"/>
+				<caller organisation="com.typesafe.sbt" name="sbt-coffeescript" conf="compile" rev="1.0.0" rev-constraint-default="1.0.0" rev-constraint-dynamic="1.0.0" callerrev="1.0.0" extra-scalaVersion="2.10" extra-sbtVersion="0.13"/>
+				<caller organisation="com.typesafe.play" name="sbt-plugin" conf="compile" rev="1.1.3" rev-constraint-default="1.1.3" rev-constraint-dynamic="1.1.3" callerrev="2.5.0" extra-scalaVersion="2.10" extra-sbtVersion="0.13"/>
+				<caller organisation="com.typesafe.sbt" name="sbt-mocha" conf="compile" rev="1.1.1" rev-constraint-default="1.1.1" rev-constraint-dynamic="1.1.1" callerrev="1.1.0" extra-scalaVersion="2.10" extra-sbtVersion="0.13"/>
+				<artifacts>
+					<artifact name="sbt-js-engine" type="jar" ext="jar" status="no" details="" size="144096" time="0" location="/Users/wangxu/.ivy2/cache/scala_2.10/sbt_0.13/com.typesafe.sbt/sbt-js-engine/jars/sbt-js-engine-1.1.3.jar">
+						<origin-location is-local="false" location="https://repo.scala-sbt.org/scalasbt/sbt-plugin-releases/com.typesafe.sbt/sbt-js-engine/scala_2.10/sbt_0.13/1.1.3/jars/sbt-js-engine.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+			<revision name="1.1.1" evicted="latest-revision" evicted-reason="" extra-scalaVersion="2.10" extra-sbtVersion="0.13" downloaded="false" searched="false" conf="compile, default(compile)" position="-1">
+				<evicted-by rev="1.1.3"/>
+				<caller organisation="com.typesafe.sbt" name="sbt-mocha" conf="compile" rev="1.1.1" rev-constraint-default="1.1.1" rev-constraint-dynamic="1.1.1" callerrev="1.1.0" extra-scalaVersion="2.10" extra-sbtVersion="0.13"/>
+				<artifacts>
+				</artifacts>
+			</revision>
+			<revision name="1.0.1" evicted="latest-revision" evicted-reason="" extra-scalaVersion="2.10" extra-sbtVersion="0.13" downloaded="false" searched="false" conf="compile, default(compile)" position="-1">
+				<evicted-by rev="1.1.3"/>
+				<caller organisation="com.typesafe.sbt" name="sbt-less" conf="compile" rev="1.0.1" rev-constraint-default="1.0.1" rev-constraint-dynamic="1.0.1" callerrev="1.0.6" extra-scalaVersion="2.10" extra-sbtVersion="0.13"/>
+				<caller organisation="com.typesafe.sbt" name="sbt-rjs" conf="compile" rev="1.0.1" rev-constraint-default="1.0.1" rev-constraint-dynamic="1.0.1" callerrev="1.0.7" extra-scalaVersion="2.10" extra-sbtVersion="0.13"/>
+				<artifacts>
+				</artifacts>
+			</revision>
+			<revision name="1.0.0" evicted="latest-revision" evicted-reason="" extra-scalaVersion="2.10" extra-sbtVersion="0.13" downloaded="false" searched="false" conf="compile, default(compile)" position="-1">
+				<evicted-by rev="1.1.3"/>
+				<caller organisation="com.typesafe.sbt" name="sbt-coffeescript" conf="compile" rev="1.0.0" rev-constraint-default="1.0.0" rev-constraint-dynamic="1.0.0" callerrev="1.0.0" extra-scalaVersion="2.10" extra-sbtVersion="0.13"/>
+				<caller organisation="com.typesafe.sbt" name="sbt-jshint" conf="compile" rev="1.0.0" rev-constraint-default="1.0.0" rev-constraint-dynamic="1.0.0" callerrev="1.0.3" extra-scalaVersion="2.10" extra-sbtVersion="0.13"/>
+				<artifacts>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="com.typesafe" name="npm_2.10">
+			<revision name="1.1.1" status="release" pubdate="20150621221404" resolver="sbt-chain" artresolver="sbt-chain" homepage="https://github.com/typesafehub/npm" downloaded="false" searched="false" default="false" conf="default, compile, runtime, default(compile), master" position="83">
+				<license name="Apache-2.0" url="http://www.apache.org/licenses/LICENSE-2.0.html"/>
+				<metadata-artifact status="no" details="" size="3419" time="0" location="/Users/wangxu/.ivy2/cache/com.typesafe/npm_2.10/ivy-1.1.1.xml" searched="false" origin-is-local="true" origin-location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/com.typesafe/npm_2.10/1.1.1/ivys/ivy.xml"/>
+				<caller organisation="com.typesafe.sbt" name="sbt-js-engine" conf="compile" rev="1.1.1" rev-constraint-default="1.1.1" rev-constraint-dynamic="1.1.1" callerrev="1.1.3"/>
+				<artifacts>
+					<artifact name="npm_2.10" type="jar" ext="jar" status="no" details="" size="5563" time="0" location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/com.typesafe/npm_2.10/1.1.1/jars/npm_2.10.jar">
+						<origin-location is-local="true" location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/com.typesafe/npm_2.10/1.1.1/jars/npm_2.10.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.webjars" name="npm">
+			<revision name="2.11.2" status="release" pubdate="20150618101707" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://webjars.org" downloaded="false" searched="false" default="false" conf="compile, runtime(*), master(compile), runtime, compile(*), master" position="84">
+				<license name="Assorted" url="https://github.com/npm/npm/blob/master/LICENCE"/>
+				<metadata-artifact status="no" details="" size="3425" time="0" location="/Users/wangxu/.ivy2/cache/org.webjars/npm/ivy-2.11.2.xml" searched="false" origin-is-local="true" origin-location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.webjars/npm/2.11.2/ivys/ivy.xml"/>
+				<caller organisation="com.typesafe" name="npm_2.10" conf="default, compile, runtime, master" rev="2.11.2" rev-constraint-default="2.11.2" rev-constraint-dynamic="2.11.2" callerrev="1.1.1"/>
+				<artifacts>
+					<artifact name="npm" type="jar" ext="jar" status="no" details="" size="2997822" time="0" location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.webjars/npm/2.11.2/jars/npm.jar">
+						<origin-location is-local="true" location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.webjars/npm/2.11.2/jars/npm.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="com.typesafe" name="jse_2.10">
+			<revision name="1.1.2" status="release" pubdate="20150614225510" resolver="sbt-chain" artresolver="sbt-chain" homepage="https://github.com/typesafehub/js-engine" downloaded="false" searched="false" default="false" conf="default, compile, runtime(*), master(compile), runtime, default(compile), compile(*), master" position="57">
+				<license name="Apache-2.0" url="http://www.apache.org/licenses/LICENSE-2.0.html"/>
+				<metadata-artifact status="no" details="" size="3877" time="0" location="/Users/wangxu/.ivy2/cache/com.typesafe/jse_2.10/ivy-1.1.2.xml" searched="false" origin-is-local="true" origin-location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/com.typesafe/jse_2.10/1.1.2/ivys/ivy.xml"/>
+				<caller organisation="com.typesafe.sbt" name="sbt-js-engine" conf="compile" rev="1.1.2" rev-constraint-default="1.1.2" rev-constraint-dynamic="1.1.2" callerrev="1.1.3"/>
+				<caller organisation="com.typesafe" name="npm_2.10" conf="default, compile, runtime, master" rev="1.1.2" rev-constraint-default="1.1.2" rev-constraint-dynamic="1.1.2" callerrev="1.1.1"/>
+				<artifacts>
+					<artifact name="jse_2.10" type="jar" ext="jar" status="no" details="" size="151992" time="0" location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/com.typesafe/jse_2.10/1.1.2/jars/jse_2.10.jar">
+						<origin-location is-local="true" location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/com.typesafe/jse_2.10/1.1.2/jars/jse_2.10.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.slf4j" name="slf4j-simple">
+			<revision name="1.7.12" status="release" pubdate="20150326165021" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://www.slf4j.org" downloaded="false" searched="false" default="false" conf="compile, runtime(*), master(compile), runtime, compile(*), master" position="81">
+				<license name="MIT License" url="http://www.opensource.org/licenses/mit-license.php"/>
+				<metadata-artifact status="no" details="" size="4772" time="0" location="/Users/wangxu/.ivy2/cache/org.slf4j/slf4j-simple/ivy-1.7.12.xml" searched="false" origin-is-local="true" origin-location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.slf4j/slf4j-simple/1.7.12/ivys/ivy.xml"/>
+				<caller organisation="com.typesafe" name="jse_2.10" conf="default, compile, runtime, master" rev="1.7.12" rev-constraint-default="1.7.12" rev-constraint-dynamic="1.7.12" callerrev="1.1.2"/>
+				<artifacts>
+					<artifact name="slf4j-simple" type="jar" ext="jar" status="no" details="" size="10712" time="0" location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.slf4j/slf4j-simple/1.7.12/jars/slf4j-simple.jar">
+						<origin-location is-local="true" location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.slf4j/slf4j-simple/1.7.12/jars/slf4j-simple.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.slf4j" name="slf4j-api">
+			<revision name="1.7.12" status="release" pubdate="20150326165005" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://www.slf4j.org" downloaded="false" searched="false" default="false" conf="compile, runtime(*), master(compile), runtime, compile(*), master" position="82">
+				<license name="MIT License" url="http://www.opensource.org/licenses/mit-license.php"/>
+				<metadata-artifact status="no" details="" size="4727" time="0" location="/Users/wangxu/.ivy2/cache/org.slf4j/slf4j-api/ivy-1.7.12.xml" searched="false" origin-is-local="true" origin-location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.slf4j/slf4j-api/1.7.12/ivys/ivy.xml"/>
+				<caller organisation="org.slf4j" name="slf4j-simple" conf="compile, runtime" rev="1.7.12" rev-constraint-default="1.7.12" rev-constraint-dynamic="1.7.12" callerrev="1.7.12"/>
+				<caller organisation="io.apigee.trireme" name="trireme-core" conf="compile, runtime" rev="1.7.2" rev-constraint-default="1.7.2" rev-constraint-dynamic="1.7.2" callerrev="0.8.5"/>
+				<caller organisation="org.webjars" name="webjars-locator-core" conf="compile, runtime" rev="1.7.7" rev-constraint-default="1.7.7" rev-constraint-dynamic="1.7.7" callerrev="0.26"/>
+				<artifacts>
+					<artifact name="slf4j-api" type="jar" ext="jar" status="no" details="" size="32127" time="0" location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.slf4j/slf4j-api/1.7.12/jars/slf4j-api.jar">
+						<origin-location is-local="true" location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.slf4j/slf4j-api/1.7.12/jars/slf4j-api.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+			<revision name="1.7.7" status="release" pubdate="20140404071248" resolver="sbt-chain" artresolver="sbt-chain" evicted="latest-revision" evicted-reason="" homepage="http://www.slf4j.org" downloaded="false" searched="false" default="false" conf="compile, runtime(*), master(compile), runtime, compile(*), master" position="-1">
+				<license name="MIT License" url="http://www.opensource.org/licenses/mit-license.php"/>
+				<metadata-artifact status="no" details="" size="4470" time="0" location="/Users/wangxu/.ivy2/cache/org.slf4j/slf4j-api/ivy-1.7.7.xml" searched="false" origin-is-local="true" origin-location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.slf4j/slf4j-api/1.7.7/ivys/ivy.xml"/>
+				<evicted-by rev="1.7.12"/>
+				<caller organisation="org.webjars" name="webjars-locator-core" conf="compile, runtime" rev="1.7.7" rev-constraint-default="1.7.7" rev-constraint-dynamic="1.7.7" callerrev="0.26"/>
+				<caller organisation="io.apigee.trireme" name="trireme-core" conf="compile, runtime" rev="1.7.2" rev-constraint-default="1.7.2" rev-constraint-dynamic="1.7.2" callerrev="0.8.5"/>
+				<artifacts>
+				</artifacts>
+			</revision>
+			<revision name="1.7.2" evicted="latest-revision" evicted-reason="" downloaded="false" searched="false" conf="compile, runtime(*), master(compile), runtime, compile(*), master" position="-1">
+				<evicted-by rev="1.7.12"/>
+				<caller organisation="io.apigee.trireme" name="trireme-core" conf="compile, runtime" rev="1.7.2" rev-constraint-default="1.7.2" rev-constraint-dynamic="1.7.2" callerrev="0.8.5"/>
+				<artifacts>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="io.spray" name="spray-json_2.10">
+			<revision name="1.3.2" status="release" pubdate="20150506100102" resolver="sbt-chain" artresolver="sbt-chain" homepage="https://github.com/spray/spray-json" downloaded="false" searched="false" default="false" conf="compile, runtime(*), master(compile), runtime, compile(*), master" position="80">
+				<license name="Apache 2" url="http://www.apache.org/licenses/LICENSE-2.0.txt"/>
+				<metadata-artifact status="no" details="" size="3072" time="0" location="/Users/wangxu/.ivy2/cache/io.spray/spray-json_2.10/ivy-1.3.2.xml" searched="false" origin-is-local="true" origin-location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/io.spray/spray-json_2.10/1.3.2/ivys/ivy.xml"/>
+				<caller organisation="com.typesafe" name="jse_2.10" conf="default, compile, runtime, master" rev="1.3.2" rev-constraint-default="1.3.2" rev-constraint-dynamic="1.3.2" callerrev="1.1.2"/>
+				<artifacts>
+					<artifact name="spray-json_2.10" type="bundle" ext="jar" status="no" details="" size="289719" time="0" location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/io.spray/spray-json_2.10/1.3.2/bundles/spray-json_2.10.jar">
+						<origin-location is-local="true" location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/io.spray/spray-json_2.10/1.3.2/bundles/spray-json_2.10.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="io.apigee.trireme" name="trireme-node10src">
+			<revision name="0.8.5" status="release" pubdate="20141214154644" resolver="sbt-chain" artresolver="sbt-chain" homepage="" downloaded="false" searched="false" default="false" conf="compile, runtime(*), master(compile), runtime, compile(*), master" position="79">
+				<license name="MIT License" url="http://opensource.org/licenses/MIT"/>
+				<metadata-artifact status="no" details="" size="6150" time="0" location="/Users/wangxu/.ivy2/cache/io.apigee.trireme/trireme-node10src/ivy-0.8.5.xml" searched="false" origin-is-local="true" origin-location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/io.apigee.trireme/trireme-node10src/0.8.5/ivys/ivy.xml"/>
+				<caller organisation="com.typesafe" name="jse_2.10" conf="default, compile, runtime, master" rev="0.8.5" rev-constraint-default="0.8.5" rev-constraint-dynamic="0.8.5" callerrev="1.1.2"/>
+				<artifacts>
+					<artifact name="trireme-node10src" type="jar" ext="jar" status="no" details="" size="716828" time="0" location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/io.apigee.trireme/trireme-node10src/0.8.5/jars/trireme-node10src.jar">
+						<origin-location is-local="true" location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/io.apigee.trireme/trireme-node10src/0.8.5/jars/trireme-node10src.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="io.apigee.trireme" name="trireme-core">
+			<revision name="0.8.5" status="release" pubdate="20141214154546" resolver="sbt-chain" artresolver="sbt-chain" homepage="" downloaded="false" searched="false" default="false" conf="compile, runtime(*), master(compile), runtime, compile(*), master" position="77">
+				<license name="MIT License" url="http://opensource.org/licenses/MIT"/>
+				<metadata-artifact status="no" details="" size="5392" time="0" location="/Users/wangxu/.ivy2/cache/io.apigee.trireme/trireme-core/ivy-0.8.5.xml" searched="false" origin-is-local="true" origin-location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/io.apigee.trireme/trireme-core/0.8.5/ivys/ivy.xml"/>
+				<caller organisation="com.typesafe" name="jse_2.10" conf="default, compile, runtime, master" rev="0.8.5" rev-constraint-default="0.8.5" rev-constraint-dynamic="0.8.5" callerrev="1.1.2"/>
+				<caller organisation="io.apigee.trireme" name="trireme-node10src" conf="compile, runtime" rev="0.8.5" rev-constraint-default="0.8.5" rev-constraint-dynamic="0.8.5" callerrev="0.8.5"/>
+				<artifacts>
+					<artifact name="trireme-core" type="jar" ext="jar" status="no" details="" size="423164" time="0" location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/io.apigee.trireme/trireme-core/0.8.5/jars/trireme-core.jar">
+						<origin-location is-local="true" location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/io.apigee.trireme/trireme-core/0.8.5/jars/trireme-core.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="io.apigee" name="rhino">
+			<revision name="1.7R5pre4" status="release" pubdate="20141014201202" resolver="sbt-chain" artresolver="sbt-chain" homepage="" downloaded="false" searched="false" default="false" conf="compile, runtime(*), master(compile), runtime, compile(*), master" position="78">
+				<license name="Mozilla Public License 2.0" url="http://www.mozilla.org/MPL/2.0/"/>
+				<metadata-artifact status="no" details="" size="2833" time="0" location="/Users/wangxu/.ivy2/cache/io.apigee/rhino/ivy-1.7R5pre4.xml" searched="false" origin-is-local="true" origin-location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/io.apigee/rhino/1.7R5pre4/ivys/ivy.xml"/>
+				<caller organisation="io.apigee.trireme" name="trireme-node10src" conf="compile, runtime" rev="1.7R5pre4" rev-constraint-default="1.7R5pre4" rev-constraint-dynamic="1.7R5pre4" callerrev="0.8.5"/>
+				<caller organisation="io.apigee.trireme" name="trireme-core" conf="compile, runtime" rev="1.7R5pre4" rev-constraint-default="1.7R5pre4" rev-constraint-dynamic="1.7R5pre4" callerrev="0.8.5"/>
+				<artifacts>
+					<artifact name="rhino" type="jar" ext="jar" status="no" details="" size="1160579" time="0" location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/io.apigee/rhino/1.7R5pre4/jars/rhino.jar">
+						<origin-location is-local="true" location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/io.apigee/rhino/1.7R5pre4/jars/rhino.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="com.typesafe.akka" name="akka-contrib_2.10">
+			<revision name="2.3.11" status="release" pubdate="20150508102516" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://akka.io/" downloaded="false" searched="false" default="false" conf="compile, runtime(*), master(compile), runtime, compile(*), master" position="59">
+				<license name="Apache License, Version 2.0" url="http://www.apache.org/licenses/LICENSE-2.0"/>
+				<metadata-artifact status="no" details="" size="4015" time="0" location="/Users/wangxu/.ivy2/cache/com.typesafe.akka/akka-contrib_2.10/ivy-2.3.11.xml" searched="false" origin-is-local="true" origin-location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/com.typesafe.akka/akka-contrib_2.10/2.3.11/ivys/ivy.xml"/>
+				<caller organisation="com.typesafe" name="jse_2.10" conf="default, compile, runtime, master" rev="2.3.11" rev-constraint-default="2.3.11" rev-constraint-dynamic="2.3.11" callerrev="1.1.2"/>
+				<artifacts>
+					<artifact name="akka-contrib_2.10" type="jar" ext="jar" status="no" details="" size="842753" time="0" location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/com.typesafe.akka/akka-contrib_2.10/2.3.11/jars/akka-contrib_2.10.jar">
+						<origin-location is-local="true" location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/com.typesafe.akka/akka-contrib_2.10/2.3.11/jars/akka-contrib_2.10.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="com.typesafe.akka" name="akka-persistence-experimental_2.10">
+			<revision name="2.3.11" status="release" pubdate="20150508102107" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://akka.io/" downloaded="false" searched="false" default="false" conf="compile, runtime(*), master(compile), runtime, compile(*), master" position="65">
+				<license name="Apache License, Version 2.0" url="http://www.apache.org/licenses/LICENSE-2.0"/>
+				<metadata-artifact status="no" details="" size="4345" time="0" location="/Users/wangxu/.ivy2/cache/com.typesafe.akka/akka-persistence-experimental_2.10/ivy-2.3.11.xml" searched="false" origin-is-local="true" origin-location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/com.typesafe.akka/akka-persistence-experimental_2.10/2.3.11/ivys/ivy.xml"/>
+				<caller organisation="com.typesafe.akka" name="akka-contrib_2.10" conf="compile, runtime" rev="2.3.11" rev-constraint-default="2.3.11" rev-constraint-dynamic="2.3.11" callerrev="2.3.11"/>
+				<artifacts>
+					<artifact name="akka-persistence-experimental_2.10" type="jar" ext="jar" status="no" details="" size="835627" time="0" location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/com.typesafe.akka/akka-persistence-experimental_2.10/2.3.11/jars/akka-persistence-experimental_2.10.jar">
+						<origin-location is-local="true" location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/com.typesafe.akka/akka-persistence-experimental_2.10/2.3.11/jars/akka-persistence-experimental_2.10.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.fusesource.leveldbjni" name="leveldbjni-all">
+			<revision name="1.7" status="release" pubdate="20130513091202" resolver="sbt-chain" artresolver="sbt-chain" homepage="" downloaded="false" searched="false" default="false" conf="compile, runtime(*), master(compile), runtime, compile(*), master" position="69">
+				<license name="The BSD 3-Clause License" url="http://www.opensource.org/licenses/BSD-3-Clause"/>
+				<metadata-artifact status="no" details="" size="4607" time="0" location="/Users/wangxu/.ivy2/cache/org.fusesource.leveldbjni/leveldbjni-all/ivy-1.7.xml" searched="false" origin-is-local="true" origin-location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.fusesource.leveldbjni/leveldbjni-all/1.7/ivys/ivy.xml"/>
+				<caller organisation="com.typesafe.akka" name="akka-persistence-experimental_2.10" conf="compile, runtime" rev="1.7" rev-constraint-default="1.7" rev-constraint-dynamic="1.7" callerrev="2.3.11"/>
+				<artifacts>
+					<artifact name="leveldbjni-all" type="bundle" ext="jar" status="no" details="" size="1035468" time="0" location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.fusesource.leveldbjni/leveldbjni-all/1.7/bundles/leveldbjni-all.jar">
+						<origin-location is-local="true" location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.fusesource.leveldbjni/leveldbjni-all/1.7/bundles/leveldbjni-all.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.fusesource.leveldbjni" name="leveldbjni-win64">
+			<revision name="1.5" status="release" pubdate="20130123173052" resolver="sbt-chain" artresolver="sbt-chain" homepage="" downloaded="false" searched="false" default="false" conf="compile, runtime(*), master(compile), runtime, compile(*), master" position="76">
+				<license name="The BSD 3-Clause License" url="http://www.opensource.org/licenses/BSD-3-Clause"/>
+				<metadata-artifact status="no" details="" size="3836" time="0" location="/Users/wangxu/.ivy2/cache/org.fusesource.leveldbjni/leveldbjni-win64/ivy-1.5.xml" searched="false" origin-is-local="true" origin-location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.fusesource.leveldbjni/leveldbjni-win64/1.5/ivys/ivy.xml"/>
+				<caller organisation="org.fusesource.leveldbjni" name="leveldbjni-all" conf="compile, runtime" rev="1.5" rev-constraint-default="1.5" rev-constraint-dynamic="1.5" callerrev="1.7"/>
+				<artifacts>
+					<artifact name="leveldbjni-win64" type="jar" ext="jar" status="no" details="" size="126331" time="0" location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.fusesource.leveldbjni/leveldbjni-win64/1.5/jars/leveldbjni-win64.jar">
+						<origin-location is-local="true" location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.fusesource.leveldbjni/leveldbjni-win64/1.5/jars/leveldbjni-win64.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.fusesource.leveldbjni" name="leveldbjni-win32">
+			<revision name="1.5" status="release" pubdate="20130123173254" resolver="sbt-chain" artresolver="sbt-chain" homepage="" downloaded="false" searched="false" default="false" conf="compile, runtime(*), master(compile), runtime, compile(*), master" position="75">
+				<license name="The BSD 3-Clause License" url="http://www.opensource.org/licenses/BSD-3-Clause"/>
+				<metadata-artifact status="no" details="" size="3836" time="0" location="/Users/wangxu/.ivy2/cache/org.fusesource.leveldbjni/leveldbjni-win32/ivy-1.5.xml" searched="false" origin-is-local="true" origin-location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.fusesource.leveldbjni/leveldbjni-win32/1.5/ivys/ivy.xml"/>
+				<caller organisation="org.fusesource.leveldbjni" name="leveldbjni-all" conf="compile, runtime" rev="1.5" rev-constraint-default="1.5" rev-constraint-dynamic="1.5" callerrev="1.7"/>
+				<artifacts>
+					<artifact name="leveldbjni-win32" type="jar" ext="jar" status="no" details="" size="111686" time="0" location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.fusesource.leveldbjni/leveldbjni-win32/1.5/jars/leveldbjni-win32.jar">
+						<origin-location is-local="true" location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.fusesource.leveldbjni/leveldbjni-win32/1.5/jars/leveldbjni-win32.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.fusesource.leveldbjni" name="leveldbjni-linux64">
+			<revision name="1.5" status="release" pubdate="20130123171810" resolver="sbt-chain" artresolver="sbt-chain" homepage="" downloaded="false" searched="false" default="false" conf="compile, runtime(*), master(compile), runtime, compile(*), master" position="74">
+				<license name="The BSD 3-Clause License" url="http://www.opensource.org/licenses/BSD-3-Clause"/>
+				<metadata-artifact status="no" details="" size="3834" time="0" location="/Users/wangxu/.ivy2/cache/org.fusesource.leveldbjni/leveldbjni-linux64/ivy-1.5.xml" searched="false" origin-is-local="true" origin-location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.fusesource.leveldbjni/leveldbjni-linux64/1.5/ivys/ivy.xml"/>
+				<caller organisation="org.fusesource.leveldbjni" name="leveldbjni-all" conf="compile, runtime" rev="1.5" rev-constraint-default="1.5" rev-constraint-dynamic="1.5" callerrev="1.7"/>
+				<artifacts>
+					<artifact name="leveldbjni-linux64" type="jar" ext="jar" status="no" details="" size="280537" time="0" location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.fusesource.leveldbjni/leveldbjni-linux64/1.5/jars/leveldbjni-linux64.jar">
+						<origin-location is-local="true" location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.fusesource.leveldbjni/leveldbjni-linux64/1.5/jars/leveldbjni-linux64.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.fusesource.leveldbjni" name="leveldbjni-linux32">
+			<revision name="1.5" status="release" pubdate="20130123171810" resolver="sbt-chain" artresolver="sbt-chain" homepage="" downloaded="false" searched="false" default="false" conf="compile, runtime(*), master(compile), runtime, compile(*), master" position="73">
+				<license name="The BSD 3-Clause License" url="http://www.opensource.org/licenses/BSD-3-Clause"/>
+				<metadata-artifact status="no" details="" size="3834" time="0" location="/Users/wangxu/.ivy2/cache/org.fusesource.leveldbjni/leveldbjni-linux32/ivy-1.5.xml" searched="false" origin-is-local="true" origin-location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.fusesource.leveldbjni/leveldbjni-linux32/1.5/ivys/ivy.xml"/>
+				<caller organisation="org.fusesource.leveldbjni" name="leveldbjni-all" conf="compile, runtime" rev="1.5" rev-constraint-default="1.5" rev-constraint-dynamic="1.5" callerrev="1.7"/>
+				<artifacts>
+					<artifact name="leveldbjni-linux32" type="jar" ext="jar" status="no" details="" size="281930" time="0" location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.fusesource.leveldbjni/leveldbjni-linux32/1.5/jars/leveldbjni-linux32.jar">
+						<origin-location is-local="true" location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.fusesource.leveldbjni/leveldbjni-linux32/1.5/jars/leveldbjni-linux32.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.fusesource.leveldbjni" name="leveldbjni-osx">
+			<revision name="1.5" status="release" pubdate="20130123170531" resolver="sbt-chain" artresolver="sbt-chain" homepage="" downloaded="false" searched="false" default="false" conf="compile, runtime(*), master(compile), runtime, compile(*), master" position="72">
+				<license name="The BSD 3-Clause License" url="http://www.opensource.org/licenses/BSD-3-Clause"/>
+				<metadata-artifact status="no" details="" size="4049" time="0" location="/Users/wangxu/.ivy2/cache/org.fusesource.leveldbjni/leveldbjni-osx/ivy-1.5.xml" searched="false" origin-is-local="true" origin-location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.fusesource.leveldbjni/leveldbjni-osx/1.5/ivys/ivy.xml"/>
+				<caller organisation="org.fusesource.leveldbjni" name="leveldbjni-all" conf="compile, runtime" rev="1.5" rev-constraint-default="1.5" rev-constraint-dynamic="1.5" callerrev="1.7"/>
+				<artifacts>
+					<artifact name="leveldbjni-osx" type="jar" ext="jar" status="no" details="" size="167140" time="0" location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.fusesource.leveldbjni/leveldbjni-osx/1.5/jars/leveldbjni-osx.jar">
+						<origin-location is-local="true" location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.fusesource.leveldbjni/leveldbjni-osx/1.5/jars/leveldbjni-osx.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.fusesource.leveldbjni" name="leveldbjni">
+			<revision name="1.7" status="release" pubdate="20130513091129" resolver="sbt-chain" artresolver="sbt-chain" homepage="" downloaded="false" searched="false" default="false" conf="compile, runtime(*), master(compile), runtime, compile(*), master" position="70">
+				<license name="The BSD 3-Clause License" url="http://www.opensource.org/licenses/BSD-3-Clause"/>
+				<metadata-artifact status="no" details="" size="4271" time="0" location="/Users/wangxu/.ivy2/cache/org.fusesource.leveldbjni/leveldbjni/ivy-1.7.xml" searched="false" origin-is-local="true" origin-location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.fusesource.leveldbjni/leveldbjni/1.7/ivys/ivy.xml"/>
+				<caller organisation="org.fusesource.leveldbjni" name="leveldbjni-linux64" conf="compile, runtime" rev="1.5" rev-constraint-default="1.5" rev-constraint-dynamic="1.5" callerrev="1.5"/>
+				<caller organisation="org.fusesource.leveldbjni" name="leveldbjni-all" conf="compile, runtime" rev="1.7" rev-constraint-default="1.7" rev-constraint-dynamic="1.7" callerrev="1.7"/>
+				<caller organisation="org.fusesource.leveldbjni" name="leveldbjni-osx" conf="compile, runtime" rev="1.5" rev-constraint-default="1.5" rev-constraint-dynamic="1.5" callerrev="1.5"/>
+				<caller organisation="org.fusesource.leveldbjni" name="leveldbjni-win64" conf="compile, runtime" rev="1.5" rev-constraint-default="1.5" rev-constraint-dynamic="1.5" callerrev="1.5"/>
+				<caller organisation="org.fusesource.leveldbjni" name="leveldbjni-win32" conf="compile, runtime" rev="1.5" rev-constraint-default="1.5" rev-constraint-dynamic="1.5" callerrev="1.5"/>
+				<caller organisation="org.fusesource.leveldbjni" name="leveldbjni-linux32" conf="compile, runtime" rev="1.5" rev-constraint-default="1.5" rev-constraint-dynamic="1.5" callerrev="1.5"/>
+				<artifacts>
+					<artifact name="leveldbjni" type="jar" ext="jar" status="no" details="" size="56368" time="0" location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.fusesource.leveldbjni/leveldbjni/1.7/jars/leveldbjni.jar">
+						<origin-location is-local="true" location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.fusesource.leveldbjni/leveldbjni/1.7/jars/leveldbjni.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+			<revision name="1.5" evicted="latest-revision" evicted-reason="" downloaded="false" searched="false" conf="compile, runtime(*), master(compile), runtime, compile(*), master" position="-1">
+				<evicted-by rev="1.7"/>
+				<caller organisation="org.fusesource.leveldbjni" name="leveldbjni-linux64" conf="compile, runtime" rev="1.5" rev-constraint-default="1.5" rev-constraint-dynamic="1.5" callerrev="1.5"/>
+				<caller organisation="org.fusesource.leveldbjni" name="leveldbjni-osx" conf="compile, runtime" rev="1.5" rev-constraint-default="1.5" rev-constraint-dynamic="1.5" callerrev="1.5"/>
+				<caller organisation="org.fusesource.leveldbjni" name="leveldbjni-win64" conf="compile, runtime" rev="1.5" rev-constraint-default="1.5" rev-constraint-dynamic="1.5" callerrev="1.5"/>
+				<caller organisation="org.fusesource.leveldbjni" name="leveldbjni-win32" conf="compile, runtime" rev="1.5" rev-constraint-default="1.5" rev-constraint-dynamic="1.5" callerrev="1.5"/>
+				<caller organisation="org.fusesource.leveldbjni" name="leveldbjni-linux32" conf="compile, runtime" rev="1.5" rev-constraint-default="1.5" rev-constraint-dynamic="1.5" callerrev="1.5"/>
+				<artifacts>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.fusesource.hawtjni" name="hawtjni-runtime">
+			<revision name="1.8" status="release" pubdate="20130513085423" resolver="sbt-chain" artresolver="sbt-chain" homepage="" downloaded="false" searched="false" default="false" conf="compile, runtime(*), master(compile), runtime, compile(*), master" position="71">
+				<license name="Eclipse Public License - v 1.0" url="http://www.eclipse.org/legal/epl-v10.html"/>
+				<license name="The Apache Software License, Version 2.0" url="http://www.apache.org/licenses/LICENSE-2.0.txt"/>
+				<metadata-artifact status="no" details="" size="3981" time="0" location="/Users/wangxu/.ivy2/cache/org.fusesource.hawtjni/hawtjni-runtime/ivy-1.8.xml" searched="false" origin-is-local="true" origin-location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.fusesource.hawtjni/hawtjni-runtime/1.8/ivys/ivy.xml"/>
+				<caller organisation="org.fusesource.leveldbjni" name="leveldbjni" conf="compile, runtime" rev="1.8" rev-constraint-default="1.8" rev-constraint-dynamic="1.8" callerrev="1.7"/>
+				<artifacts>
+					<artifact name="hawtjni-runtime" type="jar" ext="jar" status="no" details="" size="19705" time="0" location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.fusesource.hawtjni/hawtjni-runtime/1.8/jars/hawtjni-runtime.jar">
+						<origin-location is-local="true" location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.fusesource.hawtjni/hawtjni-runtime/1.8/jars/hawtjni-runtime.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.iq80.leveldb" name="leveldb">
+			<revision name="0.5" status="release" pubdate="20130122134104" resolver="sbt-chain" artresolver="sbt-chain" homepage="" downloaded="false" searched="false" default="false" conf="compile, runtime(*), master(compile), runtime, compile(*), master" position="66">
+				<license name="Apache License 2.0" url="http://www.apache.org/licenses/LICENSE-2.0.html"/>
+				<metadata-artifact status="no" details="" size="3987" time="0" location="/Users/wangxu/.ivy2/cache/org.iq80.leveldb/leveldb/ivy-0.5.xml" searched="false" origin-is-local="true" origin-location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.iq80.leveldb/leveldb/0.5/ivys/ivy.xml"/>
+				<caller organisation="com.typesafe.akka" name="akka-persistence-experimental_2.10" conf="compile, runtime" rev="0.5" rev-constraint-default="0.5" rev-constraint-dynamic="0.5" callerrev="2.3.11"/>
+				<artifacts>
+					<artifact name="leveldb" type="jar" ext="jar" status="no" details="" size="227716" time="0" location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.iq80.leveldb/leveldb/0.5/jars/leveldb.jar">
+						<origin-location is-local="true" location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.iq80.leveldb/leveldb/0.5/jars/leveldb.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="com.google.guava" name="guava">
+			<revision name="12.0" status="release" pubdate="20120430144217" resolver="sbt-chain" artresolver="sbt-chain" homepage="" downloaded="false" searched="false" default="false" conf="compile, runtime(*), master(compile), runtime, compile(*), master" position="68">
+				<license name="The Apache Software License, Version 2.0" url="http://www.apache.org/licenses/LICENSE-2.0.txt"/>
+				<metadata-artifact status="no" details="" size="3771" time="0" location="/Users/wangxu/.ivy2/cache/com.google.guava/guava/ivy-12.0.xml" searched="false" origin-is-local="true" origin-location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/com.google.guava/guava/12.0/ivys/ivy.xml"/>
+				<caller organisation="org.eclipse.sisu" name="org.eclipse.sisu.plexus" conf="compile, runtime" rev="10.0.1" rev-constraint-default="10.0.1" rev-constraint-dynamic="10.0.1" callerrev="0.0.0.M5"/>
+				<caller organisation="org.iq80.leveldb" name="leveldb" conf="compile, runtime" rev="12.0" rev-constraint-default="12.0" rev-constraint-dynamic="12.0" callerrev="0.5"/>
+				<artifacts>
+					<artifact name="guava" type="jar" ext="jar" status="no" details="" size="1795936" time="0" location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/com.google.guava/guava/12.0/jars/guava.jar">
+						<origin-location is-local="true" location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/com.google.guava/guava/12.0/jars/guava.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+			<revision name="10.0.1" status="release" pubdate="20111010104457" resolver="sbt-chain" artresolver="sbt-chain" evicted="latest-revision" evicted-reason="" homepage="" downloaded="false" searched="false" default="false" conf="compile, runtime(*), master(compile), runtime, compile(*), master" position="-1">
+				<license name="The Apache Software License, Version 2.0" url="http://www.apache.org/licenses/LICENSE-2.0.txt"/>
+				<metadata-artifact status="no" details="" size="4083" time="0" location="/Users/wangxu/.ivy2/cache/com.google.guava/guava/ivy-10.0.1.xml" searched="false" origin-is-local="true" origin-location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/com.google.guava/guava/10.0.1/ivys/ivy.xml"/>
+				<evicted-by rev="12.0"/>
+				<caller organisation="org.eclipse.sisu" name="org.eclipse.sisu.plexus" conf="compile, runtime" rev="10.0.1" rev-constraint-default="10.0.1" rev-constraint-dynamic="10.0.1" callerrev="0.0.0.M5"/>
+				<artifacts>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.iq80.leveldb" name="leveldb-api">
+			<revision name="0.5" status="release" pubdate="20130122133949" resolver="sbt-chain" artresolver="sbt-chain" homepage="" downloaded="false" searched="false" default="false" conf="compile, runtime(*), master(compile), runtime, compile(*), master" position="67">
+				<license name="Apache License 2.0" url="http://www.apache.org/licenses/LICENSE-2.0.html"/>
+				<metadata-artifact status="no" details="" size="2953" time="0" location="/Users/wangxu/.ivy2/cache/org.iq80.leveldb/leveldb-api/ivy-0.5.xml" searched="false" origin-is-local="true" origin-location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.iq80.leveldb/leveldb-api/0.5/ivys/ivy.xml"/>
+				<caller organisation="org.iq80.leveldb" name="leveldb" conf="compile, runtime" rev="0.5" rev-constraint-default="0.5" rev-constraint-dynamic="0.5" callerrev="0.5"/>
+				<caller organisation="org.fusesource.leveldbjni" name="leveldbjni" conf="compile, runtime" rev="0.5" rev-constraint-default="0.5" rev-constraint-dynamic="0.5" callerrev="1.7"/>
+				<artifacts>
+					<artifact name="leveldb-api" type="jar" ext="jar" status="no" details="" size="9233" time="0" location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.iq80.leveldb/leveldb-api/0.5/jars/leveldb-api.jar">
+						<origin-location is-local="true" location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.iq80.leveldb/leveldb-api/0.5/jars/leveldb-api.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="com.typesafe.akka" name="akka-cluster_2.10">
+			<revision name="2.3.11" status="release" pubdate="20150508102319" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://akka.io/" downloaded="false" searched="false" default="false" conf="compile, runtime(*), master(compile), runtime, compile(*), master" position="64">
+				<license name="Apache License, Version 2.0" url="http://www.apache.org/licenses/LICENSE-2.0"/>
+				<metadata-artifact status="no" details="" size="3299" time="0" location="/Users/wangxu/.ivy2/cache/com.typesafe.akka/akka-cluster_2.10/ivy-2.3.11.xml" searched="false" origin-is-local="true" origin-location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/com.typesafe.akka/akka-cluster_2.10/2.3.11/ivys/ivy.xml"/>
+				<caller organisation="com.typesafe.akka" name="akka-contrib_2.10" conf="compile, runtime" rev="2.3.11" rev-constraint-default="2.3.11" rev-constraint-dynamic="2.3.11" callerrev="2.3.11"/>
+				<artifacts>
+					<artifact name="akka-cluster_2.10" type="jar" ext="jar" status="no" details="" size="1075594" time="0" location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/com.typesafe.akka/akka-cluster_2.10/2.3.11/jars/akka-cluster_2.10.jar">
+						<origin-location is-local="true" location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/com.typesafe.akka/akka-cluster_2.10/2.3.11/jars/akka-cluster_2.10.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="com.typesafe.akka" name="akka-remote_2.10">
+			<revision name="2.3.11" status="release" pubdate="20150508101734" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://akka.io/" downloaded="false" searched="false" default="false" conf="compile, runtime(*), master(compile), runtime, compile(*), master" position="60">
+				<license name="Apache License, Version 2.0" url="http://www.apache.org/licenses/LICENSE-2.0"/>
+				<metadata-artifact status="no" details="" size="3941" time="0" location="/Users/wangxu/.ivy2/cache/com.typesafe.akka/akka-remote_2.10/ivy-2.3.11.xml" searched="false" origin-is-local="true" origin-location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/com.typesafe.akka/akka-remote_2.10/2.3.11/ivys/ivy.xml"/>
+				<caller organisation="com.typesafe.akka" name="akka-contrib_2.10" conf="compile, runtime" rev="2.3.11" rev-constraint-default="2.3.11" rev-constraint-dynamic="2.3.11" callerrev="2.3.11"/>
+				<caller organisation="com.typesafe.akka" name="akka-cluster_2.10" conf="compile, runtime" rev="2.3.11" rev-constraint-default="2.3.11" rev-constraint-dynamic="2.3.11" callerrev="2.3.11"/>
+				<artifacts>
+					<artifact name="akka-remote_2.10" type="jar" ext="jar" status="no" details="" size="1352129" time="0" location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/com.typesafe.akka/akka-remote_2.10/2.3.11/jars/akka-remote_2.10.jar">
+						<origin-location is-local="true" location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/com.typesafe.akka/akka-remote_2.10/2.3.11/jars/akka-remote_2.10.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.uncommons.maths" name="uncommons-maths">
+			<revision name="1.2.2a" status="release" pubdate="20110408095605" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://maths.uncommons.org/" downloaded="false" searched="false" default="false" conf="compile, runtime(*), master(compile), runtime, compile(*), master" position="63">
+				<license name="Apache License, Version 2.0" url="http://www.apache.org/licenses/LICENSE-2.0.html"/>
+				<metadata-artifact status="no" details="" size="2865" time="0" location="/Users/wangxu/.ivy2/cache/org.uncommons.maths/uncommons-maths/ivy-1.2.2a.xml" searched="false" origin-is-local="true" origin-location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.uncommons.maths/uncommons-maths/1.2.2a/ivys/ivy.xml"/>
+				<caller organisation="com.typesafe.akka" name="akka-remote_2.10" conf="compile, runtime" rev="1.2.2a" rev-constraint-default="1.2.2a" rev-constraint-dynamic="1.2.2a" callerrev="2.3.11"/>
+				<artifacts>
+					<artifact name="uncommons-maths" type="jar" ext="jar" status="no" details="" size="49019" time="0" location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.uncommons.maths/uncommons-maths/1.2.2a/jars/uncommons-maths.jar">
+						<origin-location is-local="true" location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.uncommons.maths/uncommons-maths/1.2.2a/jars/uncommons-maths.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="io.netty" name="netty">
+			<revision name="3.8.0.Final" status="release" pubdate="20131107042312" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://netty.io/" downloaded="false" searched="false" default="false" conf="compile, runtime(*), master(compile), runtime, compile(*), master" position="61">
+				<license name="Apache License, Version 2.0" url="http://www.apache.org/licenses/LICENSE-2.0"/>
+				<metadata-artifact status="no" details="" size="6636" time="0" location="/Users/wangxu/.ivy2/cache/io.netty/netty/ivy-3.8.0.Final.xml" searched="false" origin-is-local="true" origin-location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/io.netty/netty/3.8.0.Final/ivys/ivy.xml"/>
+				<caller organisation="com.typesafe.akka" name="akka-remote_2.10" conf="compile, runtime" rev="3.8.0.Final" rev-constraint-default="3.8.0.Final" rev-constraint-dynamic="3.8.0.Final" callerrev="2.3.11"/>
+				<artifacts>
+					<artifact name="netty" type="bundle" ext="jar" status="no" details="" size="1230201" time="0" location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/io.netty/netty/3.8.0.Final/bundles/netty.jar">
+						<origin-location is-local="true" location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/io.netty/netty/3.8.0.Final/bundles/netty.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="com.google.protobuf" name="protobuf-java">
+			<revision name="2.5.0" status="release" pubdate="20130307191811" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://code.google.com/p/protobuf" downloaded="false" searched="false" default="false" conf="compile, runtime(*), master(compile), runtime, compile(*), master" position="62">
+				<license name="New BSD license" url="http://www.opensource.org/licenses/bsd-license.php"/>
+				<metadata-artifact status="no" details="" size="3128" time="0" location="/Users/wangxu/.ivy2/cache/com.google.protobuf/protobuf-java/ivy-2.5.0.xml" searched="false" origin-is-local="false" origin-location="file:/Users/wangxu/Desktop/activator-dist-1.3.10/repository/com.google.protobuf/protobuf-java/2.5.0/ivys/ivy.xml"/>
+				<caller organisation="com.typesafe.akka" name="akka-remote_2.10" conf="compile, runtime" rev="2.5.0" rev-constraint-default="2.5.0" rev-constraint-dynamic="2.5.0" callerrev="2.3.11"/>
+				<caller organisation="com.typesafe.akka" name="akka-persistence-experimental_2.10" conf="compile, runtime" rev="2.5.0" rev-constraint-default="2.5.0" rev-constraint-dynamic="2.5.0" callerrev="2.3.11"/>
+				<artifacts>
+					<artifact name="protobuf-java" type="bundle" ext="jar" status="no" details="" size="533455" time="0" location="/Users/wangxu/.ivy2/cache/com.google.protobuf/protobuf-java/bundles/protobuf-java-2.5.0.jar">
+						<origin-location is-local="false" location="file:/Users/wangxu/Desktop/activator-dist-1.3.10/repository/com.google.protobuf/protobuf-java/2.5.0/bundles/protobuf-java.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="com.typesafe.akka" name="akka-actor_2.10">
+			<revision name="2.3.11" status="release" pubdate="20150508101150" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://akka.io/" downloaded="false" searched="false" default="false" conf="compile, runtime(*), master(compile), runtime, compile(*), master, default, default(compile)" position="58">
+				<license name="Apache License, Version 2.0" url="http://www.apache.org/licenses/LICENSE-2.0"/>
+				<metadata-artifact status="no" details="" size="2782" time="0" location="/Users/wangxu/.ivy2/cache/com.typesafe.akka/akka-actor_2.10/ivy-2.3.11.xml" searched="false" origin-is-local="true" origin-location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/com.typesafe.akka/akka-actor_2.10/2.3.11/ivys/ivy.xml"/>
+				<caller organisation="com.typesafe" name="jse_2.10" conf="default, compile, runtime, master" rev="2.3.11" rev-constraint-default="2.3.11" rev-constraint-dynamic="2.3.11" callerrev="1.1.2"/>
+				<caller organisation="com.typesafe.akka" name="akka-remote_2.10" conf="compile, runtime" rev="2.3.11" rev-constraint-default="2.3.11" rev-constraint-dynamic="2.3.11" callerrev="2.3.11"/>
+				<caller organisation="com.typesafe.sbt" name="sbt-web" conf="compile" rev="2.3.9" rev-constraint-default="2.3.9" rev-constraint-dynamic="2.3.9" callerrev="1.3.0"/>
+				<caller organisation="com.typesafe" name="npm_2.10" conf="default, compile, runtime, master" rev="2.3.11" rev-constraint-default="2.3.11" rev-constraint-dynamic="2.3.11" callerrev="1.1.1"/>
+				<caller organisation="com.typesafe.akka" name="akka-persistence-experimental_2.10" conf="compile, runtime" rev="2.3.11" rev-constraint-default="2.3.11" rev-constraint-dynamic="2.3.11" callerrev="2.3.11"/>
+				<artifacts>
+					<artifact name="akka-actor_2.10" type="jar" ext="jar" status="no" details="" size="2658152" time="0" location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/com.typesafe.akka/akka-actor_2.10/2.3.11/jars/akka-actor_2.10.jar">
+						<origin-location is-local="true" location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/com.typesafe.akka/akka-actor_2.10/2.3.11/jars/akka-actor_2.10.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+			<revision name="2.3.9" status="release" pubdate="20150120010859" resolver="sbt-chain" artresolver="sbt-chain" evicted="latest-revision" evicted-reason="" homepage="http://akka.io/" downloaded="false" searched="false" default="false" conf="default, compile, runtime, default(compile), master" position="-1">
+				<license name="Apache License, Version 2.0" url="http://www.apache.org/licenses/LICENSE-2.0"/>
+				<metadata-artifact status="no" details="" size="2781" time="0" location="/Users/wangxu/.ivy2/cache/com.typesafe.akka/akka-actor_2.10/ivy-2.3.9.xml" searched="false" origin-is-local="true" origin-location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/com.typesafe.akka/akka-actor_2.10/2.3.9/ivys/ivy.xml"/>
+				<evicted-by rev="2.3.11"/>
+				<caller organisation="com.typesafe.sbt" name="sbt-web" conf="compile" rev="2.3.9" rev-constraint-default="2.3.9" rev-constraint-dynamic="2.3.9" callerrev="1.3.0"/>
+				<artifacts>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="com.typesafe.sbt" name="sbt-web">
+			<revision name="1.3.0" status="release" pubdate="20160223131242" resolver="sbt-chain" artresolver="sbt-chain" homepage="https://github.com/sbt/sbt-web" extra-scalaVersion="2.10" extra-sbtVersion="0.13" downloaded="false" searched="false" default="false" conf="compile, default(compile)" position="49">
+				<license name="Apache-2.0" url="http://www.apache.org/licenses/LICENSE-2.0.html"/>
+				<metadata-artifact status="no" details="" size="2200" time="0" location="/Users/wangxu/.ivy2/cache/scala_2.10/sbt_0.13/com.typesafe.sbt/sbt-web/ivy-1.3.0.xml" searched="false" origin-is-local="false" origin-location="https://repo.scala-sbt.org/scalasbt/sbt-plugin-releases/com.typesafe.sbt/sbt-web/scala_2.10/sbt_0.13/1.3.0/ivys/ivy.xml"/>
+				<caller organisation="com.typesafe.play" name="sbt-plugin" conf="compile" rev="1.3.0" rev-constraint-default="1.3.0" rev-constraint-dynamic="1.3.0" callerrev="2.5.0" extra-scalaVersion="2.10" extra-sbtVersion="0.13"/>
+				<caller organisation="com.typesafe.sbt" name="sbt-js-engine" conf="compile" rev="1.2.1" rev-constraint-default="1.2.1" rev-constraint-dynamic="1.2.1" callerrev="1.1.3" extra-scalaVersion="2.10" extra-sbtVersion="0.13"/>
+				<caller organisation="com.typesafe.sbt" name="sbt-digest" conf="compile" rev="1.1.1" rev-constraint-default="1.1.1" rev-constraint-dynamic="1.1.1" callerrev="1.1.0" extra-scalaVersion="2.10" extra-sbtVersion="0.13"/>
+				<artifacts>
+					<artifact name="sbt-web" type="jar" ext="jar" status="no" details="" size="292262" time="0" location="/Users/wangxu/.ivy2/cache/scala_2.10/sbt_0.13/com.typesafe.sbt/sbt-web/jars/sbt-web-1.3.0.jar">
+						<origin-location is-local="false" location="https://repo.scala-sbt.org/scalasbt/sbt-plugin-releases/com.typesafe.sbt/sbt-web/scala_2.10/sbt_0.13/1.3.0/jars/sbt-web.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+			<revision name="1.1.1" evicted="latest-revision" evicted-reason="" extra-scalaVersion="2.10" extra-sbtVersion="0.13" downloaded="false" searched="false" conf="compile, default(compile)" position="-1">
+				<evicted-by rev="1.3.0"/>
+				<caller organisation="com.typesafe.sbt" name="sbt-digest" conf="compile" rev="1.1.1" rev-constraint-default="1.1.1" rev-constraint-dynamic="1.1.1" callerrev="1.1.0" extra-scalaVersion="2.10" extra-sbtVersion="0.13"/>
+				<artifacts>
+				</artifacts>
+			</revision>
+			<revision name="1.2.1" evicted="latest-revision" evicted-reason="" extra-scalaVersion="2.10" extra-sbtVersion="0.13" downloaded="false" searched="false" conf="compile, default(compile)" position="-1">
+				<evicted-by rev="1.3.0"/>
+				<caller organisation="com.typesafe.sbt" name="sbt-js-engine" conf="compile" rev="1.2.1" rev-constraint-default="1.2.1" rev-constraint-dynamic="1.2.1" callerrev="1.1.3" extra-scalaVersion="2.10" extra-sbtVersion="0.13"/>
+				<artifacts>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.webjars" name="webjars-locator">
+			<revision name="0.26" status="release" pubdate="20150623102035" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://webjars.org" downloaded="false" searched="false" default="false" conf="default, compile, runtime, default(compile), master, runtime(*), master(compile), compile(*)" position="50">
+				<license name="MIT" url="https://github.com/webjars/webjars-locator/blob/master/LICENSE.md"/>
+				<metadata-artifact status="no" details="" size="4592" time="0" location="/Users/wangxu/.ivy2/cache/org.webjars/webjars-locator/ivy-0.26.xml" searched="false" origin-is-local="true" origin-location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.webjars/webjars-locator/0.26/ivys/ivy.xml"/>
+				<caller organisation="com.typesafe.sbt" name="sbt-web" conf="compile" rev="0.26" rev-constraint-default="0.26" rev-constraint-dynamic="0.26" callerrev="1.3.0"/>
+				<caller organisation="com.typesafe" name="npm_2.10" conf="default, compile, runtime, master" rev="0.25" rev-constraint-default="0.25" rev-constraint-dynamic="0.25" callerrev="1.1.1"/>
+				<artifacts>
+					<artifact name="webjars-locator" type="jar" ext="jar" status="no" details="" size="13001" time="0" location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.webjars/webjars-locator/0.26/jars/webjars-locator.jar">
+						<origin-location is-local="true" location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.webjars/webjars-locator/0.26/jars/webjars-locator.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+			<revision name="0.25" evicted="latest-revision" evicted-reason="" downloaded="false" searched="false" conf="compile, runtime(*), master(compile), runtime, compile(*), master" position="-1">
+				<evicted-by rev="0.26"/>
+				<caller organisation="com.typesafe" name="npm_2.10" conf="default, compile, runtime, master" rev="0.25" rev-constraint-default="0.25" rev-constraint-dynamic="0.25" callerrev="1.1.1"/>
+				<artifacts>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="com.fasterxml.jackson.core" name="jackson-databind">
+			<revision name="2.3.3" status="release" pubdate="20140410125535" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://wiki.fasterxml.com/JacksonHome" downloaded="false" searched="false" default="false" conf="compile, runtime(*), master(compile), runtime, compile(*), master" position="53">
+				<license name="The Apache Software License, Version 2.0" url="http://www.apache.org/licenses/LICENSE-2.0.txt"/>
+				<license name="GNU Lesser General Public License, Version 2.1" url="http://www.gnu.org/licenses/lgpl-2.1.html"/>
+				<metadata-artifact status="no" details="" size="7604" time="0" location="/Users/wangxu/.ivy2/cache/com.fasterxml.jackson.core/jackson-databind/ivy-2.3.3.xml" searched="false" origin-is-local="true" origin-location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/com.fasterxml.jackson.core/jackson-databind/2.3.3/ivys/ivy.xml"/>
+				<caller organisation="org.webjars" name="webjars-locator" conf="default, compile, runtime, master" rev="2.3.3" rev-constraint-default="2.3.3" rev-constraint-dynamic="2.3.3" callerrev="0.26"/>
+				<artifacts>
+					<artifact name="jackson-databind" type="bundle" ext="jar" status="no" details="" size="915481" time="0" location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/com.fasterxml.jackson.core/jackson-databind/2.3.3/bundles/jackson-databind.jar">
+						<origin-location is-local="true" location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/com.fasterxml.jackson.core/jackson-databind/2.3.3/bundles/jackson-databind.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="com.fasterxml.jackson.core" name="jackson-core">
+			<revision name="2.3.3" status="release" pubdate="20140410124708" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://wiki.fasterxml.com/JacksonHome" downloaded="false" searched="false" default="false" conf="compile, runtime(*), master(compile), runtime, compile(*), master" position="55">
+				<license name="The Apache Software License, Version 2.0" url="http://www.apache.org/licenses/LICENSE-2.0.txt"/>
+				<license name="GNU Lesser General Public License, Version 2.1" url="http://www.gnu.org/licenses/lgpl-2.1.html"/>
+				<metadata-artifact status="no" details="" size="5824" time="0" location="/Users/wangxu/.ivy2/cache/com.fasterxml.jackson.core/jackson-core/ivy-2.3.3.xml" searched="false" origin-is-local="true" origin-location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/com.fasterxml.jackson.core/jackson-core/2.3.3/ivys/ivy.xml"/>
+				<caller organisation="com.fasterxml.jackson.core" name="jackson-databind" conf="compile, runtime" rev="2.3.3" rev-constraint-default="2.3.3" rev-constraint-dynamic="2.3.3" callerrev="2.3.3"/>
+				<artifacts>
+					<artifact name="jackson-core" type="bundle" ext="jar" status="no" details="" size="199621" time="0" location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/com.fasterxml.jackson.core/jackson-core/2.3.3/bundles/jackson-core.jar">
+						<origin-location is-local="true" location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/com.fasterxml.jackson.core/jackson-core/2.3.3/bundles/jackson-core.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="com.fasterxml.jackson.core" name="jackson-annotations">
+			<revision name="2.3.0" status="release" pubdate="20131113235645" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://wiki.fasterxml.com/JacksonHome" downloaded="false" searched="false" default="false" conf="compile, runtime(*), master(compile), runtime, compile(*), master" position="54">
+				<license name="The Apache Software License, Version 2.0" url="http://www.apache.org/licenses/LICENSE-2.0.txt"/>
+				<license name="GNU Lesser General Public License, Version 2.1" url="http://www.gnu.org/licenses/lgpl-2.1.html"/>
+				<metadata-artifact status="no" details="" size="5150" time="0" location="/Users/wangxu/.ivy2/cache/com.fasterxml.jackson.core/jackson-annotations/ivy-2.3.0.xml" searched="false" origin-is-local="true" origin-location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/com.fasterxml.jackson.core/jackson-annotations/2.3.0/ivys/ivy.xml"/>
+				<caller organisation="com.fasterxml.jackson.core" name="jackson-databind" conf="compile, runtime" rev="2.3.0" rev-constraint-default="2.3.0" rev-constraint-dynamic="2.3.0" callerrev="2.3.3"/>
+				<artifacts>
+					<artifact name="jackson-annotations" type="bundle" ext="jar" status="no" details="" size="35058" time="0" location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/com.fasterxml.jackson.core/jackson-annotations/2.3.0/bundles/jackson-annotations.jar">
+						<origin-location is-local="true" location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/com.fasterxml.jackson.core/jackson-annotations/2.3.0/bundles/jackson-annotations.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.webjars" name="webjars-locator-core">
+			<revision name="0.26" status="release" pubdate="20150622224952" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://webjars.org" downloaded="false" searched="false" default="false" conf="compile, runtime(*), master(compile), runtime, compile(*), master" position="51">
+				<license name="MIT" url="https://github.com/webjars/webjars-locator-core/blob/master/LICENSE.md"/>
+				<metadata-artifact status="no" details="" size="5478" time="0" location="/Users/wangxu/.ivy2/cache/org.webjars/webjars-locator-core/ivy-0.26.xml" searched="false" origin-is-local="true" origin-location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.webjars/webjars-locator-core/0.26/ivys/ivy.xml"/>
+				<caller organisation="org.webjars" name="webjars-locator" conf="default, compile, runtime, master" rev="0.26" rev-constraint-default="0.26" rev-constraint-dynamic="0.26" callerrev="0.26"/>
+				<artifacts>
+					<artifact name="webjars-locator-core" type="jar" ext="jar" status="no" details="" size="28559" time="0" location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.webjars/webjars-locator-core/0.26/jars/webjars-locator-core.jar">
+						<origin-location is-local="true" location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.webjars/webjars-locator-core/0.26/jars/webjars-locator-core.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.apache.commons" name="commons-compress">
+			<revision name="1.9" status="release" pubdate="20141006010237" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://commons.apache.org/proper/commons-compress/" downloaded="false" searched="false" default="false" conf="compile, runtime(*), master(compile), runtime, compile(*), master, default, default(compile)" position="52">
+				<license name="The Apache Software License, Version 2.0" url="http://www.apache.org/licenses/LICENSE-2.0.txt"/>
+				<metadata-artifact status="no" details="" size="10563" time="0" location="/Users/wangxu/.ivy2/cache/org.apache.commons/commons-compress/ivy-1.9.xml" searched="false" origin-is-local="true" origin-location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.apache.commons/commons-compress/1.9/ivys/ivy.xml"/>
+				<caller organisation="org.vafer" name="jdeb" conf="default, compile, runtime, master" rev="1.7" rev-constraint-default="1.7" rev-constraint-dynamic="1.7" callerrev="1.3"/>
+				<caller organisation="com.typesafe.sbt" name="sbt-native-packager" conf="compile" rev="1.4.1" rev-constraint-default="1.4.1" rev-constraint-dynamic="1.4.1" callerrev="1.0.3"/>
+				<caller organisation="org.webjars" name="webjars-locator-core" conf="compile, runtime" rev="1.9" rev-constraint-default="1.9" rev-constraint-dynamic="1.9" callerrev="0.26"/>
+				<artifacts>
+					<artifact name="commons-compress" type="jar" ext="jar" status="no" details="" size="378217" time="0" location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.apache.commons/commons-compress/1.9/jars/commons-compress.jar">
+						<origin-location is-local="true" location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.apache.commons/commons-compress/1.9/jars/commons-compress.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+			<revision name="1.7" status="release" pubdate="20140116143531" resolver="sbt-chain" artresolver="sbt-chain" evicted="latest-revision" evicted-reason="" homepage="http://commons.apache.org/proper/commons-compress/" downloaded="false" searched="false" default="false" conf="compile, runtime(*), master(compile), runtime, compile(*), master, default, default(compile)" position="-1">
+				<license name="The Apache Software License, Version 2.0" url="http://www.apache.org/licenses/LICENSE-2.0.txt"/>
+				<metadata-artifact status="no" details="" size="10135" time="0" location="/Users/wangxu/.ivy2/cache/org.apache.commons/commons-compress/ivy-1.7.xml" searched="false" origin-is-local="true" origin-location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.apache.commons/commons-compress/1.7/ivys/ivy.xml"/>
+				<evicted-by rev="1.9"/>
+				<caller organisation="org.vafer" name="jdeb" conf="default, compile, runtime, master" rev="1.7" rev-constraint-default="1.7" rev-constraint-dynamic="1.7" callerrev="1.3"/>
+				<caller organisation="com.typesafe.sbt" name="sbt-native-packager" conf="compile" rev="1.4.1" rev-constraint-default="1.4.1" rev-constraint-dynamic="1.4.1" callerrev="1.0.3"/>
+				<artifacts>
+				</artifacts>
+			</revision>
+			<revision name="1.4.1" status="release" pubdate="20120522005732" resolver="sbt-chain" artresolver="sbt-chain" evicted="latest-revision" evicted-reason="" homepage="http://commons.apache.org/compress/" downloaded="false" searched="false" default="false" conf="default, compile, runtime, default(compile), master" position="-1">
+				<license name="The Apache Software License, Version 2.0" url="http://www.apache.org/licenses/LICENSE-2.0.txt"/>
+				<metadata-artifact status="no" details="" size="8130" time="0" location="/Users/wangxu/.ivy2/cache/org.apache.commons/commons-compress/ivy-1.4.1.xml" searched="false" origin-is-local="false" origin-location="file:/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.apache.commons/commons-compress/1.4.1/ivys/ivy.xml"/>
+				<evicted-by rev="1.7"/>
+				<caller organisation="com.typesafe.sbt" name="sbt-native-packager" conf="compile" rev="1.4.1" rev-constraint-default="1.4.1" rev-constraint-dynamic="1.4.1" callerrev="1.0.3"/>
+				<artifacts>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="com.typesafe.sbt" name="sbt-native-packager">
+			<revision name="1.0.3" status="release" pubdate="20150617210939" resolver="sbt-chain" artresolver="sbt-chain" extra-scalaVersion="2.10" extra-sbtVersion="0.13" downloaded="false" searched="false" default="false" conf="compile, default(compile)" position="16">
+				<metadata-artifact status="no" details="" size="2105" time="0" location="/Users/wangxu/.ivy2/cache/scala_2.10/sbt_0.13/com.typesafe.sbt/sbt-native-packager/ivy-1.0.3.xml" searched="false" origin-is-local="false" origin-location="https://repo.scala-sbt.org/scalasbt/sbt-plugin-releases/com.typesafe.sbt/sbt-native-packager/scala_2.10/sbt_0.13/1.0.3/ivys/ivy.xml"/>
+				<caller organisation="com.typesafe.play" name="sbt-plugin" conf="compile" rev="1.0.3" rev-constraint-default="1.0.3" rev-constraint-dynamic="1.0.3" callerrev="2.5.0" extra-scalaVersion="2.10" extra-sbtVersion="0.13"/>
+				<artifacts>
+					<artifact name="sbt-native-packager" type="jar" ext="jar" status="no" details="" size="1090490" time="0" location="/Users/wangxu/.ivy2/cache/scala_2.10/sbt_0.13/com.typesafe.sbt/sbt-native-packager/jars/sbt-native-packager-1.0.3.jar">
+						<origin-location is-local="false" location="https://repo.scala-sbt.org/scalasbt/sbt-plugin-releases/com.typesafe.sbt/sbt-native-packager/scala_2.10/sbt_0.13/1.0.3/jars/sbt-native-packager.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.vafer" name="jdeb">
+			<revision name="1.3" status="release" pubdate="20140728032531" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://github.com/tcurdt/jdeb" downloaded="false" searched="false" default="false" conf="default, compile, runtime, default(compile), master" position="17">
+				<license name="Apache License 2" url="http://www.apache.org/licenses/LICENSE-2.0.txt"/>
+				<metadata-artifact status="no" details="" size="4791" time="0" location="/Users/wangxu/.ivy2/cache/org.vafer/jdeb/ivy-1.3.xml" searched="false" origin-is-local="true" origin-location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.vafer/jdeb/1.3/ivys/ivy.xml"/>
+				<caller organisation="com.typesafe.sbt" name="sbt-native-packager" conf="compile" rev="1.3" rev-constraint-default="1.3" rev-constraint-dynamic="1.3" callerrev="1.0.3"/>
+				<artifacts>
+					<artifact name="jdeb" type="jar" ext="jar" status="no" details="" size="1179062" time="0" location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.vafer/jdeb/1.3/jars/jdeb.jar">
+						<origin-location is-local="true" location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.vafer/jdeb/1.3/jars/jdeb.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.bouncycastle" name="bcpg-jdk15on">
+			<revision name="1.51" status="release" pubdate="20140727225411" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://www.bouncycastle.org/java.html" downloaded="false" searched="false" default="false" conf="compile, runtime(*), master(compile), runtime, compile(*), master" position="47">
+				<license name="Bouncy Castle Licence" url="http://www.bouncycastle.org/licence.html"/>
+				<license name="Apache Software License, Version 1.1" url="http://www.apache.org/licenses/LICENSE-1.1"/>
+				<metadata-artifact status="no" details="" size="2993" time="0" location="/Users/wangxu/.ivy2/cache/org.bouncycastle/bcpg-jdk15on/ivy-1.51.xml" searched="false" origin-is-local="true" origin-location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.bouncycastle/bcpg-jdk15on/1.51/ivys/ivy.xml"/>
+				<caller organisation="org.vafer" name="jdeb" conf="default, compile, runtime, master" rev="1.51" rev-constraint-default="1.51" rev-constraint-dynamic="1.51" callerrev="1.3"/>
+				<artifacts>
+					<artifact name="bcpg-jdk15on" type="jar" ext="jar" status="no" details="" size="255692" time="0" location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.bouncycastle/bcpg-jdk15on/1.51/jars/bcpg-jdk15on.jar">
+						<origin-location is-local="true" location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.bouncycastle/bcpg-jdk15on/1.51/jars/bcpg-jdk15on.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.bouncycastle" name="bcprov-jdk15on">
+			<revision name="1.51" status="release" pubdate="20140727215910" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://www.bouncycastle.org/java.html" downloaded="false" searched="false" default="false" conf="compile, runtime(*), master(compile), runtime, compile(*), master" position="48">
+				<license name="Bouncy Castle Licence" url="http://www.bouncycastle.org/licence.html"/>
+				<metadata-artifact status="no" details="" size="2665" time="0" location="/Users/wangxu/.ivy2/cache/org.bouncycastle/bcprov-jdk15on/ivy-1.51.xml" searched="false" origin-is-local="true" origin-location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.bouncycastle/bcprov-jdk15on/1.51/ivys/ivy.xml"/>
+				<caller organisation="org.bouncycastle" name="bcpg-jdk15on" conf="compile, runtime" rev="1.51" rev-constraint-default="1.51" rev-constraint-dynamic="1.51" callerrev="1.51"/>
+				<artifacts>
+					<artifact name="bcprov-jdk15on" type="jar" ext="jar" status="no" details="" size="2842667" time="0" location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.bouncycastle/bcprov-jdk15on/1.51/jars/bcprov-jdk15on.jar">
+						<origin-location is-local="true" location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.bouncycastle/bcprov-jdk15on/1.51/jars/bcprov-jdk15on.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.apache.ant" name="ant">
+			<revision name="1.9.3" status="release" pubdate="20131223112635" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://ant.apache.org/" downloaded="false" searched="false" default="false" conf="compile, runtime(*), master(compile), runtime, compile(*), master" position="45">
+				<license name="The Apache Software License, Version 2.0" url="http://www.apache.org/licenses/LICENSE-2.0.txt"/>
+				<metadata-artifact status="no" details="" size="3100" time="0" location="/Users/wangxu/.ivy2/cache/org.apache.ant/ant/ivy-1.9.3.xml" searched="false" origin-is-local="true" origin-location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.apache.ant/ant/1.9.3/ivys/ivy.xml"/>
+				<caller organisation="org.vafer" name="jdeb" conf="default, compile, runtime, master" rev="1.9.3" rev-constraint-default="1.9.3" rev-constraint-dynamic="1.9.3" callerrev="1.3"/>
+				<artifacts>
+					<artifact name="ant" type="jar" ext="jar" status="no" details="" size="2007365" time="0" location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.apache.ant/ant/1.9.3/jars/ant.jar">
+						<origin-location is-local="true" location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.apache.ant/ant/1.9.3/jars/ant.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.apache.ant" name="ant-launcher">
+			<revision name="1.9.3" status="release" pubdate="20131223113149" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://ant.apache.org/" downloaded="false" searched="false" default="false" conf="compile, runtime(*), master(compile), runtime, compile(*), master" position="46">
+				<license name="The Apache Software License, Version 2.0" url="http://www.apache.org/licenses/LICENSE-2.0.txt"/>
+				<metadata-artifact status="no" details="" size="2777" time="0" location="/Users/wangxu/.ivy2/cache/org.apache.ant/ant-launcher/ivy-1.9.3.xml" searched="false" origin-is-local="true" origin-location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.apache.ant/ant-launcher/1.9.3/ivys/ivy.xml"/>
+				<caller organisation="org.apache.ant" name="ant" conf="compile, runtime" rev="1.9.3" rev-constraint-default="1.9.3" rev-constraint-dynamic="1.9.3" callerrev="1.9.3"/>
+				<artifacts>
+					<artifact name="ant-launcher" type="jar" ext="jar" status="no" details="" size="18381" time="0" location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.apache.ant/ant-launcher/1.9.3/jars/ant-launcher.jar">
+						<origin-location is-local="true" location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.apache.ant/ant-launcher/1.9.3/jars/ant-launcher.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.apache.maven" name="maven-core">
+			<revision name="3.2.2" status="release" pubdate="20140617095214" resolver="sbt-chain" artresolver="sbt-chain" homepage="" downloaded="false" searched="false" default="false" conf="compile, runtime(*), master(compile), runtime, compile(*), master" position="18">
+				<license name="Apache License, Version 2.0" url="http://www.apache.org/licenses/LICENSE-2.0.txt"/>
+				<metadata-artifact status="no" details="" size="15611" time="0" location="/Users/wangxu/.ivy2/cache/org.apache.maven/maven-core/ivy-3.2.2.xml" searched="false" origin-is-local="true" origin-location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.apache.maven/maven-core/3.2.2/ivys/ivy.xml"/>
+				<caller organisation="org.vafer" name="jdeb" conf="default, compile, runtime, master" rev="3.2.2" rev-constraint-default="3.2.2" rev-constraint-dynamic="3.2.2" callerrev="1.3"/>
+				<artifacts>
+					<artifact name="maven-core" type="jar" ext="jar" status="no" details="" size="576692" time="0" location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.apache.maven/maven-core/3.2.2/jars/maven-core.jar">
+						<origin-location is-local="true" location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.apache.maven/maven-core/3.2.2/jars/maven-core.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.codehaus.plexus" name="plexus-classworlds">
+			<revision name="2.5.1" status="release" pubdate="20130815163022" resolver="sbt-chain" artresolver="sbt-chain" homepage="" downloaded="false" searched="false" default="false" conf="compile, runtime(*), master(compile), runtime, compile(*), master" position="38">
+				<license name="The Apache Software License, Version 2.0" url="http://www.apache.org/licenses/LICENSE-2.0.txt"/>
+				<metadata-artifact status="no" details="" size="7210" time="0" location="/Users/wangxu/.ivy2/cache/org.codehaus.plexus/plexus-classworlds/ivy-2.5.1.xml" searched="false" origin-is-local="true" origin-location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.codehaus.plexus/plexus-classworlds/2.5.1/ivys/ivy.xml"/>
+				<caller organisation="org.apache.maven" name="maven-core" conf="compile, runtime" rev="2.5.1" rev-constraint-default="2.5.1" rev-constraint-dynamic="2.5.1" callerrev="3.2.2"/>
+				<caller organisation="org.eclipse.sisu" name="org.eclipse.sisu.plexus" conf="compile, runtime" rev="2.4" rev-constraint-default="2.4" rev-constraint-dynamic="2.4" callerrev="0.0.0.M5"/>
+				<artifacts>
+					<artifact name="plexus-classworlds" type="bundle" ext="jar" status="no" details="" size="49793" time="0" location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.codehaus.plexus/plexus-classworlds/2.5.1/bundles/plexus-classworlds.jar">
+						<origin-location is-local="true" location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.codehaus.plexus/plexus-classworlds/2.5.1/bundles/plexus-classworlds.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+			<revision name="2.4" evicted="latest-revision" evicted-reason="" downloaded="false" searched="false" conf="compile, runtime(*), master(compile), runtime, compile(*), master" position="-1">
+				<evicted-by rev="2.5.1"/>
+				<caller organisation="org.apache.maven" name="maven-core" conf="compile, runtime" rev="2.5.1" rev-constraint-default="2.5.1" rev-constraint-dynamic="2.5.1" callerrev="3.2.2"/>
+				<caller organisation="org.eclipse.sisu" name="org.eclipse.sisu.plexus" conf="compile, runtime" rev="2.4" rev-constraint-default="2.4" rev-constraint-dynamic="2.4" callerrev="0.0.0.M5"/>
+				<artifacts>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.apache.maven" name="maven-aether-provider">
+			<revision name="3.2.2" status="release" pubdate="20140617095137" resolver="sbt-chain" artresolver="sbt-chain" homepage="" downloaded="false" searched="false" default="false" conf="compile, runtime(*), master(compile), runtime, compile(*), master" position="40">
+				<license name="Apache License, Version 2.0" url="http://www.apache.org/licenses/LICENSE-2.0.txt"/>
+				<metadata-artifact status="no" details="" size="14945" time="0" location="/Users/wangxu/.ivy2/cache/org.apache.maven/maven-aether-provider/ivy-3.2.2.xml" searched="false" origin-is-local="true" origin-location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.apache.maven/maven-aether-provider/3.2.2/ivys/ivy.xml"/>
+				<caller organisation="org.apache.maven" name="maven-core" conf="compile, runtime" rev="3.2.2" rev-constraint-default="3.2.2" rev-constraint-dynamic="3.2.2" callerrev="3.2.2"/>
+				<artifacts>
+					<artifact name="maven-aether-provider" type="jar" ext="jar" status="no" details="" size="62570" time="0" location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.apache.maven/maven-aether-provider/3.2.2/jars/maven-aether-provider.jar">
+						<origin-location is-local="true" location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.apache.maven/maven-aether-provider/3.2.2/jars/maven-aether-provider.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.eclipse.aether" name="aether-impl">
+			<revision name="0.9.0.M2" status="release" pubdate="20130216145613" resolver="sbt-chain" artresolver="sbt-chain" homepage="" downloaded="false" searched="false" default="false" conf="compile, runtime(*), master(compile), runtime, compile(*), master" position="44">
+				<license name="Eclipse Public License, Version 1.0" url="http://www.eclipse.org/legal/epl-v10.html"/>
+				<metadata-artifact status="no" details="" size="7445" time="0" location="/Users/wangxu/.ivy2/cache/org.eclipse.aether/aether-impl/ivy-0.9.0.M2.xml" searched="false" origin-is-local="true" origin-location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.eclipse.aether/aether-impl/0.9.0.M2/ivys/ivy.xml"/>
+				<caller organisation="org.apache.maven" name="maven-core" conf="compile, runtime" rev="0.9.0.M2" rev-constraint-default="0.9.0.M2" rev-constraint-dynamic="0.9.0.M2" callerrev="3.2.2"/>
+				<caller organisation="org.apache.maven" name="maven-aether-provider" conf="compile, runtime" rev="0.9.0.M2" rev-constraint-default="0.9.0.M2" rev-constraint-dynamic="0.9.0.M2" callerrev="3.2.2"/>
+				<artifacts>
+					<artifact name="aether-impl" type="jar" ext="jar" status="no" details="" size="144866" time="0" location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.eclipse.aether/aether-impl/0.9.0.M2/jars/aether-impl.jar">
+						<origin-location is-local="true" location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.eclipse.aether/aether-impl/0.9.0.M2/jars/aether-impl.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.eclipse.aether" name="aether-util">
+			<revision name="0.9.0.M2" status="release" pubdate="20130216145542" resolver="sbt-chain" artresolver="sbt-chain" homepage="" downloaded="false" searched="false" default="false" conf="compile, runtime(*), master(compile), runtime, compile(*), master" position="43">
+				<license name="Eclipse Public License, Version 1.0" url="http://www.eclipse.org/legal/epl-v10.html"/>
+				<metadata-artifact status="no" details="" size="6505" time="0" location="/Users/wangxu/.ivy2/cache/org.eclipse.aether/aether-util/ivy-0.9.0.M2.xml" searched="false" origin-is-local="true" origin-location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.eclipse.aether/aether-util/0.9.0.M2/ivys/ivy.xml"/>
+				<caller organisation="org.eclipse.aether" name="aether-impl" conf="compile, runtime" rev="0.9.0.M2" rev-constraint-default="0.9.0.M2" rev-constraint-dynamic="0.9.0.M2" callerrev="0.9.0.M2"/>
+				<caller organisation="org.apache.maven" name="maven-core" conf="compile, runtime" rev="0.9.0.M2" rev-constraint-default="0.9.0.M2" rev-constraint-dynamic="0.9.0.M2" callerrev="3.2.2"/>
+				<caller organisation="org.apache.maven" name="maven-aether-provider" conf="compile, runtime" rev="0.9.0.M2" rev-constraint-default="0.9.0.M2" rev-constraint-dynamic="0.9.0.M2" callerrev="3.2.2"/>
+				<artifacts>
+					<artifact name="aether-util" type="jar" ext="jar" status="no" details="" size="133588" time="0" location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.eclipse.aether/aether-util/0.9.0.M2/jars/aether-util.jar">
+						<origin-location is-local="true" location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.eclipse.aether/aether-util/0.9.0.M2/jars/aether-util.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.eclipse.aether" name="aether-spi">
+			<revision name="0.9.0.M2" status="release" pubdate="20130216145505" resolver="sbt-chain" artresolver="sbt-chain" homepage="" downloaded="false" searched="false" default="false" conf="compile, runtime(*), master(compile), runtime, compile(*), master" position="42">
+				<license name="Eclipse Public License, Version 1.0" url="http://www.eclipse.org/legal/epl-v10.html"/>
+				<metadata-artifact status="no" details="" size="6287" time="0" location="/Users/wangxu/.ivy2/cache/org.eclipse.aether/aether-spi/ivy-0.9.0.M2.xml" searched="false" origin-is-local="true" origin-location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.eclipse.aether/aether-spi/0.9.0.M2/ivys/ivy.xml"/>
+				<caller organisation="org.eclipse.aether" name="aether-impl" conf="compile, runtime" rev="0.9.0.M2" rev-constraint-default="0.9.0.M2" rev-constraint-dynamic="0.9.0.M2" callerrev="0.9.0.M2"/>
+				<caller organisation="org.apache.maven" name="maven-aether-provider" conf="compile, runtime" rev="0.9.0.M2" rev-constraint-default="0.9.0.M2" rev-constraint-dynamic="0.9.0.M2" callerrev="3.2.2"/>
+				<artifacts>
+					<artifact name="aether-spi" type="jar" ext="jar" status="no" details="" size="17703" time="0" location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.eclipse.aether/aether-spi/0.9.0.M2/jars/aether-spi.jar">
+						<origin-location is-local="true" location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.eclipse.aether/aether-spi/0.9.0.M2/jars/aether-spi.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.eclipse.aether" name="aether-api">
+			<revision name="0.9.0.M2" status="release" pubdate="20130216145440" resolver="sbt-chain" artresolver="sbt-chain" homepage="" downloaded="false" searched="false" default="false" conf="compile, runtime(*), master(compile), runtime, compile(*), master" position="41">
+				<license name="Eclipse Public License, Version 1.0" url="http://www.eclipse.org/legal/epl-v10.html"/>
+				<metadata-artifact status="no" details="" size="6212" time="0" location="/Users/wangxu/.ivy2/cache/org.eclipse.aether/aether-api/ivy-0.9.0.M2.xml" searched="false" origin-is-local="true" origin-location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.eclipse.aether/aether-api/0.9.0.M2/ivys/ivy.xml"/>
+				<caller organisation="org.eclipse.aether" name="aether-impl" conf="compile, runtime" rev="0.9.0.M2" rev-constraint-default="0.9.0.M2" rev-constraint-dynamic="0.9.0.M2" callerrev="0.9.0.M2"/>
+				<caller organisation="org.apache.maven" name="maven-core" conf="compile, runtime" rev="0.9.0.M2" rev-constraint-default="0.9.0.M2" rev-constraint-dynamic="0.9.0.M2" callerrev="3.2.2"/>
+				<caller organisation="org.apache.maven" name="maven-aether-provider" conf="compile, runtime" rev="0.9.0.M2" rev-constraint-default="0.9.0.M2" rev-constraint-dynamic="0.9.0.M2" callerrev="3.2.2"/>
+				<caller organisation="org.eclipse.aether" name="aether-spi" conf="compile, runtime" rev="0.9.0.M2" rev-constraint-default="0.9.0.M2" rev-constraint-dynamic="0.9.0.M2" callerrev="0.9.0.M2"/>
+				<caller organisation="org.eclipse.aether" name="aether-util" conf="compile, runtime" rev="0.9.0.M2" rev-constraint-default="0.9.0.M2" rev-constraint-dynamic="0.9.0.M2" callerrev="0.9.0.M2"/>
+				<artifacts>
+					<artifact name="aether-api" type="jar" ext="jar" status="no" details="" size="133957" time="0" location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.eclipse.aether/aether-api/0.9.0.M2/jars/aether-api.jar">
+						<origin-location is-local="true" location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.eclipse.aether/aether-api/0.9.0.M2/jars/aether-api.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.apache.maven" name="maven-model-builder">
+			<revision name="3.2.2" status="release" pubdate="20140617095101" resolver="sbt-chain" artresolver="sbt-chain" homepage="" downloaded="false" searched="false" default="false" conf="compile, runtime(*), master(compile), runtime, compile(*), master" position="39">
+				<license name="Apache License, Version 2.0" url="http://www.apache.org/licenses/LICENSE-2.0.txt"/>
+				<metadata-artifact status="no" details="" size="13673" time="0" location="/Users/wangxu/.ivy2/cache/org.apache.maven/maven-model-builder/ivy-3.2.2.xml" searched="false" origin-is-local="true" origin-location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.apache.maven/maven-model-builder/3.2.2/ivys/ivy.xml"/>
+				<caller organisation="org.apache.maven" name="maven-core" conf="compile, runtime" rev="3.2.2" rev-constraint-default="3.2.2" rev-constraint-dynamic="3.2.2" callerrev="3.2.2"/>
+				<caller organisation="org.apache.maven" name="maven-aether-provider" conf="compile, runtime" rev="3.2.2" rev-constraint-default="3.2.2" rev-constraint-dynamic="3.2.2" callerrev="3.2.2"/>
+				<artifacts>
+					<artifact name="maven-model-builder" type="jar" ext="jar" status="no" details="" size="168090" time="0" location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.apache.maven/maven-model-builder/3.2.2/jars/maven-model-builder.jar">
+						<origin-location is-local="true" location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.apache.maven/maven-model-builder/3.2.2/jars/maven-model-builder.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.apache.maven" name="maven-plugin-api">
+			<revision name="3.2.2" status="release" pubdate="20140617095047" resolver="sbt-chain" artresolver="sbt-chain" homepage="" downloaded="false" searched="false" default="false" conf="compile, runtime(*), master(compile), runtime, compile(*), master" position="29">
+				<license name="Apache License, Version 2.0" url="http://www.apache.org/licenses/LICENSE-2.0.txt"/>
+				<metadata-artifact status="no" details="" size="13240" time="0" location="/Users/wangxu/.ivy2/cache/org.apache.maven/maven-plugin-api/ivy-3.2.2.xml" searched="false" origin-is-local="true" origin-location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.apache.maven/maven-plugin-api/3.2.2/ivys/ivy.xml"/>
+				<caller organisation="org.apache.maven" name="maven-core" conf="compile, runtime" rev="3.2.2" rev-constraint-default="3.2.2" rev-constraint-dynamic="3.2.2" callerrev="3.2.2"/>
+				<caller organisation="org.vafer" name="jdeb" conf="default, compile, runtime, master" rev="3.2.2" rev-constraint-default="3.2.2" rev-constraint-dynamic="3.2.2" callerrev="1.3"/>
+				<artifacts>
+					<artifact name="maven-plugin-api" type="jar" ext="jar" status="no" details="" size="45757" time="0" location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.apache.maven/maven-plugin-api/3.2.2/jars/maven-plugin-api.jar">
+						<origin-location is-local="true" location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.apache.maven/maven-plugin-api/3.2.2/jars/maven-plugin-api.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.eclipse.sisu" name="org.eclipse.sisu.plexus">
+			<revision name="0.0.0.M5" status="release" pubdate="20130725192947" resolver="sbt-chain" artresolver="sbt-chain" homepage="" downloaded="false" searched="false" default="false" conf="compile, runtime(*), master(compile), runtime, compile(*), master" position="30">
+				<license name="Eclipse Public License, Version 1.0" url="http://www.eclipse.org/legal/epl-v10.html"/>
+				<metadata-artifact status="no" details="" size="5467" time="0" location="/Users/wangxu/.ivy2/cache/org.eclipse.sisu/org.eclipse.sisu.plexus/ivy-0.0.0.M5.xml" searched="false" origin-is-local="true" origin-location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.eclipse.sisu/org.eclipse.sisu.plexus/0.0.0.M5/ivys/ivy.xml"/>
+				<caller organisation="org.apache.maven" name="maven-plugin-api" conf="compile, runtime" rev="0.0.0.M5" rev-constraint-default="0.0.0.M5" rev-constraint-dynamic="0.0.0.M5" callerrev="3.2.2"/>
+				<caller organisation="org.apache.maven" name="maven-core" conf="compile, runtime" rev="0.0.0.M5" rev-constraint-default="0.0.0.M5" rev-constraint-dynamic="0.0.0.M5" callerrev="3.2.2"/>
+				<artifacts>
+					<artifact name="org.eclipse.sisu.plexus" type="eclipse-plugin" ext="jar" status="no" details="" size="196544" time="0" location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.eclipse.sisu/org.eclipse.sisu.plexus/0.0.0.M5/eclipse-plugins/org.eclipse.sisu.plexus.jar">
+						<origin-location is-local="true" location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.eclipse.sisu/org.eclipse.sisu.plexus/0.0.0.M5/eclipse-plugins/org.eclipse.sisu.plexus.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.eclipse.sisu" name="org.eclipse.sisu.inject">
+			<revision name="0.0.0.M5" status="release" pubdate="20130725192046" resolver="sbt-chain" artresolver="sbt-chain" homepage="" downloaded="false" searched="false" default="false" conf="compile, runtime(*), master(compile), runtime, compile(*), master" position="37">
+				<license name="Eclipse Public License, Version 1.0" url="http://www.eclipse.org/legal/epl-v10.html"/>
+				<metadata-artifact status="no" details="" size="3736" time="0" location="/Users/wangxu/.ivy2/cache/org.eclipse.sisu/org.eclipse.sisu.inject/ivy-0.0.0.M5.xml" searched="false" origin-is-local="true" origin-location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.eclipse.sisu/org.eclipse.sisu.inject/0.0.0.M5/ivys/ivy.xml"/>
+				<caller organisation="org.eclipse.sisu" name="org.eclipse.sisu.plexus" conf="compile, runtime" rev="0.0.0.M5" rev-constraint-default="0.0.0.M5" rev-constraint-dynamic="0.0.0.M5" callerrev="0.0.0.M5"/>
+				<artifacts>
+					<artifact name="org.eclipse.sisu.inject" type="eclipse-plugin" ext="jar" status="no" details="" size="291397" time="0" location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.eclipse.sisu/org.eclipse.sisu.inject/0.0.0.M5/eclipse-plugins/org.eclipse.sisu.inject.jar">
+						<origin-location is-local="true" location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.eclipse.sisu/org.eclipse.sisu.inject/0.0.0.M5/eclipse-plugins/org.eclipse.sisu.inject.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.sonatype.sisu" name="sisu-guice">
+			<revision name="3.1.0" status="release" pubdate="20110902200108" resolver="sbt-chain" artresolver="sbt-chain" homepage="" downloaded="false" searched="false" default="false" conf="compile, runtime(*), master(compile), runtime, compile(*), master" position="35">
+				<license name="The Apache Software License, Version 2.0" url="http://www.apache.org/licenses/LICENSE-2.0.txt"/>
+				<metadata-artifact status="no" details="" size="4809" time="0" location="/Users/wangxu/.ivy2/cache/org.sonatype.sisu/sisu-guice/ivy-3.1.0.xml" searched="false" origin-is-local="true" origin-location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.sonatype.sisu/sisu-guice/3.1.0/ivys/ivy.xml"/>
+				<caller organisation="org.eclipse.sisu" name="org.eclipse.sisu.plexus" conf="compile, runtime" rev="3.1.0" rev-constraint-default="3.1.0" rev-constraint-dynamic="3.1.0" callerrev="0.0.0.M5"/>
+				<artifacts>
+					<artifact name="sisu-guice" type="jar" ext="jar" status="no" details="" size="585485" time="0" location="/Users/wangxu/.ivy2/cache/org.sonatype.sisu/sisu-guice/jars/sisu-guice-3.1.0.jar">
+						<origin-location is-local="false" location="https://repo1.maven.org/maven2/org/sonatype/sisu/sisu-guice/3.1.0/sisu-guice-3.1.0.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="aopalliance" name="aopalliance">
+			<revision name="1.0" status="release" pubdate="20070226174340" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://aopalliance.sourceforge.net" downloaded="false" searched="false" default="false" conf="compile, runtime(*), master(compile), runtime, compile(*), master" position="36">
+				<license name="Public Domain"/>
+				<metadata-artifact status="no" details="" size="2406" time="0" location="/Users/wangxu/.ivy2/cache/aopalliance/aopalliance/ivy-1.0.xml" searched="false" origin-is-local="true" origin-location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/aopalliance/aopalliance/1.0/ivys/ivy.xml"/>
+				<caller organisation="org.sonatype.sisu" name="sisu-guice" conf="compile, runtime" rev="1.0" rev-constraint-default="1.0" rev-constraint-dynamic="1.0" callerrev="3.1.0"/>
+				<artifacts>
+					<artifact name="aopalliance" type="jar" ext="jar" status="no" details="" size="4467" time="0" location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/aopalliance/aopalliance/1.0/jars/aopalliance.jar">
+						<origin-location is-local="true" location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/aopalliance/aopalliance/1.0/jars/aopalliance.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="com.google.code.findbugs" name="jsr305">
+			<revision name="1.3.9" status="release" pubdate="20090824182822" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://findbugs.sourceforge.net/" downloaded="false" searched="false" default="false" conf="compile, runtime(*), master(compile), runtime, compile(*), master" position="34">
+				<license name="The Apache Software License, Version 2.0" url="http://www.apache.org/licenses/LICENSE-2.0.txt"/>
+				<metadata-artifact status="no" details="" size="2508" time="0" location="/Users/wangxu/.ivy2/cache/com.google.code.findbugs/jsr305/ivy-1.3.9.xml" searched="false" origin-is-local="true" origin-location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/com.google.code.findbugs/jsr305/1.3.9/ivys/ivy.xml"/>
+				<caller organisation="com.google.guava" name="guava" conf="compile, runtime" rev="1.3.9" rev-constraint-default="1.3.9" rev-constraint-dynamic="1.3.9" callerrev="12.0"/>
+				<caller organisation="com.google.guava" name="guava" conf="compile, runtime" rev="1.3.9" rev-constraint-default="1.3.9" rev-constraint-dynamic="1.3.9" callerrev="10.0.1"/>
+				<artifacts>
+					<artifact name="jsr305" type="jar" ext="jar" status="no" details="" size="33015" time="0" location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/com.google.code.findbugs/jsr305/1.3.9/jars/jsr305.jar">
+						<origin-location is-local="true" location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/com.google.code.findbugs/jsr305/1.3.9/jars/jsr305.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="javax.enterprise" name="cdi-api">
+			<revision name="1.0" status="release" pubdate="20091108174421" resolver="sbt-chain" artresolver="sbt-chain" homepage="" downloaded="false" searched="false" default="false" conf="compile, runtime(*), master(compile), runtime, compile(*), master" position="31">
+				<license name="Apache License, Version 2.0" url="http://www.apache.org/licenses/LICENSE-2.0"/>
+				<metadata-artifact status="no" details="" size="9756" time="0" location="/Users/wangxu/.ivy2/cache/javax.enterprise/cdi-api/ivy-1.0.xml" searched="false" origin-is-local="true" origin-location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/javax.enterprise/cdi-api/1.0/ivys/ivy.xml"/>
+				<caller organisation="org.eclipse.sisu" name="org.eclipse.sisu.plexus" conf="compile, runtime" rev="1.0" rev-constraint-default="1.0" rev-constraint-dynamic="1.0" callerrev="0.0.0.M5"/>
+				<artifacts>
+					<artifact name="cdi-api" type="jar" ext="jar" status="no" details="" size="44908" time="0" location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/javax.enterprise/cdi-api/1.0/jars/cdi-api.jar">
+						<origin-location is-local="true" location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/javax.enterprise/cdi-api/1.0/jars/cdi-api.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="javax.inject" name="javax.inject">
+			<revision name="1" status="release" pubdate="20091013193500" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://code.google.com/p/atinject/" downloaded="false" searched="false" default="false" conf="compile, runtime(*), master(compile), runtime, compile(*), master" position="33">
+				<license name="The Apache Software License, Version 2.0" url="http://www.apache.org/licenses/LICENSE-2.0.txt"/>
+				<metadata-artifact status="no" details="" size="2495" time="0" location="/Users/wangxu/.ivy2/cache/javax.inject/javax.inject/ivy-1.xml" searched="false" origin-is-local="true" origin-location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/javax.inject/javax.inject/1/ivys/ivy.xml"/>
+				<caller organisation="org.sonatype.sisu" name="sisu-guice" conf="compile, runtime" rev="1" rev-constraint-default="1" rev-constraint-dynamic="1" callerrev="3.1.0"/>
+				<caller organisation="javax.enterprise" name="cdi-api" conf="compile, runtime" rev="1" rev-constraint-default="1" rev-constraint-dynamic="1" callerrev="1.0"/>
+				<artifacts>
+					<artifact name="javax.inject" type="jar" ext="jar" status="no" details="" size="2497" time="0" location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/javax.inject/javax.inject/1/jars/javax.inject.jar">
+						<origin-location is-local="true" location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/javax.inject/javax.inject/1/jars/javax.inject.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="javax.annotation" name="jsr250-api">
+			<revision name="1.0" status="release" pubdate="20070515162559" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://jcp.org/aboutJava/communityprocess/final/jsr250/index.html" downloaded="false" searched="false" default="false" conf="compile, runtime(*), master(compile), runtime, compile(*), master" position="32">
+				<license name="COMMON DEVELOPMENT AND DISTRIBUTION LICENSE (CDDL) Version 1.0" url="https://glassfish.dev.java.net/public/CDDLv1.0.html"/>
+				<metadata-artifact status="no" details="" size="2580" time="0" location="/Users/wangxu/.ivy2/cache/javax.annotation/jsr250-api/ivy-1.0.xml" searched="false" origin-is-local="true" origin-location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/javax.annotation/jsr250-api/1.0/ivys/ivy.xml"/>
+				<caller organisation="javax.enterprise" name="cdi-api" conf="compile, runtime" rev="1.0" rev-constraint-default="1.0" rev-constraint-dynamic="1.0" callerrev="1.0"/>
+				<artifacts>
+					<artifact name="jsr250-api" type="jar" ext="jar" status="no" details="" size="5848" time="0" location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/javax.annotation/jsr250-api/1.0/jars/jsr250-api.jar">
+						<origin-location is-local="true" location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/javax.annotation/jsr250-api/1.0/jars/jsr250-api.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.apache.maven" name="maven-artifact">
+			<revision name="3.2.2" status="release" pubdate="20140617095037" resolver="sbt-chain" artresolver="sbt-chain" homepage="" downloaded="false" searched="false" default="false" conf="compile, runtime(*), master(compile), runtime, compile(*), master" position="28">
+				<license name="Apache License, Version 2.0" url="http://www.apache.org/licenses/LICENSE-2.0.txt"/>
+				<metadata-artifact status="no" details="" size="12738" time="0" location="/Users/wangxu/.ivy2/cache/org.apache.maven/maven-artifact/ivy-3.2.2.xml" searched="false" origin-is-local="true" origin-location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.apache.maven/maven-artifact/3.2.2/ivys/ivy.xml"/>
+				<caller organisation="org.apache.maven" name="maven-plugin-api" conf="compile, runtime" rev="3.2.2" rev-constraint-default="3.2.2" rev-constraint-dynamic="3.2.2" callerrev="3.2.2"/>
+				<caller organisation="org.apache.maven" name="maven-core" conf="compile, runtime" rev="3.2.2" rev-constraint-default="3.2.2" rev-constraint-dynamic="3.2.2" callerrev="3.2.2"/>
+				<artifacts>
+					<artifact name="maven-artifact" type="jar" ext="jar" status="no" details="" size="53730" time="0" location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.apache.maven/maven-artifact/3.2.2/jars/maven-artifact.jar">
+						<origin-location is-local="true" location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.apache.maven/maven-artifact/3.2.2/jars/maven-artifact.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.apache.maven" name="maven-repository-metadata">
+			<revision name="3.2.2" status="release" pubdate="20140617095127" resolver="sbt-chain" artresolver="sbt-chain" homepage="" downloaded="false" searched="false" default="false" conf="compile, runtime(*), master(compile), runtime, compile(*), master" position="27">
+				<license name="Apache License, Version 2.0" url="http://www.apache.org/licenses/LICENSE-2.0.txt"/>
+				<metadata-artifact status="no" details="" size="12826" time="0" location="/Users/wangxu/.ivy2/cache/org.apache.maven/maven-repository-metadata/ivy-3.2.2.xml" searched="false" origin-is-local="true" origin-location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.apache.maven/maven-repository-metadata/3.2.2/ivys/ivy.xml"/>
+				<caller organisation="org.apache.maven" name="maven-core" conf="compile, runtime" rev="3.2.2" rev-constraint-default="3.2.2" rev-constraint-dynamic="3.2.2" callerrev="3.2.2"/>
+				<caller organisation="org.apache.maven" name="maven-aether-provider" conf="compile, runtime" rev="3.2.2" rev-constraint-default="3.2.2" rev-constraint-dynamic="3.2.2" callerrev="3.2.2"/>
+				<artifacts>
+					<artifact name="maven-repository-metadata" type="jar" ext="jar" status="no" details="" size="25759" time="0" location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.apache.maven/maven-repository-metadata/3.2.2/jars/maven-repository-metadata.jar">
+						<origin-location is-local="true" location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.apache.maven/maven-repository-metadata/3.2.2/jars/maven-repository-metadata.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.apache.maven" name="maven-settings-builder">
+			<revision name="3.2.2" status="release" pubdate="20140617095119" resolver="sbt-chain" artresolver="sbt-chain" homepage="" downloaded="false" searched="false" default="false" conf="compile, runtime(*), master(compile), runtime, compile(*), master" position="22">
+				<license name="Apache License, Version 2.0" url="http://www.apache.org/licenses/LICENSE-2.0.txt"/>
+				<metadata-artifact status="no" details="" size="13581" time="0" location="/Users/wangxu/.ivy2/cache/org.apache.maven/maven-settings-builder/ivy-3.2.2.xml" searched="false" origin-is-local="true" origin-location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.apache.maven/maven-settings-builder/3.2.2/ivys/ivy.xml"/>
+				<caller organisation="org.apache.maven" name="maven-core" conf="compile, runtime" rev="3.2.2" rev-constraint-default="3.2.2" rev-constraint-dynamic="3.2.2" callerrev="3.2.2"/>
+				<artifacts>
+					<artifact name="maven-settings-builder" type="jar" ext="jar" status="no" details="" size="42743" time="0" location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.apache.maven/maven-settings-builder/3.2.2/jars/maven-settings-builder.jar">
+						<origin-location is-local="true" location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.apache.maven/maven-settings-builder/3.2.2/jars/maven-settings-builder.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.sonatype.plexus" name="plexus-sec-dispatcher">
+			<revision name="1.3" status="release" pubdate="20090429160532" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://spice.sonatype.org/${project.artifactId}" downloaded="false" searched="false" default="false" conf="compile, runtime(*), master(compile), runtime, compile(*), master" position="25">
+				<license name="Apache Public License 2.0" url="http://www.apache.org/licenses/LICENSE-2.0"/>
+				<metadata-artifact status="no" details="" size="6238" time="0" location="/Users/wangxu/.ivy2/cache/org.sonatype.plexus/plexus-sec-dispatcher/ivy-1.3.xml" searched="false" origin-is-local="true" origin-location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.sonatype.plexus/plexus-sec-dispatcher/1.3/ivys/ivy.xml"/>
+				<caller organisation="org.apache.maven" name="maven-settings-builder" conf="compile, runtime" rev="1.3" rev-constraint-default="1.3" rev-constraint-dynamic="1.3" callerrev="3.2.2"/>
+				<caller organisation="org.apache.maven" name="maven-core" conf="compile, runtime" rev="1.3" rev-constraint-default="1.3" rev-constraint-dynamic="1.3" callerrev="3.2.2"/>
+				<artifacts>
+					<artifact name="plexus-sec-dispatcher" type="jar" ext="jar" status="no" details="" size="28555" time="0" location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.sonatype.plexus/plexus-sec-dispatcher/1.3/jars/plexus-sec-dispatcher.jar">
+						<origin-location is-local="true" location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.sonatype.plexus/plexus-sec-dispatcher/1.3/jars/plexus-sec-dispatcher.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.sonatype.plexus" name="plexus-cipher">
+			<revision name="1.4" status="release" pubdate="20090429154002" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://spice.sonatype.org/${project.artifactId}" downloaded="false" searched="false" default="false" conf="compile, runtime(*), master(compile), runtime, compile(*), master" position="26">
+				<license name="Apache Public License 2.0" url="http://www.apache.org/licenses/LICENSE-2.0"/>
+				<metadata-artifact status="no" details="" size="5874" time="0" location="/Users/wangxu/.ivy2/cache/org.sonatype.plexus/plexus-cipher/ivy-1.4.xml" searched="false" origin-is-local="true" origin-location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.sonatype.plexus/plexus-cipher/1.4/ivys/ivy.xml"/>
+				<caller organisation="org.sonatype.plexus" name="plexus-sec-dispatcher" conf="compile, runtime" rev="1.4" rev-constraint-default="1.4" rev-constraint-dynamic="1.4" callerrev="1.3"/>
+				<artifacts>
+					<artifact name="plexus-cipher" type="jar" ext="jar" status="no" details="" size="13494" time="0" location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.sonatype.plexus/plexus-cipher/1.4/jars/plexus-cipher.jar">
+						<origin-location is-local="true" location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.sonatype.plexus/plexus-cipher/1.4/jars/plexus-cipher.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.codehaus.plexus" name="plexus-component-annotations">
+			<revision name="1.5.5" status="release" pubdate="20100930161459" resolver="sbt-chain" artresolver="sbt-chain" homepage="" downloaded="false" searched="false" default="false" conf="compile, runtime(*), master(compile), runtime, compile(*), master" position="24">
+				<license name="The Apache Software License, Version 2.0" url="http://www.apache.org/licenses/LICENSE-2.0.txt"/>
+				<metadata-artifact status="no" details="" size="5276" time="0" location="/Users/wangxu/.ivy2/cache/org.codehaus.plexus/plexus-component-annotations/ivy-1.5.5.xml" searched="false" origin-is-local="true" origin-location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.codehaus.plexus/plexus-component-annotations/1.5.5/ivys/ivy.xml"/>
+				<caller organisation="org.apache.maven" name="maven-model-builder" conf="compile, runtime" rev="1.5.5" rev-constraint-default="1.5.5" rev-constraint-dynamic="1.5.5" callerrev="3.2.2"/>
+				<caller organisation="org.apache.maven" name="maven-settings-builder" conf="compile, runtime" rev="1.5.5" rev-constraint-default="1.5.5" rev-constraint-dynamic="1.5.5" callerrev="3.2.2"/>
+				<caller organisation="org.apache.maven" name="maven-core" conf="compile, runtime" rev="1.5.5" rev-constraint-default="1.5.5" rev-constraint-dynamic="1.5.5" callerrev="3.2.2"/>
+				<caller organisation="org.apache.maven" name="maven-aether-provider" conf="compile, runtime" rev="1.5.5" rev-constraint-default="1.5.5" rev-constraint-dynamic="1.5.5" callerrev="3.2.2"/>
+				<caller organisation="org.eclipse.sisu" name="org.eclipse.sisu.plexus" conf="compile, runtime" rev="1.5.5" rev-constraint-default="1.5.5" rev-constraint-dynamic="1.5.5" callerrev="0.0.0.M5"/>
+				<artifacts>
+					<artifact name="plexus-component-annotations" type="jar" ext="jar" status="no" details="" size="4211" time="0" location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.codehaus.plexus/plexus-component-annotations/1.5.5/jars/plexus-component-annotations.jar">
+						<origin-location is-local="true" location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.codehaus.plexus/plexus-component-annotations/1.5.5/jars/plexus-component-annotations.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.codehaus.plexus" name="plexus-interpolation">
+			<revision name="1.19" status="release" pubdate="20130806155710" resolver="sbt-chain" artresolver="sbt-chain" homepage="" downloaded="false" searched="false" default="false" conf="compile, runtime(*), master(compile), runtime, compile(*), master" position="23">
+				<license name="The Apache Software License, Version 2.0" url="http://www.apache.org/licenses/LICENSE-2.0.txt"/>
+				<metadata-artifact status="no" details="" size="7148" time="0" location="/Users/wangxu/.ivy2/cache/org.codehaus.plexus/plexus-interpolation/ivy-1.19.xml" searched="false" origin-is-local="true" origin-location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.codehaus.plexus/plexus-interpolation/1.19/ivys/ivy.xml"/>
+				<caller organisation="org.apache.maven" name="maven-model-builder" conf="compile, runtime" rev="1.19" rev-constraint-default="1.19" rev-constraint-dynamic="1.19" callerrev="3.2.2"/>
+				<caller organisation="org.apache.maven" name="maven-settings-builder" conf="compile, runtime" rev="1.19" rev-constraint-default="1.19" rev-constraint-dynamic="1.19" callerrev="3.2.2"/>
+				<caller organisation="org.apache.maven" name="maven-core" conf="compile, runtime" rev="1.19" rev-constraint-default="1.19" rev-constraint-dynamic="1.19" callerrev="3.2.2"/>
+				<artifacts>
+					<artifact name="plexus-interpolation" type="jar" ext="jar" status="no" details="" size="61697" time="0" location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.codehaus.plexus/plexus-interpolation/1.19/jars/plexus-interpolation.jar">
+						<origin-location is-local="true" location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.codehaus.plexus/plexus-interpolation/1.19/jars/plexus-interpolation.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.apache.maven" name="maven-settings">
+			<revision name="3.2.2" status="release" pubdate="20140617095111" resolver="sbt-chain" artresolver="sbt-chain" homepage="" downloaded="false" searched="false" default="false" conf="compile, runtime(*), master(compile), runtime, compile(*), master" position="21">
+				<license name="Apache License, Version 2.0" url="http://www.apache.org/licenses/LICENSE-2.0.txt"/>
+				<metadata-artifact status="no" details="" size="12774" time="0" location="/Users/wangxu/.ivy2/cache/org.apache.maven/maven-settings/ivy-3.2.2.xml" searched="false" origin-is-local="true" origin-location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.apache.maven/maven-settings/3.2.2/ivys/ivy.xml"/>
+				<caller organisation="org.apache.maven" name="maven-settings-builder" conf="compile, runtime" rev="3.2.2" rev-constraint-default="3.2.2" rev-constraint-dynamic="3.2.2" callerrev="3.2.2"/>
+				<caller organisation="org.apache.maven" name="maven-core" conf="compile, runtime" rev="3.2.2" rev-constraint-default="3.2.2" rev-constraint-dynamic="3.2.2" callerrev="3.2.2"/>
+				<artifacts>
+					<artifact name="maven-settings" type="jar" ext="jar" status="no" details="" size="42675" time="0" location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.apache.maven/maven-settings/3.2.2/jars/maven-settings.jar">
+						<origin-location is-local="true" location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.apache.maven/maven-settings/3.2.2/jars/maven-settings.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.apache.maven" name="maven-model">
+			<revision name="3.2.2" status="release" pubdate="20140617095027" resolver="sbt-chain" artresolver="sbt-chain" homepage="" downloaded="false" searched="false" default="false" conf="compile, runtime(*), master(compile), runtime, compile(*), master" position="19">
+				<license name="Apache License, Version 2.0" url="http://www.apache.org/licenses/LICENSE-2.0.txt"/>
+				<metadata-artifact status="no" details="" size="12839" time="0" location="/Users/wangxu/.ivy2/cache/org.apache.maven/maven-model/ivy-3.2.2.xml" searched="false" origin-is-local="true" origin-location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.apache.maven/maven-model/3.2.2/ivys/ivy.xml"/>
+				<caller organisation="org.apache.maven" name="maven-plugin-api" conf="compile, runtime" rev="3.2.2" rev-constraint-default="3.2.2" rev-constraint-dynamic="3.2.2" callerrev="3.2.2"/>
+				<caller organisation="org.apache.maven" name="maven-model-builder" conf="compile, runtime" rev="3.2.2" rev-constraint-default="3.2.2" rev-constraint-dynamic="3.2.2" callerrev="3.2.2"/>
+				<caller organisation="org.apache.maven" name="maven-core" conf="compile, runtime" rev="3.2.2" rev-constraint-default="3.2.2" rev-constraint-dynamic="3.2.2" callerrev="3.2.2"/>
+				<caller organisation="org.apache.maven" name="maven-aether-provider" conf="compile, runtime" rev="3.2.2" rev-constraint-default="3.2.2" rev-constraint-dynamic="3.2.2" callerrev="3.2.2"/>
+				<artifacts>
+					<artifact name="maven-model" type="jar" ext="jar" status="no" details="" size="159859" time="0" location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.apache.maven/maven-model/3.2.2/jars/maven-model.jar">
+						<origin-location is-local="true" location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.apache.maven/maven-model/3.2.2/jars/maven-model.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.codehaus.plexus" name="plexus-utils">
+			<revision name="3.0.17" status="release" pubdate="20140127101020" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://plexus.codehaus.org/plexus-utils" downloaded="false" searched="false" default="false" conf="compile, runtime(*), master(compile), runtime, compile(*), master" position="20">
+				<license name="The Apache Software License, Version 2.0" url="http://www.apache.org/licenses/LICENSE-2.0.txt"/>
+				<metadata-artifact status="no" details="" size="7172" time="0" location="/Users/wangxu/.ivy2/cache/org.codehaus.plexus/plexus-utils/ivy-3.0.17.xml" searched="false" origin-is-local="true" origin-location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.codehaus.plexus/plexus-utils/3.0.17/ivys/ivy.xml"/>
+				<caller organisation="org.apache.maven" name="maven-model-builder" conf="compile, runtime" rev="3.0.17" rev-constraint-default="3.0.17" rev-constraint-dynamic="3.0.17" callerrev="3.2.2"/>
+				<caller organisation="org.apache.maven" name="maven-settings-builder" conf="compile, runtime" rev="3.0.17" rev-constraint-default="3.0.17" rev-constraint-dynamic="3.0.17" callerrev="3.2.2"/>
+				<caller organisation="org.apache.maven" name="maven-artifact" conf="compile, runtime" rev="3.0.17" rev-constraint-default="3.0.17" rev-constraint-dynamic="3.0.17" callerrev="3.2.2"/>
+				<caller organisation="org.apache.maven" name="maven-core" conf="compile, runtime" rev="3.0.17" rev-constraint-default="3.0.17" rev-constraint-dynamic="3.0.17" callerrev="3.2.2"/>
+				<caller organisation="org.apache.maven" name="maven-model" conf="compile, runtime" rev="3.0.17" rev-constraint-default="3.0.17" rev-constraint-dynamic="3.0.17" callerrev="3.2.2"/>
+				<caller organisation="org.apache.maven" name="maven-aether-provider" conf="compile, runtime" rev="3.0.17" rev-constraint-default="3.0.17" rev-constraint-dynamic="3.0.17" callerrev="3.2.2"/>
+				<caller organisation="org.apache.maven" name="maven-repository-metadata" conf="compile, runtime" rev="3.0.17" rev-constraint-default="3.0.17" rev-constraint-dynamic="3.0.17" callerrev="3.2.2"/>
+				<caller organisation="org.apache.maven" name="maven-settings" conf="compile, runtime" rev="3.0.17" rev-constraint-default="3.0.17" rev-constraint-dynamic="3.0.17" callerrev="3.2.2"/>
+				<caller organisation="org.sonatype.plexus" name="plexus-sec-dispatcher" conf="compile, runtime" rev="1.5.5" rev-constraint-default="1.5.5" rev-constraint-dynamic="1.5.5" callerrev="1.3"/>
+				<caller organisation="org.eclipse.sisu" name="org.eclipse.sisu.plexus" conf="compile, runtime" rev="2.1" rev-constraint-default="2.1" rev-constraint-dynamic="2.1" callerrev="0.0.0.M5"/>
+				<artifacts>
+					<artifact name="plexus-utils" type="jar" ext="jar" status="no" details="" size="251792" time="0" location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.codehaus.plexus/plexus-utils/3.0.17/jars/plexus-utils.jar">
+						<origin-location is-local="true" location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.codehaus.plexus/plexus-utils/3.0.17/jars/plexus-utils.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+			<revision name="2.1" evicted="latest-revision" evicted-reason="" downloaded="false" searched="false" conf="compile, runtime(*), master(compile), runtime, compile(*), master" position="-1">
+				<evicted-by rev="3.0.17"/>
+				<caller organisation="org.eclipse.sisu" name="org.eclipse.sisu.plexus" conf="compile, runtime" rev="2.1" rev-constraint-default="2.1" rev-constraint-dynamic="2.1" callerrev="0.0.0.M5"/>
+				<artifacts>
+				</artifacts>
+			</revision>
+			<revision name="1.5.5" evicted="latest-revision" evicted-reason="" downloaded="false" searched="false" conf="compile, runtime(*), master(compile), runtime, compile(*), master" position="-1">
+				<evicted-by rev="3.0.17"/>
+				<caller organisation="org.sonatype.plexus" name="plexus-sec-dispatcher" conf="compile, runtime" rev="1.5.5" rev-constraint-default="1.5.5" rev-constraint-dynamic="1.5.5" callerrev="1.3"/>
+				<artifacts>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.tukaani" name="xz">
+			<revision name="1.4" status="release" pubdate="20130922061433" resolver="sbt-chain" artresolver="sbt-chain" evicted="transitive" evicted-reason="" homepage="http://tukaani.org/xz/java.html" downloaded="false" searched="false" default="false" conf="compile, runtime(*), master(compile), runtime, compile(*), master" position="-1">
+				<license name="Public Domain"/>
+				<metadata-artifact status="no" details="" size="2392" time="0" location="/Users/wangxu/.ivy2/cache/org.tukaani/xz/ivy-1.4.xml" searched="false" origin-is-local="true" origin-location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.tukaani/xz/1.4/ivys/ivy.xml"/>
+				<caller organisation="org.apache.commons" name="commons-compress" conf="default, compile, runtime, master" rev="1.0" rev-constraint-default="1.0" rev-constraint-dynamic="1.0" callerrev="1.4.1"/>
+				<caller organisation="org.apache.commons" name="commons-compress" conf="compile, runtime" rev="1.4" rev-constraint-default="1.4" rev-constraint-dynamic="1.4" callerrev="1.7"/>
+				<artifacts>
+				</artifacts>
+			</revision>
+			<revision name="1.0" status="release" pubdate="20111022054446" resolver="sbt-chain" artresolver="sbt-chain" evicted="latest-revision" evicted-reason="" homepage="http://tukaani.org/xz/java.html" downloaded="false" searched="false" default="false" conf="compile, runtime(*), master(compile), runtime, compile(*), master" position="-1">
+				<license name="Public Domain"/>
+				<metadata-artifact status="no" details="" size="2392" time="0" location="/Users/wangxu/.ivy2/cache/org.tukaani/xz/ivy-1.0.xml" searched="false" origin-is-local="false" origin-location="file:/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.tukaani/xz/1.0/ivys/ivy.xml"/>
+				<evicted-by rev="1.4"/>
+				<caller organisation="org.apache.commons" name="commons-compress" conf="default, compile, runtime, master" rev="1.0" rev-constraint-default="1.0" rev-constraint-dynamic="1.0" callerrev="1.4.1"/>
+				<artifacts>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="com.typesafe.sbt" name="sbt-twirl">
+			<revision name="1.1.1" status="release" pubdate="20150514150137" resolver="sbt-chain" artresolver="sbt-chain" homepage="https://github.com/playframework/twirl" extra-scalaVersion="2.10" extra-sbtVersion="0.13" downloaded="false" searched="false" default="false" conf="compile, default(compile)" position="11">
+				<license name="Apache-2.0" url="http://www.apache.org/licenses/LICENSE-2.0.html"/>
+				<metadata-artifact status="no" details="" size="2331" time="0" location="/Users/wangxu/.ivy2/cache/scala_2.10/sbt_0.13/com.typesafe.sbt/sbt-twirl/ivy-1.1.1.xml" searched="false" origin-is-local="false" origin-location="https://repo.scala-sbt.org/scalasbt/sbt-plugin-releases/com.typesafe.sbt/sbt-twirl/scala_2.10/sbt_0.13/1.1.1/ivys/ivy.xml"/>
+				<caller organisation="com.typesafe.play" name="sbt-plugin" conf="compile" rev="1.1.1" rev-constraint-default="1.1.1" rev-constraint-dynamic="1.1.1" callerrev="2.5.0" extra-scalaVersion="2.10" extra-sbtVersion="0.13"/>
+				<artifacts>
+					<artifact name="sbt-twirl" type="jar" ext="jar" status="no" details="" size="80636" time="0" location="/Users/wangxu/.ivy2/cache/scala_2.10/sbt_0.13/com.typesafe.sbt/sbt-twirl/jars/sbt-twirl-1.1.1.jar">
+						<origin-location is-local="false" location="https://repo.scala-sbt.org/scalasbt/sbt-plugin-releases/com.typesafe.sbt/sbt-twirl/scala_2.10/sbt_0.13/1.1.1/jars/sbt-twirl.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="com.typesafe.play" name="twirl-compiler_2.10">
+			<revision name="1.1.1" status="release" pubdate="20150514010129" resolver="sbt-chain" artresolver="sbt-chain" homepage="https://github.com/playframework/twirl" downloaded="false" searched="false" default="false" conf="default, compile, runtime, default(compile), master" position="12">
+				<license name="Apache-2.0" url="http://www.apache.org/licenses/LICENSE-2.0.html"/>
+				<metadata-artifact status="no" details="" size="3118" time="0" location="/Users/wangxu/.ivy2/cache/com.typesafe.play/twirl-compiler_2.10/ivy-1.1.1.xml" searched="false" origin-is-local="true" origin-location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/com.typesafe.play/twirl-compiler_2.10/1.1.1/ivys/ivy.xml"/>
+				<caller organisation="com.typesafe.sbt" name="sbt-twirl" conf="compile" rev="1.1.1" rev-constraint-default="1.1.1" rev-constraint-dynamic="1.1.1" callerrev="1.1.1"/>
+				<artifacts>
+					<artifact name="twirl-compiler_2.10" type="jar" ext="jar" status="no" details="" size="112093" time="0" location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/com.typesafe.play/twirl-compiler_2.10/1.1.1/jars/twirl-compiler_2.10.jar">
+						<origin-location is-local="true" location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/com.typesafe.play/twirl-compiler_2.10/1.1.1/jars/twirl-compiler_2.10.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="com.typesafe.play" name="twirl-parser_2.10">
+			<revision name="1.1.1" status="release" pubdate="20150514010119" resolver="sbt-chain" artresolver="sbt-chain" homepage="https://github.com/playframework/twirl" downloaded="false" searched="false" default="false" conf="compile, runtime(*), master(compile), runtime, compile(*), master" position="15">
+				<license name="Apache-2.0" url="http://www.apache.org/licenses/LICENSE-2.0.html"/>
+				<metadata-artifact status="no" details="" size="3151" time="0" location="/Users/wangxu/.ivy2/cache/com.typesafe.play/twirl-parser_2.10/ivy-1.1.1.xml" searched="false" origin-is-local="true" origin-location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/com.typesafe.play/twirl-parser_2.10/1.1.1/ivys/ivy.xml"/>
+				<caller organisation="com.typesafe.play" name="twirl-compiler_2.10" conf="default, compile, runtime, master" rev="1.1.1" rev-constraint-default="1.1.1" rev-constraint-dynamic="1.1.1" callerrev="1.1.1"/>
+				<artifacts>
+					<artifact name="twirl-parser_2.10" type="jar" ext="jar" status="no" details="" size="298829" time="0" location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/com.typesafe.play/twirl-parser_2.10/1.1.1/jars/twirl-parser_2.10.jar">
+						<origin-location is-local="true" location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/com.typesafe.play/twirl-parser_2.10/1.1.1/jars/twirl-parser_2.10.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.scala-lang" name="scala-library">
+			<revision name="2.10.4" status="release" pubdate="20160422111045" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://www.scala-lang.org/" extra-info.apiURL="http://www.scala-lang.org/api/2.10.4/" downloaded="false" searched="false" default="false" conf="compile, runtime(*), master(compile), runtime, compile(*), master" position="2">
+				<license name="BSD-like" url="http://www.scala-lang.org/downloads/license.html          "/>
+				<metadata-artifact status="no" details="" size="2656" time="0" location="/Users/wangxu/.ivy2/cache/org.scala-lang/scala-library/ivy-2.10.4.xml" searched="false" origin-is-local="false" origin-location="file:/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.scala-lang/scala-library/2.10.4/ivys/ivy.xml"/>
+				<caller organisation="com.typesafe.play" name="twirl-api_2.10" conf="compile, runtime" rev="2.10.4" rev-constraint-default="2.10.4" rev-constraint-dynamic="2.10.5" callerrev="1.1.1"/>
+				<caller organisation="org.scala-lang" name="scala-compiler" conf="compile, runtime" rev="2.10.4" rev-constraint-default="2.10.4" rev-constraint-dynamic="2.10.4" callerrev="2.10.4"/>
+				<caller organisation="org.scala-lang" name="scala-reflect" conf="compile, runtime" rev="2.10.4" rev-constraint-default="2.10.4" rev-constraint-dynamic="2.10.4" callerrev="2.10.4"/>
+				<caller organisation="com.typesafe.akka" name="akka-contrib_2.10" conf="compile, runtime" rev="2.10.4" rev-constraint-default="2.10.4" rev-constraint-dynamic="2.10.4" callerrev="2.3.11"/>
+				<caller organisation="com.typesafe.akka" name="akka-cluster_2.10" conf="compile, runtime" rev="2.10.4" rev-constraint-default="2.10.4" rev-constraint-dynamic="2.10.4" callerrev="2.3.11"/>
+				<caller organisation="com.typesafe.play" name="twirl-compiler_2.10" conf="default, compile, runtime, master" rev="2.10.4" rev-constraint-default="2.10.4" rev-constraint-dynamic="2.10.5" callerrev="1.1.1"/>
+				<caller organisation="com.typesafe.play" name="sbt-routes-compiler_2.10" conf="default, compile, runtime, master" rev="2.10.4" rev-constraint-default="2.10.4" rev-constraint-dynamic="2.10.6" callerrev="2.5.0"/>
+				<caller organisation="com.typesafe.akka" name="akka-actor_2.10" conf="default, compile, runtime, master" rev="2.10.4" rev-constraint-default="2.10.4" rev-constraint-dynamic="2.10.4" callerrev="2.3.9"/>
+				<caller organisation="com.typesafe" name="jse_2.10" conf="default, compile, runtime, master" rev="2.10.4" rev-constraint-default="2.10.4" rev-constraint-dynamic="2.10.4" callerrev="1.1.2"/>
+				<caller organisation="com.typesafe.akka" name="akka-actor_2.10" conf="compile, runtime" rev="2.10.4" rev-constraint-default="2.10.4" rev-constraint-dynamic="2.10.4" callerrev="2.3.11"/>
+				<caller organisation="com.typesafe.akka" name="akka-remote_2.10" conf="compile, runtime" rev="2.10.4" rev-constraint-default="2.10.4" rev-constraint-dynamic="2.10.4" callerrev="2.3.11"/>
+				<caller organisation="com.typesafe.play" name="twirl-parser_2.10" conf="compile, runtime" rev="2.10.4" rev-constraint-default="2.10.4" rev-constraint-dynamic="2.10.5" callerrev="1.1.1"/>
+				<caller organisation="com.typesafe" name="npm_2.10" conf="default, compile, runtime, master" rev="2.10.4" rev-constraint-default="2.10.4" rev-constraint-dynamic="2.10.4" callerrev="1.1.1"/>
+				<caller organisation="com.typesafe.play" name="sbt-run-support_2.10" conf="default, compile, runtime, master" rev="2.10.4" rev-constraint-default="2.10.4" rev-constraint-dynamic="2.10.6" callerrev="2.5.0"/>
+				<caller organisation="com.typesafe.akka" name="akka-persistence-experimental_2.10" conf="compile, runtime" rev="2.10.4" rev-constraint-default="2.10.4" rev-constraint-dynamic="2.10.4" callerrev="2.3.11"/>
+				<caller organisation="io.spray" name="spray-json_2.10" conf="compile, runtime" rev="2.10.4" rev-constraint-default="2.10.4" rev-constraint-dynamic="2.10.5" callerrev="1.3.2"/>
+				<artifacts>
+					<artifact name="scala-library" type="jar" ext="jar" status="no" details="" size="7126372" time="0" location="/Users/wangxu/.ivy2/cache/org.scala-lang/scala-library/jars/scala-library-2.10.4.jar">
+						<origin-location is-local="false" location="file:/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.scala-lang/scala-library/2.10.4/jars/scala-library.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="net.contentobjects.jnotify" name="jnotify">
+			<revision name="0.94-play-1" status="release" pubdate="20150415123211" resolver="sbt-chain" artresolver="sbt-chain" homepage="https://github.com/playframework/jnotify" downloaded="false" searched="false" default="false" conf="compile, default(compile)" position="10">
+				<license name="LGPL-2.1" url="https://www.gnu.org/licenses/lgpl-2.1.html"/>
+				<metadata-artifact status="no" details="" size="1225" time="0" location="/Users/wangxu/.ivy2/cache/net.contentobjects.jnotify/jnotify/ivy-0.94-play-1.xml" searched="false" origin-is-local="false" origin-location="https://repo.scala-sbt.org/scalasbt/sbt-plugin-releases/net.contentobjects.jnotify/jnotify/0.94-play-1/ivys/ivy.xml"/>
+				<caller organisation="com.typesafe.play" name="sbt-plugin" conf="compile" rev="0.94-play-1" rev-constraint-default="0.94-play-1" rev-constraint-dynamic="0.94-play-1" callerrev="2.5.0"/>
+				<artifacts>
+					<artifact name="jnotify" type="jar" ext="jar" status="no" details="" size="660779" time="0" location="/Users/wangxu/.ivy2/cache/net.contentobjects.jnotify/jnotify/jars/jnotify-0.94-play-1.jar">
+						<origin-location is-local="false" location="https://repo.scala-sbt.org/scalasbt/sbt-plugin-releases/net.contentobjects.jnotify/jnotify/0.94-play-1/jars/jnotify.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="com.typesafe" name="config">
+			<revision name="1.3.0" status="release" pubdate="20150508114611" resolver="sbt-chain" artresolver="sbt-chain" homepage="https://github.com/typesafehub/config" downloaded="false" searched="false" default="false" conf="default, compile, runtime, default(compile), master, runtime(*), master(compile), compile(*)" position="9">
+				<license name="Apache License, Version 2.0" url="http://www.apache.org/licenses/LICENSE-2.0"/>
+				<metadata-artifact status="no" details="" size="2864" time="0" location="/Users/wangxu/.ivy2/cache/com.typesafe/config/ivy-1.3.0.xml" searched="false" origin-is-local="true" origin-location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/com.typesafe/config/1.3.0/ivys/ivy.xml"/>
+				<caller organisation="com.typesafe.play" name="sbt-plugin" conf="compile" rev="1.3.0" rev-constraint-default="1.3.0" rev-constraint-dynamic="1.3.0" callerrev="2.5.0"/>
+				<caller organisation="com.typesafe.akka" name="akka-actor_2.10" conf="default, compile, runtime, master" rev="1.2.1" rev-constraint-default="1.2.1" rev-constraint-dynamic="1.2.1" callerrev="2.3.9"/>
+				<caller organisation="com.typesafe.akka" name="akka-actor_2.10" conf="compile, runtime" rev="1.2.1" rev-constraint-default="1.2.1" rev-constraint-dynamic="1.2.1" callerrev="2.3.11"/>
+				<artifacts>
+					<artifact name="config" type="bundle" ext="jar" status="no" details="" size="277782" time="0" location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/com.typesafe/config/1.3.0/bundles/config.jar">
+						<origin-location is-local="true" location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/com.typesafe/config/1.3.0/bundles/config.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+			<revision name="1.2.1" evicted="latest-revision" evicted-reason="" downloaded="false" searched="false" conf="compile, runtime(*), master(compile), runtime, compile(*), master" position="-1">
+				<evicted-by rev="1.3.0"/>
+				<caller organisation="com.typesafe.akka" name="akka-actor_2.10" conf="default, compile, runtime, master" rev="1.2.1" rev-constraint-default="1.2.1" rev-constraint-dynamic="1.2.1" callerrev="2.3.9"/>
+				<caller organisation="com.typesafe.akka" name="akka-actor_2.10" conf="compile, runtime" rev="1.2.1" rev-constraint-default="1.2.1" rev-constraint-dynamic="1.2.1" callerrev="2.3.11"/>
+				<artifacts>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="com.typesafe.play" name="sbt-run-support_2.10">
+			<revision name="2.5.0" status="release" pubdate="20160304030324" resolver="sbt-chain" artresolver="sbt-chain" homepage="https://playframework.com" downloaded="false" searched="false" default="false" conf="default, compile, runtime, default(compile), master" position="6">
+				<license name="Apache-2.0" url="http://www.apache.org/licenses/LICENSE-2.0.html"/>
+				<metadata-artifact status="no" details="" size="3442" time="0" location="/Users/wangxu/.ivy2/cache/com.typesafe.play/sbt-run-support_2.10/ivy-2.5.0.xml" searched="false" origin-is-local="false" origin-location="https://repo1.maven.org/maven2/com/typesafe/play/sbt-run-support_2.10/2.5.0/sbt-run-support_2.10-2.5.0.pom"/>
+				<caller organisation="com.typesafe.play" name="sbt-plugin" conf="compile" rev="2.5.0" rev-constraint-default="2.5.0" rev-constraint-dynamic="2.5.0" callerrev="2.5.0"/>
+				<artifacts>
+					<artifact name="sbt-run-support_2.10" type="jar" ext="jar" status="no" details="" size="154183" time="0" location="/Users/wangxu/.ivy2/cache/com.typesafe.play/sbt-run-support_2.10/jars/sbt-run-support_2.10-2.5.0.jar">
+						<origin-location is-local="false" location="https://repo1.maven.org/maven2/com/typesafe/play/sbt-run-support_2.10/2.5.0/sbt-run-support_2.10-2.5.0.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="com.typesafe.play" name="build-link">
+			<revision name="2.5.0" status="release" pubdate="20160303110222" resolver="sbt-chain" artresolver="sbt-chain" homepage="https://playframework.com" downloaded="false" searched="false" default="false" conf="compile, runtime(*), master(compile), runtime, compile(*), master" position="7">
+				<license name="Apache-2.0" url="http://www.apache.org/licenses/LICENSE-2.0.html"/>
+				<metadata-artifact status="no" details="" size="2636" time="0" location="/Users/wangxu/.ivy2/cache/com.typesafe.play/build-link/ivy-2.5.0.xml" searched="false" origin-is-local="true" origin-location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/com.typesafe.play/build-link/2.5.0/ivys/ivy.xml"/>
+				<caller organisation="com.typesafe.play" name="sbt-run-support_2.10" conf="default, compile, runtime, master" rev="2.5.0" rev-constraint-default="2.5.0" rev-constraint-dynamic="2.5.0" callerrev="2.5.0"/>
+				<artifacts>
+					<artifact name="build-link" type="jar" ext="jar" status="no" details="" size="3358" time="0" location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/com.typesafe.play/build-link/2.5.0/jars/build-link.jar">
+						<origin-location is-local="true" location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/com.typesafe.play/build-link/2.5.0/jars/build-link.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="com.typesafe.play" name="play-exceptions">
+			<revision name="2.5.0" status="release" pubdate="20160303110224" resolver="sbt-chain" artresolver="sbt-chain" homepage="https://playframework.com" downloaded="false" searched="false" default="false" conf="compile, runtime(*), master(compile), runtime, compile(*), master" position="8">
+				<license name="Apache-2.0" url="http://www.apache.org/licenses/LICENSE-2.0.html"/>
+				<metadata-artifact status="no" details="" size="2467" time="0" location="/Users/wangxu/.ivy2/cache/com.typesafe.play/play-exceptions/ivy-2.5.0.xml" searched="false" origin-is-local="true" origin-location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/com.typesafe.play/play-exceptions/2.5.0/ivys/ivy.xml"/>
+				<caller organisation="com.typesafe.play" name="build-link" conf="compile, runtime" rev="2.5.0" rev-constraint-default="2.5.0" rev-constraint-dynamic="2.5.0" callerrev="2.5.0"/>
+				<artifacts>
+					<artifact name="play-exceptions" type="jar" ext="jar" status="no" details="" size="4600" time="0" location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/com.typesafe.play/play-exceptions/2.5.0/jars/play-exceptions.jar">
+						<origin-location is-local="true" location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/com.typesafe.play/play-exceptions/2.5.0/jars/play-exceptions.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="com.typesafe.play" name="sbt-routes-compiler_2.10">
+			<revision name="2.5.0" status="release" pubdate="20160304030300" resolver="sbt-chain" artresolver="sbt-chain" homepage="https://playframework.com" downloaded="false" searched="false" default="false" conf="default, compile, runtime, default(compile), master" position="1">
+				<license name="Apache-2.0" url="http://www.apache.org/licenses/LICENSE-2.0.html"/>
+				<metadata-artifact status="no" details="" size="3586" time="0" location="/Users/wangxu/.ivy2/cache/com.typesafe.play/sbt-routes-compiler_2.10/ivy-2.5.0.xml" searched="false" origin-is-local="false" origin-location="https://repo1.maven.org/maven2/com/typesafe/play/sbt-routes-compiler_2.10/2.5.0/sbt-routes-compiler_2.10-2.5.0.pom"/>
+				<caller organisation="com.typesafe.play" name="sbt-plugin" conf="compile" rev="2.5.0" rev-constraint-default="2.5.0" rev-constraint-dynamic="2.5.0" callerrev="2.5.0"/>
+				<artifacts>
+					<artifact name="sbt-routes-compiler_2.10" type="jar" ext="jar" status="no" details="" size="613186" time="0" location="/Users/wangxu/.ivy2/cache/com.typesafe.play/sbt-routes-compiler_2.10/jars/sbt-routes-compiler_2.10-2.5.0.jar">
+						<origin-location is-local="false" location="https://repo1.maven.org/maven2/com/typesafe/play/sbt-routes-compiler_2.10/2.5.0/sbt-routes-compiler_2.10-2.5.0.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="com.typesafe.play" name="twirl-api_2.10">
+			<revision name="1.1.1" status="release" pubdate="20150514010104" resolver="sbt-chain" artresolver="sbt-chain" homepage="https://github.com/playframework/twirl" downloaded="false" searched="false" default="false" conf="compile, runtime(*), master(compile), runtime, compile(*), master" position="3">
+				<license name="Apache-2.0" url="http://www.apache.org/licenses/LICENSE-2.0.html"/>
+				<metadata-artifact status="no" details="" size="3290" time="0" location="/Users/wangxu/.ivy2/cache/com.typesafe.play/twirl-api_2.10/ivy-1.1.1.xml" searched="false" origin-is-local="true" origin-location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/com.typesafe.play/twirl-api_2.10/1.1.1/ivys/ivy.xml"/>
+				<caller organisation="com.typesafe.play" name="twirl-compiler_2.10" conf="default, compile, runtime, master" rev="1.1.1" rev-constraint-default="1.1.1" rev-constraint-dynamic="1.1.1" callerrev="1.1.1"/>
+				<caller organisation="com.typesafe.play" name="sbt-routes-compiler_2.10" conf="default, compile, runtime, master" rev="1.1.1" rev-constraint-default="1.1.1" rev-constraint-dynamic="1.1.1" callerrev="2.5.0"/>
+				<artifacts>
+					<artifact name="twirl-api_2.10" type="jar" ext="jar" status="no" details="" size="60633" time="0" location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/com.typesafe.play/twirl-api_2.10/1.1.1/jars/twirl-api_2.10.jar">
+						<origin-location is-local="true" location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/com.typesafe.play/twirl-api_2.10/1.1.1/jars/twirl-api_2.10.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.apache.commons" name="commons-lang3">
+			<revision name="3.4" status="release" pubdate="20150403083112" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://commons.apache.org/proper/commons-lang/" downloaded="false" searched="false" default="false" conf="compile, runtime(*), master(compile), runtime, compile(*), master" position="4">
+				<license name="Apache License, Version 2.0" url="http://www.apache.org/licenses/LICENSE-2.0.txt"/>
+				<metadata-artifact status="no" details="" size="11662" time="0" location="/Users/wangxu/.ivy2/cache/org.apache.commons/commons-lang3/ivy-3.4.xml" searched="false" origin-is-local="true" origin-location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.apache.commons/commons-lang3/3.4/ivys/ivy.xml"/>
+				<caller organisation="com.typesafe.play" name="twirl-api_2.10" conf="compile, runtime" rev="3.4" rev-constraint-default="3.4" rev-constraint-dynamic="3.4" callerrev="1.1.1"/>
+				<caller organisation="org.webjars" name="webjars-locator" conf="default, compile, runtime, master" rev="3.4" rev-constraint-default="3.4" rev-constraint-dynamic="3.4" callerrev="0.26"/>
+				<caller organisation="org.webjars" name="webjars-locator-core" conf="compile, runtime" rev="3.1" rev-constraint-default="3.1" rev-constraint-dynamic="3.1" callerrev="0.26"/>
+				<artifacts>
+					<artifact name="commons-lang3" type="jar" ext="jar" status="no" details="" size="434678" time="0" location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.apache.commons/commons-lang3/3.4/jars/commons-lang3.jar">
+						<origin-location is-local="true" location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/org.apache.commons/commons-lang3/3.4/jars/commons-lang3.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+			<revision name="3.1" evicted="latest-revision" evicted-reason="" downloaded="false" searched="false" conf="compile, runtime(*), master(compile), runtime, compile(*), master" position="-1">
+				<evicted-by rev="3.4"/>
+				<caller organisation="org.webjars" name="webjars-locator-core" conf="compile, runtime" rev="3.1" rev-constraint-default="3.1" rev-constraint-dynamic="3.1" callerrev="0.26"/>
+				<artifacts>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="commons-io" name="commons-io">
+			<revision name="2.4" status="release" pubdate="20120612182206" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://commons.apache.org/io/" downloaded="false" searched="false" default="false" conf="compile, runtime(*), master(compile), runtime, compile(*), master" position="5">
+				<license name="The Apache Software License, Version 2.0" url="http://www.apache.org/licenses/LICENSE-2.0.txt"/>
+				<metadata-artifact status="no" details="" size="8693" time="0" location="/Users/wangxu/.ivy2/cache/commons-io/commons-io/ivy-2.4.xml" searched="false" origin-is-local="true" origin-location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/commons-io/commons-io/2.4/ivys/ivy.xml"/>
+				<caller organisation="com.typesafe.play" name="sbt-routes-compiler_2.10" conf="default, compile, runtime, master" rev="2.4" rev-constraint-default="2.4" rev-constraint-dynamic="2.4" callerrev="2.5.0"/>
+				<caller organisation="org.vafer" name="jdeb" conf="default, compile, runtime, master" rev="2.4" rev-constraint-default="2.4" rev-constraint-dynamic="2.4" callerrev="1.3"/>
+				<artifacts>
+					<artifact name="commons-io" type="jar" ext="jar" status="no" details="" size="185140" time="0" location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/commons-io/commons-io/2.4/jars/commons-io.jar">
+						<origin-location is-local="true" location="/Users/wangxu/Desktop/activator-dist-1.3.10/repository/commons-io/commons-io/2.4/jars/commons-io.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+	</dependencies>
+</ivy-report>
