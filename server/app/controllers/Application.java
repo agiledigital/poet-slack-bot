@@ -32,10 +32,11 @@ public class Application extends Controller {
     ClassNotFoundException, NoSuchMethodException,
     InvocationTargetException, IllegalAccessException {
 
-    String question_mapping = Processor.processQuestion(question)[0];
-    String ticket_id = Processor.processQuestion(question)[1];
+    String[] nlpResult = Processor.processQuestion(question);
+    String question_mapping = nlpResult[0];
+    String ticket_id = nlpResult[1];
 
-    CompletionStage<WSResponse> responsePromise = null;
+    CompletionStage<JsonNode> responsePromise = null;
 
     if( question_mapping.startsWith("description") || question_mapping.startsWith("assignee")){
         responsePromise =  getTicketInfo(ticket_id);
@@ -44,7 +45,7 @@ public class Application extends Controller {
 
     CompletionStage<Result> promiseOfResult = responsePromise.thenApply(response -> {
         try {
-          return ok(processResponse(response.getBody(), question_mapping, ticket_id));
+          return ok(processResponse(response, question_mapping, ticket_id));
         } catch (Exception e) { e.printStackTrace();}
       return null;
       }
@@ -53,21 +54,21 @@ public class Application extends Controller {
     return promiseOfResult;
   }
 
-  public CompletionStage<WSResponse> getTicketInfo(String ticket_id) {
+  public CompletionStage<JsonNode> getTicketInfo(String ticket_id) {
 
     WSRequest request = ws.url("https://jira.agiledigital.com.au/rest/api/latest/issue/" + ticket_id);
     WSRequest complexRequest = request.setAuth(jiraInfo.account, jiraInfo.pwd, WSAuthScheme.BASIC);
 
-    return complexRequest.get();
+    return complexRequest.get().thenApply(WSResponse :: asJson);
   }
 
-  private JsonNode processResponse(String responseBody, String question_mapping, String ticket_id) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
+  private JsonNode processResponse(JsonNode responseBody, String question_mapping, String ticket_id) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
 
     String answer = services.languageProcessor.TaskMap.questionMapping(question_mapping, ticket_id);
 
     // parse the JSON as a JsonNode
     JsonNode json = Json.parse("{\"answer\":\"" +answer+ "\"}");
 
-    return Json.parse(responseBody);
+    return responseBody;
   }
 }
