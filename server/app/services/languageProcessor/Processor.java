@@ -21,7 +21,7 @@ public class Processor {
   /**
    *
    * @param question
-   * @return answer in JSON format
+   * @return question mapping as a string
    * @throws IOException
    * @throws ClassNotFoundException
    * @throws NoSuchMethodException
@@ -33,6 +33,7 @@ public class Processor {
 			InvocationTargetException,IllegalAccessException {
 		
 		DecisionTree dt = new DecisionTree();
+    final String error_msg = "Sorry, I cannot understand the question!";
 
 			// Create the Stanford CoreNLP pipeline
 			Properties props = PropertiesUtils.asProperties("annotators", "tokenize,ssplit,pos");
@@ -47,9 +48,18 @@ public class Processor {
 			//POS tagging
 			System.out.println("\nPOS tagging:");
 			HashMap<String, String> posTagging = posTagging_(ann);
+      
+
 
 			//Noun extraction (For now we assume that only one noun is present)
 			String keyword = infoExtraction(posTagging, "NN").get(0);
+
+    /*
+    If no issue number is found, return an error message
+    saying the question cannot be understood.
+     */
+      if(keyword == null)
+        return error_msg;
 
 			/*
 			 * check for Wh-pronoun (WP) - Who, what,
@@ -89,9 +99,20 @@ public class Processor {
 			System.out.println(dt.traverse(keywords_found) + "(" + keyword + ")");
 
 
-      String answer = TaskMap.questionMapping(dt.traverse(keywords_found), keyword);
+      String que_mapping = null;
 
-      return answer;
+    /*
+    If the question can be mapped, it returns the corresponding method
+    name and parameter. Else, it returns a message notifying the user
+    that the question cannot be understood.
+     */
+			if (dt.traverse(keywords_found)!= null) {
+        que_mapping = TaskMap.questionMapping(dt.traverse(keywords_found), keyword);
+			}
+			else
+        que_mapping = error_msg;
+
+    return que_mapping;
 
 	}
 
