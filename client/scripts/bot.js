@@ -4,8 +4,8 @@
     return robot.hear(/test-hubot (.*)/i, function (res) {
       var message = res.match[1];
 
-      doGET(message).then(function (response) {
-        if(response) {
+      httpRequest().doGET(message).then(function (response) {
+        if (response) {
           return res.send(response.answer);
         }
       });
@@ -17,37 +17,51 @@
 
 ///
 
-var baseUrl = 'http://localhost:9000';
-var timeout = 15000;
 
-var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
+var httpRequest = function () {
 
-function doGET(question) {
+  var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 
-  return new Promise(function (resolve, reject) {
+  function doGET(question) {
 
-    var url = baseUrl + '/question=' + question;
-    var xhr = new XMLHttpRequest(url);
-    xhr.open("GET", url, true);
+    return new Promise(function (resolve, reject) {
 
-    xhr.timeout = timeout;
-    xhr.ontimeout = function () {
-      console.log("Request to ", url, "timed out.")
-    };
+      var url = getBaseUrl() + '/question=' + question;
+      var xhr = new XMLHttpRequest(url);
+      xhr.open("GET", url, true);
 
-    xhr.onload = function (e) {
-      if (xhr.readyState === 4) {
-        if (xhr.status === 200) {
-          resolve(JSON.parse(xhr.responseText));
-        } else {
-          reject(xhr.statusText);
+      xhr.timeout = getTimeout();
+      xhr.ontimeout = function () {
+        console.log("Request to ", url, "timed out.")
+      };
+
+      xhr.onload = function (e) {
+        if (xhr.readyState === 4) {
+          if (xhr.status === 200) {
+            resolve(JSON.parse(xhr.responseText));
+          } else {
+            reject(xhr.statusText);
+          }
         }
-      }
-    };
+      };
 
-    xhr.onerror = function (e) {
-      console.error(xhr.statusText);
-    };
-    xhr.send();
-  });
-}
+      xhr.onerror = function (e) {
+        console.error(xhr.statusText);
+      };
+      xhr.send();
+    });
+  }
+
+  function getBaseUrl() {
+    return 'http://localhost:9000';
+  }
+
+  function getTimeout() {
+    return 15000;
+  }
+
+  return {
+    doGET: doGET
+  }
+};
+
