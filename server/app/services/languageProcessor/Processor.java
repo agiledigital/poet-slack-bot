@@ -47,8 +47,6 @@ public class Processor {
     //POS tagging
     System.out.println("\nPOS tagging:");
     HashMap<String, String> posTagging = posTagging_(annotation);
-      
-
 
     /*
     Noun extraction (For now we assume that only one noun is present)
@@ -79,23 +77,19 @@ public class Processor {
     //Analysis of the question
     System.out.println("\nAnalysis of the question:");
     String topic = QuestionTopicMapping(keyword).toLowerCase();
-    String keyy = QuestionTypeMapping(wh_question).toLowerCase();
+    String key = QuestionTypeMapping(wh_question).toLowerCase();
 
     keywords_found.add(wh_question);
     keywords_found.add(topic);
-    keywords_found.add(keyy);
+    keywords_found.add(key);
     keywords_found.add(keyword);
 
-    System.out.println("\nKeywords found:");
-    System.out.println(keywords_found.toString());
+    System.out.println("\nKeywords found:"+ keywords_found.toString());
 
     keywords_found = QuestionMapping(keywords_found);
 
-    System.out.println("\nFinal keyword list:");
-    System.out.println(keywords_found.toString());
-
-    System.out.println("\nQuestion mapping: ");
-    System.out.println(dt.traverse(keywords_found) + "(" + keyword + ")");
+    System.out.println("\nFinal keyword list:"+ keywords_found.toString());
+    System.out.println("\nQuestion mapping: " + dt.traverse(keywords_found) + "(" + keyword + ")");
 
     /*
     If the question can be mapped, it returns the corresponding method
