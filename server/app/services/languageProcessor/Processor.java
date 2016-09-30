@@ -35,82 +35,83 @@ public class Processor {
 		DecisionTree dt = new DecisionTree();
     final String error_msg = "Sorry, I cannot understand the question!";
 
-			// Create the Stanford CoreNLP pipeline
-			Properties props = PropertiesUtils.asProperties("annotators", "tokenize,ssplit,pos");
-			StanfordCoreNLP pipeline = new StanfordCoreNLP(props);
+    // Create the Stanford CoreNLP pipeline
+    Properties props = PropertiesUtils.asProperties("annotators", "tokenize,ssplit,pos");
+    StanfordCoreNLP pipeline = new StanfordCoreNLP(props);
 
-			// Annotate an example statement.
-			System.out.println("Question:");
-			System.out.println(question);
-			Annotation ann = new Annotation(question);
-			pipeline.annotate(ann);
+    // Annotate an example statement.
+    System.out.println("Question:");
+    System.out.println(question);
+    Annotation ann = new Annotation(question);
+    pipeline.annotate(ann);
 
-			//POS tagging
-			System.out.println("\nPOS tagging:");
-			HashMap<String, String> posTagging = posTagging_(ann);
+    //POS tagging
+    System.out.println("\nPOS tagging:");
+    HashMap<String, String> posTagging = posTagging_(ann);
       
 
 
-			//Noun extraction (For now we assume that only one noun is present)
-			String keyword = infoExtraction(posTagging, "NN").get(0);
+    /*
+    Noun extraction (For now we assume that only one noun is present)
+    If no NOUN is found, return an error message
+    saying the question cannot be understood.
+    It means that no ticket number is found.
+     */
+    if(infoExtraction(posTagging, "NN").size() == 0)
+      return error_msg;
+
+    String keyword = infoExtraction(posTagging, "NN").get(0);
 
     /*
-    If no issue number is found, return an error message
-    saying the question cannot be understood.
+     * check for Wh-pronoun (WP) - Who, what,
+     * then for Wh-adverb (WRB)  - when/ where,
+     * and then Wh-determiner (WDT)  - which
      */
-      if(keyword == null)
-        return error_msg;
+    String ques = null;
+    if (infoExtraction(posTagging, "WP").size() != 0)
+      ques = infoExtraction(posTagging, "WP").get(0).toLowerCase();
+    else if (infoExtraction(posTagging, "WRB").size() != 0)
+      ques = infoExtraction(posTagging, "WRB").get(0).toLowerCase();
+    else if (infoExtraction(posTagging, "WDT").size() != 0)
+      ques = infoExtraction(posTagging, "WDT").get(0).toLowerCase();
 
-			/*
-			 * check for Wh-pronoun (WP) - Who, what,
-			 * then for Wh-adverb (WRB)  - when/ where,
-			 * and then Wh-determiner (WDT)  - which
-			 */
-			String ques = null;
-			if (infoExtraction(posTagging, "WP").size() != 0)
-				ques = infoExtraction(posTagging, "WP").get(0).toLowerCase();
-			else if (infoExtraction(posTagging, "WRB").size() != 0)
-				ques = infoExtraction(posTagging, "WRB").get(0).toLowerCase();
-			else if (infoExtraction(posTagging, "WDT").size() != 0)
-				ques = infoExtraction(posTagging, "WDT").get(0).toLowerCase();
+    //Create an arrayList for keywords
+    ArrayList<String> keywords_found = new ArrayList<String>();
 
-			//Create an arrayList for keywords
-			ArrayList<String> keywords_found = new ArrayList<String>();
+    //Analysis of the question
+    System.out.println("\nAnalysis of the question:");
+    String topic = QuestionTopicMapping(keyword).toLowerCase();
+    String keyy = QuestionTypeMapping(ques).toLowerCase();
 
-		  //Analysis of the question
-			System.out.println("\nAnalysis of the question:");
-			String topic = QuestionTopicMapping(keyword).toLowerCase();
-			String keyy = QuestionTypeMapping(ques).toLowerCase();
+    keywords_found.add(ques);
+    keywords_found.add(topic);
+    keywords_found.add(keyy);
+    keywords_found.add(keyword);
 
-			keywords_found.add(ques);
-			keywords_found.add(topic);
-			keywords_found.add(keyy);
-			keywords_found.add(keyword);
+    System.out.println("\nKeywords found:");
+    System.out.println(keywords_found.toString());
 
-			System.out.println("\nKeywords found:");
-			System.out.println(keywords_found.toString());
+    keywords_found = QuestionMapping(keywords_found);
 
-			keywords_found = QuestionMapping(keywords_found);
+    System.out.println("\nFinal keyword list:");
+    System.out.println(keywords_found.toString());
 
-			System.out.println("\nFinal keyword list:");
-			System.out.println(keywords_found.toString());
-
-			System.out.println("\nQuestion mapping: ");
-			System.out.println(dt.traverse(keywords_found) + "(" + keyword + ")");
+    System.out.println("\nQuestion mapping: ");
+    System.out.println(dt.traverse(keywords_found) + "(" + keyword + ")");
 
 
-      String que_mapping = null;
+    String que_mapping = null;
 
     /*
     If the question can be mapped, it returns the corresponding method
     name and parameter. Else, it returns a message notifying the user
     that the question cannot be understood.
      */
-			if (dt.traverse(keywords_found)!= null) {
-        que_mapping = TaskMap.questionMapping(dt.traverse(keywords_found), keyword);
-			}
-			else
-        que_mapping = error_msg;
+    if (dt.traverse(keywords_found)!= null) {
+      que_mapping = TaskMap.questionMapping(dt.traverse(keywords_found), keyword);
+    }
+    else
+      que_mapping = error_msg;
 
     return que_mapping;
 
