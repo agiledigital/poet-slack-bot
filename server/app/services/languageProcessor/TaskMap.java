@@ -39,10 +39,8 @@ public class TaskMap{
    * @return
    */
   public JsonNode description_of_ticket(String ticket, JsonNode responseBody){
-    String answer = Extractor.extractString(responseBody, "description");
-
-    System.out.println("---------");
-    System.out.println(answer);
+    String answer = "Description of " + ticket + " is as follows: \n" +
+      Extractor.extractString(responseBody, "description");
     return parseToJson(answer);
   }
 

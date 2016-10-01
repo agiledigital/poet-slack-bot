@@ -6,22 +6,17 @@ public class DecisionTree {
 	Node root;
 	
 	DecisionTree(){
-		Node temp = new Node("who");
-		root = temp;
-		
-		temp = new Node("ticket");
-		root.left = temp;
-		
-		root.left.left = new Node("person");
-		root.left.left.left = new Node("assignee");
-		root.left.left.left.left = new Node("assignee_of_ticket");	
-		root.left.left.left.right = new Node("reporter_of_ticket");
-		
-		
-		root.right = new Node("what");
-		root.right.left = new Node("ticket");
-		root.right.left.left = new Node("description_of_ticket");
-		
+		root = new Node("ticket");
+
+		//description of ticket
+		root.left = new Node("description");
+		root.left.left = new Node("description_of_ticket");
+
+		//assignee to ticket
+		root.left.right = new Node("person");
+		root.left.right.left = new Node("assignee");
+		root.left.right.left.left = new Node("assignee_of_ticket");
+		root.left.right.left.right = new Node("reporter_of_ticket");
 	}
 	
 	public void insertRoot(Node node){

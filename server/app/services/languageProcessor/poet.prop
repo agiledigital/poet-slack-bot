@@ -1,0 +1,13 @@
+#
+# Features
+#
+useClassFeature=true
+1.useNGrams=true
+1.usePrefixSuffixNGrams=true
+1.splitWordsRegexp=[ ]  
+1.useSplitWords=true
+#
+# Training input
+#
+trainFile=./examples/poet_1.train
+testFile=./examples/poet_1.test
