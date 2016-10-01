@@ -1,4 +1,4 @@
-package services.queryHandler;
+package services.queryhandler;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import play.libs.Json;
@@ -87,11 +87,8 @@ public class QueryHandler {
 
   private JsonNode processResponse(JsonNode responseBody, String question_mapping, String ticket_id) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
 
-    String answer = services.languageProcessor.TaskMap.questionMapping(question_mapping, ticket_id);
+    return services.languageProcessor.TaskMap.questionMapping(question_mapping, ticket_id, responseBody);
 
-    // parse the JSON as a JsonNode
-    JsonNode json = Json.parse("{\"answer\":\"" +answer+ "\"}");
-    return responseBody;
   }
 
 }
