@@ -1,9 +1,0 @@
-<component name="libraryTable">
-  <library name="SBT: org.seleniumhq.selenium:selenium-java:2.48.2:jar">
-    <CLASSES>
-      <root url="jar://$PROJECT_DIR$/../activator-dist-1.3.10/repository/org.seleniumhq.selenium/selenium-java/2.48.2/jars/selenium-java.jar!/" />
-    </CLASSES>
-    <JAVADOC />
-    <SOURCES />
-  </library>
-</component>
