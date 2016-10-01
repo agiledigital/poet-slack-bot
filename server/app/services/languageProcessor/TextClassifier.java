@@ -1,92 +1,70 @@
 package services.languageProcessor;
 
 import java.io.*;
+import java.util.ArrayList;
 
 import edu.stanford.nlp.classify.Classifier;
 import edu.stanford.nlp.classify.ColumnDataClassifier;
 import edu.stanford.nlp.classify.LinearClassifier;
 import edu.stanford.nlp.ling.Datum;
-import edu.stanford.nlp.objectbank.ObjectBank;
-import edu.stanford.nlp.util.ErasureUtils;
 
-class TextClassifier {
+public class TextClassifier {
 
-  final static File PROPERTIES_FILE = new File("server/app/services/languageProcessor/poet.prop");
-  final static File TRAIN_FILE = new File("server/app/services/languageProcessor/poet_1.train");
-  final static File TEST_FILE = new File("server/app/services/languageProcessor/poet_1.test");
+  final static File PROPERTIES_FILE = new File("app/services/languageProcessor/poet.prop");
+  final static File TRAIN_FILE = new File("app/services/languageProcessor/poet_1.train");
+  final static File TEST_FILE = new File("app/services/languageProcessor/poet_1.test");
+
+  static ColumnDataClassifier columnDataClassifier = new ColumnDataClassifier(PROPERTIES_FILE.getAbsolutePath());
 
   public static void main(String[] args) throws Exception {
 
+    System.out.println("I am in TestingMethod :Checkpoint 1");
 
-    ColumnDataClassifier cdc = new ColumnDataClassifier(PROPERTIES_FILE.getAbsolutePath());
-    Classifier<String,String> cl =
-      cdc.makeClassifier(cdc.readTrainingExamples(TRAIN_FILE.getAbsolutePath()));
-    for (String line : ObjectBank.getLineIterator(TEST_FILE.getAbsoluteFile(), "utf-8")) {
+    System.out.println("I am in TestingMethod :Checkpoint 2");
+
+    Classifier<String,String> classifier =
+      columnDataClassifier.makeClassifier(columnDataClassifier.readTrainingExamples(TRAIN_FILE.getAbsolutePath()));
+    //for (String line : ObjectBank.getLineIterator(TEST_FILE.getAbsolutePath(), "utf-8")) {
+    // instead of the method in the line below, if you have the individual elements
+    // already you can use columnDataClassifier.makeDatumFromStrings(String[])
+    //Datum<String,String> d = columnDataClassifier.makeDatumFromLine(line);
+
+    System.out.println("I am in TestingMethod :Checkpoint 3");
+
+    ArrayList<String> wordList = new ArrayList<String>();
+    wordList.add("what");
+    wordList.add("is");
+    wordList.add("working");
+    wordList.add("on");
+    wordList.add("poet");
+
+    Datum<String,String> d2 = columnDataClassifier.makeDatumFromStrings(arrayToString(wordList));
+    System.out.println(classifier.classOf(d2));
+
+  }
+
+  public static String TestingMethod(ArrayList<String> wordList){
+    System.out.println("I am in TestingMethod :Checkpoint 1");
+
+    Classifier<String,String> classifier =
+      columnDataClassifier.makeClassifier(columnDataClassifier.readTrainingExamples(TRAIN_FILE.getAbsolutePath()));
+    //for (String line : ObjectBank.getLineIterator(TEST_FILE.getAbsolutePath(), "utf-8")) {
       // instead of the method in the line below, if you have the individual elements
-      // already you can use cdc.makeDatumFromStrings(String[])
-      Datum<String,String> d = cdc.makeDatumFromLine(line);
-      System.out.println(line + "  ==>  " + cl.classOf(d));
-    }
+      // already you can use columnDataClassifier.makeDatumFromStrings(String[])
+      //Datum<String,String> d = columnDataClassifier.makeDatumFromLine(line);
 
-    demonstrateSerialization();
+      System.out.println("I am in TestingMethod :Checkpoint 2");
+      Datum<String,String> d2 = columnDataClassifier.makeDatumFromStrings(arrayToString(wordList));
+      System.out.println(classifier.classOf(d2));
+
+      return classifier.classOf(d2).trim();
   }
 
-  public static void TestingMethod() {
-
-
-    File propertiesFile = new File("server/app/services/languageProcessor/examples/cheese2007.prop");
-    File trainFile = new File("server/app/services/languageProcessor/examples/cheese2007.train");
-    File testFile = new File("server/app/services/languageProcessor/examples/cheese2007.test");
-
-    ColumnDataClassifier cdc = new ColumnDataClassifier(propertiesFile.getAbsolutePath());
-
-    Classifier<String,String> cl =
-      cdc.makeClassifier(cdc.readTrainingExamples(trainFile.getAbsolutePath()));
-    for (String line : ObjectBank.getLineIterator(testFile.getAbsolutePath(), "utf-8")) {
-      // instead of the method in the line below, if you have the individual elements
-      // already you can use cdc.makeDatumFromStrings(String[])
-      Datum<String,String> d = cdc.makeDatumFromLine(line);
-      System.out.println(line + "  ==>  " + cl.classOf(d));
-    }
-    try {
-      demonstrateSerialization();
-    }
-    catch(Exception e){
-
-    }
+  //new String[] {"output","What","is","working","on","poet-1"}
+  private static String[] arrayToString(ArrayList<String> wordList){
+    System.out.println("I am in arrayToString :Checkpoint 1");
+    String words[] = new String[wordList.size()];
+    wordList.add(0, "output");
+    return wordList.toArray(words);
   }
-
-
-  public static void demonstrateSerialization()
-    throws IOException, ClassNotFoundException {
-
-    System.out.println("Demonstrating working with a serialized classifier");
-    ColumnDataClassifier cdc = new ColumnDataClassifier(PROPERTIES_FILE.getAbsolutePath());
-    Classifier<String,String> cl =
-      cdc.makeClassifier(cdc.readTrainingExamples(TRAIN_FILE.getAbsolutePath()));
-
-    // Exhibit serialization and deserialization working. Serialized to bytes in memory for simplicity
-    System.out.println(); System.out.println();
-    ByteArrayOutputStream baos = new ByteArrayOutputStream();
-    ObjectOutputStream oos = new ObjectOutputStream(baos);
-    oos.writeObject(cl);
-    oos.close();
-    byte[] object = baos.toByteArray();
-    ByteArrayInputStream bais = new ByteArrayInputStream(object);
-    ObjectInputStream ois = new ObjectInputStream(bais);
-    LinearClassifier<String,String> lc = ErasureUtils.uncheckedCast(ois.readObject());
-    ois.close();
-    ColumnDataClassifier cdc2 = new ColumnDataClassifier(PROPERTIES_FILE.getAbsolutePath());
-
-    // We compare the output of the deserialized classifier lc versus the original one cl
-    // For both we use a ColumnDataClassifier to convert text lines to examples
-    for (String line : ObjectBank.getLineIterator(TEST_FILE.getAbsolutePath(), "utf-8")) {
-      Datum<String,String> d = cdc.makeDatumFromLine(line);
-      Datum<String,String> d2 = cdc2.makeDatumFromLine(line);
-      System.out.println(line + "  =origi=>  " + cl.classOf(d));
-      System.out.println(line + "  =deser=>  " + lc.classOf(d2));
-    }
-  }
-
 }
-

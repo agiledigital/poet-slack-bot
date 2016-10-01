@@ -1,5 +1,6 @@
 package services.languageProcessor;
 
+import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -9,6 +10,8 @@ import java.util.Map;
 import java.util.Properties;
 import java.lang.reflect.*;
 import com.fasterxml.jackson.databind.JsonNode;
+import edu.stanford.nlp.process.CoreLabelTokenFactory;
+import edu.stanford.nlp.process.PTBTokenizer;
 import play.libs.Json;
 import edu.stanford.nlp.ling.CoreAnnotations;
 import edu.stanford.nlp.ling.CoreLabel;
@@ -32,11 +35,6 @@ public class Processor {
     ClassNotFoundException, NoSuchMethodException,
     InvocationTargetException,IllegalAccessException {
 
-
-    TextClassifier textClassifier = new TextClassifier();
-    textClassifier.TestingMethod();
-
-
     DecisionTree decisionTree = new DecisionTree();
 
     //Create NLP pipeline
@@ -53,6 +51,9 @@ public class Processor {
     //Get ID (TicketID, issueID, ProjectID)
     String uniqueID = getUniqueID(posTagging);
 
+    ArrayList<String> wordList = tokenizeQuestion(annotation);
+
+    /*
     //get wh-question
     String wh_question = getWhQuestion(posTagging);
 
@@ -61,14 +62,31 @@ public class Processor {
 
     //Question mapping
     System.out.println("\nQuestion mapping: " + decisionTree.traverse(keywordList) + "(" + uniqueID + ")");
+    */
     String questionMapping[] = new String[2];
-    questionMapping[0] = decisionTree.traverse(keywordList);
+    //questionMapping[0] = decisionTree.traverse(keywordList);
+    questionMapping[0] = TextClassifier.TestingMethod(wordList);
     questionMapping[1] = uniqueID;
 
     return questionMapping;
-
   }
 
+  public static ArrayList<String> tokenizeQuestion(Annotation annotation) {
+
+    ArrayList<String> wordList = new ArrayList<String>();
+
+    List<CoreMap> sentences = annotation.get(CoreAnnotations.SentencesAnnotation.class);
+    for (CoreMap sentence : sentences) {
+      for (CoreLabel token : sentence.get(CoreAnnotations.TokensAnnotation.class)) {
+        String word = token.get(CoreAnnotations.TextAnnotation.class);
+        wordList.add(word.toLowerCase());
+
+      }
+      wordList.add("ticket");
+    }
+    System.out.println("I am in tokenizeQuestion :" + wordList.toString());
+    return wordList;
+  }
 
   /**
    * This method creates a list of keywords found in the questions,
@@ -85,21 +103,11 @@ public class Processor {
     String topic = "ticket";
     keywords_found.add(topic);
 
-    System.out.println("**************Checkpoint 1**************");
-
     if (wh_question != null) {
       String key = QuestionTypeMapping(wh_question).toLowerCase();
-
-      System.out.println("**************Checkpoint 2**************");
       keywords_found.add(wh_question);
       keywords_found.add(key);
     }
-
-
-
-    System.out.println("**************Checkpoint 3**************");
-
-    System.out.println("**************Checkpoint 4**************");
 
     System.out.println("\nKeywords found:");
     System.out.println(keywords_found.toString());
@@ -223,14 +231,14 @@ public class Processor {
   /**
    * This method performs POS tagging.
    * It takes annotation as an argument and returns ArrayList<String[]>
-   * @param ann
+   * @param annotation
    * @return
    */
-  public static ArrayList<ArrayList<String>> posTagging(Annotation ann){
+  public static ArrayList<ArrayList<String>> posTagging(Annotation annotation){
 
     ArrayList<ArrayList<String>> posTagging = new ArrayList<ArrayList<String>>();
 
-    List<CoreMap> sentences = ann.get(CoreAnnotations.SentencesAnnotation.class);
+    List<CoreMap> sentences = annotation.get(CoreAnnotations.SentencesAnnotation.class);
     for (CoreMap sentence : sentences) {
       for (CoreLabel token: sentence.get(CoreAnnotations.TokensAnnotation.class)) {
         String word = token.get(CoreAnnotations.TextAnnotation.class);
