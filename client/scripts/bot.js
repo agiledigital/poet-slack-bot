@@ -6,7 +6,9 @@
 
       doGET(message).then(function (response) {
         if(response) {
-          return res.send(response.answer);
+            if(response.status == "success"){
+                return res.send(response.answer);
+            }
         }
       });
 

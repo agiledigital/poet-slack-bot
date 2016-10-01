@@ -1,9 +1,12 @@
 package services.languageProcessor;
 import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import play.libs.Json;
 
+import services.Response;
 import services.queryhandler.Extractor;
 
+import java.io.IOException;
 import java.lang.reflect.*;
 
 public class TaskMap{
@@ -36,15 +39,10 @@ public class TaskMap{
    * @return
    */
   public JsonNode description_of_ticket(String ticket, JsonNode responseBody){
-    //process the raw JSON object to get only the required key,value pair
-
-    //String answer = "Description of the ticket " + ticket;
-    //System.out.println(answer);
-
     String answer = Extractor.extractString(responseBody, "description");
 
-    // parse the JSON as a JsonNode
-
+    System.out.println("---------");
+    System.out.println(answer);
     return parseToJson(answer);
   }
 
@@ -54,13 +52,7 @@ public class TaskMap{
    * @return
    */
   public JsonNode assignee_of_ticket(String ticket, JsonNode responseBody){
-    //process the raw JSON object to get only the required key,value pair
-
-    //String answer = "The person working on "+ ticket +" is ";
-    //System.out.println(answer);
-
     String answer = Extractor.extractString(responseBody, "assignee") + " is working on "+ ticket;
-
     return parseToJson(answer);
   }
 
@@ -70,6 +62,14 @@ public class TaskMap{
    * @return
    */
   public JsonNode parseToJson(String answer){
-    return Json.parse("{\"answer\":\"" +answer+ "\"}");
+
+      Response response = new Response();
+      response.status = "success";
+      response.answer = answer;
+
+      JsonNode ans = Json.toJson(response);
+
+      return ans;
+
   }
 }

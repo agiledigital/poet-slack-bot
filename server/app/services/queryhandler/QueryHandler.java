@@ -14,6 +14,7 @@ import services.languageProcessor.Processor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.concurrent.CompletionStage;
 
+import static play.mvc.Results.badRequest;
 import static play.mvc.Results.ok;
 
 /**
