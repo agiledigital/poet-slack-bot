@@ -59,7 +59,7 @@ public class TaskMap{
     //String answer = "The person working on "+ ticket +" is ";
     //System.out.println(answer);
 
-    String answer = Extractor.extractString(responseBody, "assignee");
+    String answer = Extractor.extractString(responseBody, "assignee") + " is working on "+ ticket;
 
     return parseToJson(answer);
   }
