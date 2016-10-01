@@ -1,15 +1,13 @@
 assignee_of_ticket	who work ticket
 assignee_of_ticket 	who working ticket
 assignee_of_ticket 	who works ticket
-assignee_of_ticket 	who assignee ticket
 assignee_of_ticket 	assignee ticket
 assignee_of_ticket 	assignees ticket
 assignee_of_ticket 	show assignee ticket
-assignee_of_ticket 	show me assignee of ticket
 assignee_of_ticket 	show assignees ticket
 assignee_of_ticket 	person work ticket
 assignee_of_ticket 	person works ticket
-assignee_of_ticket  person working ticket
+assignee_of_ticket 	person working ticket
 description_of_ticket 	what ticket
 description_of_ticket	description ticket
 description_of_ticket	describe ticket
@@ -17,7 +15,7 @@ description_of_ticket	detail ticket
 description_of_ticket	details ticket
 description_of_ticket	tell about ticket
 description_of_ticket	give detail ticket
-description_of_ticket	give details ticket
+description_of_ticket	give details ticekt
 description_of_ticket	show detail ticket
 description_of_ticket	show details ticket
 description_of_ticket	show ticket

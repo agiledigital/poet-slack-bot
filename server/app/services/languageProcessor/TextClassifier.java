@@ -5,7 +5,6 @@ import java.util.ArrayList;
 
 import edu.stanford.nlp.classify.Classifier;
 import edu.stanford.nlp.classify.ColumnDataClassifier;
-import edu.stanford.nlp.classify.LinearClassifier;
 import edu.stanford.nlp.ling.Datum;
 
 public class TextClassifier {
@@ -16,42 +15,30 @@ public class TextClassifier {
 
   static ColumnDataClassifier columnDataClassifier = new ColumnDataClassifier(PROPERTIES_FILE.getAbsolutePath());
 
-  public static void main(String[] args) throws Exception {
-
-    System.out.println("I am in TestingMethod :Checkpoint 1");
-
-    System.out.println("I am in TestingMethod :Checkpoint 2");
-
-    Classifier<String,String> classifier =
-      columnDataClassifier.makeClassifier(columnDataClassifier.readTrainingExamples(TRAIN_FILE.getAbsolutePath()));
-    //for (String line : ObjectBank.getLineIterator(TEST_FILE.getAbsolutePath(), "utf-8")) {
-    // instead of the method in the line below, if you have the individual elements
-    // already you can use columnDataClassifier.makeDatumFromStrings(String[])
-    //Datum<String,String> d = columnDataClassifier.makeDatumFromLine(line);
-
-    System.out.println("I am in TestingMethod :Checkpoint 3");
+  public static void main(String[] args){
 
     ArrayList<String> wordList = new ArrayList<String>();
-    wordList.add("what");
+    wordList.add("who");
     wordList.add("is");
     wordList.add("working");
     wordList.add("on");
     wordList.add("poet");
 
-    Datum<String,String> d2 = columnDataClassifier.makeDatumFromStrings(arrayToString(wordList));
-    System.out.println(classifier.classOf(d2));
+    TestingMethod(wordList);
 
   }
+
 
   public static String TestingMethod(ArrayList<String> wordList){
     System.out.println("I am in TestingMethod :Checkpoint 1");
 
+    //ColumnDataClassifier columnDataClassifier = new ColumnDataClassifier(PROPERTIES_FILE.getAbsolutePath());
+
     Classifier<String,String> classifier =
       columnDataClassifier.makeClassifier(columnDataClassifier.readTrainingExamples(TRAIN_FILE.getAbsolutePath()));
+
     //for (String line : ObjectBank.getLineIterator(TEST_FILE.getAbsolutePath(), "utf-8")) {
-      // instead of the method in the line below, if you have the individual elements
-      // already you can use columnDataClassifier.makeDatumFromStrings(String[])
-      //Datum<String,String> d = columnDataClassifier.makeDatumFromLine(line);
+    //Datum<String,String> d = columnDataClassifier.makeDatumFromLine(line);
 
       System.out.println("I am in TestingMethod :Checkpoint 2");
       Datum<String,String> d2 = columnDataClassifier.makeDatumFromStrings(arrayToString(wordList));
