@@ -32,6 +32,11 @@ public class Processor {
     ClassNotFoundException, NoSuchMethodException,
     InvocationTargetException,IllegalAccessException {
 
+
+    TextClassifier textClassifier = new TextClassifier();
+    textClassifier.TestingMethod();
+
+
     DecisionTree decisionTree = new DecisionTree();
 
     //Create NLP pipeline
@@ -168,7 +173,7 @@ public class Processor {
    * @param keywords
    * @return
    */
-  public static ArrayList<String> QuestionMapping(ArrayList<String> keywords) {
+  public static ArrayList<String> QuestionMapping(ArrayList<String> keywords){
     ArrayList<String> ticket_ = new ArrayList<>();
     ticket_.add("ticket");
 
@@ -181,8 +186,6 @@ public class Processor {
 
     ArrayList<String> give_ = new ArrayList<>();
     give_.add("give");
-
-
 
     ArrayList<String> assignee_of_ticket = new ArrayList<>();
     assignee_of_ticket.add("person");

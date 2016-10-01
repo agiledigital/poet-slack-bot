@@ -14,9 +14,6 @@ libraryDependencies ++= Seq(
 
 libraryDependencies += "edu.stanford.nlp" % "stanford-corenlp" % "3.6.0"
 libraryDependencies += "edu.stanford.nlp" % "stanford-corenlp" % "3.6.0" classifier "models"
-libraryDependencies += "edu.stanford.nlp" % "stanford-classifier" % "3.6.0"
-libraryDependencies += "edu.stanford.nlp" % "stanford-corenlp" % "3.6.0" classifier "sources"
-libraryDependencies += "edu.stanford.nlp" % "stanford-corenlp" % "3.6.0" classifier "javadoc"
 
 // Play provides two styles of routers, one expects its actions to be injected, the
 // other, legacy style, accesses its actions statically.
