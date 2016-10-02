@@ -22,15 +22,31 @@ public class TaskMap{
    * @throws InvocationTargetException
    * @throws IllegalAccessException
    */
-  public static JsonNode questionMapping(String methodName, String argName, JsonNode responseBody) throws NoSuchMethodException,
-    InvocationTargetException,IllegalAccessException{
+  final static String ERROR_MSG = "Sorry, I cannot understand the question";
 
-    TaskMap tm = new TaskMap();
+  public static JsonNode questionMapping(String methodName, String argName, JsonNode responseBody){
 
-    //call the method at runtime according to the argument "methodName"
-    Method m = TaskMap.class.getMethod(methodName, String.class, JsonNode.class);
-    JsonNode returnVal = (JsonNode) m.invoke(tm, argName, responseBody);
-    return returnVal;
+    TaskMap taskMap = new TaskMap();
+
+    try {
+
+      //call the method at runtime according to the argument "methodName"
+      Method m = TaskMap.class.getMethod(methodName, String.class, JsonNode.class);
+      JsonNode returnVal = (JsonNode) m.invoke(taskMap, argName, responseBody);
+      return returnVal;
+
+    }catch (NoSuchMethodException e){
+      e.printStackTrace();
+      return taskMap.parseToJson("fail",ERROR_MSG);
+    }catch (InvocationTargetException e){
+      e.printStackTrace();
+      return taskMap.parseToJson("fail",ERROR_MSG);
+    }catch (IllegalAccessException e){
+      e.printStackTrace();
+      return taskMap.parseToJson("fail",ERROR_MSG);
+    }catch (NullPointerException e){
+      return taskMap.parseToJson("fail",ERROR_MSG);
+    }
   }
 
   /**
@@ -41,7 +57,7 @@ public class TaskMap{
   public JsonNode description_of_ticket(String ticket, JsonNode responseBody){
     String answer = "Description of " + ticket + " is as follows: \n" +
       Extractor.extractString(responseBody, "description");
-    return parseToJson(answer);
+    return parseToJson("success", answer);
   }
 
   /**
@@ -51,20 +67,21 @@ public class TaskMap{
    */
   public JsonNode assignee_of_ticket(String ticket, JsonNode responseBody){
     String answer = Extractor.extractString(responseBody, "assignee") + " is working on "+ ticket;
-    return parseToJson(answer);
+    System.out.println(answer);
+    return parseToJson("success", answer);
   }
 
   /**
    * This method takes String as an input as returns a JSON object in the required format
-   * @param answer
+   * @param message
    * @return
    */
-  public JsonNode parseToJson(String answer){
+  public static JsonNode parseToJson(String status, String message){
 
       Response response = new Response();
-      response.status = "success";
-      response.answer = answer;
-
+      response.status = status;
+      response.message = message;
+    System.out.println("Response: "+response.message);
       JsonNode ans = Json.toJson(response);
 
       return ans;

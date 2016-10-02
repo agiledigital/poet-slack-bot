@@ -1,6 +1,5 @@
 package services.languageProcessor;
 
-import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -9,10 +8,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 import java.lang.reflect.*;
-import com.fasterxml.jackson.databind.JsonNode;
-import edu.stanford.nlp.process.CoreLabelTokenFactory;
-import edu.stanford.nlp.process.PTBTokenizer;
-import play.libs.Json;
 import edu.stanford.nlp.ling.CoreAnnotations;
 import edu.stanford.nlp.ling.CoreLabel;
 import edu.stanford.nlp.pipeline.Annotation;
@@ -25,15 +20,8 @@ public class Processor {
    *
    * @param question
    * @return question mapping as a String array
-   * @throws IOException
-   * @throws ClassNotFoundException
-   * @throws NoSuchMethodException
-   * @throws InvocationTargetException
-   * @throws IllegalAccessException
    */
-  public static String[] processQuestion(String question) throws IOException,
-    ClassNotFoundException, NoSuchMethodException,
-    InvocationTargetException,IllegalAccessException {
+  public static String[] processQuestion(String question) {
 
     DecisionTree decisionTree = new DecisionTree();
 
@@ -53,7 +41,7 @@ public class Processor {
 
     ArrayList<String> wordList = tokenizeQuestion(annotation);
 
-    /*
+
     //get wh-question
     String wh_question = getWhQuestion(posTagging);
 
@@ -62,12 +50,19 @@ public class Processor {
 
     //Question mapping
     System.out.println("\nQuestion mapping: " + decisionTree.traverse(keywordList) + "(" + uniqueID + ")");
-    */
+
     String questionMapping[] = new String[2];
-    //questionMapping[0] = decisionTree.traverse(keywordList);
-    questionMapping[0] = TextClassifier.TestingMethod(wordList);
+    questionMapping[0] = decisionTree.traverse(keywordList);
     questionMapping[1] = uniqueID;
 
+    if (questionMapping[0] == null ){
+      questionMapping[0] = "NoQuestionFound";
+    }
+    if (questionMapping[1] == null){
+      questionMapping[1] = "NoIdFound";
+    }
+
+    System.out.println("questionMapping[0] -> "+ questionMapping[0]);
     return questionMapping;
   }
 

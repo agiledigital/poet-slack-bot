@@ -5,5 +5,5 @@ package services;
  */
 public class Response {
   public String status;
-  public String answer;
+  public String message;
 }

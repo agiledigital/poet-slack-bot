@@ -8,6 +8,7 @@ import play.libs.ws.WSRequest;
 import play.libs.ws.WSResponse;
 import play.mvc.Result;
 import services.JiraInfo;
+import services.Response;
 import services.Utils;
 import services.languageProcessor.Processor;
 
@@ -37,41 +38,29 @@ public class QueryHandler {
   public CompletionStage<Result> handleQuery(){
     String[] nlpResult;  // {0 :question_mapping; 1:ticket_id}
 
-    try {
-      nlpResult = Processor.processQuestion(query);
-      return asyncGET(nlpResult[0], nlpResult[1]);
-    } catch (Exception e) {
-      return FAILURE;
-    }
+    nlpResult = Processor.processQuestion(query);
+
+    return asyncGET(nlpResult[0], nlpResult[1]);
   }
 
-  public CompletionStage<Result> asyncGET(String question_mapping, String ticket_no) throws
-    ClassNotFoundException, NoSuchMethodException,
-    InvocationTargetException, IllegalAccessException {
+  public CompletionStage<Result> asyncGET(String question_mapping, String ticket_no) {
 
     CompletionStage<JsonNode> responsePromise = null;
 
-    if (question_mapping == null){
-      Utils.writeMissedQuery(query);
-      throw new NullPointerException();
-    }
-
-    for(String word : ticketInfoReservedWords){
-      if (question_mapping.startsWith(word)){
-        responsePromise = getTicketInfo(ticket_no);
-      }
+    responsePromise = getTicketInfo(ticket_no);
+    if(ticket_no == "NoIdFound") {
+      return responsePromise.thenApply(response -> ok(parseErrorToJson("No id Found")));
     }
 
     return responsePromise.thenApply(response -> {
-        try {
-          return ok(processResponse(response, question_mapping, ticket_no));
-        } catch (Exception e) {
-          e.printStackTrace();
-          return null;
-        }
-      });
+      if(question_mapping != "NoQuestionFound") {
+        return ok(processResponse(response, question_mapping, ticket_no));
+      }
+      else {
+        return ok(parseErrorToJson("Cannot understand the question"));
+      }
+    });
   }
-
 
   public CompletionStage<JsonNode> getTicketInfo(String ticket_id) {
 
@@ -84,12 +73,26 @@ public class QueryHandler {
     return complexRequest.get().thenApply(WSResponse:: asJson);
   }
 
+  private JsonNode processResponse(JsonNode responseBody, String question_mapping, String ticket_id){
 
-
-  private JsonNode processResponse(JsonNode responseBody, String question_mapping, String ticket_id) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
-
-    return services.languageProcessor.TaskMap.questionMapping(question_mapping, ticket_id, responseBody);
+    JsonNode jsonNode = services.languageProcessor.TaskMap.questionMapping(question_mapping, ticket_id, responseBody);
+      System.out.println("JSON Val: Status: "+ jsonNode.get("status")+ " Message: "+jsonNode.get("message"));
+    return jsonNode;
 
   }
+
+  public JsonNode parseErrorToJson(String message) {
+
+    Response response = new Response();
+    response.status = "fail";
+    response.message = message;
+
+    JsonNode msg = Json.toJson(response);
+
+    System.out.println("JSON Val: Status: "+ msg.get("status")+ " Message: "+msg.get("message"));
+
+    return msg;
+  }
+
 
 }

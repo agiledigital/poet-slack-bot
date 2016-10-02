@@ -7,8 +7,9 @@
       doGET(message).then(function (response) {
         if(response) {
             if(response.status == "success"){
-                return res.send(response.answer);
+                return res.send(response.message);
             }
+
         }
       });
 
@@ -17,7 +18,6 @@
 
 }).call(this);
 
-///
 
 var baseUrl = 'http://localhost:9000';
 var timeout = 15000;
