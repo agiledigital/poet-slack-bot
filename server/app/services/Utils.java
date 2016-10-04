@@ -1,5 +1,7 @@
 package services;
 
+import play.Configuration;
+
 import java.io.*;
 import java.util.Properties;
 
@@ -8,28 +10,8 @@ import java.util.Properties;
  */
 public class Utils {
 
-  public static JiraInfo getJiraInfo(){
-    JiraInfo jiraInfo = new JiraInfo();
-
-    File configFile = new File("conf/config.properties");
-
-    try {
-      FileReader reader = new FileReader(configFile);
-      Properties props = new Properties();
-      props.load(reader);
-
-      jiraInfo.account = props.getProperty("account");
-      jiraInfo.pwd = props.getProperty("pwd");
-
-      reader.close();
-    } catch (FileNotFoundException ex) {
-      // file does not exist
-      System.out.println(ex.getMessage());
-      System.out.println(System.getProperty("user.dir"));
-    } catch (IOException ex) {
-      // I/O error
-    }
-    return jiraInfo;
+  public static JiraInfo getJiraInfo(Configuration configuration){
+   return new JiraInfo(configuration.getString("jira.account"), configuration.getString("jira.pwd"));
   }
 
   public static void writeMissedQuery(String missedQuestion){

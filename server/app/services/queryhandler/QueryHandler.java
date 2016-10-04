@@ -2,7 +2,6 @@ package services.queryHandler;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import play.Configuration;
-import play.api.Application;
 import play.api.Play;
 import play.libs.Json;
 import play.libs.ws.WSAuthScheme;
@@ -20,8 +19,8 @@ import java.util.concurrent.CompletionStage;
 import static play.mvc.Results.ok;
 
 public class QueryHandler {
-  private JiraInfo jiraInfo = Utils.getJiraInfo();
   private Configuration configuration = Play.current().injector().instanceOf(Configuration.class);
+  private JiraInfo jiraInfo = Utils.getJiraInfo(configuration);
 
   private String query;
   private WSClient ws;
