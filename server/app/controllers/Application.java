@@ -3,8 +3,7 @@ package controllers;
 import play.libs.ws.WSClient;
 import play.mvc.*;
 
-import services.queryhandler.QueryHandler;
-
+import services.queryHandler.QueryHandler;
 
 import javax.inject.Inject;
 import java.io.IOException;
