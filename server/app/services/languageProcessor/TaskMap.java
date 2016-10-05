@@ -1,12 +1,10 @@
 package services.languageProcessor;
 import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import play.libs.Json;
 
 import services.Response;
-import services.queryhandler.Extractor;
+import services.queryHandler.Extractor;
 
-import java.io.IOException;
 import java.lang.reflect.*;
 
 public class TaskMap{

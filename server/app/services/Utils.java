@@ -3,11 +3,7 @@ package services;
 import play.Configuration;
 
 import java.io.*;
-import java.util.Properties;
 
-/**
- * Created by Dongxu on 9/29/2016.
- */
 public class Utils {
 
   public static JiraInfo getJiraInfo(Configuration configuration){

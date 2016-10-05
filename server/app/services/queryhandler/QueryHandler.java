@@ -63,13 +63,21 @@ public class QueryHandler {
 
   public CompletionStage<JsonNode> getTicketInfo(String ticket_id) {
 
-    String baseUrl = configuration.getString("jira.baseUrl");
-    String endPoint = configuration.getString("jira.endPoint_ticket");
+    String[] requestConfig = configTicketRequest();
 
-    WSRequest request = ws.url(baseUrl + endPoint + ticket_id);
+    System.out.println(jiraInfo.account + jiraInfo.pwd);
+    WSRequest request = ws.url(requestConfig[0] + requestConfig[1] + ticket_id);
     WSRequest complexRequest = request.setAuth(jiraInfo.account, jiraInfo.pwd, WSAuthScheme.BASIC);
 
     return complexRequest.get().thenApply(WSResponse:: asJson);
+  }
+
+  public String [] configTicketRequest(){
+    String[] requestConfig = new String[2];
+    requestConfig[0] = configuration.getString("jira.baseUrl");
+    requestConfig[1] = configuration.getString("jira.endPoint_ticket");
+
+    return requestConfig;
   }
 
   private JsonNode processResponse(JsonNode responseBody, String question_mapping, String ticket_id){
@@ -81,9 +89,7 @@ public class QueryHandler {
       e.getMessage();
     }
 
-    System.out.println("JSON Val: Status: "+ jsonNode.get("status")+ " Message: "+jsonNode.get("message"));
     return jsonNode;
-
   }
 
   public JsonNode parseErrorToJson(String message) {
@@ -93,8 +99,6 @@ public class QueryHandler {
     response.message = message;
 
     JsonNode msg = Json.toJson(response);
-
-    System.out.println("JSON Val: Status: "+ msg.get("status")+ " Message: "+msg.get("message"));
 
     return msg;
   }
