@@ -43,17 +43,17 @@ public class QueryHandler {
     return asyncGET(nlpResult[0], nlpResult[1]);
   }
 
-  public CompletionStage<Result> asyncGET(String question_mapping, String ticket_no) {
+  public CompletionStage<Result> asyncGET(String questionMapping, String ticketNo) {
 
-    CompletionStage<JsonNode> responsePromise = getTicketInfo(ticket_no);
+    CompletionStage<JsonNode> responsePromise = getTicketInfo(ticketNo);
 
-    if(ticket_no == "NoIdFound") {
+    if(ticketNo == "NoIdFound") {
       return responsePromise.thenApply(response -> ok(parseErrorToJson("No id Found")));
     }
 
     return responsePromise.thenApply(response -> {
-      if(question_mapping != "NoQuestionFound") {
-        return ok(processResponse(response, question_mapping, ticket_no));
+      if(questionMapping != "NoQuestionFound") {
+        return ok(processResponse(response, questionMapping, ticketNo));
       }
       else {
         return ok(parseErrorToJson("Cannot understand the question"));
@@ -61,13 +61,13 @@ public class QueryHandler {
     });
   }
 
-  public CompletionStage<JsonNode> getTicketInfo(String ticket_id) {
+  public CompletionStage<JsonNode> getTicketInfo(String ticketId) {
 
     String[] requestConfig = configTicketRequest();
 
-    //System.out.println(jiraInfo.account + jiraInfo.pwd);
-    WSRequest request = ws.url(requestConfig[0] + requestConfig[1] + ticket_id);
-    WSRequest complexRequest = request.setAuth(jiraInfo.account, jiraInfo.pwd, WSAuthScheme.BASIC);
+    //System.out.println(jiraInfo.username + jiraInfo.password);
+    WSRequest request = ws.url(requestConfig[0] + requestConfig[1] + ticketId);
+    WSRequest complexRequest = request.setAuth(jiraInfo.username, jiraInfo.password, WSAuthScheme.BASIC);
 
     return complexRequest.get().thenApply(WSResponse:: asJson);
   }
@@ -80,11 +80,11 @@ public class QueryHandler {
     return requestConfig;
   }
 
-  private JsonNode processResponse(JsonNode responseBody, String question_mapping, String ticket_id){
+  private JsonNode processResponse(JsonNode responseBody, String questionMapping, String ticketId){
 
     JsonNode jsonNode = null;
     try {
-      jsonNode = services.languageProcessor.TaskMap.questionMapping(question_mapping, ticket_id, responseBody);
+      jsonNode = services.languageProcessor.TaskMap.questionMapping(questionMapping, ticketId, responseBody);
     } catch (Exception e){
       e.getMessage();
     }

@@ -7,7 +7,7 @@ import java.io.*;
 public class Utils {
 
   public static JiraInfo getJiraInfo(Configuration configuration){
-   return new JiraInfo(configuration.getString("jira.account"), configuration.getString("jira.pwd"));
+   return new JiraInfo(configuration.getString("jira.username"), configuration.getString("jira.password"));
   }
 
   public static void writeMissedQuery(String missedQuestion){
@@ -17,7 +17,6 @@ public class Utils {
       out.write(missedQuestion+"\n");
       out.close();
     } catch (FileNotFoundException e) {
-      System.out.println(System.getProperty("user.dir"));
       e.printStackTrace();
     } catch (IOException e) {
       e.printStackTrace();

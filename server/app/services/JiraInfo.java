@@ -1,11 +1,11 @@
 package services;
 
 public class JiraInfo {
-  public String account;
-  public String pwd;
+  public String username;
+  public String password;
 
-  public JiraInfo(String account, String pwd) {
-    this.account = account;
-    this.pwd = pwd;
+  public JiraInfo(String username, String password) {
+    this.username = username;
+    this.password = password;
   }
 }

@@ -19,7 +19,7 @@ public class Application extends Controller {
     return ok("Hi!");
   }
 
-  public CompletionStage<Result> QA(String query) throws IOException,
+  public CompletionStage<Result> getAnwser(String query) throws IOException,
     ClassNotFoundException, NoSuchMethodException,
     InvocationTargetException, IllegalAccessException {
 
