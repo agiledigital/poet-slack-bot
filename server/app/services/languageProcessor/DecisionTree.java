@@ -10,12 +10,12 @@ public class DecisionTree {
 
 		//description of ticket
 		root.left = new Node("description");
-		root.left.left = new Node("description_of_ticket");
+		root.left.left = new Node("getTicketDescription");
 
 		//assignee to ticket
 		root.left.right = new Node("person");
 		root.left.right.left = new Node("assignee");
-		root.left.right.left.left = new Node("assignee_of_ticket");
+		root.left.right.left.left = new Node("getTicketAssignee");
 		root.left.right.left.right = new Node("reporter_of_ticket");
 	}
 	

@@ -42,11 +42,8 @@ public class Processor {
     ArrayList<String> wordList = tokenizeQuestion(annotation);
 
 
-    //get wh-question
-    String wh_question = getWhQuestion(posTagging);
-
     //Create an arrayList for keywords
-    ArrayList<String> keywordList = getKeywords(wh_question, uniqueID);
+    ArrayList<String> keywordList = getKeywords(annotation);
 
     //Question mapping
     System.out.println("\nQuestion mapping: " + decisionTree.traverse(keywordList) + "(" + uniqueID + ")");
@@ -86,11 +83,10 @@ public class Processor {
   /**
    * This method creates a list of keywords found in the questions,
    * analyses the list, and adds some more words to the list if required.
-   * @param wh_question
-   * @param uniqueID
+   * @param annotation
    * @return
    */
-  public static ArrayList<String> getKeywords(String wh_question, String uniqueID){
+  public static ArrayList<String> getKeywords(Annotation annotation){
     ArrayList<String> keywords_found = new ArrayList<String>();
 
     //Analysis of the question
@@ -98,21 +94,19 @@ public class Processor {
     String topic = "ticket";
     keywords_found.add(topic);
 
-    if (wh_question != null) {
-      String key = QuestionTypeMapping(wh_question).toLowerCase();
-      keywords_found.add(wh_question);
-      keywords_found.add(key);
-    }
+    ArrayList<String> wordList = tokenizeQuestion(annotation);
+    keywords_found = QuestionMapping(wordList);
 
     System.out.println("\nKeywords found:");
     System.out.println(keywords_found.toString());
 
-    keywords_found = QuestionMapping(keywords_found);
 
     System.out.println("\nFinal keyword list:");
     System.out.println(keywords_found.toString());
     return keywords_found;
   }
+
+
 
 
   /**
@@ -135,30 +129,6 @@ public class Processor {
   }
 
   /**
-   * This method returns a Wh-question (if any)
-   * First it check for Wh-pronoun (WP) - Who, what,
-   * then for Wh-adverb (WRB)  - when/ where,
-   * and then Wh-determiner (WDT)  - which
-   * @param posTagging
-   * @return
-   */
-  public static String getWhQuestion(HashMap<String, String> posTagging){
-    String wh_question = null;
-
-    if (infoExtraction(posTagging, "WP").size() != 0) {
-      wh_question = infoExtraction(posTagging, "WP").get(0).toLowerCase();
-    }
-    else if (infoExtraction(posTagging, "WRB").size() != 0) {
-      wh_question = infoExtraction(posTagging, "WRB").get(0).toLowerCase();
-    }
-    else if (infoExtraction(posTagging, "WDT").size() != 0) {
-      wh_question = infoExtraction(posTagging, "WDT").get(0).toLowerCase();
-    }
-
-    return wh_question;
-  }
-
-  /**
    * This method creates the Stanford CoreNLP pipeline
    * and returns it to the calling method
    * @return
@@ -170,38 +140,46 @@ public class Processor {
   }
 
 
-
   /**
    *
    * @param keywords
    * @return
    */
   public static ArrayList<String> QuestionMapping(ArrayList<String> keywords){
-    ArrayList<String> ticket_ = new ArrayList<>();
-    ticket_.add("ticket");
-
-
-    ArrayList<String> about_ = new ArrayList<>();
-    about_.add("about");
-
-    ArrayList<String> show_ = new ArrayList<>();
-    show_.add("show");
-
-    ArrayList<String> give_ = new ArrayList<>();
-    give_.add("give");
-
-    ArrayList<String> assignee_of_ticket = new ArrayList<>();
-    assignee_of_ticket.add("person");
-    assignee_of_ticket.add("ticket");
-
-    if (keywords.containsAll(about_)) {
+    if (keywords.contains("what")) {
       keywords.add("description");
     }
-
-    if (keywords.containsAll(assignee_of_ticket)) {
-      keywords.add("assignee");
+    if (keywords.contains("who")) {
+      keywords.add("person");
     }
 
+    if (keywords.contains("describe") || keywords.contains("about") ) {
+      if(!keywords.contains("description")) {
+        keywords.add("description");
+      }
+      if(!keywords.contains("what")) {
+        keywords.add("what");
+      }
+    }
+
+    if (keywords.contains("person")){
+      if(!keywords.contains("who")){
+        keywords.add("who");
+      }
+    }
+
+    if (keywords.contains("assignee")){
+      if(!keywords.contains("who")){
+        keywords.add("who");
+      }
+      if(!keywords.contains("person")){
+        keywords.add("person");
+      }
+    }
+
+    if (keywords.contains("person") && keywords.contains("ticket")) {
+      keywords.add("assignee");
+    }
 
     return keywords;
   }
@@ -247,13 +225,8 @@ public class Processor {
         ArrayList<String> arr = new ArrayList<String>();
         arr.add(word);
         posTagging.add(arr);
-
       }
     }
-
-    //Print POS tag along with the words
-    for (ArrayList<String> e: posTagging)
-      System.out.println(e.get(0) + " -> " + e.get(1));
 
     return posTagging;
   }
@@ -261,66 +234,26 @@ public class Processor {
   /**
    * This method performs POS tagging.
    * It takes annotation as an argument and returns ArrayList<String[]>
-   * @param ann
+   * @param annotation
    * @return
    */
-  public static HashMap<String, String> posTagging_(Annotation ann){
+  public static HashMap<String, String> posTagging_(Annotation annotation){
     System.out.println("\nPOS tagging:");
 
     HashMap<String, String> posTagging = new HashMap<String, String>();
 
-    List<CoreMap> sentences = ann.get(CoreAnnotations.SentencesAnnotation.class);
+    List<CoreMap> sentences = annotation.get(CoreAnnotations.SentencesAnnotation.class);
     for (CoreMap sentence : sentences) {
       for (CoreLabel token: sentence.get(CoreAnnotations.TokensAnnotation.class)) {
         String word = token.get(CoreAnnotations.TextAnnotation.class);
+
         // this is the POS tag of the token
         String pos = token.get(CoreAnnotations.PartOfSpeechAnnotation.class);
 
-
-        //Problem here is tat when another noun is found, it replaces the old value
         posTagging.put(pos, word);
-        //posTagging.merge(pos, word, String::concat); //find a merging function
       }
     }
 
-    //Print POS tag along with the words
-    Iterator it = posTagging.entrySet().iterator();
-    while (it.hasNext()) {
-      Map.Entry pair = (Map.Entry)it.next();
-      System.out.println(pair.getKey() + " -> " + pair.getValue());
-      //it.remove(); // avoids a ConcurrentModificationException
-    }
-
     return posTagging;
-  }
-
-
-  /**
-   *
-   * @param keyword
-   * @return
-   */
-  public static String QuestionTopicMapping(String keyword){
-    //System.out.println("This question is about "+ keyword);
-    String topic = "ticket";
-    return topic;
-  }
-
-
-  /**
-   *
-   * @param keyword
-   * @return
-   */
-  public static String QuestionTypeMapping(String keyword){
-    String keyy = null;
-
-    switch (keyword){
-      case "who": keyy = "person"; break;
-      case "what": keyy = "description"; break;
-      case "when": keyy = "date/time"; break;
-      default: break;
-    }
-    return keyy;
   }
 }

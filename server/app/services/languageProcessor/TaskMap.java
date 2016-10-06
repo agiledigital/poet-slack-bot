@@ -33,38 +33,44 @@ public class TaskMap{
       JsonNode returnVal = (JsonNode) m.invoke(taskMap, argName, responseBody);
       return returnVal;
 
-    }catch (NoSuchMethodException e){
+    }
+    catch (NoSuchMethodException e)
+    {
       e.printStackTrace();
       return taskMap.parseToJson("fail",ERROR_MSG);
-    }catch (InvocationTargetException e){
+    }
+    catch (InvocationTargetException e){
       e.printStackTrace();
       return taskMap.parseToJson("fail",ERROR_MSG);
-    }catch (IllegalAccessException e){
+    }
+    catch (IllegalAccessException e){
       e.printStackTrace();
       return taskMap.parseToJson("fail",ERROR_MSG);
-    }catch (NullPointerException e){
+    }
+    catch (NullPointerException e){
+      e.printStackTrace();
       return taskMap.parseToJson("fail",ERROR_MSG);
     }
   }
 
   /**
    * This method requests ticket info and returns it to the calling method
-   * @param ticket
+   * @param ticketKey
    * @return
    */
-  public JsonNode description_of_ticket(String ticket, JsonNode responseBody){
-    String answer = "Description of " + ticket + " is as follows: \n" +
+  public JsonNode getTicketDescription(String ticketKey, JsonNode responseBody){
+    String answer = "Description of " + ticketKey + " is as follows: \n" +
       Extractor.extractString(responseBody, "description");
     return parseToJson("success", answer);
   }
 
   /**
    * This method requests assignee of ticket and returns it to the calling method
-   * @param ticket
+   * @param ticketKey
    * @return
    */
-  public JsonNode assignee_of_ticket(String ticket, JsonNode responseBody){
-    String answer = Extractor.extractString(responseBody, "assignee") + " is working on "+ ticket;
+  public JsonNode getTicketAssignee(String ticketKey, JsonNode responseBody){
+    String answer = Extractor.extractString(responseBody, "assignee") + " is working on " + ticketKey + ".";
     System.out.println(answer);
     return parseToJson("success", answer);
   }
@@ -79,10 +85,10 @@ public class TaskMap{
       Response response = new Response();
       response.status = status;
       response.message = message;
-    System.out.println("Response: "+response.message);
-      JsonNode ans = Json.toJson(response);
+      System.out.println("Response: "+response.message);
+      JsonNode answer = Json.toJson(response);
 
-      return ans;
+      return answer;
 
   }
 }
