@@ -39,8 +39,8 @@ public class Extractor {
                 return json.get("fields").get(key).textValue();
             } else if (key == "assignee") {
                 System.out.println("Check point 2");
-                System.out.println(json.get("fields").get("assignee").get("name").toString());
-                return json.get("fields").get("assignee").get("name").textValue();
+                System.out.println(json.get("fields").get("assignee").get("displayName").toString());
+                return json.get("fields").get("assignee").get("displayName").textValue();
             }
         }
 
