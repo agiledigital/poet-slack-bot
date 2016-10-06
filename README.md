@@ -13,6 +13,7 @@ This project is proposed by [AgileDigital](http://www.agiledigital.com.au/).
 
 1. Set environment variables "JIRA_NAME", "JIRA_PWD" storing the JIRA account information.
 2. Set environment variables "JIRA_BASE", "JIRA_ENDPOINT_TICKET" if you are not using default setttings.
+
 #### Usage
 1. navigate your terminal to /server type
    ```activator run```
