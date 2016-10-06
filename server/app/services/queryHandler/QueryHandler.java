@@ -65,7 +65,6 @@ public class QueryHandler {
 
     String[] requestConfig = configTicketRequest();
 
-    //System.out.println(jiraInfo.username + jiraInfo.password);
     WSRequest request = ws.url(requestConfig[0] + requestConfig[1] + ticketId);
     WSRequest complexRequest = request.setAuth(jiraInfo.username, jiraInfo.password, WSAuthScheme.BASIC);
 
