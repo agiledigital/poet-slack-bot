@@ -1,28 +1,29 @@
 package controllers;
 
+import play.libs.ws.WSClient;
 import play.mvc.*;
-import com.fasterxml.jackson.databind.JsonNode;
-import play.libs.Json;
 
+import services.queryHandler.QueryHandler;
+
+import javax.inject.Inject;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
+import java.util.concurrent.CompletionStage;
 
 public class Application extends Controller {
+
+  @Inject
+  WSClient ws;
 
   public Result index() {
     return ok("Hi!");
   }
 
-  public Result QA(String question) throws IOException,
+  public CompletionStage<Result> getAnwser(String query) throws IOException,
     ClassNotFoundException, NoSuchMethodException,
     InvocationTargetException, IllegalAccessException {
 
-    String answer = services.languageProcessor.Processor.processQuestion(question);
-
-    // parse the JSON as a JsonNode
-    JsonNode json = Json.parse("{\"answer\":\"" +answer+ "\"}");
-
-    return ok(json);
+    QueryHandler queryHandler = new QueryHandler(query, ws);
+    return queryHandler.handleQuery();
   }
-
 }
