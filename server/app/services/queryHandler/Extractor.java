@@ -5,8 +5,6 @@ import com.fasterxml.jackson.databind.JsonNode;
 public class Extractor {
 
   public static JsonNode extractJson(JsonNode json, String key) {
-
-
     if (json.get("errorMessages") != null) {
       return json.get("errorMessages");
     } else {
@@ -23,8 +21,6 @@ public class Extractor {
 
 
   public static String extractString(JsonNode json, String key) {
-
-
     if (json.get("errorMessages") != null) {
       return json.get("errorMessages").toString();
     } else {

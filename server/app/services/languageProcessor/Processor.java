@@ -30,20 +30,16 @@ public class Processor {
     Annotation annotation = new Annotation(question);
     pipeline.annotate(annotation);
 
-    //POS tagging
+    // POS tagging
     HashMap<String, String> posTagging = posTagging(annotation);
 
-    //Get ID (TicketID, issueID, ProjectID)
+    // Get ID (TicketID, issueID, ProjectID)
     String uniqueID = getUniqueID(posTagging);
 
     ArrayList<String> wordList = tokenizeQuestion(annotation);
 
-
-    //Create an arrayList for keywords
+    // Create an arrayList for keywords
     ArrayList<String> keywordList = getKeywords(annotation);
-
-    //Question mapping
-    System.out.println("\nQuestion mapping: " + decisionTree.traverse(keywordList) + "(" + uniqueID + ")");
 
     String questionMapping[] = new String[2];
     questionMapping[0] = decisionTree.traverse(keywordList);
@@ -56,7 +52,6 @@ public class Processor {
       questionMapping[1] = "NoIdFound";
     }
 
-    System.out.println("questionMapping[0] -> "+ questionMapping[0]);
     return questionMapping;
   }
 
@@ -73,7 +68,7 @@ public class Processor {
       }
       wordList.add("ticket");
     }
-    System.out.println("I am in tokenizeQuestion :" + wordList.toString());
+
     return wordList;
   }
 
@@ -84,27 +79,17 @@ public class Processor {
    * @return
    */
   public static ArrayList<String> getKeywords(Annotation annotation){
-    ArrayList<String> keywords_found = new ArrayList<String>();
+    ArrayList<String> keywordsFound = new ArrayList<String>();
 
-    //Analysis of the question
-    System.out.println("\nAnalysis of the question:");
+    // Analysis of the question
     String topic = "ticket";
-    keywords_found.add(topic);
+    keywordsFound.add(topic);
 
     ArrayList<String> wordList = tokenizeQuestion(annotation);
-    keywords_found = QuestionMapping(wordList);
+    keywordsFound = QuestionMapping(wordList);
 
-    System.out.println("\nKeywords found:");
-    System.out.println(keywords_found.toString());
-
-
-    System.out.println("\nFinal keyword list:");
-    System.out.println(keywords_found.toString());
-    return keywords_found;
+    return keywordsFound;
   }
-
-
-
 
   /**
    * This method extracts the uniqueID for issue, project.
