@@ -54,25 +54,37 @@ public class TaskMap{
   }
 
   /**
-   * This method requests ticket info and returns it to the calling method
-   * @param ticketKey
+   * This method requests issue info and returns it to the calling method
+   * @param issueKey
    * @return
    */
-  public JsonNode getTicketDescription(String ticketKey, JsonNode responseBody){
-    String answer = "Description of " + ticketKey + " is as follows: \n" +
-      Extractor.extractString(responseBody, "description");
-    return parseToJson("success", answer);
+  public JsonNode getTicketDescription(String issueKey, JsonNode responseBody){
+    if (Extractor.extractString(responseBody, "description").equals("[\"Issue Does Not Exist\"]")) {
+      return parseToJson("fail", "Cannot find issue");
+    }
+    else{
+      String answer = "Description of " + issueKey + " is as follows: \n" +
+        Extractor.extractString(responseBody, "description");
+      return parseToJson("success", answer);
+
+    }
+
   }
 
   /**
-   * This method requests assignee of ticket and returns it to the calling method
-   * @param ticketKey
+   * This method requests assignee of issue and returns it to the calling method
+   * @param issueKey
    * @return
    */
-  public JsonNode getTicketAssignee(String ticketKey, JsonNode responseBody){
-    String answer = Extractor.extractString(responseBody, "assignee") + " is working on " + ticketKey + ".";
-    System.out.println(answer);
-    return parseToJson("success", answer);
+  public JsonNode getTicketAssignee(String issueKey, JsonNode responseBody){
+    if (Extractor.extractString(responseBody, "assignee").equals("[\"Issue Does Not Exist\"]")) {
+      return parseToJson("fail", "Cannot find issue");
+    }
+    else {
+      String answer = Extractor.extractString(responseBody, "assignee") + " is working on " + issueKey + ".";
+      System.out.println(answer);
+      return parseToJson("success", answer);
+    }
   }
 
   /**
