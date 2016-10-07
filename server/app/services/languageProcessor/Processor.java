@@ -1,13 +1,10 @@
 package services.languageProcessor;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 import java.util.Properties;
-import java.lang.reflect.*;
+
 import edu.stanford.nlp.ling.CoreAnnotations;
 import edu.stanford.nlp.ling.CoreLabel;
 import edu.stanford.nlp.pipeline.Annotation;
@@ -34,7 +31,7 @@ public class Processor {
     pipeline.annotate(annotation);
 
     //POS tagging
-    HashMap<String, String> posTagging = posTagging_(annotation);
+    HashMap<String, String> posTagging = posTagging(annotation);
 
     //Get ID (TicketID, issueID, ProjectID)
     String uniqueID = getUniqueID(posTagging);
@@ -110,7 +107,7 @@ public class Processor {
 
 
   /**
-   * This method extracts the uniqueID for ticket, issue, project.
+   * This method extracts the uniqueID for issue, project.
    * If it is found, return an error message
    * saying the question cannot be understood.
    * It means that no ticket number is found.
@@ -216,37 +213,7 @@ public class Processor {
    * @param annotation
    * @return
    */
-  public static ArrayList<ArrayList<String>> posTagging(Annotation annotation){
-
-    ArrayList<ArrayList<String>> posTagging = new ArrayList<ArrayList<String>>();
-
-    List<CoreMap> sentences = annotation.get(CoreAnnotations.SentencesAnnotation.class);
-    for (CoreMap sentence : sentences) {
-      for (CoreLabel token: sentence.get(CoreAnnotations.TokensAnnotation.class)) {
-        String word = token.get(CoreAnnotations.TextAnnotation.class);
-
-        // this is the POS tag of the token
-        String pos = token.get(CoreAnnotations.PartOfSpeechAnnotation.class);
-        String[] POSS = new String[2];
-        POSS[0] = word;
-        POSS[1] = pos;
-
-        ArrayList<String> arr = new ArrayList<String>();
-        arr.add(word);
-        posTagging.add(arr);
-      }
-    }
-
-    return posTagging;
-  }
-
-  /**
-   * This method performs POS tagging.
-   * It takes annotation as an argument and returns ArrayList<String[]>
-   * @param annotation
-   * @return
-   */
-  public static HashMap<String, String> posTagging_(Annotation annotation){
+  public static HashMap<String, String> posTagging(Annotation annotation){
     System.out.println("\nPOS tagging:");
 
     HashMap<String, String> posTagging = new HashMap<String, String>();
