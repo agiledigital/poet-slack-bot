@@ -74,7 +74,7 @@ public class QueryHandler {
   public String [] configTicketRequest(){
     String[] requestConfig = new String[2];
     requestConfig[0] = configuration.getString("jira.baseUrl");
-    requestConfig[1] = configuration.getString("jira.endPoint_ticket");
+    requestConfig[1] = configuration.getString("jira.issueEndpoint");
 
     return requestConfig;
   }
