@@ -5,7 +5,11 @@
 # Home page
 GET     /                           controllers.Application.index()
 
-# Map static resources from the /public folder to the /assets URL path
-GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)
+# Icon
+# GET  /favicon.ico   controllers.Assets.at(path="/public/images", file="favicon.png")
 
-GET   /:question              controllers.Application.QA(question: String)
+# Map static resources from the /public folder to the /assets URL path
+# GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)
+
+# Receive a question from Hubot
+GET   /question=:question              controllers.Application.getAnwser(question: String)

@@ -1,15 +1,10 @@
 package services.languageProcessor;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 import java.util.Properties;
-import java.lang.reflect.*;
-import com.fasterxml.jackson.databind.JsonNode;
-import play.libs.Json;
+
 import edu.stanford.nlp.ling.CoreAnnotations;
 import edu.stanford.nlp.ling.CoreLabel;
 import edu.stanford.nlp.pipeline.Annotation;
@@ -21,94 +16,164 @@ public class Processor {
   /**
    *
    * @param question
-   * @return answer in JSON format
-   * @throws IOException
-   * @throws ClassNotFoundException
-   * @throws NoSuchMethodException
-   * @throws InvocationTargetException
-   * @throws IllegalAccessException
+   * @return question mapping as a String array
    */
-	public static String processQuestion(String question) throws IOException,
-			ClassNotFoundException, NoSuchMethodException,
-			InvocationTargetException,IllegalAccessException {
-		
-		DecisionTree dt = new DecisionTree();
+  public static String[] processQuestion(String question) {
 
-			// Create the Stanford CoreNLP pipeline
-			Properties props = PropertiesUtils.asProperties("annotators", "tokenize,ssplit,pos");
-			StanfordCoreNLP pipeline = new StanfordCoreNLP(props);
+    DecisionTree decisionTree = new DecisionTree();
 
-			// Annotate an example statement.
-			System.out.println("Question:");
-			System.out.println(question);
-			Annotation ann = new Annotation(question);
-			pipeline.annotate(ann);
+    //Create NLP pipeline
+    StanfordCoreNLP pipeline = createNlpPipeline();
 
-			//POS tagging
-			System.out.println("\nPOS tagging:");
-			HashMap<String, String> posTagging = posTagging_(ann);
+    // Annotate the question.
+    System.out.println("Question: " + question);
+    Annotation annotation = new Annotation(question);
+    pipeline.annotate(annotation);
 
-			//Noun extraction (For now we assume that only one noun is present)
-			String keyword = infoExtraction(posTagging, "NN").get(0);
+    // POS tagging
+    HashMap<String, String> posTagging = posTagging(annotation);
 
-			/*
-			 * check for Wh-pronoun (WP) - Who, what,
-			 * then for Wh-adverb (WRB)  - when/ where,
-			 * and then Wh-determiner (WDT)  - which
-			 */
-			String ques = null;
-			if (infoExtraction(posTagging, "WP").size() != 0)
-				ques = infoExtraction(posTagging, "WP").get(0).toLowerCase();
-			else if (infoExtraction(posTagging, "WRB").size() != 0)
-				ques = infoExtraction(posTagging, "WRB").get(0).toLowerCase();
-			else if (infoExtraction(posTagging, "WDT").size() != 0)
-				ques = infoExtraction(posTagging, "WDT").get(0).toLowerCase();
+    // Get ID (TicketID, issueID, ProjectID)
+    String uniqueID = getUniqueID(posTagging);
 
-			//Create an arrayList for keywords
-			ArrayList<String> keywords_found = new ArrayList<String>();
+    ArrayList<String> wordList = tokenizeQuestion(annotation);
 
-		  //Analysis of the question
-			System.out.println("\nAnalysis of the question:");
-			String topic = QuestionTopicMapping(keyword).toLowerCase();
-			String keyy = QuestionTypeMapping(ques).toLowerCase();
+    // Create an arrayList for keywords
+    ArrayList<String> keywordList = getKeywords(annotation);
 
-			keywords_found.add(ques);
-			keywords_found.add(topic);
-			keywords_found.add(keyy);
-			keywords_found.add(keyword);
+    String questionMapping[] = new String[2];
+    questionMapping[0] = decisionTree.traverse(keywordList);
+    questionMapping[1] = uniqueID;
 
-			System.out.println("\nKeywords found:");
-			System.out.println(keywords_found.toString());
+    if (questionMapping[0] == null ){
+      questionMapping[0] = "NoQuestionFound";
+    }
+    if (questionMapping[1] == null){
+      questionMapping[1] = "NoIdFound";
+    }
 
-			keywords_found = QuestionMapping(keywords_found);
+    return questionMapping;
+  }
 
-			System.out.println("\nFinal keyword list:");
-			System.out.println(keywords_found.toString());
+  public static ArrayList<String> tokenizeQuestion(Annotation annotation) {
 
-			System.out.println("\nQuestion mapping: ");
-			System.out.println(dt.traverse(keywords_found) + "(" + keyword + ")");
+    ArrayList<String> wordList = new ArrayList<String>();
 
+    List<CoreMap> sentences = annotation.get(CoreAnnotations.SentencesAnnotation.class);
+    for (CoreMap sentence : sentences) {
+      for (CoreLabel token : sentence.get(CoreAnnotations.TokensAnnotation.class)) {
+        String word = token.get(CoreAnnotations.TextAnnotation.class);
+        wordList.add(word.toLowerCase());
 
-      String answer = TaskMap.questionMapping(dt.traverse(keywords_found), keyword);
+      }
+      wordList.add("ticket");
+    }
 
-      return answer;
+    return wordList;
+  }
 
-	}
+  /**
+   * This method creates a list of keywords found in the questions,
+   * analyses the list, and adds some more words to the list if required.
+   * @param annotation
+   * @return
+   */
+  public static ArrayList<String> getKeywords(Annotation annotation){
+    ArrayList<String> keywordsFound = new ArrayList<String>();
+
+    // Analysis of the question
+    String topic = "ticket";
+    keywordsFound.add(topic);
+
+    ArrayList<String> wordList = tokenizeQuestion(annotation);
+    keywordsFound = QuestionMapping(wordList);
+
+    return keywordsFound;
+  }
+
+  /**
+   * This method extracts the uniqueID for issue, project.
+   * If it is found, return an error message
+   * saying the question cannot be understood.
+   * It means that no ticket number is found.
+   * @param posTagging
+   * @return
+   */
+  public static String getUniqueID(HashMap<String, String> posTagging){
+    int numberOfIdFound = infoExtraction(posTagging, "NN").size();
+    if(numberOfIdFound == 0) {
+      return null;
+    }
+
+    String keyword = infoExtraction(posTagging, "NN").get(numberOfIdFound-1);
+
+    return keyword;
+  }
+
+  /**
+   * This method creates the Stanford CoreNLP pipeline
+   * and returns it to the calling method
+   * @return
+   */
+  public static StanfordCoreNLP createNlpPipeline(){
+    Properties props = PropertiesUtils.asProperties("annotators", "tokenize,ssplit,pos");
+    StanfordCoreNLP pipeline = new StanfordCoreNLP(props);
+    return pipeline;
+  }
+
 
   /**
    *
    * @param keywords
    * @return
    */
-	public static ArrayList<String> QuestionMapping(ArrayList<String> keywords) {
-		ArrayList<String> c = new ArrayList<>();
-		c.add("person");
-		c.add("ticket");
-		if (keywords.containsAll(c))
-			keywords.add("assignee");
+  public static ArrayList<String> QuestionMapping(ArrayList<String> keywords){
+    if (keywords.contains("what")) {
+      keywords.add("description");
+    }
+    if (keywords.contains("who")) {
+      keywords.add("person");
+    }
 
-		return keywords;
-	}
+    if (keywords.contains("describe") || keywords.contains("about") ) {
+      if(!keywords.contains("description")) {
+        keywords.add("description");
+      }
+      if(!keywords.contains("what")) {
+        keywords.add("what");
+      }
+    }
+
+    if (keywords.contains("give") && keywords.contains("details") ) {
+      if(!keywords.contains("description")) {
+        keywords.add("description");
+      }
+      if(!keywords.contains("what")) {
+        keywords.add("what");
+      }
+    }
+
+    if (keywords.contains("person")){
+      if(!keywords.contains("who")){
+        keywords.add("who");
+      }
+    }
+
+    if (keywords.contains("assignee")){
+      if(!keywords.contains("who")){
+        keywords.add("who");
+      }
+      if(!keywords.contains("person")){
+        keywords.add("person");
+      }
+    }
+
+    if (keywords.contains("person") && keywords.contains("ticket")) {
+      keywords.add("assignee");
+    }
+
+    return keywords;
+  }
 
   /**
    * This method extracts words with certain tag
@@ -117,112 +182,39 @@ public class Processor {
    * @param tag
    * @return
    */
-	public static ArrayList<String> infoExtraction(HashMap<String, String> posTagging, String tag){
-	
-		ArrayList<String> list = new ArrayList<String>();
-		
-		if (posTagging.containsKey(tag)){
-			list.add(posTagging.get(tag));
-		}
-		return list;
-	}
+  public static ArrayList<String> infoExtraction(HashMap<String, String> posTagging, String tag){
+
+    ArrayList<String> list = new ArrayList<String>();
+
+    if (posTagging.containsKey(tag)){
+      list.add(posTagging.get(tag));
+    }
+    return list;
+  }
 
   /**
    * This method performs POS tagging.
    * It takes annotation as an argument and returns ArrayList<String[]>
-   * @param ann
+   * @param annotation
    * @return
    */
-	public static ArrayList<ArrayList<String>> posTagging(Annotation ann){
-		
-		ArrayList<ArrayList<String>> posTagging = new ArrayList<ArrayList<String>>();
-        
-		List<CoreMap> sentences = ann.get(CoreAnnotations.SentencesAnnotation.class);
-		for (CoreMap sentence : sentences) {
-		    for (CoreLabel token: sentence.get(CoreAnnotations.TokensAnnotation.class)) {
-		        String word = token.get(CoreAnnotations.TextAnnotation.class);
+  public static HashMap<String, String> posTagging(Annotation annotation){
+    System.out.println("\nPOS tagging:");
 
-						// this is the POS tag of the token
-		        String pos = token.get(CoreAnnotations.PartOfSpeechAnnotation.class);
-		        String[] POSS = new String[2];
-		        POSS[0] = word;
-		        POSS[1] = pos;
-		        
-		        ArrayList<String> arr = new ArrayList<String>();
-		        arr.add(word);
-		        posTagging.add(arr);
-		        
-				}
-		}
-		
-		//Print POS tag along with the words
-		for (ArrayList<String> e: posTagging)
-			System.out.println(e.get(0) + " -> " + e.get(1));
-		
-		return posTagging;
-	}
+    HashMap<String, String> posTagging = new HashMap<String, String>();
 
-  /**
-   * This method performs POS tagging.
-   * It takes annotation as an argument and returns ArrayList<String[]>
-   * @param ann
-   * @return
-   */
-	public static HashMap<String, String> posTagging_(Annotation ann){
-		
-		HashMap<String, String> posTagging = new HashMap<String, String>();
-        
-		List<CoreMap> sentences = ann.get(CoreAnnotations.SentencesAnnotation.class);
-		for (CoreMap sentence : sentences) {
-		    for (CoreLabel token: sentence.get(CoreAnnotations.TokensAnnotation.class)) {
-		        String word = token.get(CoreAnnotations.TextAnnotation.class);
-		        // this is the POS tag of the token
-		        String pos = token.get(CoreAnnotations.PartOfSpeechAnnotation.class);
+    List<CoreMap> sentences = annotation.get(CoreAnnotations.SentencesAnnotation.class);
+    for (CoreMap sentence : sentences) {
+      for (CoreLabel token: sentence.get(CoreAnnotations.TokensAnnotation.class)) {
+        String word = token.get(CoreAnnotations.TextAnnotation.class);
 
-		        
-		        //Problem here is tat when another noun is found, it replaces the old value
-		        posTagging.put(pos, word);
-		        //posTagging.merge(pos, word, String::concat); //find a merging function
-				}
-		}
-		
-		//Print POS tag along with the words
-		Iterator it = posTagging.entrySet().iterator();
-	    while (it.hasNext()) {
-	        Map.Entry pair = (Map.Entry)it.next();
-	        //System.out.println(pair.getKey() + " -> " + pair.getValue());
-	        //it.remove(); // avoids a ConcurrentModificationException
-	    }
-		
-		return posTagging;
-	}
+        // this is the POS tag of the token
+        String pos = token.get(CoreAnnotations.PartOfSpeechAnnotation.class);
 
+        posTagging.put(pos, word);
+      }
+    }
 
-  /**
-   *
-   * @param keyword
-   * @return
-   */
-	public static String QuestionTopicMapping(String keyword){
-		//System.out.println("This question is about "+ keyword);
-		String topic = "ticket";
-		return topic;
-	}
-
-
-  /**
-   *
-   * @param keyword
-   * @return
-   */
-	public static String QuestionTypeMapping(String keyword){
-		String keyy = null;
-		switch (keyword){
-			case "who": keyy = "person"; break;
-			case "what": keyy = "description"; break;
-			case "when": keyy = "date/time"; break;
-			default: break;
-		}
-		return keyy;	
-	}
+    return posTagging;
+  }
 }
