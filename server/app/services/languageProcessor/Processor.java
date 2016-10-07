@@ -162,6 +162,15 @@ public class Processor {
       }
     }
 
+    if (keywords.contains("give") && keywords.contains("details") ) {
+      if(!keywords.contains("description")) {
+        keywords.add("description");
+      }
+      if(!keywords.contains("what")) {
+        keywords.add("what");
+      }
+    }
+
     if (keywords.contains("person")){
       if(!keywords.contains("who")){
         keywords.add("who");
