@@ -12,7 +12,7 @@ This project is proposed by [AgileDigital](http://www.agiledigital.com.au/).
 #### Configuration instructions
 
 1. Set environment variables "JIRA_USERNAME", "JIRA_PASSWORD" storing the JIRA username information.
-2. Set environment variables "JIRA_BASEURL" to your JIRA server domain.
+2. Set environment variables "JIRA_BASE_URL" to your JIRA server domain.
 
 #### Usage
 1. navigate your terminal to /server type
