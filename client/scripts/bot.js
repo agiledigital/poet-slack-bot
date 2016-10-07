@@ -1,4 +1,3 @@
-
 // listen to the slack channel
 
 (function () {
@@ -9,8 +8,6 @@
 
     return robot.hear(/[A-Za-z] (.*)/i, function (res) {
 
-      console.log('user', res.envelope.user.name, jiraIgnoreUsers);
-
       if (jiraIgnoreUsers && res.envelope.user.name.match(new RegExp(jiraIgnoreUsers, "gi"))) {
         return;
       }
@@ -18,10 +15,10 @@
       var message = res.match[1];
 
       httpRequest().doGET(message).then(function (response) {
-        if(response) {
-            if(response.status == "success"){
-                return res.send("@" + res.envelope.user.name + " " + response.message);
-            }
+        if (response) {
+          if (response.status == "success") {
+            return res.send("@" + res.envelope.user.name + " " + response.message);
+          }
 
         }
       });
