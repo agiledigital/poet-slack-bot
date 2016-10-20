@@ -52,7 +52,7 @@ public class TaskMap {
    */
   public JsonNode getTicketDescription(String issueKey, JsonNode responseBody) {
     if (Extractor.extractString(responseBody, "description").equals("[\"Issue Does Not Exist\"]")) {
-      return parseToJson("fail", configuration.getString("errormessage.invalidIssue"));
+      return parseToJson("fail", configuration.getString("error_message.issue_not_found"));
     } else {
       String answer = "Description of " + issueKey + " is as follows: \n" +
         Extractor.extractString(responseBody, "description");
@@ -69,7 +69,7 @@ public class TaskMap {
    */
   public JsonNode getTicketAssignee(String issueKey, JsonNode responseBody) {
     if (Extractor.extractString(responseBody, "assignee").equals("[\"Issue Does Not Exist\"]")) {
-      return parseToJson("fail", configuration.getString("errormessage.invalidIssue"));
+      return parseToJson("fail", configuration.getString("error_message.issue_not_found"));
     } else {
       String answer = Extractor.extractString(responseBody, "assignee") + " is working on " + issueKey + ".";
       System.out.println(answer);
