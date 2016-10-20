@@ -56,7 +56,7 @@ public class QueryHandler {
         return ok(processResponse(response, questionMapping, ticketNo));
       }
       else {
-        return ok(parseErrorToJson("Cannot understand the question"));
+        return ok(parseErrorToJson(configuration.getString("errormessage.invalidQuestion")));
       }
     });
   }

@@ -1,6 +1,8 @@
 package services.languageProcessor;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import play.Configuration;
+import play.api.Play;
 import play.libs.Json;
 
 import services.Response;
@@ -9,6 +11,7 @@ import services.queryHandler.Extractor;
 import java.lang.reflect.*;
 
 public class TaskMap {
+  private Configuration configuration = Play.current().injector().instanceOf(Configuration.class);
 
   /**
    * This method calls appropriate method on run time based on the
@@ -49,7 +52,7 @@ public class TaskMap {
    */
   public JsonNode getTicketDescription(String issueKey, JsonNode responseBody) {
     if (Extractor.extractString(responseBody, "description").equals("[\"Issue Does Not Exist\"]")) {
-      return parseToJson("fail", "Cannot find issue");
+      return parseToJson("fail", configuration.getString("errormessage.invalidIssue"));
     } else {
       String answer = "Description of " + issueKey + " is as follows: \n" +
         Extractor.extractString(responseBody, "description");
@@ -66,7 +69,7 @@ public class TaskMap {
    */
   public JsonNode getTicketAssignee(String issueKey, JsonNode responseBody) {
     if (Extractor.extractString(responseBody, "assignee").equals("[\"Issue Does Not Exist\"]")) {
-      return parseToJson("fail", "Cannot find issue");
+      return parseToJson("fail", configuration.getString("errormessage.invalidIssue"));
     } else {
       String answer = Extractor.extractString(responseBody, "assignee") + " is working on " + issueKey + ".";
       System.out.println(answer);
