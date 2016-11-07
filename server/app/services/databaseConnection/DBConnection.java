@@ -12,19 +12,18 @@ import java.util.ArrayList;
 
 
 public class DBConnection {
+  private Configuration configuration = Play.current().injector().instanceOf(Configuration.class);
   /**
    * Method to connect to database
    * @return
    */
-  private Configuration configuration = Play.current().injector().instanceOf(Configuration.class);
-
   Connection connectDB() {
 
     /* These variables must be made configurable */
-    String host = configuration.getString("db.host");
-    String dbName = configuration.getString("db.dbName");
-    String username = configuration.getString("db.username");
-    String password = configuration.getString("db.password");
+    String host = configuration.getString("db-conf.host");
+    String dbName = configuration.getString("db-conf.dbName");
+    String username = configuration.getString("db-conf.username");
+    String password = configuration.getString("db-conf.password");
 
     try {
       /* Dynamically load the JDBC driver */
