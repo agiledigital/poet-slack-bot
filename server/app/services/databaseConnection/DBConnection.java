@@ -4,6 +4,7 @@ import play.Configuration;
 import play.api.Play;
 
 import java.sql.*;
+import java.util.ArrayList;
 
 /**
  * Created by sabinapokhrel on 11/7/16.
@@ -45,14 +46,13 @@ public class DBConnection {
    * SQL statement to add the question to database
    * @param question
    */
-  public static void addQuestionToDB(String question) {
+  public void addQuestionToDB(String question) {
     DBConnection DBConnection = new DBConnection();
     Connection connection = DBConnection.connectDB();
 
     DBConnection.createDatabase(connection);
 
     try{ try {
-      System.out.println("Adding question to db");
       PreparedStatement stmt = connection.prepareStatement("insert into questions (question) values (?)");
       //stmt.setInt(1, 1);
       stmt.setString(1, question);
@@ -69,14 +69,42 @@ public class DBConnection {
    * Creates a table questions if it does not already exists
    * @param connection
    */
-  void createDatabase(Connection connection){
+  public void createDatabase(Connection connection){
     try{
-      PreparedStatement stmt = connection.prepareStatement(
+      PreparedStatement preparedStatement = connection.prepareStatement(
         "CREATE TABLE questions(qno SERIAL PRIMARY KEY, question TEXT NOT NULL);");
-      stmt.executeUpdate();
+      preparedStatement.executeUpdate();
+    }catch (Exception e) {
+      //e.printStackTrace();
+    }
+  }
+
+  public String displayQuestions(){
+    DBConnection DBConnection = new DBConnection();
+    Connection connection = DBConnection.connectDB();
+
+    DBConnection.createDatabase(connection);
+
+    try{ try {
+      Statement statement = connection.createStatement();
+      String sql = "SELECT * FROM questions;";
+      ResultSet resultSet = statement.executeQuery(sql);
+
+      ArrayList<String> questionList = new ArrayList<String>();
+      while ( resultSet.next() ) {
+        String  question = resultSet.getString("question");
+          questionList.add(question);
+      }
+      resultSet.close();
+      statement.close();
+      return questionList.toString();
+    } finally {
+      connection.close();
+    }
     }catch (Exception e) {
       e.printStackTrace();
     }
+    return null;
   }
 
 }

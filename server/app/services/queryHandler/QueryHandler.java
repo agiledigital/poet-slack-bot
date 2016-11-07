@@ -52,7 +52,11 @@ public class QueryHandler {
     }
 
     return responsePromise.thenApply(response -> {
-      if(questionMapping != "NoQuestionFound") {
+      if(questionMapping.equals("displayQuestions")){
+        System.out.println("Displaying all questions in DB");
+        return ok(processResponse(questionMapping));
+      }
+      else if(questionMapping != "NoQuestionFound") {
         return ok(processResponse(response, questionMapping, ticketNo));
       }
       else {
@@ -84,6 +88,18 @@ public class QueryHandler {
     JsonNode jsonNode = null;
     try {
       jsonNode = services.languageProcessor.TaskMap.questionMapping(questionMapping, ticketId, responseBody);
+    } catch (Exception e){
+      e.getMessage();
+    }
+
+    return jsonNode;
+  }
+
+  private JsonNode processResponse(String questionMapping){
+
+    JsonNode jsonNode = null;
+    try {
+      jsonNode = services.languageProcessor.TaskMap.questionMapping(questionMapping);
     } catch (Exception e){
       e.getMessage();
     }
