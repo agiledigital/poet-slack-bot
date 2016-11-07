@@ -7,6 +7,7 @@ import play.libs.Json;
 
 import services.Response;
 import services.queryHandler.Extractor;
+import services.databaseConnection.DBConnection;
 
 import java.lang.reflect.*;
 
@@ -31,6 +32,28 @@ public class TaskMap {
       //call the method at runtime according to the argument "methodName"
       Method method = TaskMap.class.getMethod(methodName, String.class, JsonNode.class);
       JsonNode returnVal = (JsonNode) method.invoke(taskMap, issueKey, responseBody);
+      return returnVal;
+
+    } catch (NoSuchMethodException e) {
+      return taskMap.parseToJson("fail", e.getMessage());
+    } catch (InvocationTargetException e) {
+      return taskMap.parseToJson("fail", e.getMessage());
+    } catch (IllegalAccessException e) {
+      return taskMap.parseToJson("fail", e.getMessage());
+    } catch (NullPointerException e) {
+      return taskMap.parseToJson("fail", e.getMessage());
+    }
+  }
+
+  public static JsonNode questionMapping(String methodName) {
+
+    TaskMap taskMap = new TaskMap();
+
+    try {
+
+      //call the method at runtime according to the argument "methodName"
+      Method method = TaskMap.class.getMethod(methodName);
+      JsonNode returnVal = (JsonNode) method.invoke(taskMap);
       return returnVal;
 
     } catch (NoSuchMethodException e) {
@@ -93,5 +116,11 @@ public class TaskMap {
 
     return answer;
 
+  }
+
+  public JsonNode displayQuestions(){
+    DBConnection dbConnection = new DBConnection();
+    String message = dbConnection.displayQuestions();
+    return parseToJson("success", message);
   }
 }

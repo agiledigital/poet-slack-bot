@@ -21,6 +21,7 @@ public class Processor {
    * @return question mapping as a String array
    */
   public static String[] processQuestion(String question) {
+    DBConnection dbConnection = new DBConnection();
 
     DecisionTree decisionTree = new DecisionTree();
 
@@ -54,7 +55,14 @@ public class Processor {
       questionMapping[1] = "NoIdFound";
     }
 
-    DBConnection.addQuestionToDB(question);
+    dbConnection.addQuestionToDB(question);
+
+
+    if(question.contains("list all questions")){
+      questionMapping[0] = "displayQuestions";
+      questionMapping[1] = "displayQuestions";
+    }
+
     return questionMapping;
   }
 
