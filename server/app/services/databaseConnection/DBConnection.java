@@ -1,5 +1,8 @@
 package services.databaseConnection;
 
+import play.Configuration;
+import play.api.Play;
+
 import java.sql.*;
 
 /**
@@ -8,20 +11,19 @@ import java.sql.*;
 
 
 public class DBConnection {
-
-
-
   /**
    * Method to connect to database
    * @return
    */
+  private Configuration configuration = Play.current().injector().instanceOf(Configuration.class);
+
   Connection connectDB() {
 
     /* These variables must be made configurable */
-    String host = "localhost";
-    String database = "poetdb";
-    String username = "sabina";
-    String password = "12345";
+    String host = configuration.getString("db.host");
+    String dbName = configuration.getString("db.dbName");
+    String username = configuration.getString("db.username");
+    String password = configuration.getString("db.password");
 
     try {
       /* Dynamically load the JDBC driver */
@@ -29,7 +31,7 @@ public class DBConnection {
 
       /* Connect to the Postgres database */
       Connection db = DriverManager.getConnection(
-        "jdbc:postgresql://" + host + "/" + database,
+        "jdbc:postgresql://" + host + "/" + dbName,
         username,
         password); //connect to the db
       return db;
