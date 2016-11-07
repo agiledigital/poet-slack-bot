@@ -12,6 +12,8 @@ import edu.stanford.nlp.pipeline.StanfordCoreNLP;
 import edu.stanford.nlp.util.CoreMap;
 import edu.stanford.nlp.util.PropertiesUtils;
 
+import services.databaseConnection.DBConnection;
+
 public class Processor {
   /**
    *
@@ -52,6 +54,7 @@ public class Processor {
       questionMapping[1] = "NoIdFound";
     }
 
+    DBConnection.addQuestionToDB(question);
     return questionMapping;
   }
 
