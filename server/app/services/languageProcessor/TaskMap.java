@@ -95,100 +95,65 @@ public class TaskMap {
     }
   }
 
-  /**
+  /** COMPLETE THIS METHOD
    * This method requests status of an issue and returns it to the calling method
    *
    * @param issueKey
    * @return
    */
   public JsonNode IssueStatus(String issueKey, JsonNode responseBody) {
-    if (Extractor.extractString(responseBody, "status").equals("[\"Issue Does Not Exist\"]")) {
-      return parseToJson("fail", "Cannot find issue");
-    } else {
-      String answer = "Status of "+issueKey;//Extractor.extractString(responseBody, "status") + " is working on " + issueKey + ".";
-      System.out.println(answer);
-      return parseToJson("success", answer);
-    }
+    return null;
   }
 
-  /**
+  /** COMPLETE THIS METHOD
    * This method requests issues that are in progress and returns it to the calling method
    *
    * @param issueKey
    * @return
    */
   public JsonNode InProgressIssues(String issueKey, JsonNode responseBody) {
-    if (Extractor.extractString(responseBody, "status").equals("[\"Issue Does Not Exist\"]")) {
-      return parseToJson("fail", "Cannot find issue");
-    } else {
-      String answer = "Status of "+issueKey;//Extractor.extractString(responseBody, "status") + " is working on " + issueKey + ".";
-      System.out.println(answer);
-      return parseToJson("success", answer);
-    }
+    return null;
   }
 
-  /**
+  /** COMPLETE THIS METHOD
    * This method requests issues that are completed and returns it to the calling method
    *
    * @param issueKey
    * @return
    */
   public JsonNode CompletedIssues(String issueKey, JsonNode responseBody) {
-    if (Extractor.extractString(responseBody, "status").equals("[\"Issue Does Not Exist\"]")) {
-      return parseToJson("fail", "Cannot find issue");
-    } else {
-      String answer = "Status of "+issueKey;//Extractor.extractString(responseBody, "status") + " is working on " + issueKey + ".";
-      System.out.println(answer);
-      return parseToJson("success", answer);
-    }
+    return null;
   }
 
-  /**
+  /** COMPLETE THIS METHOD
    * This method requests issues that are stalled and returns it to the calling method
    *
    * @param issueKey
    * @return
    */
   public JsonNode StalledIssues(String issueKey, JsonNode responseBody) {
-    if (Extractor.extractString(responseBody, "status").equals("[\"Issue Does Not Exist\"]")) {
-      return parseToJson("fail", "Cannot find issue");
-    } else {
-      String answer = "Status of "+issueKey;//Extractor.extractString(responseBody, "status") + " is working on " + issueKey + ".";
-      System.out.println(answer);
-      return parseToJson("success", answer);
-    }
+    return null;
   }
 
-  /**
+  /** COMPLETE THIS METHOD
    * This method sets the project for a channel
    *
    * @param issueKey
    * @return
    */
   public JsonNode SetProject(String issueKey, JsonNode responseBody) {
-    if (Extractor.extractString(responseBody, "status").equals("[\"Issue Does Not Exist\"]")) {
-      return parseToJson("fail", "Cannot find issue");
-    } else {
-      String answer = "Status of "+issueKey;//Extractor.extractString(responseBody, "status") + " is working on " + issueKey + ".";
-      System.out.println(answer);
-      return parseToJson("success", answer);
-    }
+    return null;
   }
 
-  /**
+  /** COMPLETE THIS METHOD
+   *
    * This method sets the context for the conversations.
    * It remembers the issue people are talking about.
    * @param issueKey
    * @return
    */
   public JsonNode SetIssueContext(String issueKey, JsonNode responseBody) {
-    if (Extractor.extractString(responseBody, "status").equals("[\"Issue Does Not Exist\"]")) {
-      return parseToJson("fail", "Cannot find issue");
-    } else {
-      String answer = "Status of "+issueKey;//Extractor.extractString(responseBody, "status") + " is working on " + issueKey + ".";
-      System.out.println(answer);
-      return parseToJson("success", answer);
-    }
+    return null;
   }
 
   /**
@@ -197,7 +162,6 @@ public class TaskMap {
    * @return
    */
   public static JsonNode parseToJson(String status, String message) {
-
     Response response = new Response();
     response.status = status;
     response.message = message;

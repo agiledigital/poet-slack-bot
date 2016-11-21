@@ -4,43 +4,8 @@ import com.fasterxml.jackson.databind.JsonNode;
 
 public class Extractor {
 
-  public static JsonNode extractJson(JsonNode json, String key) {
-    if (json.get("errorMessages") != null) {
-      return json.get("errorMessages");
-    } else {
-
-      if (key == "description") {
-        return json.get("fields").get(key);
-      } else if (key == "assignee") {
-        return json.get("assignee").get("name");
-      }
-    }
-
-    return null;
-  }
-
-
-  public static String extractString(JsonNode json, String key) {
-    if (json.get("errorMessages") != null) {
-      return json.get("errorMessages").toString();
-    } else {
-
-      if (key == "description") {
-        System.out.println("Check point 1");
-        System.out.println(json.get("fields").get(key).toString());
-        return json.get("fields").get(key).textValue();
-      } else if (key == "assignee") {
-        System.out.println("Check point 2");
-        System.out.println(json.get("fields").get("assignee").get("displayName").toString());
-        return json.get("fields").get("assignee").get("displayName").textValue();
-      }
-    }
-
-    return "";
-  }
-
   /**
-   * This method extracts the basic details of an Issue
+   * This method extracts the BASIC DETAILS of an Issue
    * fro the passed JSON object.
    * @param json
    * @param key
@@ -56,7 +21,7 @@ public class Extractor {
   }
 
   /**
-   * This method extracts the description of an Issue
+   * This method extracts the DESCRIPTION of an Issue
    * fro the passed JSON object.
    * @param json
    * @param key
@@ -72,7 +37,7 @@ public class Extractor {
   }
 
   /**
-   * This method extracts the assignee of an Issue
+   * This method extracts the ASSIGNEE of an Issue
    * fro the passed JSON object.
    * @param json
    * @param key
@@ -84,6 +49,70 @@ public class Extractor {
     }
     else {
       return json.get("fields").get("assignee").get("displayName").textValue();
+    }
+  }
+
+  /** COMPLETE THIS METHOD
+   * This method extracts the STATUS of an Issue
+   * fro the passed JSON object.
+   * @param json
+   * @param key
+   * @return
+   */
+  public static String getIssueStatus(JsonNode json, String key) {
+    if (json.get("errorMessages") != null) {
+      return json.get("errorMessages").toString();
+    }
+    else {
+      return null; /* Fill this part*/
+    }
+  }
+
+  /** COMPLETE THIS METHOD
+   *
+   * This method extracts IN-PROGRESS ISSUES
+   * fro the passed JSON object.
+   * @param json
+   * @return
+   */
+  public static String getInProgressIssues(JsonNode json) {
+    if (json.get("errorMessages") != null) {
+      return json.get("errorMessages").toString();
+    }
+    else {
+      return null; /* Fill this part*/
+    }
+  }
+
+  /** COMPLETE THIS METHOD
+   *
+   * This method extracts COMPLETED ISSUES
+   * fro the passed JSON object.
+   * @param json
+   * @return
+   */
+  public static String getCompletedIssues(JsonNode json) {
+    if (json.get("errorMessages") != null) {
+      return json.get("errorMessages").toString();
+    }
+    else {
+      return null; /* Fill this part*/
+    }
+  }
+
+  /** COMPLETE THIS METHOD
+   *
+   * This method extracts STALLED ISSUES
+   * fro the passed JSON object.
+   * @param json
+   * @return
+   */
+  public static String getStalledIssues(JsonNode json) {
+    if (json.get("errorMessages") != null) {
+      return json.get("errorMessages").toString();
+    }
+    else {
+      return null; /* Fill this part*/
     }
   }
 
