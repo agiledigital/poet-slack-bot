@@ -4,20 +4,12 @@ import com.fasterxml.jackson.databind.JsonNode;
 import play.Configuration;
 import play.api.Play;
 import play.libs.Json;
-import play.libs.ws.WSAuthScheme;
 import play.libs.ws.WSClient;
 import play.libs.ws.WSRequest;
 import play.libs.ws.WSResponse;
 import play.mvc.Result;
 import services.IntentEntity;
-import services.JiraInfo;
-import services.Utils;
 import services.queryHandler.JiraApiFetchInfo;
-
-import java.io.IOException;
-import java.net.URI;
-import java.net.URL;
-import java.util.List;
 import java.util.concurrent.CompletionStage;
 
 import static play.mvc.Results.ok;

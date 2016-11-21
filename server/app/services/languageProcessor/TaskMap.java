@@ -53,11 +53,11 @@ public class TaskMap {
    * @return
    */
   public JsonNode IssueDescription(String issueKey, JsonNode responseBody) {
-    if (Extractor.extractString(responseBody, "description").equals("[\"Issue Does Not Exist\"]")) {
+    if (Extractor.getIssueDscription(responseBody, "description").equals("[\"Issue Does Not Exist\"]")) {
       return parseToJson("fail", "Cannot find issue");
     } else {
       String answer = "Description of " + issueKey + " is as follows: \n" +
-        Extractor.extractString(responseBody, "description");
+        Extractor.getIssueDscription(responseBody, "description");
       return parseToJson("success", answer);
     }
 
@@ -70,10 +70,10 @@ public class TaskMap {
    * @return
    */
   public JsonNode IssueAssignee(String issueKey, JsonNode responseBody) {
-    if (Extractor.extractString(responseBody, "assignee").equals("[\"Issue Does Not Exist\"]")) {
+    if (Extractor.getIssueAssignee(responseBody, "assignee").equals("[\"Issue Does Not Exist\"]")) {
       return parseToJson("fail", "Cannot find issue");
     } else {
-      String answer = Extractor.extractString(responseBody, "assignee") + " is working on " + issueKey + ".";
+      String answer = Extractor.getIssueAssignee(responseBody, "assignee") + " is working on " + issueKey + ".";
       System.out.println(answer);
       return parseToJson("success", answer);
     }
@@ -86,10 +86,10 @@ public class TaskMap {
    * @return
    */
   public JsonNode IssueBrief(String issueKey, JsonNode responseBody) {
-    if (Extractor.extractString(responseBody, "assignee").equals("[\"Issue Does Not Exist\"]")) {
+    if (Extractor.getIssueBrief(responseBody, "assignee").equals("[\"Issue Does Not Exist\"]")) {
       return parseToJson("fail", "Cannot find issue");
     } else {
-      String answer = Extractor.extractString(responseBody, "assignee") + " is working on " + issueKey + ".";
+      String answer = Extractor.getIssueBrief(responseBody, "assignee") + " is working on " + issueKey + ".";
       System.out.println(answer);
       return parseToJson("success", answer);
     }
