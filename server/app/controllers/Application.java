@@ -26,7 +26,6 @@ public class Application extends Controller {
 
 
     LUIS queryHandler = new LUIS(query, ws);
-    //QueryHandler queryHandler = new QueryHandler(query, ws);
     return queryHandler.handleQuery();
   }
 }
