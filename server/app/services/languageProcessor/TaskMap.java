@@ -31,13 +31,13 @@ public class TaskMap {
       return returnVal;
 
     } catch (NoSuchMethodException e) {
-      return taskMap.parseToJson("fail", e.getMessage());
+      return parseToJson("fail", e.getMessage());
     } catch (InvocationTargetException e) {
-      return taskMap.parseToJson("fail", e.getMessage());
+      return parseToJson("fail", e.getMessage());
     } catch (IllegalAccessException e) {
-      return taskMap.parseToJson("fail", e.getMessage());
+      return parseToJson("fail", e.getMessage());
     } catch (NullPointerException e) {
-      return taskMap.parseToJson("fail", e.getMessage());
+      return parseToJson("fail", e.getMessage());
     }
   }
 
@@ -89,6 +89,11 @@ public class TaskMap {
     JsonNode answer = Json.toJson(response);
 
     return answer;
+
+  }
+
+  public static JsonNode questionMapping(JsonNode responseBody) {
+    return null;
 
   }
 }

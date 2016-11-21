@@ -63,12 +63,9 @@ public class DecisionTree {
 		Node temp = root;
 		while(temp!= null){
 			String keyword = temp.node;
-			
-			
-			if(keywords.contains(keyword))
-				flag = true;	
-			else 
-				flag = false;
+
+
+      flag = keywords.contains(keyword);
 			
 			//System.out.println(keywords.contains(keyword));
 			

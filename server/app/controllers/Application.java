@@ -3,6 +3,7 @@ package controllers;
 import play.libs.ws.WSClient;
 import play.mvc.*;
 
+import services.languageProcessor.LUIS;
 import services.queryHandler.QueryHandler;
 
 import javax.inject.Inject;
@@ -23,7 +24,9 @@ public class Application extends Controller {
     ClassNotFoundException, NoSuchMethodException,
     InvocationTargetException, IllegalAccessException {
 
-    QueryHandler queryHandler = new QueryHandler(query, ws);
+
+    LUIS queryHandler = new LUIS(query, ws);
+    //QueryHandler queryHandler = new QueryHandler(query, ws);
     return queryHandler.handleQuery();
   }
 }
