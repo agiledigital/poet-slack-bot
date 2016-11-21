@@ -3,10 +3,14 @@ package services.languageProcessor;
 import com.fasterxml.jackson.databind.JsonNode;
 import play.libs.Json;
 
+import scala.util.parsing.json.JSONArray;
+import services.IntentEntity;
 import services.Response;
 import services.queryHandler.Extractor;
 
 import java.lang.reflect.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class TaskMap {
 
@@ -93,7 +97,16 @@ public class TaskMap {
   }
 
   public static JsonNode questionMapping(JsonNode responseBody) {
-    return null;
+    System.out.print((responseBody.toString()));
+    String topScoringIntent = responseBody.get("topScoringIntent").get("intent").toString();
+    List entities = responseBody.get("entities").findValues("entity");
+    List entityTypes = responseBody.get("entities").findValues("type");
 
+    IntentEntity intentEntity = new IntentEntity();
+    intentEntity.intent = topScoringIntent.toString().replace("\"", "");
+    intentEntity.entityType = entityTypes.get(0).toString().replace("\"", "");
+    intentEntity.entityName = entities.get(0).toString().replace("\"", "").replace(" ","");
+
+    return Json.toJson((intentEntity));
   }
 }
