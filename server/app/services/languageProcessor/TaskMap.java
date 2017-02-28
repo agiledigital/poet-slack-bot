@@ -14,8 +14,6 @@ import java.util.List;
 
 public class TaskMap {
 
-
-
   /**
    * This method calls appropriate method on run time based on the
    * parameters (methodName and argName) passed and returns a value
@@ -90,6 +88,7 @@ public class TaskMap {
       return parseToJson("fail", "Cannot find issue");
     } else {
       String answer = Extractor.getIssueBrief(responseBody, "assignee") + " is working on " + issueKey + ".";
+      System.out.println("-----Test point 1-----");
       System.out.println(answer);
       return parseToJson("success", answer);
     }
