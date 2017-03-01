@@ -88,7 +88,6 @@ public class TaskMap {
       return parseToJson("fail", "Cannot find issue");
     } else {
       String answer = Extractor.getIssueBrief(responseBody, "assignee") + " is working on " + issueKey + ".";
-      System.out.println("-----Test point 1-----");
       System.out.println(answer);
       return parseToJson("success", answer);
     }
@@ -101,7 +100,10 @@ public class TaskMap {
    * @return
    */
   public JsonNode IssueStatus(String issueKey, JsonNode responseBody) {
-    return null;
+
+    String answer = "Code to find the STATUS OF AN ISSUE has not been implemented yet. Please wait for our next version update.";
+    System.out.println(answer);
+    return parseToJson("success", answer);
   }
 
   /** COMPLETE THIS METHOD
@@ -110,8 +112,11 @@ public class TaskMap {
    * @param issueKey
    * @return
    */
-  public JsonNode InProgressIssues(String issueKey, JsonNode responseBody) {
-    return null;
+  public JsonNode IssuesInProgress(String issueKey, JsonNode responseBody) {
+
+    String answer = "Code to find ISSUES IN PROGRESS has not been implemented yet. Please wait for our next version update.";
+    System.out.println(answer);
+    return parseToJson("success", answer);
   }
 
   /** COMPLETE THIS METHOD
@@ -120,8 +125,11 @@ public class TaskMap {
    * @param issueKey
    * @return
    */
-  public JsonNode CompletedIssues(String issueKey, JsonNode responseBody) {
-    return null;
+  public JsonNode IssuesCompleted(String issueKey, JsonNode responseBody) {
+
+    String answer = "Code to find COMPLETED ISSUES has not been implemented yet. Please wait for our next version update.";
+    System.out.println(answer);
+    return parseToJson("success", answer);
   }
 
   /** COMPLETE THIS METHOD
@@ -131,7 +139,10 @@ public class TaskMap {
    * @return
    */
   public JsonNode StalledIssues(String issueKey, JsonNode responseBody) {
-    return null;
+
+    String answer = "Code to find STALLED ISSUES has not been implemented yet. Please wait for our next version update.";
+    System.out.println(answer);
+    return parseToJson("success", answer);
   }
 
   /** COMPLETE THIS METHOD
@@ -141,7 +152,10 @@ public class TaskMap {
    * @return
    */
   public JsonNode SetProject(String issueKey, JsonNode responseBody) {
-    return null;
+
+    String answer = "Code to SET PROJECT TO A CHANNEL has not been implemented yet. Please wait for our next version update.";
+    System.out.println(answer);
+    return parseToJson("success", answer);
   }
 
   /** COMPLETE THIS METHOD
@@ -152,7 +166,10 @@ public class TaskMap {
    * @return
    */
   public JsonNode SetIssueContext(String issueKey, JsonNode responseBody) {
-    return null;
+
+    String answer = "Code to find SET CONTEXT has not been implemented yet. Please wait for our next version update.";
+    System.out.println(answer);
+    return parseToJson("success", answer);
   }
 
   /**

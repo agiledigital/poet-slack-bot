@@ -76,29 +76,37 @@ public class LUIS {
   public JsonNode taskMapping(JsonNode responseBody) {
     System.out.print((responseBody.toString()));
     String topScoringIntent = responseBody.get("topScoringIntent").get("intent").toString().replace("\"", "");
-    String entity = responseBody.get("entities").findValues("entity").get(0).toString().replaceAll("\"", "").replaceAll("\\s","");
-    String entityType = responseBody.get("entities").findValues("type").get(0).toString().replace("\"", "").replace(" ","");
+
+    String entity = null;
+    if(responseBody.get("entities").findValues("entity").size() != 0)
+      entity = responseBody.get("entities").findValues("entity").get(0).toString().replaceAll("\"", "").replaceAll("\\s","");
+
+    String entityType = null;
+    if(responseBody.get("entities").findValues("type").size() != 0)
+      entityType = responseBody.get("entities").findValues("type").get(0).toString().replace("\"", "").replace(" ","");
 
     IntentEntity intentEntity = new IntentEntity();
     intentEntity.intent = topScoringIntent;
     intentEntity.entityType = entityType;
     intentEntity.entityName = entity;
 
-    System.out.println("Intent: " + topScoringIntent);
-    System.out.println("Entity Type: " + entityType);
-    System.out.println("Entity: " + entity);
+    JiraApiFetchInfo jiraApiFetchInfo = new JiraApiFetchInfo(query, ws);
 
-
-
-    switch (entityType){
-      case "IssueID":
-        JiraApiFetchInfo jiraApiFetchInfo = new JiraApiFetchInfo(query, ws);
-        jiraApiFetchInfo.handleQuery(topScoringIntent, entity);
-        break;
-      case "ProjectID": break;
-      default: break;
+    if(entityType == null) {
+      jiraApiFetchInfo.handleQuery(topScoringIntent, "POET-0");
     }
-
+    else {
+      switch (entityType) {
+        case "IssueID":
+          jiraApiFetchInfo.handleQuery(topScoringIntent, entity);
+          break;
+        case "ProjectID":
+          break;
+        default:
+          jiraApiFetchInfo.handleQuery(topScoringIntent, "POET-0");
+          break;
+      }
+    }
     return Json.toJson((intentEntity));
   }
 
