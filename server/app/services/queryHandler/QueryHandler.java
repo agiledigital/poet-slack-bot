@@ -9,10 +9,12 @@ import play.libs.ws.WSClient;
 import play.libs.ws.WSRequest;
 import play.libs.ws.WSResponse;
 import play.mvc.Result;
+import services.IntentEntity;
 import services.JiraInfo;
 import services.Response;
 import services.Utils;
 import services.languageProcessor.Processor;
+import services.languageProcessor.LUIS;
 
 import java.util.concurrent.CompletionStage;
 
@@ -31,16 +33,19 @@ public class QueryHandler {
     this.ws = ws;
   }
 
+
   public CompletionStage<Result> handleQuery(){
-    String[] nlpResult = {};  // {0 :question_mapping; 1:ticket_id}
 
-    try {
-      nlpResult = Processor.processQuestion(query);
-    } catch (Exception e){
-      System.out.println(e.getMessage());
-    }
+    //Call luis method that processes query
+    LUIS luis = new LUIS(query, ws);
+    JsonNode intentEntity = luis.handleQuery();
+    String intent = intentEntity.findValue("intent").textValue();
+    String entityName = intentEntity.findValue("entityName").textValue();
 
-    return asyncGET(nlpResult[0], nlpResult[1]);
+    System.out.println("Intent: " + intent);
+    System.out.println("EntityName: " + entityName);
+
+    return asyncGET(intent, entityName);
   }
 
   public CompletionStage<Result> asyncGET(String questionMapping, String ticketNo) {

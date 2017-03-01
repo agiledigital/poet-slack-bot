@@ -25,7 +25,7 @@ public class Application extends Controller {
     InvocationTargetException, IllegalAccessException {
 
 
-    LUIS queryHandler = new LUIS(query, ws);
+    QueryHandler queryHandler = new QueryHandler(query, ws);
     return queryHandler.handleQuery();
   }
 }

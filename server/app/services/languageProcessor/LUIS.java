@@ -30,7 +30,7 @@ public class LUIS {
     this.ws = ws;
   }
 
-  public CompletionStage<Result> handleQuery(){
+  public JsonNode handleQuery(){
 
     return asyncGET(query);
   }
@@ -40,11 +40,19 @@ public class LUIS {
    * @param query
    * @return
    */
-  public CompletionStage<Result> asyncGET(String query) {
+  public JsonNode asyncGET(String query) {
 
     CompletionStage<JsonNode> responsePromise = getTask(query);
-
-    return responsePromise.thenApply(response -> ok(taskMapping(response)));
+    System.out.println("LUIS asyncGet: ");
+    System.out.println(responsePromise.toString());
+    try{
+      JsonNode node = responsePromise.toCompletableFuture().get();
+      return taskMapping(node);
+    }catch(Exception e){
+      System.out.println("Exception: " + e.toString());
+    }
+    return null;
+    //return responsePromise.thenApply(response -> ok(taskMapping(response)));
   }
 
   /**
@@ -90,6 +98,7 @@ public class LUIS {
     intentEntity.entityType = entityType;
     intentEntity.entityName = entity;
 
+    /*
     JiraApiFetchInfo jiraApiFetchInfo = new JiraApiFetchInfo(query, ws);
 
     if(entityType == null) {
@@ -107,7 +116,8 @@ public class LUIS {
           break;
       }
     }
+    */
+
     return Json.toJson((intentEntity));
   }
-
 }
