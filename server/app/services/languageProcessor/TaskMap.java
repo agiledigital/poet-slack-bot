@@ -106,6 +106,20 @@ public class TaskMap {
     return parseToJson("success", answer);
   }
 
+  /**COMPLETE THIS METHOD
+   * This method gets the questions that POET was not able to answer in the past.
+   *
+   * @param issueKey
+   * @param responseBody
+   * @return
+   */
+  public JsonNode QuestionsNotAnswered(String issueKey, JsonNode responseBody) {
+
+    String answer = "I have not saved any questions so far. Please wait for my next version update.";
+    System.out.println(answer);
+    return parseToJson("success", answer);
+  }
+
   /** COMPLETE THIS METHOD
    * This method requests issues that are in progress and returns it to the calling method
    *
