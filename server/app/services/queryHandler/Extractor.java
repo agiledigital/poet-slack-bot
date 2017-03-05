@@ -1,6 +1,7 @@
 package services.queryHandler;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import services.Utils;
 
 public class Extractor {
 
@@ -26,12 +27,9 @@ public class Extractor {
     } else {
 
       if (key == "description") {
-        System.out.println("Check point 1");
-        System.out.println(json.get("fields").get(key).toString());
-        return json.get("fields").get(key).textValue();
+        String description = json.get("fields").get(key).textValue();
+        return Utils.hyperlinkTicketNo(description);
       } else if (key == "assignee") {
-        System.out.println("Check point 2");
-        System.out.println(json.get("fields").get("assignee").get("displayName").toString());
         return json.get("fields").get("assignee").get("displayName").textValue();
       }
     }
