@@ -1,6 +1,8 @@
 package services.languageProcessor;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import play.Configuration;
+import play.api.Play;
 import play.libs.Json;
 
 import scala.util.parsing.json.JSONArray;
@@ -13,6 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TaskMap {
+  private Configuration configuration = Play.current().injector().instanceOf(Configuration.class);
 
   /**
    * This method calls appropriate method on run time based on the
@@ -50,6 +53,7 @@ public class TaskMap {
    * @param issueKey
    * @return
    */
+
   public JsonNode IssueDescription(String issueKey, JsonNode responseBody) {
     if (Extractor.getIssueDscription(responseBody, "description").equals("[\"Issue Does Not Exist\"]")) {
       return parseToJson("fail", "Cannot find issue");
