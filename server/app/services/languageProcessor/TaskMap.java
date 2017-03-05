@@ -7,6 +7,7 @@ import play.libs.Json;
 
 import services.Response;
 import services.queryHandler.Extractor;
+import services.Utils;
 
 import java.lang.reflect.*;
 
@@ -30,6 +31,8 @@ public class TaskMap {
 
       //call the method at runtime according to the argument "methodName"
       Method method = TaskMap.class.getMethod(methodName, String.class, JsonNode.class);
+      responseBody = Utils.hyperlinkTicketNo(responseBody);
+
       JsonNode returnVal = (JsonNode) method.invoke(taskMap, issueKey, responseBody);
       return returnVal;
 
