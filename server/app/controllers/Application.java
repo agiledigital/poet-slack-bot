@@ -2,8 +2,6 @@ package controllers;
 
 import play.libs.ws.WSClient;
 import play.mvc.*;
-
-import services.languageProcessor.LUIS;
 import services.queryHandler.QueryHandler;
 
 import javax.inject.Inject;

@@ -36,23 +36,20 @@ public class LUIS {
   }
 
   /**
-   *
-   * @param query
-   * @return
+   * This method connects to the LUIS API and sends a query.
+   * @param query is the question by a user to POET on slack channel.
+   * @return the result of classification performed by LUSI on the asked query as a JSON object.
    */
   public JsonNode asyncGET(String query) {
 
     CompletionStage<JsonNode> responsePromise = getTask(query);
-    System.out.println("LUIS asyncGet: ");
-    System.out.println(responsePromise.toString());
     try{
       JsonNode node = responsePromise.toCompletableFuture().get();
       return taskMapping(node);
     }catch(Exception e){
       System.out.println("Exception: " + e.toString());
+      return null;
     }
-    return null;
-    //return responsePromise.thenApply(response -> ok(taskMapping(response)));
   }
 
   /**
@@ -86,37 +83,19 @@ public class LUIS {
     String topScoringIntent = responseBody.get("topScoringIntent").get("intent").toString().replace("\"", "");
 
     String entity = null;
-    if(responseBody.get("entities").findValues("entity").size() != 0)
-      entity = responseBody.get("entities").findValues("entity").get(0).toString().replaceAll("\"", "").replaceAll("\\s","");
 
+    if(responseBody.get("entities").findValues("entity").size() != 0) {
+      entity = responseBody.get("entities").findValues("entity").get(0).toString().replaceAll("\"", "").replaceAll("\\s", "");
+    }
     String entityType = null;
-    if(responseBody.get("entities").findValues("type").size() != 0)
-      entityType = responseBody.get("entities").findValues("type").get(0).toString().replace("\"", "").replace(" ","");
+    if(responseBody.get("entities").findValues("type").size() != 0) {
+      entityType = responseBody.get("entities").findValues("type").get(0).toString().replace("\"", "").replace(" ", "");
+    }
 
     IntentEntity intentEntity = new IntentEntity();
     intentEntity.intent = topScoringIntent;
     intentEntity.entityType = entityType;
     intentEntity.entityName = entity;
-
-    /*
-    JiraApiFetchInfo jiraApiFetchInfo = new JiraApiFetchInfo(query, ws);
-
-    if(entityType == null) {
-      jiraApiFetchInfo.handleQuery(topScoringIntent, "POET-0");
-    }
-    else {
-      switch (entityType) {
-        case "IssueID":
-          jiraApiFetchInfo.handleQuery(topScoringIntent, entity);
-          break;
-        case "ProjectID":
-          break;
-        default:
-          jiraApiFetchInfo.handleQuery(topScoringIntent, "POET-0");
-          break;
-      }
-    }
-    */
 
     return Json.toJson((intentEntity));
   }

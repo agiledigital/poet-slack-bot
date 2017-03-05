@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class DecisionTree {
 	Node root;
-	
+
 	DecisionTree(){
 		root = new Node("ticket");
 
@@ -18,12 +18,12 @@ public class DecisionTree {
 		root.left.right.left.left = new Node("getTicketAssignee");
 		root.left.right.left.right = new Node("reporter_of_ticket");
 	}
-	
+
 	public void insertRoot(Node node){
 		if (root == null)
 			root = node;
 	}
-	
+
 	/*
 	 * Insert new node to the left
 	 */
@@ -31,14 +31,14 @@ public class DecisionTree {
 		if (root == null)
 			root = node;
 		else{
-			Node temp = root; 
+			Node temp = root;
 			while(temp.left != null){
 				temp = temp.left;
 			}
 			temp.left = node;
 		}
 	}
-	
+
 	/*
 	 * Insert new node to the right
 	 */
@@ -46,18 +46,18 @@ public class DecisionTree {
 		if (root == null)
 			root = node;
 		else{
-			Node temp = root; 
+			Node temp = root;
 			while(temp.right != null){
 				temp = temp.right;
 			}
 			temp.right = node;
 		}
 	}
-	
+
 	public static void main(String args[]){
-		
+
 	}
-	
+
 	public String traverse(ArrayList<String> keywords){
 		boolean flag = false;
 		Node temp = root;
@@ -65,13 +65,13 @@ public class DecisionTree {
 			String keyword = temp.node;
 
 
-      flag = keywords.contains(keyword);
-			
+			flag = keywords.contains(keyword);
+
 			//System.out.println(keywords.contains(keyword));
-			
+
 			if(temp.left == null && temp.right == null)
 				return keyword;
-			
+
 			if(flag == true){
 				temp = temp.left;
 				//System.out.println("Left");
@@ -79,7 +79,7 @@ public class DecisionTree {
 			else{
 				temp = temp.right;
 				//System.out.println("Right");
-			}			
+			}
 		}
 		return null;
 	}
