@@ -25,25 +25,17 @@ public class Utils {
     }
   }
 
-  public static JsonNode hyperlinkTicketNo(JsonNode responseBody){
+  public static String hyperlinkTicketNo(String issueDescription){
     Configuration configuration = Play.current().injector().instanceOf(Configuration.class);
 
     String jiraIssueName = configuration.getString("jira.issueName");
     String pattern = "(" + jiraIssueName + "-\\d+)";
-    String issueDescription = responseBody.get("fields").get("description").toString();
     String issueUrl = configuration.getString("jira.baseUrl") + "/browse/";
     String hyperlink = "<" + issueUrl + "$1|$1>";
 
-    ObjectNode responseObj;
-    ObjectNode objectNode = (ObjectNode) responseBody.get("fields");
     issueDescription = issueDescription.replaceAll(pattern, hyperlink);
 
-    objectNode.put("description", issueDescription);
-
-    responseObj = (ObjectNode) responseBody;
-    responseObj.set("fields", objectNode);
-
-    return responseBody;
+    return issueDescription;
   }
 }
 

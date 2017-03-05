@@ -1,6 +1,7 @@
 package services.queryHandler;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import services.Utils;
 
 public class Extractor {
 
@@ -26,7 +27,8 @@ public class Extractor {
     } else {
 
       if (key == "description") {
-        return json.get("fields").get(key).textValue();
+        String description = json.get("fields").get(key).textValue();
+        return Utils.hyperlinkTicketNo(description);
       } else if (key == "assignee") {
         return json.get("fields").get("assignee").get("displayName").textValue();
       }
