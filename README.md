@@ -18,7 +18,12 @@ This project is proposed by [AgileDigital](http://www.agiledigital.com.au/).
 Set environment variables
 1. JIRA_USERNAME: JIRA username
 2. JIRA_PASSWORD: JIRA password. (Your password will not be visible to other users or developers).
-2. JIRA_BASE_URL: JIRA server domain.
+3. JIRA_BASE_URL: JIRA server domain.
+4. DB_HOST: Database host
+5. DB_NAME: Database name
+6. DB_USERNAME: Database username
+7. DB_PASSWORD: Database user password
+
 
 #### Usage
 1. Clone this [repository](https://github.com/agiledigital/poet-slack-bot).
