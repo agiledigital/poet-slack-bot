@@ -12,20 +12,21 @@ public class Utils {
    return new JiraInfo(configuration.getString("jira.username"), configuration.getString("jira.password"));
   }
 
-  public static void writeMissedQuery(String missedQuestion){
-    try {
-      BufferedWriter out = new BufferedWriter
-        (new FileWriter("logs/missedQuery.log", true));
-      out.write(missedQuestion+"\n");
-      out.close();
-    } catch (FileNotFoundException e) {
-      e.printStackTrace();
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
-  }
-
   public static String hyperlinkTicketNo(String issueDescription){
+    /**
+     * The methods hyperlinks the ticket number appearing in the
+     * description, or actually, any string fed into. This is implemented
+     * by first checking the project name configured in the application.conf
+     * and then use the slack formatting to wrap around the ticket number.
+     *
+     * @Reference: https://api.slack.com/docs/message-formatting
+     *
+     * @param issueDescription the description of the ticket queried.
+     *                         This can also be applied to any other strings.
+     * @return                 the issue description after formatting. This
+     *                         should hyperlink the ticket numbers appearing in
+     *                         the input string.
+     */
     Configuration configuration = Play.current().injector().instanceOf(Configuration.class);
 
     String jiraIssueName = configuration.getString("jira.issueName");
