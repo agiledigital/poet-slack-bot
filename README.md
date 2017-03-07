@@ -1,4 +1,4 @@
-# POET-SLACK-BOT <img src="https://lh3.googleusercontent.com/gkMtnMdp-HNUQ3gYnyNC_RwdzMteTBVM97YqDJjD-t2txm4-PG4EataPHDJbpe6R6cpH9cY2OiEbB5aNslVgxdx9ob__y_F28s4A0FDpW04r02uJSr4-xOn2H3qUmTroP4H_KPOkfZr0sEGw5DD6JCyebsU9xrKu08pfrJ94H0Bzlrbcd3RzuTlLO0x3MghysIDvrdVGFcIoUjuhptVJVNolR6-jt0fB-QmhqHaawQI6BawZGb1AroHS4hiRyM7nRuUgdtFk8vJAxAG_eTsS1bwf8FoxVd8jA8RV4YoKkjzNBmHveINBDmRpu6yXUE-dBmFRnAmnwsJZ93FAHYPHRG-xzNCdj-PjRua6QqXe25kalV6Ze6H0tHae0iKKIb3bbkw949YilzfWSP0Kgdb5e3BT4Ofb8vKiY_CHjtpLPekOZGMoObPOM_D0TI_KCqAZ-bRo6mr1ftLVEkAlcr523i4lPYtp5ZlhB44pnBPCHcLJJ32QKg0iGhKib4WBPSnFhFImqeaRnQNN_p29t19mLZ18dMniHPeyBkuS-Wo4ntK1fMmkn_WsofNLdXEI3aeO9B7FAExDszLjV75cVnwzu9omWRtSF-W3rzmJFPH2xiXUxnE=w840-h560-no" height="100" />
+# POET-SLACK-BOT
 ---
 ## **Save your time from all the complexity of JIRA!**
 

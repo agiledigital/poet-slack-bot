@@ -8,6 +8,7 @@ import play.libs.Json;
 import services.Response;
 import services.queryHandler.Extractor;
 import services.databaseConnection.DBConnection;
+import services.Utils;
 
 import java.lang.reflect.*;
 
@@ -31,6 +32,7 @@ public class TaskMap {
 
       //call the method at runtime according to the argument "methodName"
       Method method = TaskMap.class.getMethod(methodName, String.class, JsonNode.class);
+
       JsonNode returnVal = (JsonNode) method.invoke(taskMap, issueKey, responseBody);
       return returnVal;
 
@@ -77,7 +79,11 @@ public class TaskMap {
     if (Extractor.extractString(responseBody, "description").equals("[\"Issue Does Not Exist\"]")) {
       return parseToJson("fail", configuration.getString("error-message.issue-not-found"));
     } else {
-      String answer = "Description of " + issueKey + " is as follows: \n" +
+      String IssueId = responseBody.get("key").toString().replaceAll("\"", "");
+      String IssueUrl = "http://jira.agiledigital.com.au/browse/" + IssueId;
+      String Hyperlink = "<" + IssueUrl+ "|" + IssueId + ">";
+
+      String answer = "Description of " + Hyperlink + " is as follows: \n" +
         Extractor.extractString(responseBody, "description");
       return parseToJson("success", answer);
     }
@@ -94,7 +100,11 @@ public class TaskMap {
     if (Extractor.extractString(responseBody, "assignee").equals("[\"Issue Does Not Exist\"]")) {
       return parseToJson("fail", configuration.getString("error-message.issue-not-found"));
     } else {
-      String answer = Extractor.extractString(responseBody, "assignee") + " is working on " + issueKey + ".";
+      String IssueId = responseBody.get("key").toString().replaceAll("\"", "");
+      String IssueUrl = "http://jira.agiledigital.com.au/browse/" + IssueId;
+      String Hyperlink = "<" + IssueUrl+ "|" + IssueId + ">";
+
+      String answer = Extractor.extractString(responseBody, "assignee") + " is working on " + Hyperlink + ".";
       System.out.println(answer);
       return parseToJson("success", answer);
     }
