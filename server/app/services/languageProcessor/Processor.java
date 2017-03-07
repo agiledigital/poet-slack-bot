@@ -55,7 +55,7 @@ public class Processor {
       questionMapping[1] = "NoIdFound";
     }
 
-    dbConnection.addQuestionToDB(question);
+    dbConnection.addQuestion(question);
 
 
     if(question.contains("list all questions")){

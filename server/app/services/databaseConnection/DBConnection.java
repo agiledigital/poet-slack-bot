@@ -45,11 +45,11 @@ public class DBConnection {
    * SQL statement to add the question to database
    * @param question
    */
-  public void addQuestionToDB(String question) {
+  public void addQuestion(String question) {
     DBConnection DBConnection = new DBConnection();
     Connection connection = DBConnection.connectDB();
 
-    DBConnection.createDatabase(connection);
+    DBConnection.createQuestionTable(connection);
 
     try{ try {
       PreparedStatement stmt = connection.prepareStatement("insert into questions (question) values (?)");
@@ -68,13 +68,13 @@ public class DBConnection {
    * Creates a table questions if it does not already exists
    * @param connection
    */
-  public void createDatabase(Connection connection){
+  public void createQuestionTable(Connection connection){
     try{
       PreparedStatement preparedStatement = connection.prepareStatement(
         "CREATE TABLE questions(qno SERIAL PRIMARY KEY, question TEXT NOT NULL);");
       preparedStatement.executeUpdate();
     }catch (Exception e) {
-      //e.printStackTrace();
+      e.printStackTrace();
     }
   }
 
@@ -82,7 +82,7 @@ public class DBConnection {
     DBConnection DBConnection = new DBConnection();
     Connection connection = DBConnection.connectDB();
 
-    DBConnection.createDatabase(connection);
+    DBConnection.createQuestionTable(connection);
 
     try{ try {
       Statement statement = connection.createStatement();
