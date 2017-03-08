@@ -67,18 +67,14 @@ public class DecisionTree {
 
 			flag = keywords.contains(keyword);
 
-			//System.out.println(keywords.contains(keyword));
-
 			if(temp.left == null && temp.right == null)
 				return keyword;
 
 			if(flag == true){
 				temp = temp.left;
-				//System.out.println("Left");
 			}
 			else{
 				temp = temp.right;
-				//System.out.println("Right");
 			}
 		}
 		return null;
