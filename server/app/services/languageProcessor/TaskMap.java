@@ -66,7 +66,7 @@ public class TaskMap {
       String Hyperlink = "<" + IssueUrl+ "|" + IssueId + ">";
 
       String answer = "Description of " + Hyperlink + " is as follows: \n" +
-        Extractor.extractString(responseBody, "description");
+        Extractor.getIssueDscription(responseBody, "description");
 
       return parseToJson("success", answer);
     }
@@ -95,16 +95,17 @@ public class TaskMap {
    * @return reply to the user in JSON format.
    */
   public JsonNode IssueBrief(String issueKey, JsonNode responseBody) {
-    if (Extractor.getIssueBrief(responseBody, "assignee").equals("[\"Issue Does Not Exist\"]")) {
+    if (Extractor.getIssueDscription(responseBody, "description").equals("[\"Issue Does Not Exist\"]")) {
       return parseToJson("fail", "Cannot find issue");
     } else {
+
       String IssueId = responseBody.get("key").toString().replaceAll("\"", "");
       String IssueUrl = "http://jira.agiledigital.com.au/browse/" + IssueId;
       String Hyperlink = "<" + IssueUrl+ "|" + IssueId + ">";
 
-      String answer = Extractor.extractString(responseBody, "assignee") + " is working on " + Hyperlink + ".";
+      String answer = "Description of " + Hyperlink + " is as follows: \n" +
+        Extractor.getIssueDscription(responseBody, "description");
 
-      System.out.println(answer);
       return parseToJson("success", answer);
     }
   }
