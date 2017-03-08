@@ -13,7 +13,6 @@ import services.IntentEntity;
 import services.JiraInfo;
 import services.Response;
 import services.Utils;
-import services.languageProcessor.Processor;
 import services.languageProcessor.LUIS;
 
 import java.util.concurrent.CompletionStage;
@@ -38,12 +37,9 @@ public class QueryHandler {
 
     //Call luis method that processes query
     LUIS luis = new LUIS(query, ws);
-    JsonNode intentEntity = luis.handleQuery();
-    String intent = intentEntity.findValue("intent").textValue();
-    String entityName = intentEntity.findValue("entityName").textValue();
-
-    System.out.println("Intent: " + intent);
-    System.out.println("EntityName: " + entityName);
+    IntentEntity intentEntity = luis.handleQuery();
+    String intent = intentEntity.intent;
+    String entityName = intentEntity.entityName;
 
     return asyncGET(intent, entityName);
   }

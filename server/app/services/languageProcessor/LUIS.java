@@ -26,7 +26,7 @@ public class LUIS {
     this.ws = ws;
   }
 
-  public JsonNode handleQuery(){
+  public IntentEntity handleQuery(){
 
     return getLuisResult(query);
   }
@@ -36,7 +36,7 @@ public class LUIS {
    * @param query is the question by a user to POET on slack channel.
    * @return the result of classification performed by LUSI on the asked query as a JSON object.
    */
-  private JsonNode getLuisResult(String query) {
+  private IntentEntity getLuisResult(String query) {
 
     CompletionStage<JsonNode> responsePromise = getTask(query);
     try{
@@ -74,7 +74,7 @@ public class LUIS {
    * @param responseBody
    * @return
    */
-  private JsonNode taskMapping(JsonNode responseBody) {
+  private IntentEntity taskMapping(JsonNode responseBody) {
     System.out.print((responseBody.toString()));
     String topScoringIntent = responseBody.get("topScoringIntent").get("intent").toString().replace("\"", "");
 
@@ -93,6 +93,6 @@ public class LUIS {
     intentEntity.entityType = entityType;
     intentEntity.entityName = entity;
 
-    return Json.toJson((intentEntity));
+    return intentEntity;
   }
 }
