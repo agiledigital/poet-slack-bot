@@ -9,6 +9,7 @@ import scala.util.parsing.json.JSONArray;
 import services.IntentEntity;
 import services.Response;
 import services.queryHandler.Extractor;
+import services.Utils;
 
 import java.lang.reflect.*;
 import java.util.ArrayList;
@@ -33,6 +34,7 @@ public class TaskMap {
 
       //call the method at runtime according to the argument "methodName"
       Method method = TaskMap.class.getMethod(methodName, String.class, JsonNode.class);
+
       JsonNode returnVal = (JsonNode) method.invoke(taskMap, issueKey, responseBody);
       return returnVal;
 
@@ -58,8 +60,14 @@ public class TaskMap {
     if (Extractor.getIssueDscription(responseBody, "description").equals("[\"Issue Does Not Exist\"]")) {
       return parseToJson("fail", "Cannot find issue");
     } else {
-      String answer = "Description of " + issueKey + " is as follows: \n" +
-        Extractor.getIssueDscription(responseBody, "description");
+
+      String IssueId = responseBody.get("key").toString().replaceAll("\"", "");
+      String IssueUrl = "http://jira.agiledigital.com.au/browse/" + IssueId;
+      String Hyperlink = "<" + IssueUrl+ "|" + IssueId + ">";
+
+      String answer = "Description of " + Hyperlink + " is as follows: \n" +
+        Extractor.extractString(responseBody, "description");
+
       return parseToJson("success", answer);
     }
 
@@ -90,7 +98,12 @@ public class TaskMap {
     if (Extractor.getIssueBrief(responseBody, "assignee").equals("[\"Issue Does Not Exist\"]")) {
       return parseToJson("fail", "Cannot find issue");
     } else {
-      String answer = Extractor.getIssueBrief(responseBody, "assignee") + " is working on " + issueKey + ".";
+      String IssueId = responseBody.get("key").toString().replaceAll("\"", "");
+      String IssueUrl = "http://jira.agiledigital.com.au/browse/" + IssueId;
+      String Hyperlink = "<" + IssueUrl+ "|" + IssueId + ">";
+
+      String answer = Extractor.extractString(responseBody, "assignee") + " is working on " + Hyperlink + ".";
+
       System.out.println(answer);
       return parseToJson("success", answer);
     }

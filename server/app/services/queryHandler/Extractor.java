@@ -1,6 +1,7 @@
 package services.queryHandler;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import services.Utils;
 
 public class Extractor {
 
@@ -92,6 +93,7 @@ public class Extractor {
   public static String getCompletedIssues(JsonNode json) {
     if (json.get("errorMessages") != null) {
       return json.get("errorMessages").toString();
+
     }
     else {
       return null;
