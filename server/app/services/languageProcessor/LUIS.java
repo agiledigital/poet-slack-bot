@@ -36,7 +36,7 @@ public class LUIS {
    * @param query is the question by a user to POET on slack channel.
    * @return the result of classification performed by LUSI on the asked query as a JSON object.
    */
-  public JsonNode getLuisResult(String query) {
+  private JsonNode getLuisResult(String query) {
 
     CompletionStage<JsonNode> responsePromise = getTask(query);
     try{
@@ -54,7 +54,7 @@ public class LUIS {
    * @param query
    * @return
    */
-  public CompletionStage<JsonNode> getTask(String query) {
+  private CompletionStage<JsonNode> getTask(String query) {
 
     String luisurl = configuration.getString("luis.url");
     String appid = configuration.getString("luis.appId");
@@ -74,7 +74,7 @@ public class LUIS {
    * @param responseBody
    * @return
    */
-  public JsonNode taskMapping(JsonNode responseBody) {
+  private JsonNode taskMapping(JsonNode responseBody) {
     System.out.print((responseBody.toString()));
     String topScoringIntent = responseBody.get("topScoringIntent").get("intent").toString().replace("\"", "");
 
