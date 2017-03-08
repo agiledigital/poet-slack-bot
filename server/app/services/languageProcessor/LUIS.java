@@ -7,32 +7,28 @@ import play.libs.Json;
 import play.libs.ws.WSClient;
 import play.libs.ws.WSRequest;
 import play.libs.ws.WSResponse;
-import play.mvc.Result;
 import services.IntentEntity;
-import services.queryHandler.JiraApiFetchInfo;
 import java.util.concurrent.CompletionStage;
-
-import static play.mvc.Results.ok;
 
 /**
  * Created by sabinapokhrel on 11/21/16.
  */
 public class LUIS {
 
-  private Configuration configuration = Play.current().injector().instanceOf(Configuration.class);
-
+  private Configuration configuration;
   private String query;
   private WSClient ws;
 
 
   public LUIS(String query, WSClient ws) {
+    configuration = Play.current().injector().instanceOf(Configuration.class);
     this.query = query;
     this.ws = ws;
   }
 
   public JsonNode handleQuery(){
 
-    return asyncGET(query);
+    return getLuisResult(query);
   }
 
   /**
@@ -40,7 +36,7 @@ public class LUIS {
    * @param query is the question by a user to POET on slack channel.
    * @return the result of classification performed by LUSI on the asked query as a JSON object.
    */
-  public JsonNode asyncGET(String query) {
+  public JsonNode getLuisResult(String query) {
 
     CompletionStage<JsonNode> responsePromise = getTask(query);
     try{
