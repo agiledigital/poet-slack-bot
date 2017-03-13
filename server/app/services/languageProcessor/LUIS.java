@@ -9,6 +9,8 @@ import play.libs.ws.WSRequest;
 import play.libs.ws.WSResponse;
 import services.IntentEntity;
 import java.util.concurrent.CompletionStage;
+import java.util.concurrent.ExecutionException;
+import java.lang.InterruptedException;
 
 /**
  * Created by sabinapokhrel on 11/21/16.
@@ -26,7 +28,7 @@ public class LUIS {
     this.ws = ws;
   }
 
-  public IntentEntity handleQuery(){
+  public IntentEntity handleQuery() throws ExecutionException, InterruptedException{
 
     return getLuisResult(query);
   }
@@ -36,16 +38,12 @@ public class LUIS {
    * @param query is the question by a user to POET on slack channel.
    * @return the result of classification performed by LUSI on the asked query as a JSON object.
    */
-  private IntentEntity getLuisResult(String query) {
+  private IntentEntity getLuisResult(String query) throws ExecutionException, InterruptedException{
 
     CompletionStage<JsonNode> responsePromise = getTask(query);
-    try{
+
       JsonNode node = responsePromise.toCompletableFuture().get();
       return taskMapping(node);
-    }catch(Exception e){
-      System.out.println("Exception: " + e.toString());
-      return null;
-    }
   }
 
   /**

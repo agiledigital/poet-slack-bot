@@ -14,8 +14,8 @@ import services.JiraInfo;
 import services.Response;
 import services.Utils;
 import services.languageProcessor.LUIS;
-
 import java.util.concurrent.CompletionStage;
+import java.util.concurrent.CompletableFuture;
 
 import static play.mvc.Results.ok;
 
@@ -37,11 +37,14 @@ public class QueryHandler {
 
     //Call luis method that processes query
     LUIS luis = new LUIS(query, ws);
-    IntentEntity intentEntity = luis.handleQuery();
-    String intent = intentEntity.intent;
-    String entityName = intentEntity.entityName;
-
-    return asyncGET(intent, entityName);
+    try {
+      IntentEntity intentEntity = luis.handleQuery();
+      String intent = intentEntity.intent;
+      String entityName = intentEntity.entityName;
+      return asyncGET(intent, entityName);
+    }catch(Exception e){
+      return CompletableFuture.supplyAsync(() -> ok(parseErrorToJson("LUIS is not configured.")));
+    }
   }
 
   public CompletionStage<Result> asyncGET(String questionMapping, String ticketNo) {

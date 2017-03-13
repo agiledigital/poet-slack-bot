@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.concurrent.CompletionStage;
 
-public class Application extends Controller {
+public class Application extends Controller{
 
   @Inject
   WSClient ws;
