@@ -43,7 +43,8 @@ public class QueryHandler {
       String entityName = intentEntity.entityName;
       return asyncGET(intent, entityName);
     }catch(Exception e){
-      return CompletableFuture.supplyAsync(() -> ok(parseErrorToJson("LUIS is not configured.")));
+      return CompletableFuture.supplyAsync(() -> ok(parseErrorToJson("Error with LUIS. Either LUIS is not configured properly" +
+        " or environment variable for LUIS is not set.")));
     }
   }
 
