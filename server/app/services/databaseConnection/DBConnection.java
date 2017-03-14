@@ -47,19 +47,13 @@ public class DBConnection {
    */
   public void addQuestion(String question) {
     DBConnection DBConnection = new DBConnection();
-    Connection connection = DBConnection.connectDB();
 
-    DBConnection.createQuestionTable(connection);
-
-    try{ try {
+    try(Connection connection = DBConnection.connectDB()){
+      DBConnection.createQuestionTable(connection);
       PreparedStatement stmt = connection.prepareStatement("insert into questions (question) values (?)");
-      //stmt.setInt(1, 1);
       stmt.setString(1, question);
       stmt.executeUpdate();
-    } finally {
-      connection.close();
-    }
-    }catch (Exception e) {
+    }catch(Exception e){
       e.printStackTrace();
     }
   }
@@ -80,11 +74,9 @@ public class DBConnection {
 
   public String displayQuestions(){
     DBConnection DBConnection = new DBConnection();
-    Connection connection = DBConnection.connectDB();
 
-    DBConnection.createQuestionTable(connection);
-
-    try{ try {
+    try(Connection connection = DBConnection.connectDB()) {
+      DBConnection.createQuestionTable(connection);
       Statement statement = connection.createStatement();
       String sql = "SELECT * FROM questions;";
       ResultSet resultSet = statement.executeQuery(sql);
@@ -92,18 +84,16 @@ public class DBConnection {
       ArrayList<String> questionList = new ArrayList<String>();
       while ( resultSet.next() ) {
         String  question = resultSet.getString("question");
-          questionList.add(question);
+        questionList.add(question);
       }
       resultSet.close();
       statement.close();
       return questionList.toString();
-    } finally {
-      connection.close();
-    }
-    }catch (Exception e) {
+    }catch (Exception e){
       e.printStackTrace();
+      return null;
     }
-    return null;
+
   }
 
 }
