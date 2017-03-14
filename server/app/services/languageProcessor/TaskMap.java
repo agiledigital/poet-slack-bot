@@ -64,7 +64,6 @@ public class TaskMap {
         Extractor.extractString(responseBody, "description");
       return parseToJson("success", answer);
     }
-
   }
 
   /**
@@ -82,6 +81,24 @@ public class TaskMap {
       String Hyperlink = "<" + IssueUrl+ "|" + IssueId + ">";
 
       String answer = Extractor.extractString(responseBody, "assignee") + " is working on " + Hyperlink + ".";
+      System.out.println(answer);
+      return parseToJson("success", answer);
+    }
+  }
+
+  /**
+   * This method requests status of issue and returns it to the calling method
+   *
+   * @param issueKey
+   * @return
+   */
+  public JsonNode IssueStatus(String issueKey, JsonNode responseBody) {
+    if (Extractor.extractString(responseBody, "status").equals("[\"Issue Does Not Exist\"]")) {
+      return parseToJson("fail", configuration.getString("error-message.issue-not-found"));
+    } else {
+      System.out.println("I am here...checkpoint 2");
+      String answer = "The status of" + issueKey + "is" + Extractor.extractString(responseBody, "status");
+      System.out.println("I am here...checkpoint 3");
       System.out.println(answer);
       return parseToJson("success", answer);
     }
