@@ -65,7 +65,7 @@ public class Extractor {
       return json.get("errorMessages").toString();
     }
     else {
-      return null;
+      return json.get("fields").get("status").get("name").textValue();
     }
   }
 

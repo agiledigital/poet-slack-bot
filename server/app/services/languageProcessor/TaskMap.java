@@ -5,15 +5,10 @@ import play.Configuration;
 import play.api.Play;
 import play.libs.Json;
 
-import scala.util.parsing.json.JSONArray;
-import services.IntentEntity;
-import services.Response;
+import model.Response;
 import services.queryHandler.Extractor;
-import services.Utils;
 
 import java.lang.reflect.*;
-import java.util.ArrayList;
-import java.util.List;
 
 public class TaskMap {
   private Configuration configuration = Play.current().injector().instanceOf(Configuration.class);
@@ -116,10 +111,13 @@ public class TaskMap {
    * @return reply to the user in JSON format.
    */
   public JsonNode IssueStatus(String issueKey, JsonNode responseBody) {
-
-    String answer = "Code to find the STATUS OF AN ISSUE has not been implemented yet. Please wait for our next version update.";
-    System.out.println(answer);
-    return parseToJson("success", answer);
+    if (Extractor.getIssueStatus(responseBody, issueKey).equals("[\"Issue Does Not Exist\"]")) {
+      return parseToJson("fail", configuration.getString("error-message.issue-not-found"));
+    } else {
+      String answer = "The status of " + issueKey + " is " + Extractor.getIssueStatus(responseBody, issueKey);
+      System.out.println(answer);
+      return parseToJson("success", answer);
+    }
   }
 
   /**This method gets the questions that POET was not able to answer in the past.

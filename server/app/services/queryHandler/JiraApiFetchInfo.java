@@ -3,18 +3,13 @@ package services.queryHandler;
 import com.fasterxml.jackson.databind.JsonNode;
 import play.Configuration;
 import play.api.Play;
-import play.libs.Json;
 import play.libs.ws.WSAuthScheme;
 import play.libs.ws.WSClient;
 import play.libs.ws.WSRequest;
 import play.libs.ws.WSResponse;
 import play.mvc.Result;
-import services.IntentEntity;
 import services.JiraInfo;
-import services.Response;
 import services.Utils;
-import services.languageProcessor.LUIS;
-import services.languageProcessor.Processor;
 
 import java.util.concurrent.CompletionStage;
 
