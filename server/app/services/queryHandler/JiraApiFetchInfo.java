@@ -3,23 +3,19 @@ package services.queryHandler;
 import com.fasterxml.jackson.databind.JsonNode;
 import play.Configuration;
 import play.api.Play;
-import play.libs.Json;
 import play.libs.ws.WSAuthScheme;
 import play.libs.ws.WSClient;
 import play.libs.ws.WSRequest;
 import play.libs.ws.WSResponse;
 import play.mvc.Result;
-import model.IntentEntity;
 import services.JiraInfo;
-import model.Response;
 import services.Utils;
-import services.languageProcessor.LUIS;
+
 import java.util.concurrent.CompletionStage;
-import java.util.concurrent.CompletableFuture;
 
 import static play.mvc.Results.ok;
 
-public class QueryHandler {
+public class JiraApiFetchInfo {
   private Configuration configuration = Play.current().injector().instanceOf(Configuration.class);
   private JiraInfo jiraInfo = Utils.getJiraInfo(configuration);
 
@@ -27,45 +23,36 @@ public class QueryHandler {
   private WSClient ws;
 
 
-  public QueryHandler(String query, WSClient ws) {
+  public JiraApiFetchInfo(String query, WSClient ws) {
     this.query = query;
     this.ws = ws;
   }
 
+  public CompletionStage<Result> handleQuery(String method, String issueId){
 
-  public CompletionStage<Result> handleQuery(){
-
-    //Call luis method that processes query
-    LUIS luis = new LUIS(query, ws);
-    try {
-      IntentEntity intentEntity = luis.handleQuery();
-      String intent = intentEntity.intent;
-      String entityName = intentEntity.entityName;
-      return asyncGET(intent, entityName);
-    }catch(Exception e){
-      return CompletableFuture.supplyAsync(() -> ok(parseErrorToJson("Error with LUIS. Either LUIS is not configured properly" +
-        " or environment variable for LUIS is not set.")));
-    }
+    return asyncGET(method, issueId);
   }
 
-  public CompletionStage<Result> asyncGET(String questionMapping, String ticketNo) {
+  /**
+   *
+   * @param questionMapping
+   * @param issueId
+   * @return
+   */
+  public CompletionStage<Result> asyncGET(String questionMapping, String issueId) {
 
-    CompletionStage<JsonNode> responsePromise = getTicketInfo(ticketNo);
+    CompletionStage<JsonNode> responsePromise = getTicketInfo(issueId);
 
-    if(ticketNo == "NoIdFound") {
-      return responsePromise.thenApply(response -> ok(parseErrorToJson("No id Found")));
-    }
-
-    return responsePromise.thenApply(response -> {
-      if(questionMapping != "NoQuestionFound") {
-        return ok(processResponse(response, questionMapping, ticketNo));
-      }
-      else {
-        return ok(parseErrorToJson(configuration.getString("error-message.invalid-question")));
-      }
-    });
+    return responsePromise.thenApply(response -> ok(processResponse(response, questionMapping, issueId)));
   }
 
+  /**
+   * This method is used to connect to JIRA using RestApi.
+   * It uses the JIRA username and password set in configuration file
+   * for authentication.
+   * @param ticketId
+   * @return
+   */
   public CompletionStage<JsonNode> getTicketInfo(String ticketId) {
 
     String[] requestConfig = configTicketRequest();
@@ -84,6 +71,13 @@ public class QueryHandler {
     return requestConfig;
   }
 
+  /**
+   * This method calls task mapping method in order to perform the intended actions
+   * @param responseBody
+   * @param questionMapping
+   * @param ticketId
+   * @return
+   */
   private JsonNode processResponse(JsonNode responseBody, String questionMapping, String ticketId){
 
     JsonNode jsonNode = null;
@@ -95,17 +89,4 @@ public class QueryHandler {
 
     return jsonNode;
   }
-
-  public JsonNode parseErrorToJson(String message) {
-
-    Response response = new Response();
-    response.status = "fail";
-    response.message = message;
-
-    JsonNode msg = Json.toJson(response);
-
-    return msg;
-  }
-
-
 }

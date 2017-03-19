@@ -2,7 +2,6 @@ package controllers;
 
 import play.libs.ws.WSClient;
 import play.mvc.*;
-
 import services.queryHandler.QueryHandler;
 
 import javax.inject.Inject;
@@ -10,7 +9,7 @@ import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.concurrent.CompletionStage;
 
-public class Application extends Controller {
+public class Application extends Controller{
 
   @Inject
   WSClient ws;
@@ -22,6 +21,7 @@ public class Application extends Controller {
   public CompletionStage<Result> getAnwser(String query) throws IOException,
     ClassNotFoundException, NoSuchMethodException,
     InvocationTargetException, IllegalAccessException {
+
 
     QueryHandler queryHandler = new QueryHandler(query, ws);
     return queryHandler.handleQuery();

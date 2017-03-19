@@ -5,9 +5,8 @@ import play.Configuration;
 import play.api.Play;
 import play.libs.Json;
 
-import services.Response;
+import model.Response;
 import services.queryHandler.Extractor;
-import services.Utils;
 
 import java.lang.reflect.*;
 
@@ -22,7 +21,6 @@ public class TaskMap {
    * @param issueKey
    * @return
    */
-
   public static JsonNode questionMapping(String methodName, String issueKey, JsonNode responseBody) {
 
     TaskMap taskMap = new TaskMap();
@@ -36,32 +34,35 @@ public class TaskMap {
       return returnVal;
 
     } catch (NoSuchMethodException e) {
-      return taskMap.parseToJson("fail", e.getMessage());
+      return parseToJson("fail", e.getMessage());
     } catch (InvocationTargetException e) {
-      return taskMap.parseToJson("fail", e.getMessage());
+      return parseToJson("fail", e.getMessage());
     } catch (IllegalAccessException e) {
-      return taskMap.parseToJson("fail", e.getMessage());
+      return parseToJson("fail", e.getMessage());
     } catch (NullPointerException e) {
-      return taskMap.parseToJson("fail", e.getMessage());
+      return parseToJson("fail", e.getMessage());
     }
   }
 
+
   /**
    * This method requests issue info and returns it to the calling method
-   *
-   * @param issueKey
-   * @return
+   * @param issueKey is the IssueID of type string which was mentioned in the query by the user.
+   * @param responseBody is the JSON object received from JIRA Rest API.
+   * @return reply to the user in JSON format.
    */
-  public JsonNode getTicketDescription(String issueKey, JsonNode responseBody) {
-    if (Extractor.extractString(responseBody, "description").equals("[\"Issue Does Not Exist\"]")) {
-      return parseToJson("fail", configuration.getString("error-message.issue-not-found"));
+  public JsonNode IssueDescription(String issueKey, JsonNode responseBody) {
+    if (Extractor.getIssueDscription(responseBody, "description").equals("[\"Issue Does Not Exist\"]")) {
+      return parseToJson("fail", "Cannot find issue");
     } else {
+
       String IssueId = responseBody.get("key").toString().replaceAll("\"", "");
       String IssueUrl = "http://jira.agiledigital.com.au/browse/" + IssueId;
       String Hyperlink = "<" + IssueUrl+ "|" + IssueId + ">";
 
       String answer = "Description of " + Hyperlink + " is as follows: \n" +
-        Extractor.extractString(responseBody, "description");
+        Extractor.getIssueDscription(responseBody, "description");
+
       return parseToJson("success", answer);
     }
 
@@ -69,32 +70,163 @@ public class TaskMap {
 
   /**
    * This method requests assignee of issue and returns it to the calling method
-   *
-   * @param issueKey
-   * @return
+   * @param issueKey is the IssueID of type string which was mentioned in the query by the user.
+   * @param responseBody is the JSON object received from JIRA Rest API.
+   * @return reply to the user in JSON format.
    */
-  public JsonNode getTicketAssignee(String issueKey, JsonNode responseBody) {
-    if (Extractor.extractString(responseBody, "assignee").equals("[\"Issue Does Not Exist\"]")) {
-      return parseToJson("fail", configuration.getString("error-message.issue-not-found"));
+  public JsonNode IssueAssignee(String issueKey, JsonNode responseBody) {
+    if (Extractor.getIssueAssignee(responseBody, "assignee").equals("[\"Issue Does Not Exist\"]")) {
+      return parseToJson("fail", "Cannot find issue");
     } else {
-      String IssueId = responseBody.get("key").toString().replaceAll("\"", "");
-      String IssueUrl = "http://jira.agiledigital.com.au/browse/" + IssueId;
-      String Hyperlink = "<" + IssueUrl+ "|" + IssueId + ">";
-
-      String answer = Extractor.extractString(responseBody, "assignee") + " is working on " + Hyperlink + ".";
+      String answer = Extractor.getIssueAssignee(responseBody, "assignee") + " is working on " + issueKey + ".";
       System.out.println(answer);
       return parseToJson("success", answer);
     }
   }
 
+  /** This method requests brief description of issue and returns it to the calling method
+   * @param issueKey is the IssueID of type string which was mentioned in the query by the user.
+   * @param responseBody is the JSON object received from JIRA Rest API.
+   * @return reply to the user in JSON format.
+   */
+  public JsonNode IssueBrief(String issueKey, JsonNode responseBody) {
+    if (Extractor.getIssueDscription(responseBody, "description").equals("[\"Issue Does Not Exist\"]")) {
+      return parseToJson("fail", "Cannot find issue");
+    } else {
+
+      String IssueId = responseBody.get("key").toString().replaceAll("\"", "");
+      String IssueUrl = "http://jira.agiledigital.com.au/browse/" + IssueId;
+      String Hyperlink = "<" + IssueUrl+ "|" + IssueId + ">";
+
+      String answer = "Description of " + Hyperlink + " is as follows: \n" +
+        Extractor.getIssueDscription(responseBody, "description");
+
+      return parseToJson("success", answer);
+    }
+  }
+
+  /** This method requests status of an issue and returns it to the calling method
+   * @param issueKey is the IssueID of type string which was mentioned in the query by the user.
+   * @param responseBody is the JSON object received from JIRA Rest API.
+   * @return reply to the user in JSON format.
+   */
+  public JsonNode IssueStatus(String issueKey, JsonNode responseBody) {
+    if (Extractor.getIssueStatus(responseBody, issueKey).equals("[\"Issue Does Not Exist\"]")) {
+      return parseToJson("fail", configuration.getString("error-message.issue-not-found"));
+    } else {
+      String answer = "The status of " + issueKey + " is " + Extractor.getIssueStatus(responseBody, issueKey);
+      System.out.println(answer);
+      return parseToJson("success", answer);
+    }
+  }
+
+  /**This method gets the questions that POET was not able to answer in the past.
+   * @param issueKey is the IssueID of type string which was mentioned in the query by the user.
+   * @param responseBody is the JSON object received from JIRA Rest API.
+   * @return reply to the user in JSON format.
+   */
+  public JsonNode QuestionsNotAnswered(String issueKey, JsonNode responseBody) {
+
+    String answer = "I have not saved any questions so far. Please wait for my next version update.";
+    System.out.println(answer);
+    return parseToJson("success", answer);
+  }
+
+  /**
+   * This method requests issues that are in progress and returns it to the calling method
+   * @param issueKey is the IssueID of type string which was mentioned in the query by the user.
+   * @param responseBody is the JSON object received from JIRA Rest API.
+   * @return reply to the user in JSON format.
+   */
+  public JsonNode IssuesInProgress(String issueKey, JsonNode responseBody) {
+
+    String answer = "Code to find ISSUES IN PROGRESS has not been implemented yet. Please wait for our next version update.";
+    System.out.println(answer);
+    return parseToJson("success", answer);
+  }
+
+  /**
+   * This method requests issues that are completed and returns it to the calling method
+   * @param issueKey is the IssueID of type string which was mentioned in the query by the user.
+   * @param responseBody is the JSON object received from JIRA Rest API.
+   * @return reply to the user in JSON format.
+   */
+  public JsonNode IssuesCompleted(String issueKey, JsonNode responseBody) {
+
+    String answer = "Code to find COMPLETED ISSUES has not been implemented yet. Please wait for our next version update.";
+    System.out.println(answer);
+    return parseToJson("success", answer);
+  }
+
+  /**
+   * This method requests issues that are stalled and returns it to the calling method
+   * @param issueKey is the IssueID of type string which was mentioned in the query by the user.
+   * @param responseBody is the JSON object received from JIRA Rest API.
+   * @return reply to the user in JSON format.
+   */
+  public JsonNode StalledIssues(String issueKey, JsonNode responseBody) {
+
+    String answer = "Code to find STALLED ISSUES has not been implemented yet. Please wait for our next version update.";
+    System.out.println(answer);
+    return parseToJson("success", answer);
+  }
+
+  /**
+   * This method sets the project for a channel
+   * @param issueKey is the IssueID of type string which was mentioned in the query by the user.
+   * @param responseBody is the JSON object received from JIRA Rest API.
+   * @return reply to the user in JSON format.
+   */
+  public JsonNode SetProject(String issueKey, JsonNode responseBody) {
+
+    String answer = "Code to SET PROJECT TO A CHANNEL has not been implemented yet. Please wait for our next version update.";
+    System.out.println(answer);
+    return parseToJson("success", answer);
+  }
+
+  /**
+   * This method sets the context for the conversations.
+   * It remembers the issue people are talking about.
+   * @param issueKey is the IssueID of type string which was mentioned in the query by the user.
+   * @param responseBody is the JSON object received from JIRA Rest API.
+   * @return reply to the user in JSON format.
+   */
+  public JsonNode SetIssueContext(String issueKey, JsonNode responseBody) {
+
+    String answer = "Code to find SET CONTEXT has not been implemented yet. Please wait for our next version update.";
+    System.out.println(answer);
+    return parseToJson("success", answer);
+  }
+
+  /**
+   * This method sends one out of several greeting messages to the user.
+   * @param issueKey is the IssueID of type string which was mentioned in the query by the user.
+   * @param responseBody is the JSON object received from JIRA Rest API.
+   * @return reply to the user in JSON format.
+   */
+  public JsonNode Greeting(String issueKey, JsonNode responseBody) {
+
+    String greetings[] = new String[3];
+    greetings[0] = "Hi, My name is POET. I can help you get information from JIRA or make modification in JIRA. " +
+      "What can I help you with today?";
+    greetings[1] = "Hello, I am POET. I am here to help you access information from JIRA or make modification in JIRA. " +
+      "What can I help you with today?";
+    greetings[2] = "Hi. People call me POET. Not that I write poems. Jokes apart, how can I help you?";
+
+    int index = (int)(Math.random() * 3);
+
+    String answer = greetings[index];
+
+    System.out.println(answer);
+    return parseToJson("success", answer);
+  }
+
   /**
    * This method takes String as an input as returns a JSON object in the required format
-   *
    * @param message
    * @return
    */
   public static JsonNode parseToJson(String status, String message) {
-
     Response response = new Response();
     response.status = status;
     response.message = message;
@@ -102,6 +234,5 @@ public class TaskMap {
     JsonNode answer = Json.toJson(response);
 
     return answer;
-
   }
 }
