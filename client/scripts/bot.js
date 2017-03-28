@@ -6,7 +6,7 @@
 
   module.exports = function (robot) {
 
-    return robot.hear(/[A-Za-z] (.*)/i, function (res) {
+    return robot.hear(/poet-slack-bot (.*)/i, function (res) {
 
       if (jiraIgnoreUsers && res.envelope.user.name.match(new RegExp(jiraIgnoreUsers, "gi"))) {
         return;
@@ -15,10 +15,12 @@
       var message = res.match[1];
 
       httpRequest().doGET(message).then(function (response) {
+        /*
+        The response type is not checked here as we want the BOT
+        to respond back to the user whenever a question is asked.
+        */
         if (response) {
-          if (response.status == "success") {
             return res.send("@" + res.envelope.user.name + " " + response.message);
-          }
 
         }
       });
@@ -27,8 +29,6 @@
   };
 
 }).call(this);
-
-///
 
 
 // Connect to JIRA through httprequest
