@@ -4,13 +4,11 @@ import com.fasterxml.jackson.databind.JsonNode;
 import models.ResponseToClient;
 import play.libs.Json;
 
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-
 /**
  * This class for any operation which makes changes on JIRA, that is, "writing operations".
+ * Currently not implemented at all.
  */
-public class JiraWriter {
+public class JiraWriterService {
     /**
      * This method calls appropriate method on run time based on the
      * parameters (methodName and argName) passed and returns a value

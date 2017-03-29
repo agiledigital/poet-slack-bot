@@ -2,6 +2,7 @@ package controllers;
 
 import play.libs.ws.WSClient;
 import play.mvc.*;
+import services.ServicesManager;
 
 import javax.inject.Inject;
 import java.io.IOException;
@@ -22,7 +23,7 @@ public class Application extends Controller {
             NoSuchMethodException, InvocationTargetException,
             IllegalAccessException {
 
-        UserQueryHandler userQueryHandler = new UserQueryHandler(query, ws);
-        return userQueryHandler.handleUserQuery();
+        ServicesManager servicesManager = new ServicesManager(query, ws);
+        return servicesManager.interpretQueryAndActOnJira();
     }
 }

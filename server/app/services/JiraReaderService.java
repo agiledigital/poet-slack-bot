@@ -1,16 +1,46 @@
 package services;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import models.JiraAuth;
 import models.ResponseToClient;
 import play.libs.Json;
+import play.libs.ws.WSAuthScheme;
+import play.libs.ws.WSClient;
+import play.libs.ws.WSRequest;
+import play.libs.ws.WSResponse;
 import utils.ConfigUtilities;
+
+import java.util.concurrent.CompletionStage;
 
 /**
  *  The class is for all "reading actions" on JIRA.
  *  Extracting fields from raw response on need.
  */
-public class JiraReader {
+public class JiraReaderService {
     private String messageToReturn;
+    private WSClient ws;
+    private JiraAuth jiraAuth;
+
+    public JiraReaderService(WSClient ws, JiraAuth jiraAuth) {
+        this.ws = ws;
+        this.jiraAuth = jiraAuth;
+    }
+
+    /**
+     * To request for JIRA ticket info page via REST API. A non-blocking call.
+     *
+     * @param ticketId ticket ID in string.
+     * @return info page encoded in JSON.
+     */
+    public CompletionStage<JsonNode> fetchJiraApi(String ticketId) {
+
+        WSRequest request = ws.url(ConfigUtilities.getString("jira.baseUrl")
+                + ConfigUtilities.getString("jira.issueEndpoint")
+                + ticketId);
+        WSRequest complexRequest = request.setAuth(jiraAuth.username, jiraAuth.password, WSAuthScheme.BASIC);
+
+        return complexRequest.get().thenApply(WSResponse::asJson);
+    }
 
     public JsonNode read(JsonNode response, String intent, String ticketNo) {
         Boolean isSuccess = false;
@@ -28,9 +58,9 @@ public class JiraReader {
         }
 
         if (isSuccess) {
-            return toJson(JiraService.REQUEST_SUCCESS, messageToReturn);
+            return toJson(JiraServiceProvider.REQUEST_SUCCESS, messageToReturn);
         } else {
-            return toJson(JiraService.REQUEST_FAILURE, ConfigUtilities.getString("error-message.issue-not-found"));
+            return toJson(JiraServiceProvider.REQUEST_FAILURE, ConfigUtilities.getString("error-message.issue-not-found"));
         }
     }
 
