@@ -4,10 +4,6 @@ import models.JiraAuth;
 import play.Configuration;
 import play.api.Play;
 
-/**
- * @author dxli
- *
- */
 
 public class ConfigUtilities {
 

@@ -44,7 +44,7 @@ public class JiraServiceProvider {
 
     public CompletionStage<Result> readTicket(String intent, String ticketNo) {
         // requests for JIRA page using API
-        CompletionStage<JsonNode> responsePromise = jiraReaderService.fetchJiraApi(ticketNo);
+        CompletionStage<JsonNode> responsePromise = jiraReaderService.fetchTicketByApi(ticketNo);
 
         return responsePromise.thenApply(response -> {
             if (!intent.equals(JiraServiceProvider.NOT_FOUND_ERROR)) {

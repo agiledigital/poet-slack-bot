@@ -32,7 +32,7 @@ public class JiraReaderService {
      * @param ticketId ticket ID in string.
      * @return info page encoded in JSON.
      */
-    public CompletionStage<JsonNode> fetchJiraApi(String ticketId) {
+    public CompletionStage<JsonNode> fetchTicketByApi(String ticketId) {
 
         WSRequest request = ws.url(ConfigUtilities.getString("jira.baseUrl")
                 + ConfigUtilities.getString("jira.issueEndpoint")
