@@ -28,32 +28,32 @@ public class JiraReader {
         }
 
         if (isSuccess) {
-            return toJson("success", messageToReturn);
+            return toJson(JiraService.REQUEST_SUCCESS, messageToReturn);
         } else {
-            return toJson("fail", ConfigUtilities.getString("error-message.issue-not-found"));
+            return toJson(JiraService.REQUEST_FAILURE, ConfigUtilities.getString("error-message.issue-not-found"));
         }
     }
 
     /**
-     * This method requests assignee of issue and returns it to the calling method
+     * This method reads assignee of the ticket.
      *
-     * @param issueKey     is the IssueID of type string which was mentioned in the query by the user.
+     * @param ticketNo     is the IssueID of type string which was mentioned in the query by the user.
      * @param responseBody is the JSON object received from JIRA Rest API.
      * @return true if success, otherwise if no such ticket exists, false.
      */
-    public Boolean readAssignee(String issueKey, JsonNode responseBody) {
+    public Boolean readAssignee(String ticketNo, JsonNode responseBody) {
         if (responseBody.get("errorMessages") != null){
             return false;
         } else {
             this.messageToReturn = responseBody.get("fields").get("assignee").get("displayName").textValue()
                     + " is working on "
-                    + issueKey + ".";
+                    + ticketNo + ".";
             return true;
         }
     }
 
     /**
-     * This method requests brief description of issue and returns it to the calling method
+     * This method reads description of the ticket.
      *
      * @param responseBody is the JSON object received from JIRA Rest API.
      * @return true if success, otherwise if no such ticket exists, false.
@@ -72,7 +72,7 @@ public class JiraReader {
     }
 
     /**
-     * This method requests status of an issue and returns it to the calling method
+     * This method reads status of the ticket.
      *
      * @param ticketNo     is the IssueID of type string which was mentioned in the query by the user.
      * @param responseBody is the JSON object received from JIRA Rest API.
@@ -91,15 +91,13 @@ public class JiraReader {
     }
 
     /**
-     * This method takes String as an input as returns a JSON object in the required format
+     * This method encodes a String instance in JSON.
      *
      * @param message
      * @return
      */
     private static JsonNode toJson(String ticketNo, String message) {
         ResponseToClient response = new ResponseToClient(ticketNo, message);
-
-        System.out.println("ResponseToClient: " + response.message);
         return Json.toJson(response);
     }
 
