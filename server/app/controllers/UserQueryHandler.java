@@ -4,7 +4,8 @@ import models.LuisResponse;
 import play.libs.ws.WSClient;
 import play.mvc.Result;
 import services.JiraService;
-import services.language.processing.LuisService;
+import services.LuisService;
+import utils.ConfigUtilities;
 
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CompletionStage;
@@ -23,11 +24,23 @@ public class UserQueryHandler {
 
     public CompletionStage<Result> handleUserQuery() {
         try {
-            LuisResponse luisResponse = luisService.extractIntentEntity();
-            return jiraService.fetchJiraTicketInfo(luisResponse.intent, luisResponse.entityName);
+            LuisResponse luisResponse = luisService.fetchIntentEntity();
+
+            // actions on reading Jira go here
+            if (luisResponse.intent.equals("IssueBrief") ||
+                    luisResponse.intent.equals("IssueAssignee") ||
+                    luisResponse.intent.equals("IssueStatus")) {
+                return jiraService.readTicket(luisResponse.intent, luisResponse.entityName);
+            } else {
+                // TODO: actions to update JIRA go here. e.g. changing workflow, etc.
+                // return jiraService.updateTicket(luisResponse.intent, luisResponse.entityName);
+                return CompletableFuture.supplyAsync(() -> ok(jiraService.encodeErrorInJson
+                        (ConfigUtilities.getString("error-message.action-not-supported"))));
+            }
         } catch (Exception e) {
-            return CompletableFuture.supplyAsync(() -> ok(jiraService.encodeErrorInJson("Error with LuisService. Either LuisService is not configured properly" +
-                    " or environment variable for LuisService is not set.")));
+            // TODO: questions not understood goes here
+            return CompletableFuture.supplyAsync(() -> ok(jiraService.encodeErrorInJson(
+                    ConfigUtilities.getString("error-message.luis-error"))));
         }
     }
 }
