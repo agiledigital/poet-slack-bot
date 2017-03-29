@@ -12,8 +12,9 @@ import edu.stanford.nlp.pipeline.StanfordCoreNLP;
 import edu.stanford.nlp.util.CoreMap;
 import edu.stanford.nlp.util.PropertiesUtils;
 
-import services.databaseConnection.DBConnection;
-
+import dataAccess.QuestionsDB;
+import play.db.Database;
+import play.db.Databases;
 public class Processor {
   /**
    *
@@ -21,7 +22,8 @@ public class Processor {
    * @return question mapping as a String array
    */
   public static String[] processQuestion(String question) {
-    DBConnection dbConnection = new DBConnection();
+    Database database = Databases.inMemory();
+    QuestionsDB questionsDb = new QuestionsDB(database);
 
     DecisionTree decisionTree = new DecisionTree();
 
@@ -55,7 +57,7 @@ public class Processor {
       questionMapping[1] = "NoIdFound";
     }
 
-    dbConnection.addQuestion(question);
+    questionsDb.addQuestion(question);
 
 
     if(question.contains("list all questions")){

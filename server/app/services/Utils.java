@@ -1,15 +1,12 @@
 package services;
 
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.node.ObjectNode;
 import play.Configuration;
 import play.api.Play;
-
-import java.io.*;
+import services.models.JiraUserCredentials;
 
 public class Utils {
-  public static JiraInfo getJiraInfo(Configuration configuration){
-   return new JiraInfo(configuration.getString("jira.username"), configuration.getString("jira.password"));
+  public static JiraUserCredentials getJiraInfo(Configuration configuration){
+   return new JiraUserCredentials(configuration.getString("jira.username"), configuration.getString("jira.password"));
   }
 
   public static String hyperlinkTicketNo(String issueDescription){

@@ -1,9 +1,9 @@
-package services;
+package services.models;
 
 /**
  * Created by sabinapokhrel on 10/1/16.
  */
-public class Response {
+public class BotResponse {
   public String status;
   public String message;
 }

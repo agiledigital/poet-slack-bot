@@ -1,17 +1,17 @@
 package services.languageProcessor;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import services.models.BotResponse;
 import play.Configuration;
 import play.api.Play;
 import play.libs.Json;
 
-import services.Response;
 import services.queryHandler.Extractor;
-import services.databaseConnection.DBConnection;
-import services.Utils;
+import dataAccess.QuestionsDB;
 
 import java.lang.reflect.*;
-
+import play.db.Database;
+import play.db.Databases;
 public class TaskMap {
   private Configuration configuration = Play.current().injector().instanceOf(Configuration.class);
 
@@ -118,19 +118,21 @@ public class TaskMap {
    */
   public static JsonNode parseToJson(String status, String message) {
 
-    Response response = new Response();
-    response.status = status;
-    response.message = message;
-    System.out.println("Response: " + response.message);
-    JsonNode answer = Json.toJson(response);
+    BotResponse botResponse = new BotResponse();
+    botResponse.status = status;
+    botResponse.message = message;
+    System.out.println("BotResponse: " + botResponse.message);
+    JsonNode answer = Json.toJson(botResponse);
 
     return answer;
 
   }
 
   public JsonNode displayQuestions(){
-    DBConnection dbConnection = new DBConnection();
-    String message = dbConnection.displayQuestions();
+    Database database = Databases.inMemory();
+    QuestionsDB questionsDb = new QuestionsDB(database);
+
+    String message = questionsDb.displayQuestions();
     return parseToJson("success", message);
   }
 }

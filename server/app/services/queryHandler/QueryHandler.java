@@ -9,8 +9,8 @@ import play.libs.ws.WSClient;
 import play.libs.ws.WSRequest;
 import play.libs.ws.WSResponse;
 import play.mvc.Result;
-import services.JiraInfo;
-import services.Response;
+import services.models.JiraUserCredentials;
+import services.models.BotResponse;
 import services.Utils;
 import services.languageProcessor.Processor;
 
@@ -20,7 +20,7 @@ import static play.mvc.Results.ok;
 
 public class QueryHandler {
   private Configuration configuration = Play.current().injector().instanceOf(Configuration.class);
-  private JiraInfo jiraInfo = Utils.getJiraInfo(configuration);
+  private JiraUserCredentials jiraUserCredentials = Utils.getJiraInfo(configuration);
 
   private String query;
   private WSClient ws;
@@ -70,7 +70,7 @@ public class QueryHandler {
     String[] requestConfig = configTicketRequest();
 
     WSRequest request = ws.url(requestConfig[0] + requestConfig[1] + ticketId);
-    WSRequest complexRequest = request.setAuth(jiraInfo.username, jiraInfo.password, WSAuthScheme.BASIC);
+    WSRequest complexRequest = request.setAuth(jiraUserCredentials.username, jiraUserCredentials.password, WSAuthScheme.BASIC);
 
     return complexRequest.get().thenApply(WSResponse:: asJson);
   }
@@ -109,11 +109,11 @@ public class QueryHandler {
 
   public JsonNode parseErrorToJson(String message) {
 
-    Response response = new Response();
-    response.status = "fail";
-    response.message = message;
+    BotResponse botResponse = new BotResponse();
+    botResponse.status = "fail";
+    botResponse.message = message;
 
-    JsonNode msg = Json.toJson(response);
+    JsonNode msg = Json.toJson(botResponse);
 
     return msg;
   }
