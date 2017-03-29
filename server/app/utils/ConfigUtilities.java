@@ -13,7 +13,7 @@ public class ConfigUtilities {
 
     private static Configuration configuration = Play.current().injector().instanceOf(Configuration.class);;
 
-    public static JiraAuth getJiraInfo() {
+    public static JiraAuth getJiraAuth() {
         return new JiraAuth(configuration.getString("jira.username"), configuration.getString("jira.password"));
     }
 
