@@ -52,7 +52,7 @@ public class QueryHandler {
     }
 
     return responsePromise.thenApply(response -> {
-      if(questionMapping.equals("displayQuestions")){
+      if(questionMapping.equals("getQuestions")){
         System.out.println("Displaying all questions in DB");
         return ok(processResponse(questionMapping));
       }

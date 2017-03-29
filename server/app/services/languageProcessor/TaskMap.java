@@ -7,11 +7,11 @@ import play.api.Play;
 import play.libs.Json;
 
 import services.queryHandler.Extractor;
-import dataAccess.QuestionsDB;
+import dao.QuestionsDao;
+import services.questions.QuestionService;
 
 import java.lang.reflect.*;
-import play.db.Database;
-import play.db.Databases;
+
 public class TaskMap {
   private Configuration configuration = Play.current().injector().instanceOf(Configuration.class);
 
@@ -128,11 +128,13 @@ public class TaskMap {
 
   }
 
-  public JsonNode displayQuestions(){
-    Database database = Databases.inMemory();
-    QuestionsDB questionsDb = new QuestionsDB(database);
-
-    String message = questionsDb.displayQuestions();
+  /** This method fetches all stored questions from the database and returns a JSON object
+   *
+   * @return
+   */
+  public JsonNode getQuestions(){
+    QuestionService questionService = new QuestionService();
+    String message = questionService.getAllStoredQuestions();
     return parseToJson("success", message);
   }
 }

@@ -1,34 +1,27 @@
-package dataAccess;
+package dao;
 
 import java.sql.*;
 import java.util.ArrayList;
-import javax.inject.Inject;
 
 import play.db.*;
+import services.models.UserQuestion;
 
 /**
  * Created by sabinapokhrel on 11/7/16.
  */
 
 
-public class QuestionsDB {
-  private Database db;
-
-  @Inject
-  public QuestionsDB(@NamedDatabase("poetdb") Database db) {
-    this.db = db;
-  }
-
+public class QuestionsDao {
   /**
-   * SQL statement to add the question to database
+   * SQL statement to add the question to questionsasked table.
    *
    * @param question
    */
-  public void addQuestion(String question) {
+  public void addQuestion(UserQuestion question) {
 
-    try (Connection connection = db.getConnection()) {
+    try (Connection connection = DB.getConnection()) {
       PreparedStatement stmt = connection.prepareStatement("insert into questionsasked (question) values (?)");
-      stmt.setString(1, question);
+      stmt.setString(1, question.getQuestion());
       stmt.executeUpdate();
     } catch (Exception e) {
       e.printStackTrace();
@@ -36,9 +29,13 @@ public class QuestionsDB {
   }
 
 
-  public String displayQuestions() {
+  /**
+   * This method contains the SQL statement to get stored data from questionsasked table.
+   * @return
+   */
+  public String getQuestions() {
 
-    try (Connection connection = db.getConnection()) {
+    try (Connection connection = DB.getConnection()) {
       Statement statement = connection.createStatement();
       String sql = "SELECT * FROM questionsasked;";
       ResultSet resultSet = statement.executeQuery(sql);
