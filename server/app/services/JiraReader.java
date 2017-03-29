@@ -91,7 +91,7 @@ public class JiraReader {
     }
 
     /**
-     * This method encodes a String instance in JSON.
+     * This method wraps a response message and status in JSON.
      *
      * @param message
      * @return
