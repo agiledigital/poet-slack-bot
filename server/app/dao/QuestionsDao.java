@@ -52,7 +52,5 @@ public class QuestionsDao {
       e.printStackTrace();
       return null;
     }
-
   }
-
 }
