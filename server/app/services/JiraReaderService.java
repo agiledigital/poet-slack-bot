@@ -93,6 +93,7 @@ public class JiraReaderService {
             return false;
         } else {
             this.messageToReturn = hyperlinkTicketNo("Description of "
+                  //  + '<' + "http://google.com" +'|' +ticketNo+  '>' // replace google by the actual ticket page
                     + ticketNo
                     + " is as follows: \n"
                     + responseBody.get("fields").get("description").textValue());
@@ -147,12 +148,13 @@ public class JiraReaderService {
      */
     public static String hyperlinkTicketNo(String issueDescription) {
         String jiraIssueName = ConfigUtilities.getString("jira.issueName");
-        String pattern = "(" + jiraIssueName + "-\\d+)";
+        String pattern = "((?i)" + jiraIssueName + "-\\d+)";
         String issueUrl = ConfigUtilities.getString("jira.baseUrl") + "/browse/";
         String hyperlink = "<" + issueUrl + "$1|$1>";
 
         issueDescription = issueDescription.replaceAll(pattern, hyperlink);
 
+        System.out.println(issueDescription);
         return issueDescription;
     }
 
