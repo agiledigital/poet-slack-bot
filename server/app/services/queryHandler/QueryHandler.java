@@ -13,7 +13,7 @@ import services.models.JiraUserCredentials;
 import services.models.BotResponse;
 import services.Utils;
 import services.languageProcessor.Processor;
-
+import services.languageProcessor.TaskMap;
 import java.util.concurrent.CompletionStage;
 
 import static play.mvc.Results.ok;
@@ -108,14 +108,7 @@ public class QueryHandler {
   }
 
   public JsonNode parseErrorToJson(String message) {
-
-    BotResponse botResponse = new BotResponse();
-    botResponse.status = "fail";
-    botResponse.message = message;
-
-    JsonNode msg = Json.toJson(botResponse);
-
-    return msg;
+    return TaskMap.botResponseToJson("fail", message);
   }
 
 

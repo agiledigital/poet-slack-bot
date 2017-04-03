@@ -7,7 +7,6 @@ import play.api.Play;
 import play.libs.Json;
 
 import services.queryHandler.Extractor;
-import dao.QuestionsDao;
 import services.questions.QuestionService;
 
 import java.lang.reflect.*;
@@ -37,13 +36,13 @@ public class TaskMap {
       return returnVal;
 
     } catch (NoSuchMethodException e) {
-      return taskMap.parseToJson("fail", e.getMessage());
+      return taskMap.botResponseToJson("fail", e.getMessage());
     } catch (InvocationTargetException e) {
-      return taskMap.parseToJson("fail", e.getMessage());
+      return taskMap.botResponseToJson("fail", e.getMessage());
     } catch (IllegalAccessException e) {
-      return taskMap.parseToJson("fail", e.getMessage());
+      return taskMap.botResponseToJson("fail", e.getMessage());
     } catch (NullPointerException e) {
-      return taskMap.parseToJson("fail", e.getMessage());
+      return taskMap.botResponseToJson("fail", e.getMessage());
     }
   }
 
@@ -59,13 +58,13 @@ public class TaskMap {
       return returnVal;
 
     } catch (NoSuchMethodException e) {
-      return taskMap.parseToJson("fail", e.getMessage());
+      return taskMap.botResponseToJson("fail", e.getMessage());
     } catch (InvocationTargetException e) {
-      return taskMap.parseToJson("fail", e.getMessage());
+      return taskMap.botResponseToJson("fail", e.getMessage());
     } catch (IllegalAccessException e) {
-      return taskMap.parseToJson("fail", e.getMessage());
+      return taskMap.botResponseToJson("fail", e.getMessage());
     } catch (NullPointerException e) {
-      return taskMap.parseToJson("fail", e.getMessage());
+      return taskMap.botResponseToJson("fail", e.getMessage());
     }
   }
 
@@ -77,7 +76,7 @@ public class TaskMap {
    */
   public JsonNode getTicketDescription(String issueKey, JsonNode responseBody) {
     if (Extractor.extractString(responseBody, "description").equals("[\"Issue Does Not Exist\"]")) {
-      return parseToJson("fail", configuration.getString("error-message.issue-not-found"));
+      return botResponseToJson("fail", configuration.getString("error-message.issue-not-found"));
     } else {
       String IssueId = responseBody.get("key").toString().replaceAll("\"", "");
       String IssueUrl = "http://jira.agiledigital.com.au/browse/" + IssueId;
@@ -85,7 +84,7 @@ public class TaskMap {
 
       String answer = "Description of " + Hyperlink + " is as follows: \n" +
         Extractor.extractString(responseBody, "description");
-      return parseToJson("success", answer);
+      return botResponseToJson("success", answer);
     }
 
   }
@@ -98,7 +97,7 @@ public class TaskMap {
    */
   public JsonNode getTicketAssignee(String issueKey, JsonNode responseBody) {
     if (Extractor.extractString(responseBody, "assignee").equals("[\"Issue Does Not Exist\"]")) {
-      return parseToJson("fail", configuration.getString("error-message.issue-not-found"));
+      return botResponseToJson("fail", configuration.getString("error-message.issue-not-found"));
     } else {
       String IssueId = responseBody.get("key").toString().replaceAll("\"", "");
       String IssueUrl = "http://jira.agiledigital.com.au/browse/" + IssueId;
@@ -106,7 +105,7 @@ public class TaskMap {
 
       String answer = Extractor.extractString(responseBody, "assignee") + " is working on " + Hyperlink + ".";
       System.out.println(answer);
-      return parseToJson("success", answer);
+      return botResponseToJson("success", answer);
     }
   }
 
@@ -116,7 +115,7 @@ public class TaskMap {
    * @param message
    * @return
    */
-  public static JsonNode parseToJson(String status, String message) {
+  public static JsonNode botResponseToJson(String status, String message) {
 
     BotResponse botResponse = new BotResponse();
     botResponse.status = status;
@@ -135,6 +134,6 @@ public class TaskMap {
   public JsonNode getQuestions(){
     QuestionService questionService = new QuestionService();
     String message = questionService.getAllStoredQuestions();
-    return parseToJson("success", message);
+    return botResponseToJson("success", message);
   }
 }
