@@ -16,9 +16,7 @@
 
       httpRequest().doGET(message).then(function (response) {
         if (response) {
-          if (response.status == "success") {
             return res.send("@" + res.envelope.user.name + " " + response.message);
-          }
 
         }
       });
