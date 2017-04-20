@@ -14,18 +14,22 @@
 #### Motivation
 This project was proposed and supported by [Agile Digital](https://agiledigital.com.au/) as part of the Australian National University's TechLauncher initiative.
 
+
 #### Quick Start
 1. Clone this [GitHub repository](https://github.com/agiledigital/poet-slack-bot).
 2. From directory /server type
    ``activator run``
 3. Run [POET's Hubot chat bot.](https://github.com/agiledigital/poet-slack-bot/tree/master/client)
 
-#### Configuration Instructions
-Set-up environment variables for your Atlassian JIRA instance:
-
+#### Configuration instructions
+Set-up environment variables for your Atlassian JIRA instance and Database:
 1. JIRA\_USERNAME: JIRA username
 2. JIRA\_PASSWORD: JIRA password. (Your password will not be visible to other users or developers).
-2. JIRA\_BASE\_URL: JIRA server domain.
+3. JIRA\_BASE\_URL: JIRA server domain.
+4. DB\_HOST: Database host
+5. DB\_NAME: Database name
+6. DB\_USERNAME: Database username
+7. DB\_PASSWORD: Database user password
 
 #### Acknowledgements
 The authors would like to thank [Agile Digital](http://www.agiledigital.com.au/) for the proposal and guidance.
