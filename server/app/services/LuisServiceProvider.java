@@ -12,39 +12,45 @@ import java.util.concurrent.ExecutionException;
 import java.lang.InterruptedException;
 
 /**
+ * This class provides a set of services from LUIS.
  * @author sabinapokhrel
  */
 
 public class LuisServiceProvider {
 
-    private String query;
     private WSClient ws;
 
-    public LuisServiceProvider(String query, WSClient ws) {
-        this.query = query;
+    /**
+     * Constructor.
+     * @param query a question from user slack channel
+     * @param ws web service instance for requesting LUIS.
+     */
+    public LuisServiceProvider(WSClient ws) {
         this.ws = ws;
     }
 
     /**
-     * This method connects to the LuisServiceProvider API and sends a query.
+     * This method first requests for LUIS, then get the intent
+     * and entities with top scores. Score is the way LUIS use
+     * to measure the confidence on language understanding result.
      *
      * @return the result of classification performed by LUIS on the asked query as a JSON object.
      */
-    public LuisResponse interpretQuery() throws ExecutionException, InterruptedException {
+    public LuisResponse interpretQuery(String query) throws ExecutionException, InterruptedException {
         // request for natural language understanding results
         CompletionStage<JsonNode> luisResponsePromise = fetchLuisApi(query);
         JsonNode luisResponse = luisResponsePromise.toCompletableFuture().get();
 
         // classify those results
-        return classifyResponse(luisResponse);
+        return getTopScoringIntentEntity(luisResponse);
     }
 
     /**
      * Connects to LuisServiceProvider API using HTTPS request.
-     * LuisServiceProvider API processes the query and returns intent and entities as JSON object
+     * LuisServiceProvider API processes the query.
      *
      * @param query
-     * @return
+     * @return intent and entities as JSON object
      */
     private CompletionStage<JsonNode> fetchLuisApi(String query) {
 
@@ -61,12 +67,12 @@ public class LuisServiceProvider {
 
     /**
      * This method gets the topScoring intent and identified entities
-     * from LuisServiceProvider API and calls methods to perform the required action.
+     * from LuisServiceProvider API.
      *
-     * @param responseBody
-     * @return
+     * @param responseBody raw response from LUIS
+     * @return the intent and entities with top scoring as a LuisResponse instance.
      */
-    private LuisResponse classifyResponse(JsonNode responseBody) {
+    private LuisResponse getTopScoringIntentEntity(JsonNode responseBody) {
         String entityName;
         String entityType;
         String topScoringIntent = responseBody.get("topScoringIntent").get("intent").toString().replace("\"", "");

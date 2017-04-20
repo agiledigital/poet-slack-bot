@@ -21,6 +21,7 @@ public class JiraReaderService {
     private WSClient ws;
     private JiraAuth jiraAuth;
 
+
     public JiraReaderService(WSClient ws, JiraAuth jiraAuth) {
         this.ws = ws;
         this.jiraAuth = jiraAuth;
@@ -42,6 +43,13 @@ public class JiraReaderService {
         return complexRequest.get().thenApply(WSResponse::asJson);
     }
 
+    /**
+     * //TODO : comment this.
+     * @param response
+     * @param intent
+     * @param ticketNo
+     * @return
+     */
     public JsonNode read(JsonNode response, String intent, String ticketNo) {
         Boolean isSuccess = false;
 
@@ -58,9 +66,10 @@ public class JiraReaderService {
         }
 
         if (isSuccess) {
-            return toJson(JiraServiceProvider.REQUEST_SUCCESS, messageToReturn);
+            return Json.toJson(new ResponseToClient(JiraServiceProvider.REQUEST_SUCCESS, messageToReturn));
         } else {
-            return toJson(JiraServiceProvider.REQUEST_FAILURE, ConfigUtilities.getString("error-message.issue-not-found"));
+            return Json.toJson(new ResponseToClient(JiraServiceProvider.REQUEST_FAILURE,
+              ConfigUtilities.getString("error-message.issue-not-found")));
         }
     }
 
@@ -71,7 +80,7 @@ public class JiraReaderService {
      * @param responseBody is the JSON object received from JIRA Rest API.
      * @return true if success, otherwise if no such ticket exists, false.
      */
-    public Boolean readAssignee(String ticketNo, JsonNode responseBody) {
+    private Boolean readAssignee(String ticketNo, JsonNode responseBody) {
         if (responseBody.get("errorMessages") != null){
             return false;
         } else {
@@ -88,7 +97,7 @@ public class JiraReaderService {
      * @param responseBody is the JSON object received from JIRA Rest API.
      * @return true if success, otherwise if no such ticket exists, false.
      */
-    public Boolean readDescription(String ticketNo, JsonNode responseBody) {
+    private Boolean readDescription(String ticketNo, JsonNode responseBody) {
         if (responseBody.get("errorMessages") != null) {
             return false;
         } else {
@@ -108,7 +117,7 @@ public class JiraReaderService {
      * @param responseBody is the JSON object received from JIRA Rest API.
      * @return true if success, otherwise if no such ticket exists, false.
      */
-    public Boolean readStatus(String ticketNo, JsonNode responseBody) {
+    private Boolean readStatus(String ticketNo, JsonNode responseBody) {
         if (responseBody.get("errorMessages") != null) {
             return false;
         } else {
@@ -118,17 +127,6 @@ public class JiraReaderService {
                     + responseBody.get("fields").get("status").get("name").textValue();
             return true;
         }
-    }
-
-    /**
-     * This method wraps a response message and status in JSON.
-     *
-     * @param message
-     * @return
-     */
-    private static JsonNode toJson(String ticketNo, String message) {
-        ResponseToClient response = new ResponseToClient(ticketNo, message);
-        return Json.toJson(response);
     }
 
 
@@ -145,7 +143,7 @@ public class JiraReaderService {
      * the input string.
      * @Reference: https://api.slack.com/docs/message-formatting
      */
-    public static String hyperlinkTicketNo(String issueDescription) {
+    private static String hyperlinkTicketNo(String issueDescription) {
         String jiraIssueName = ConfigUtilities.getString("jira.issueName");
         String pattern = "(" + jiraIssueName + "-\\d+)";
         String issueUrl = ConfigUtilities.getString("jira.baseUrl") + "/browse/";

@@ -23,7 +23,7 @@ public class Application extends Controller {
             NoSuchMethodException, InvocationTargetException,
             IllegalAccessException {
 
-        ServicesManager servicesManager = new ServicesManager(query, ws);
-        return servicesManager.interpretQueryAndActOnJira();
+        ServicesManager servicesManager = new ServicesManager(ws);
+        return servicesManager.interpretQueryAndActOnJira(query);
     }
 }

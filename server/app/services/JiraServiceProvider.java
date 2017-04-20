@@ -14,7 +14,12 @@ import java.util.concurrent.CompletionStage;
 import static play.mvc.Results.ok;
 
 /**
- *  The class is in charge of interactions with JIRA server.
+ *  The class manages instance of jiraReaderService
+ *  and jiraWriterService (not there yet).
+ *
+ *  First, readOrUpdateJIra() decides read or update
+ *  operations should be done. Then call Writer/Reader
+ *  to update/read JIRA.
  */
 public class JiraServiceProvider {
 
@@ -26,20 +31,6 @@ public class JiraServiceProvider {
 
     public JiraServiceProvider(WSClient ws) {
         this.jiraReaderService = new JiraReaderService(ws, ConfigUtilities.getJiraAuth());
-    }
-
-    public CompletionStage<Result> readOrUpdateJira(LuisResponse luisResponse) {
-        // actions on reading Jira go here
-        if (luisResponse.intent.equals("IssueBrief") ||
-                luisResponse.intent.equals("IssueAssignee") ||
-                luisResponse.intent.equals("IssueStatus")) {
-            return readTicket(luisResponse.intent, luisResponse.entityName);
-        } else {
-            // TODO: actions to update JIRA go here. e.g. changing workflow, etc.
-            // return jiraServiceManager.updateTicket(luisResponse.intent, luisResponse.entityName);
-            return CompletableFuture.supplyAsync(() ->
-                    ok(encodeErrorInJson(ConfigUtilities.getString("error-message.action-not-supported"))));
-        }
     }
 
     public CompletionStage<Result> readTicket(String intent, String ticketNo) {
