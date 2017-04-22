@@ -14,11 +14,9 @@
 
       var message = res.match[1];
 
-
       httpRequest().doGET(message).then(function (response) {
         if (response) {
           if (response.status == "success") {
-
 
             // Wrap the message into 'attachments' so that slack channel could process it.
             msg =
@@ -33,7 +31,6 @@
 
             return res.send(msg);
           }
-
         }
       });
 
@@ -43,7 +40,6 @@
 }).call(this);
 
 ///
-
 
 // Connect to JIRA through httprequest
 
