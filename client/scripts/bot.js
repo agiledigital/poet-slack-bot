@@ -14,10 +14,24 @@
 
       var message = res.match[1];
 
+
       httpRequest().doGET(message).then(function (response) {
         if (response) {
           if (response.status == "success") {
-            return res.send("@" + res.envelope.user.name + " " + response.message);
+
+
+            // Wrap the message into 'attachments' so that slack channel could process it.
+            msg =
+            {
+              "attachments": [
+              {
+                'title' : "@" + res.envelope.user.name,
+                "text": response.message
+              }
+            ]
+            }
+
+            return res.send(msg);
           }
 
         }
