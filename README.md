@@ -3,8 +3,8 @@
 ## **POET is an intelligent Slack-Bot that knows more about your JIRA project than anybody else on the team!**
 
 ### Example
-
-<img width="600" src="https://lh3.googleusercontent.com/AgAYYDDBw6IYN0CtirUlxy2IrlH4hVsyc3PIRudDBUya2xcwBx5mRj4ImO61DPcNlskP69syoi2afsdvbTlE9cua0n6r29fzUQMYbSpWR-_adCYpqfF0bGkrIM9f5OFsdAVru8qS0XwrIDERwirzf6mmbrhs4V3UEjNIricf4s75Ro4tMTgSOXneBn3XxcQLVMquPDcgIvzfkxhkzXOFD2Zd90xnuFZc8tFWBTzTzDIerTAUW8ubl7lvXLcQnEDv1pjZgDkODUsSzdlCHBWBMoDdOAslP60xXS8T8gfb2aRB1dlqOQciU9_tOTdI_CauqZEZeLE4_XIKLRl1lvq50zjmRypard4GVsFXstZIdtkgmcKsy5pDQbyGusAkuozjXPSoRP_xGdvWES9E9zPF4kY1FBpWO720yo6on_1IqFHSOtZq-KGhv_Pcy1lQLyHAy_kCImK2F2GACTsF-qjKFjS7PMdpw9oGM85T5xMsl2GtAsh9dweqwo_g34ol9QqeBEY6jYrGqD6FZIgRzCeJPuw4pmGS5XJCpmzE8AD5R2tbiMjixJy3WzySPE1Pb9P09EiNdaHTVCZKU0PTVuNF5W8KsFW3P0KD4k4O1xY4jICsbyI=w1459-h781-no">
+ 
+  <img width="600" src="https://lh3.googleusercontent.com/AgAYYDDBw6IYN0CtirUlxy2IrlH4hVsyc3PIRudDBUya2xcwBx5mRj4ImO61DPcNlskP69syoi2afsdvbTlE9cua0n6r29fzUQMYbSpWR-_adCYpqfF0bGkrIM9f5OFsdAVru8qS0XwrIDERwirzf6mmbrhs4V3UEjNIricf4s75Ro4tMTgSOXneBn3XxcQLVMquPDcgIvzfkxhkzXOFD2Zd90xnuFZc8tFWBTzTzDIerTAUW8ubl7lvXLcQnEDv1pjZgDkODUsSzdlCHBWBMoDdOAslP60xXS8T8gfb2aRB1dlqOQciU9_tOTdI_CauqZEZeLE4_XIKLRl1lvq50zjmRypard4GVsFXstZIdtkgmcKsy5pDQbyGusAkuozjXPSoRP_xGdvWES9E9zPF4kY1FBpWO720yo6on_1IqFHSOtZq-KGhv_Pcy1lQLyHAy_kCImK2F2GACTsF-qjKFjS7PMdpw9oGM85T5xMsl2GtAsh9dweqwo_g34ol9QqeBEY6jYrGqD6FZIgRzCeJPuw4pmGS5XJCpmzE8AD5R2tbiMjixJy3WzySPE1Pb9P09EiNdaHTVCZKU0PTVuNF5W8KsFW3P0KD4k4O1xY4jICsbyI=w1459-h781-no">
 
 ### Motivation
 This project was proposed and supported by [Agile Digital](https://agiledigital.com.au/) as part of the Australian National University's TechLauncher initiative.
@@ -16,6 +16,8 @@ This project was proposed and supported by [Agile Digital](https://agiledigital.
 
 * Donwload and install [Node.js](https://nodejs.org/en/)
 
+* Download and install [Docker](https://www.docker.com/).
+
 #### Get a hubot API token from Slack for your team 
 First, go to [the Slack Apps&Configurations for Hubot](https://slack.com/apps/A0F7XDU93-hubot) and sign to the Slack team you want our bot to be added to.
 
@@ -25,7 +27,35 @@ Then creat a new hubot configuration by giving the bot a name, then your own hub
 
  <img width="500" alt="addhubotconfiguration" src="https://cloud.githubusercontent.com/assets/20938140/25310179/0566bac4-2822-11e7-98c7-53d3b162f452.jpg"> 
  
-Now you can invite the bot to the channel you want, but the bot is inactive and cannot speak at the moment. Follow the steps below to make it alive!
+Now you can invite the bot to the channel you want, but the bot is inactive and cannot speak at the moment. Follow the next steps to make it alive!
+
+#### Set up a database to store questions
+1. To host PSQL on local host (required to do only the first time)
+`docker run -p 5432:5432 --name postgres -e POSTGRES_PASSWORD=password -d postgres`
+
+2. Then start the postgres before running POET
+`docker start postgres`
+
+3. To alter the database
+`docker exec -it postgres bash`
+
+4. To enter psql using -U postgres
+`psql -U postgres`
+
+5. To create a database
+`postgres=# CREATE DATABASE database_name_here`
+
+6. To create a user
+`postgres=# Create USER WITH PASSWORD 'user_password_here`
+
+7. To set or change the owner of the database
+ `postgres=# ALTER DATABASE database_name_here OWNER TO user_name_here'`
+
+#### Import POET to LUIS 
+
+This part is for people who want to develop future features based on POET. If you just want to try the current features of POET, please skip it.
+
+Import POET into [LUIS](https://www.luis.ai/home/index) and train it. A good tutorial can be found on [LUIS's homepage](https://www.luis.ai/home/index).
 
 ### Configuration
 --- 
@@ -34,6 +64,19 @@ Set-up environment variables for your Atlassian JIRA instance:
 1. JIRA\_USERNAME = "JIRA username"
 2. JIRA\_PASSWORD = "JIRA password" (Your password will not be visible to other users or developers).
 3. JIRA\_BASE\_URL = "JIRA server domain"
+
+Set-up environment variables for Postgress Database:
+
+1. export  DB_HOST = "database host"
+2. export  DB_NAME = "database name"
+3. export  DB_USERNAME = "database username"
+4. export  DB_PASSWORD= "database password"
+
+Set-up environment variables for LUIS: (For people who want to develop future features based on POET)
+
+1. export LUIS_URL = "LUIS app url"
+2. export LUIS_APPID = "LUIS app id"
+3. export LUIS_SUBSCRIPTION_KEY = "LUIS subscription key"
 
 ### Installation
 ---
