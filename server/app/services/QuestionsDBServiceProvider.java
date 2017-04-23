@@ -1,4 +1,4 @@
-package services.questions;
+package services;
 
 import dao.QuestionsDao;
 import services.models.UserQuestion;
@@ -6,7 +6,7 @@ import services.models.UserQuestion;
 /**
  * Created by sabinapokhrel on 3/29/17.
  */
-public class QuestionService {
+public class QuestionsDBServiceProvider {
 
   /** This methos gets all the questions from the database
    *
@@ -26,6 +26,5 @@ public class QuestionService {
     UserQuestion userQuestion = new UserQuestion(question);
     QuestionsDao questionsDao = new QuestionsDao();
     questionsDao.addQuestion(userQuestion);
-
   }
 }
