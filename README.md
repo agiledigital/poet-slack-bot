@@ -4,7 +4,7 @@
 
 ### Example
  
-<img src="https://lh3.googleusercontent.com/AgAYYDDBw6IYN0CtirUlxy2IrlH4hVsyc3PIRudDBUya2xcwBx5mRj4ImO61DPcNlskP69syoi2afsdvbTlE9cua0n6r29fzUQMYbSpWR-_adCYpqfF0bGkrIM9f5OFsdAVru8qS0XwrIDERwirzf6mmbrhs4V3UEjNIricf4s75Ro4tMTgSOXneBn3XxcQLVMquPDcgIvzfkxhkzXOFD2Zd90xnuFZc8tFWBTzTzDIerTAUW8ubl7lvXLcQnEDv1pjZgDkODUsSzdlCHBWBMoDdOAslP60xXS8T8gfb2aRB1dlqOQciU9_tOTdI_CauqZEZeLE4_XIKLRl1lvq50zjmRypard4GVsFXstZIdtkgmcKsy5pDQbyGusAkuozjXPSoRP_xGdvWES9E9zPF4kY1FBpWO720yo6on_1IqFHSOtZq-KGhv_Pcy1lQLyHAy_kCImK2F2GACTsF-qjKFjS7PMdpw9oGM85T5xMsl2GtAsh9dweqwo_g34ol9QqeBEY6jYrGqD6FZIgRzCeJPuw4pmGS5XJCpmzE8AD5R2tbiMjixJy3WzySPE1Pb9P09EiNdaHTVCZKU0PTVuNF5W8KsFW3P0KD4k4O1xY4jICsbyI=w1459-h781-no">
+  <img width="600" src="https://lh3.googleusercontent.com/AgAYYDDBw6IYN0CtirUlxy2IrlH4hVsyc3PIRudDBUya2xcwBx5mRj4ImO61DPcNlskP69syoi2afsdvbTlE9cua0n6r29fzUQMYbSpWR-_adCYpqfF0bGkrIM9f5OFsdAVru8qS0XwrIDERwirzf6mmbrhs4V3UEjNIricf4s75Ro4tMTgSOXneBn3XxcQLVMquPDcgIvzfkxhkzXOFD2Zd90xnuFZc8tFWBTzTzDIerTAUW8ubl7lvXLcQnEDv1pjZgDkODUsSzdlCHBWBMoDdOAslP60xXS8T8gfb2aRB1dlqOQciU9_tOTdI_CauqZEZeLE4_XIKLRl1lvq50zjmRypard4GVsFXstZIdtkgmcKsy5pDQbyGusAkuozjXPSoRP_xGdvWES9E9zPF4kY1FBpWO720yo6on_1IqFHSOtZq-KGhv_Pcy1lQLyHAy_kCImK2F2GACTsF-qjKFjS7PMdpw9oGM85T5xMsl2GtAsh9dweqwo_g34ol9QqeBEY6jYrGqD6FZIgRzCeJPuw4pmGS5XJCpmzE8AD5R2tbiMjixJy3WzySPE1Pb9P09EiNdaHTVCZKU0PTVuNF5W8KsFW3P0KD4k4O1xY4jICsbyI=w1459-h781-no">
 
 ### Motivation
 This project was proposed and supported by [Agile Digital](https://agiledigital.com.au/) as part of the Australian National University's TechLauncher initiative.
@@ -30,33 +30,26 @@ Then creat a new hubot configuration by giving the bot a name, then your own hub
 Now you can invite the bot to the channel you want, but the bot is inactive and cannot speak at the moment. Follow the next steps to make it alive!
 
 #### Set up a database to store questions
-1. To host PSQL on local host using Docker(required to do only the first time)
-
-   `docker run -p 5432:5432 --name postgres -e POSTGRES_PASSWORD=password -d postgres`
+1. To host PSQL on local host (required to do only the first time)
+`docker run -p 5432:5432 --name postgres -e POSTGRES_PASSWORD=password -d postgres`
 
 2. Then start the postgres before running POET
-
-   `docker start postgres`
+`docker start postgres`
 
 3. To alter the database
-
-   `docker exec -it postgres bash`
+`docker exec -it postgres bash`
 
 4. To enter psql using -U postgres
-
-   `psql -U postgres`
+`psql -U postgres`
 
 5. To create a database
-
-   `postgres=# CREATE DATABASE database_name_here`
+`postgres=# CREATE DATABASE database_name_here`
 
 6. To create a user
-
-   `postgres=# Create USER user_name_here WITH PASSWORD 'user_password_here'`
+`postgres=# Create USER WITH PASSWORD 'user_password_here`
 
 7. To set or change the owner of the database
- 
-    `postgres=# ALTER DATABASE database_name_here OWNER TO user_name_here`
+ `postgres=# ALTER DATABASE database_name_here OWNER TO user_name_here'`
 
 #### Import POET to LUIS 
 
@@ -74,36 +67,33 @@ Set-up environment variables for your Atlassian JIRA instance:
 
 Set-up environment variables for Postgress Database:
 
-1. DB_HOST = "database host"
-2. DB_NAME = "database name"
-3. DB_USERNAME = "database username"
-4. DB_PASSWORD= "database password"
+1. export  DB_HOST = "database host"
+2. export  DB_NAME = "database name"
+3. export  DB_USERNAME = "database username"
+4. export  DB_PASSWORD= "database password"
 
-Set-up environment variables for LUIS:
+Set-up environment variables for LUIS: (For people who want to develop future features based on POET)
 
-1. LUIS_URL = "LUIS app url"
-2. LUIS_APPID = "LUIS app id"
-3. LUIS_SUBSCRIPTION_KEY = "LUIS subscription key"
+1. export LUIS_URL = "LUIS app url"
+2. export LUIS_APPID = "LUIS app id"
+3. export LUIS_SUBSCRIPTION_KEY = "LUIS subscription key"
 
 ### Installation
 ---
-1. Create a new directory and do a git clone using command-line.
+1. Create a new directory and do a git clone 
+``git clone https://github.com/agiledigital/poet-slack-bot``
 
-    ``git clone https://github.com/agiledigital/poet-slack-bot``
+2. Enter into the server directory of poet-slack-bot and run the activator 
+``activator run``
 
-2. From your command-line, go to the server directory from the directory where you have cloned the project and run the activator by using the following line.
-
-    ``activator run``
-
-3. Go back the client directory of the directory where you have cloned the project and run the hubot using the following code. Make sure to replace YOUR_HUBOT_SLACK_API_TOKEN_HERE with the API token obtained in the previous step.
-
-    `HUBOT_SLACK_TOKEN=YOUR_HUBOT_SLACK_API_TOKEN_HERE ./bin/hubot --adapter slack`
+3. Go back to poet-slack-bot directory, enter into the client directory and run the hubot
+`HUBOT_SLACK_TOKEN=YOUR_HUBOT_SLACK_API_TOKEN_HERE ./bin/hubot --adapter slack`
 
 ### Getting Started
 ---
 After successfully running the client side and server side, the bot is now active in your channel. Let's have a conversation with it!
 
-Here are some examples questions you can try asking the bot:
+Here are some examples you can play with:
 
   - To Ask the bot for the description of a ticket in your project
     <img width="600" alt="ticketdescription" src="https://cloud.githubusercontent.com/assets/20938140/25305111/e08a5328-27b8-11e7-8534-9d3e3f4b32b3.jpg"> 
@@ -126,49 +116,28 @@ Here are some examples questions you can try asking the bot:
 Here is a list of features that were already developed.
 
    1. Say hi to POET, then it will introduce itself to you.
-   
-<img width="400" alt="sayhi" src="https://cloud.githubusercontent.com/assets/20938140/25305387/a01f953c-27bd-11e7-97d3-e881e8b76f55.png">
+    <img width="400" alt="sayhi" src="https://cloud.githubusercontent.com/assets/20938140/25305387/a01f953c-27bd-11e7-97d3-e881e8b76f55.png">
 
    2. POET is now able to fetch three types of information of project from JIRA:
    
-   
        1. To know the description of a ticket, there are various question forms the users can ask the bot. The example below shows the query about the description of a ticket, for example, POET-45, which is a ticket in POET project.
-       
-       
-       <img width="400" alt="questionformsdescription1" src="https://cloud.githubusercontent.com/assets/20938140/25305389/aacc3526-27bd-11e7-88d2-4381f1af8a6b.png">
-       
-       
-       <img width="400" alt="questionsformsdescription2" src="https://cloud.githubusercontent.com/assets/20938140/25305391/b0e5ac12-27bd-11e7-9911-ea64e67ce85d.png">
-       
-       
-       <img width="400" alt="questionsformsdescription3" src="https://cloud.githubusercontent.com/assets/20938140/25305392/b11813d2-27bd-11e7-93b7-0ca7d506fc07.png"> 
-       
+        <img width="400" alt="questionformsdescription1" src="https://cloud.githubusercontent.com/assets/20938140/25305389/aacc3526-27bd-11e7-88d2-4381f1af8a6b.png">
+        <img width="400" alt="questionsformsdescription2" src="https://cloud.githubusercontent.com/assets/20938140/25305391/b0e5ac12-27bd-11e7-9911-ea64e67ce85d.png">
+        <img width="400" alt="questionsformsdescription3" src="https://cloud.githubusercontent.com/assets/20938140/25305392/b11813d2-27bd-11e7-93b7-0ca7d506fc07.png">
         
        2. When it comes to the assignee of a ticket, there are also various forms of questions the users can ask the bot. The snapshot below demonstrates the query about the assignee of a ticket, for example, POET-5, which is aslo a ticket in POET project.
-       
-       
         <img width="400" alt="questionsformsassignee" src="https://cloud.githubusercontent.com/assets/20938140/25305401/c9bc9480-27bd-11e7-8baa-d52f4d3657bc.png">
         
-        
        3. POET can also understand the query about the status of a ticket in various forms and fetch the status information about the ticket.
-       
-       <img width="400" alt="ticketstatus" src="https://cloud.githubusercontent.com/assets/20938140/25305402/d2d1c464-27bd-11e7-9e67-1f5083751442.png">
-  
+        <img width="400" alt="ticketstatus" src="https://cloud.githubusercontent.com/assets/20938140/25305402/d2d1c464-27bd-11e7-9e67-1f5083751442.png">
   
    3. When POET cannot understand a question or cannot find the information, it will reply the users.
-   
-   
-   <img width="400" alt="cannotfindissu" src="https://cloud.githubusercontent.com/assets/20938140/25305408/e82b15c2-27bd-11e7-9b1c-01e3c12e6acb.png">
-   
-   <img width="400" alt="cannotunderstandissue" src="https://cloud.githubusercontent.com/assets/20938140/25305412/f14f655e-27bd-11e7-9c64-853bbde02ed1.png">
-   
+    <img width="400" alt="cannotfindissu" src="https://cloud.githubusercontent.com/assets/20938140/25305408/e82b15c2-27bd-11e7-9b1c-01e3c12e6acb.png">
+    <img width="400" alt="cannotunderstandissue" src="https://cloud.githubusercontent.com/assets/20938140/25305412/f14f655e-27bd-11e7-9c64-853bbde02ed1.png">
    
    4. POET is able to store all the questions the users asked in database, which will help improve it’s performance through later analysing and training with the dataset.
-   
-   
-   <img width="400" alt="storequestions" src="https://cloud.githubusercontent.com/assets/20938140/25305416/fc65afa2-27bd-11e7-9a92-904269d754ff.png">
-
-
+    <img width="400" alt="questionlist" src="https://cloud.githubusercontent.com/assets/20938140/25312816/a66086d8-2865-11e7-84a0-695218e8e8ef.jpg">
+    
 ### Future Features
 ---
 
@@ -181,27 +150,18 @@ There are two steps to improve the intelligence of the bot:
 After collecting the feedback, we sort out a list of features which are worth to develop in the future as shown below. Basically the features can be divided into two groups:
 
 1. Incorporate more questions for fetching information from JIRA:
-
-   i. _What are the tickets in progress/stalled/completed?_
- 
-   ii. _What tickets need testing?_
- 
-   iii. _What are the tickets I'm working on?_
- 
-   iv. _How long has the issue has been stalled?_
- 
-   v. _Show me the changes since yesterday._
- 
+       * _What are the tickets in progress/stalled/completed?_
+       * _What tickets need testing?_
+       * _What are the tickets I'm working on?_              
+       * _How long has the issue has been stalled?_         
+       * _Show me the changes since yesterday._             
 
 2. Incorporate questions for modifying information on JIRA:
-
-   i. _Please stall YOUR_TICKET_KEY_HERE_
- 
-   ii. _Please move YOUR_TICKET_KEY_HERE to completed_
- 
-   iii. _Can you resolve all sub-tasks of POET-1?_
- 
-   iv. _Please assign YOUR_TICKET_KEY_HERE to YOUR_TEAM_MEMBER_NAME_HERE._
+       * _Please stall YOUR_TICKET_KEY_HERE_
+       * _Please move YOUR_TICKET_KEY_HERE to completed_
+       * _Can you resolve all sub-tasks of POET-1?_
+       * _Please assign YOUR_TICKET_KEY_HERE to YOUR_TEAM_MEMBER_NAME_HERE._
+   
 
 
 ### Contributors
