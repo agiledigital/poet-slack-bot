@@ -2,6 +2,8 @@
 ---
 ## **POET is an intelligent Slack-Bot that knows more about your JIRA project than anybody else on the team!**
 
+### Check out this [video](https://www.youtube.com/watch?v=Q3kgCzHBq7M&ab_channel=QinTian) to get an idea of the POET project. 
+
 ### Example
  
 <img src="https://lh3.googleusercontent.com/AgAYYDDBw6IYN0CtirUlxy2IrlH4hVsyc3PIRudDBUya2xcwBx5mRj4ImO61DPcNlskP69syoi2afsdvbTlE9cua0n6r29fzUQMYbSpWR-_adCYpqfF0bGkrIM9f5OFsdAVru8qS0XwrIDERwirzf6mmbrhs4V3UEjNIricf4s75Ro4tMTgSOXneBn3XxcQLVMquPDcgIvzfkxhkzXOFD2Zd90xnuFZc8tFWBTzTzDIerTAUW8ubl7lvXLcQnEDv1pjZgDkODUsSzdlCHBWBMoDdOAslP60xXS8T8gfb2aRB1dlqOQciU9_tOTdI_CauqZEZeLE4_XIKLRl1lvq50zjmRypard4GVsFXstZIdtkgmcKsy5pDQbyGusAkuozjXPSoRP_xGdvWES9E9zPF4kY1FBpWO720yo6on_1IqFHSOtZq-KGhv_Pcy1lQLyHAy_kCImK2F2GACTsF-qjKFjS7PMdpw9oGM85T5xMsl2GtAsh9dweqwo_g34ol9QqeBEY6jYrGqD6FZIgRzCeJPuw4pmGS5XJCpmzE8AD5R2tbiMjixJy3WzySPE1Pb9P09EiNdaHTVCZKU0PTVuNF5W8KsFW3P0KD4k4O1xY4jICsbyI=w1459-h781-no">
