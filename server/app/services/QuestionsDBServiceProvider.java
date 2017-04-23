@@ -14,7 +14,7 @@ public class QuestionsDBServiceProvider {
    */
   public String getAllStoredQuestions() {
     QuestionsDao questionsDao = new QuestionsDao();
-    String storedQuestions = questionsDao.getQuestions().replace("[", "Here is a list of all saved questions:\n").replaceAll(",", "\n•").replace("]","");
+    String storedQuestions = questionsDao.getQuestions().replace("[", "Here is a list of all saved questions:\n• ").replaceAll(",", "\n•").replace("]","");
     return storedQuestions;
   }
 
