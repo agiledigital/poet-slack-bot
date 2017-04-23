@@ -32,31 +32,31 @@ Now you can invite the bot to the channel you want, but the bot is inactive and 
 #### Set up a database to store questions
 1. To host PSQL on local host using Docker(required to do only the first time)
 
- `docker run -p 5432:5432 --name postgres -e POSTGRES_PASSWORD=password -d postgres`
+   `docker run -p 5432:5432 --name postgres -e POSTGRES_PASSWORD=password -d postgres`
 
 2. Then start the postgres before running POET
 
- `docker start postgres`
+   `docker start postgres`
 
 3. To alter the database
 
- `docker exec -it postgres bash`
+   `docker exec -it postgres bash`
 
 4. To enter psql using -U postgres
 
- `psql -U postgres`
+   `psql -U postgres`
 
 5. To create a database
 
- `postgres=# CREATE DATABASE database_name_here`
+   `postgres=# CREATE DATABASE database_name_here`
 
 6. To create a user
 
- `postgres=# Create USER user_name_here WITH PASSWORD 'user_password_here'`
+   `postgres=# Create USER user_name_here WITH PASSWORD 'user_password_here'`
 
 7. To set or change the owner of the database
  
-  `postgres=# ALTER DATABASE database_name_here OWNER TO user_name_here`
+    `postgres=# ALTER DATABASE database_name_here OWNER TO user_name_here`
 
 #### Import POET to LUIS 
 
@@ -89,15 +89,15 @@ Set-up environment variables for LUIS:
 ---
 1. Create a new directory and do a git clone using command-line.
 
-``git clone https://github.com/agiledigital/poet-slack-bot``
+    ``git clone https://github.com/agiledigital/poet-slack-bot``
 
 2. From your command-line, go to the server directory from the directory where you have cloned the project and run the activator by using the following line.
 
-``activator run``
+    ``activator run``
 
 3. Go back the client directory of the directory where you have cloned the project and run the hubot using the following code. Make sure to replace YOUR_HUBOT_SLACK_API_TOKEN_HERE with the API token obtained in the previous step.
 
-`HUBOT_SLACK_TOKEN=YOUR_HUBOT_SLACK_API_TOKEN_HERE ./bin/hubot --adapter slack`
+    `HUBOT_SLACK_TOKEN=YOUR_HUBOT_SLACK_API_TOKEN_HERE ./bin/hubot --adapter slack`
 
 ### Getting Started
 ---
@@ -163,26 +163,26 @@ After collecting the feedback, we sort out a list of features which are worth to
 
 1. Incorporate more questions for fetching information from JIRA:
 
- i. _What are the tickets in progress/stalled/completed?_
+   i. _What are the tickets in progress/stalled/completed?_
  
- ii. _What tickets need testing?_
+   ii. _What tickets need testing?_
  
- iii. _What are the tickets I'm working on?_
+   iii. _What are the tickets I'm working on?_
  
- iv. _How long has the issue has been stalled?_
+   iv. _How long has the issue has been stalled?_
  
- v. _Show me the changes since yesterday._
+   v. _Show me the changes since yesterday._
  
 
 2. Incorporate questions for modifying information on JIRA:
 
- i. _Please stall YOUR_TICKET_KEY_HERE_
+   i. _Please stall YOUR_TICKET_KEY_HERE_
  
- ii. _Please move YOUR_TICKET_KEY_HERE to completed_
+   ii. _Please move YOUR_TICKET_KEY_HERE to completed_
  
- iii. _Can you resolve all sub-tasks of POET-1?_
+   iii. _Can you resolve all sub-tasks of POET-1?_
  
- iv. _Please assign YOUR_TICKET_KEY_HERE to YOUR_TEAM_MEMBER_NAME_HERE._
+   iv. _Please assign YOUR_TICKET_KEY_HERE to YOUR_TEAM_MEMBER_NAME_HERE._
 
 
 ### Contributors
