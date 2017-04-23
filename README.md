@@ -4,7 +4,7 @@
 
 ### Example
  
-  <img width="600" src="https://lh3.googleusercontent.com/AgAYYDDBw6IYN0CtirUlxy2IrlH4hVsyc3PIRudDBUya2xcwBx5mRj4ImO61DPcNlskP69syoi2afsdvbTlE9cua0n6r29fzUQMYbSpWR-_adCYpqfF0bGkrIM9f5OFsdAVru8qS0XwrIDERwirzf6mmbrhs4V3UEjNIricf4s75Ro4tMTgSOXneBn3XxcQLVMquPDcgIvzfkxhkzXOFD2Zd90xnuFZc8tFWBTzTzDIerTAUW8ubl7lvXLcQnEDv1pjZgDkODUsSzdlCHBWBMoDdOAslP60xXS8T8gfb2aRB1dlqOQciU9_tOTdI_CauqZEZeLE4_XIKLRl1lvq50zjmRypard4GVsFXstZIdtkgmcKsy5pDQbyGusAkuozjXPSoRP_xGdvWES9E9zPF4kY1FBpWO720yo6on_1IqFHSOtZq-KGhv_Pcy1lQLyHAy_kCImK2F2GACTsF-qjKFjS7PMdpw9oGM85T5xMsl2GtAsh9dweqwo_g34ol9QqeBEY6jYrGqD6FZIgRzCeJPuw4pmGS5XJCpmzE8AD5R2tbiMjixJy3WzySPE1Pb9P09EiNdaHTVCZKU0PTVuNF5W8KsFW3P0KD4k4O1xY4jICsbyI=w1459-h781-no">
+<img src="https://lh3.googleusercontent.com/AgAYYDDBw6IYN0CtirUlxy2IrlH4hVsyc3PIRudDBUya2xcwBx5mRj4ImO61DPcNlskP69syoi2afsdvbTlE9cua0n6r29fzUQMYbSpWR-_adCYpqfF0bGkrIM9f5OFsdAVru8qS0XwrIDERwirzf6mmbrhs4V3UEjNIricf4s75Ro4tMTgSOXneBn3XxcQLVMquPDcgIvzfkxhkzXOFD2Zd90xnuFZc8tFWBTzTzDIerTAUW8ubl7lvXLcQnEDv1pjZgDkODUsSzdlCHBWBMoDdOAslP60xXS8T8gfb2aRB1dlqOQciU9_tOTdI_CauqZEZeLE4_XIKLRl1lvq50zjmRypard4GVsFXstZIdtkgmcKsy5pDQbyGusAkuozjXPSoRP_xGdvWES9E9zPF4kY1FBpWO720yo6on_1IqFHSOtZq-KGhv_Pcy1lQLyHAy_kCImK2F2GACTsF-qjKFjS7PMdpw9oGM85T5xMsl2GtAsh9dweqwo_g34ol9QqeBEY6jYrGqD6FZIgRzCeJPuw4pmGS5XJCpmzE8AD5R2tbiMjixJy3WzySPE1Pb9P09EiNdaHTVCZKU0PTVuNF5W8KsFW3P0KD4k4O1xY4jICsbyI=w1459-h781-no">
 
 ### Motivation
 This project was proposed and supported by [Agile Digital](https://agiledigital.com.au/) as part of the Australian National University's TechLauncher initiative.
@@ -131,23 +131,42 @@ Here is a list of features that were already developed.
 
    2. POET is now able to fetch three types of information of project from JIRA:
    
+   
        1. To know the description of a ticket, there are various question forms the users can ask the bot. The example below shows the query about the description of a ticket, for example, POET-45, which is a ticket in POET project.
+       
+       
        <img width="400" alt="questionformsdescription1" src="https://cloud.githubusercontent.com/assets/20938140/25305389/aacc3526-27bd-11e7-88d2-4381f1af8a6b.png">
+       
+       
        <img width="400" alt="questionsformsdescription2" src="https://cloud.githubusercontent.com/assets/20938140/25305391/b0e5ac12-27bd-11e7-9911-ea64e67ce85d.png">
+       
+       
        <img width="400" alt="questionsformsdescription3" src="https://cloud.githubusercontent.com/assets/20938140/25305392/b11813d2-27bd-11e7-93b7-0ca7d506fc07.png"> 
+       
         
        2. When it comes to the assignee of a ticket, there are also various forms of questions the users can ask the bot. The snapshot below demonstrates the query about the assignee of a ticket, for example, POET-5, which is aslo a ticket in POET project.
+       
+       
         <img width="400" alt="questionsformsassignee" src="https://cloud.githubusercontent.com/assets/20938140/25305401/c9bc9480-27bd-11e7-8baa-d52f4d3657bc.png">
         
+        
        3. POET can also understand the query about the status of a ticket in various forms and fetch the status information about the ticket.
-<img width="400" alt="ticketstatus" src="https://cloud.githubusercontent.com/assets/20938140/25305402/d2d1c464-27bd-11e7-9e67-1f5083751442.png">
+       
+       <img width="400" alt="ticketstatus" src="https://cloud.githubusercontent.com/assets/20938140/25305402/d2d1c464-27bd-11e7-9e67-1f5083751442.png">
+  
   
    3. When POET cannot understand a question or cannot find the information, it will reply the users.
-<img width="400" alt="cannotfindissu" src="https://cloud.githubusercontent.com/assets/20938140/25305408/e82b15c2-27bd-11e7-9b1c-01e3c12e6acb.png">
-<img width="400" alt="cannotunderstandissue" src="https://cloud.githubusercontent.com/assets/20938140/25305412/f14f655e-27bd-11e7-9c64-853bbde02ed1.png">
+   
+   
+   <img width="400" alt="cannotfindissu" src="https://cloud.githubusercontent.com/assets/20938140/25305408/e82b15c2-27bd-11e7-9b1c-01e3c12e6acb.png">
+   
+   <img width="400" alt="cannotunderstandissue" src="https://cloud.githubusercontent.com/assets/20938140/25305412/f14f655e-27bd-11e7-9c64-853bbde02ed1.png">
+   
    
    4. POET is able to store all the questions the users asked in database, which will help improve it’s performance through later analysing and training with the dataset.
-<img width="400" alt="storequestions" src="https://cloud.githubusercontent.com/assets/20938140/25305416/fc65afa2-27bd-11e7-9a92-904269d754ff.png">
+   
+   
+   <img width="400" alt="storequestions" src="https://cloud.githubusercontent.com/assets/20938140/25305416/fc65afa2-27bd-11e7-9a92-904269d754ff.png">
 
 
 ### Future Features
