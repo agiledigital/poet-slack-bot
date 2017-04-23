@@ -216,6 +216,9 @@ Team Members:
 - [Sabina Pokhrel](https://np.linkedin.com/in/sabinapokhrel)
 - Xu Wang
 
+### Support
+Contact poet-dev@hotmail.com.
+
 ### Acknowledgements
 The authors would like to thank [Agile Digital](http://www.agiledigital.com.au/) for the proposal and guidance.
 
