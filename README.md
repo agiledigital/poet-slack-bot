@@ -4,7 +4,7 @@
 
 ### Example
 
-<img src="https://lh3.googleusercontent.com/AgAYYDDBw6IYN0CtirUlxy2IrlH4hVsyc3PIRudDBUya2xcwBx5mRj4ImO61DPcNlskP69syoi2afsdvbTlE9cua0n6r29fzUQMYbSpWR-_adCYpqfF0bGkrIM9f5OFsdAVru8qS0XwrIDERwirzf6mmbrhs4V3UEjNIricf4s75Ro4tMTgSOXneBn3XxcQLVMquPDcgIvzfkxhkzXOFD2Zd90xnuFZc8tFWBTzTzDIerTAUW8ubl7lvXLcQnEDv1pjZgDkODUsSzdlCHBWBMoDdOAslP60xXS8T8gfb2aRB1dlqOQciU9_tOTdI_CauqZEZeLE4_XIKLRl1lvq50zjmRypard4GVsFXstZIdtkgmcKsy5pDQbyGusAkuozjXPSoRP_xGdvWES9E9zPF4kY1FBpWO720yo6on_1IqFHSOtZq-KGhv_Pcy1lQLyHAy_kCImK2F2GACTsF-qjKFjS7PMdpw9oGM85T5xMsl2GtAsh9dweqwo_g34ol9QqeBEY6jYrGqD6FZIgRzCeJPuw4pmGS5XJCpmzE8AD5R2tbiMjixJy3WzySPE1Pb9P09EiNdaHTVCZKU0PTVuNF5W8KsFW3P0KD4k4O1xY4jICsbyI=w1459-h781-no">
+<img width="600" src="https://lh3.googleusercontent.com/AgAYYDDBw6IYN0CtirUlxy2IrlH4hVsyc3PIRudDBUya2xcwBx5mRj4ImO61DPcNlskP69syoi2afsdvbTlE9cua0n6r29fzUQMYbSpWR-_adCYpqfF0bGkrIM9f5OFsdAVru8qS0XwrIDERwirzf6mmbrhs4V3UEjNIricf4s75Ro4tMTgSOXneBn3XxcQLVMquPDcgIvzfkxhkzXOFD2Zd90xnuFZc8tFWBTzTzDIerTAUW8ubl7lvXLcQnEDv1pjZgDkODUsSzdlCHBWBMoDdOAslP60xXS8T8gfb2aRB1dlqOQciU9_tOTdI_CauqZEZeLE4_XIKLRl1lvq50zjmRypard4GVsFXstZIdtkgmcKsy5pDQbyGusAkuozjXPSoRP_xGdvWES9E9zPF4kY1FBpWO720yo6on_1IqFHSOtZq-KGhv_Pcy1lQLyHAy_kCImK2F2GACTsF-qjKFjS7PMdpw9oGM85T5xMsl2GtAsh9dweqwo_g34ol9QqeBEY6jYrGqD6FZIgRzCeJPuw4pmGS5XJCpmzE8AD5R2tbiMjixJy3WzySPE1Pb9P09EiNdaHTVCZKU0PTVuNF5W8KsFW3P0KD4k4O1xY4jICsbyI=w1459-h781-no">
 
 ### Motivation
 This project was proposed and supported by [Agile Digital](https://agiledigital.com.au/) as part of the Australian National University's TechLauncher initiative.
@@ -12,23 +12,20 @@ This project was proposed and supported by [Agile Digital](https://agiledigital.
 ### Preparation
 ---
 #### Install the following packages
-- Download Activator from [Lightbend](https://www.lightbend.com/activator/download) and add Activator to your PATH.
-For MAC, add this line to your .bash_profile file ``PATH=$PATH:/Users/yourname/~/ACTIVATOR_PACKAGE_NAME_HERE/bin``
-- Donwload and install Node.js from [Node.js](https://nodejs.org/en/)
+* Download [Activator](https://www.lightbend.com/activator/download) and add it to your PATH.
+
+* Donwload and install [Node.js](https://nodejs.org/en/)
 
 #### Get a hubot API token from Slack for your team 
-1. Go to https://slack.com/apps/A0F7XDU93-hubot and sign to the Slack team you want our bot to be added to.
-2. Creat a new hubot configuration, then your own hubot-slack API token is generated. You can give the bot a name.
-3. Now you can invite the bot to the channel you want, but the bot is inactive and cannot speak at the moment. Follow the steps below to make it alive!
+First, go to [the Slack Apps&Configurations for Hubot](https://slack.com/apps/A0F7XDU93-hubot) and sign to the Slack team you want our bot to be added to.
 
-### Installation
----
-1. Create a new directory and do a git clone 
-``git clone https://github.com/agiledigital/poet-slack-bot``
-2. Enter into the server directory of poet-slack-bot and run the activator 
-``activator run``
-3. Go back to poet-slack-bot directory, enter into the client directory and run the hubot
-`HUBOT_SLACK_TOKEN=YOUR_HUBOT_SLACK_API_TOKEN_HERE ./bin/hubot --adapter slack`
+ <img width="500" alt="hubotconfiguration" src="https://cloud.githubusercontent.com/assets/20938140/25310144/e6efaf34-2820-11e7-807e-dea0a4dce7f4.jpg"> 
+ 
+Then creat a new hubot configuration by giving the bot a name, then your own hubot-slack API token is generated.
+
+ <img width="500" alt="addhubotconfiguration" src="https://cloud.githubusercontent.com/assets/20938140/25310179/0566bac4-2822-11e7-98c7-53d3b162f452.jpg"> 
+ 
+Now you can invite the bot to the channel you want, but the bot is inactive and cannot speak at the moment. Follow the steps below to make it alive!
 
 ### Configuration
 --- 
@@ -37,7 +34,17 @@ Set-up environment variables for your Atlassian JIRA instance:
 1. JIRA\_USERNAME = "JIRA username"
 2. JIRA\_PASSWORD = "JIRA password" (Your password will not be visible to other users or developers).
 3. JIRA\_BASE\_URL = "JIRA server domain"
-4. JIRA\_ENDPOINT\_TICKET = "/rest/api/latest/issue/"
+
+### Installation
+---
+1. Create a new directory and do a git clone 
+``git clone https://github.com/agiledigital/poet-slack-bot``
+
+2. Enter into the server directory of poet-slack-bot and run the activator 
+``activator run``
+
+3. Go back to poet-slack-bot directory, enter into the client directory and run the hubot
+`HUBOT_SLACK_TOKEN=YOUR_HUBOT_SLACK_API_TOKEN_HERE ./bin/hubot --adapter slack`
 
 ### Getting Started
 ---
@@ -45,23 +52,52 @@ After successfully running the client side and server side, the bot is now activ
 
 Here are some examples you can play with:
 
-* To Ask the bot for the description of a ticket in your project 
-            ``@your_bot_name What is the description of YOUR_TICKET_ID_HERE?`` 
-            ``@your_bot_name What is YOUR_TICKET_ID_HERE?``
-            ``@your_bot_name I want to know about YOUR_TICKET_ID_HERE?``
-            ``@your_bot_name Tell me about YOUR_TICKET_ID_HERE.``
-            ``@your_bot_name Description of YOUR_TICKET_ID_HERE.``
-            ``@your_bot_name Describe YOUR_TICKET_ID_HERE?``
-        
+  - To Ask the bot for the description of a ticket in your project
+    <img width="600" alt="ticketdescription" src="https://cloud.githubusercontent.com/assets/20938140/25305111/e08a5328-27b8-11e7-8534-9d3e3f4b32b3.jpg"> 
+    <img width="600" alt="ticketdescription2" src="https://cloud.githubusercontent.com/assets/20938140/25305133/2cb627e0-27b9-11e7-9471-d6de63b19319.jpg"> 
+    <img width="600" alt="ticketdescription3" src="https://cloud.githubusercontent.com/assets/20938140/25305163/a3d3d5de-27b9-11e7-8cef-ce841eda383a.jpg"> 
+    <img width="600" alt="ticketdescription4" src="https://cloud.githubusercontent.com/assets/20938140/25305212/8af5b5fe-27ba-11e7-85eb-9eb2f0a48c68.jpg"> 
+    <img width="600" alt="ticketdescription5" src="https://cloud.githubusercontent.com/assets/20938140/25305213/8bf8905c-27ba-11e7-91b4-cbf61dce9fef.jpg"> 
+    <img width="600" alt="ticketdescription6" src="https://cloud.githubusercontent.com/assets/20938140/25305214/8d4f0558-27ba-11e7-98de-c607626334c8.jpg"> 
          
-* To Ask the bot for the assignee of a ticket in your project
-            ``@your_bot_name Who is the assignee of YOUR_TICKET_ID_HERE?`` 
-            ``@your_bot_name Tell me th assignee of YOUR_TICKET_ID_HERE?``
-            ``@your_bot_name Person working on YOUR_TICKET_ID_HERE?``
-            ``@your_bot_name The assignee of YOUR_TICKET_ID_HERE.``
-            ``@your_bot_name Who is working on YOUR_TICKET_ID_HERE.``
+  - To Ask the bot for the assignee of a ticket in your project
+    <img width="600" alt="assignee" src="https://cloud.githubusercontent.com/assets/20938140/25305260/4fa100a2-27bb-11e7-98e8-4ba8de615462.jpg"> 
+    <img width="600" alt="assignee1" src="https://cloud.githubusercontent.com/assets/20938140/25305261/4fa4dc90-27bb-11e7-91b2-9ce128a7cb93.jpg"> 
+    <img width="600" alt="assignee2" src="https://cloud.githubusercontent.com/assets/20938140/25305262/4fa8c616-27bb-11e7-8f02-4de26eae51af.jpg"> 
+    <img width="600" alt="assignee3" src="https://cloud.githubusercontent.com/assets/20938140/25305263/4fb47768-27bb-11e7-8ed6-cf8948bfa979.jpg"> 
+    <img width="600" alt="assignee4" src="https://cloud.githubusercontent.com/assets/20938140/25305264/4fb802fc-27bb-11e7-8c12-2547403f1b0d.jpg"> 
 
-### Next Steps
+### Current Features
+---
+
+Here is a list of features that were already developed.
+
+   1. Say hi to POET, then it will introduce itself to you.
+    <img width="400" alt="sayhi" src="https://cloud.githubusercontent.com/assets/20938140/25305387/a01f953c-27bd-11e7-97d3-e881e8b76f55.png">
+
+   2. POET is now able to fetch three types of information of project from JIRA:
+   
+       1. To know the description of a ticket, there are various question forms the users can ask the bot. The example below shows the query about the description of a ticket, for example, POET-45, which is a ticket in POET project.
+        <img width="400" alt="questionformsdescription1" src="https://cloud.githubusercontent.com/assets/20938140/25305389/aacc3526-27bd-11e7-88d2-4381f1af8a6b.png">
+        <img width="400" alt="questionsformsdescription2" src="https://cloud.githubusercontent.com/assets/20938140/25305391/b0e5ac12-27bd-11e7-9911-ea64e67ce85d.png">
+        <img width="400" alt="questionsformsdescription3" src="https://cloud.githubusercontent.com/assets/20938140/25305392/b11813d2-27bd-11e7-93b7-0ca7d506fc07.png">
+        
+       2. When it comes to the assignee of a ticket, there are also various forms of questions the users can ask the bot. The snapshot below demonstrates the query about the assignee of a ticket, for example, POET-5, which is aslo a ticket in POET project.
+        <img width="400" alt="questionsformsassignee" src="https://cloud.githubusercontent.com/assets/20938140/25305401/c9bc9480-27bd-11e7-8baa-d52f4d3657bc.png">
+        
+       3. POET can also understand the query about the status of a ticket in various forms and fetch the status information about the ticket.
+        <img width="400" alt="ticketstatus" src="https://cloud.githubusercontent.com/assets/20938140/25305402/d2d1c464-27bd-11e7-9e67-1f5083751442.png">
+  
+   3. When POET cannot understand a question or cannot find the information, it will reply the users.
+    <img width="400" alt="cannotfindissu" src="https://cloud.githubusercontent.com/assets/20938140/25305408/e82b15c2-27bd-11e7-9b1c-01e3c12e6acb.png">
+    <img width="400" alt="cannotunderstandissue" src="https://cloud.githubusercontent.com/assets/20938140/25305412/f14f655e-27bd-11e7-9c64-853bbde02ed1.png">
+   
+   4. POET is able to store all the questions the users asked in database, which will help improve it’s performance through later analysing and training with the dataset.
+    <img width="400" alt="storequestions" src="https://cloud.githubusercontent.com/assets/20938140/25305416/fc65afa2-27bd-11e7-9a92-904269d754ff.png">
+
+
+### Future Features
+---
 
 There are two steps to improve the intelligence of the bot:
 
@@ -72,19 +108,18 @@ There are two steps to improve the intelligence of the bot:
 After collecting the feedback, we sort out a list of features which are worth to develop in the future as shown below. Basically the features can be divided into two groups:
 
 1. Incorporate more questions for fetching information from JIRA:
-    * ``What are the tickets in progress/stalled/completed?``   List all the tickets with the relevant status in JIRA.
-    * ``What tickets need testing?``                            Simply list all the tickets whose status is 'Completed'.
-    * ``What are the tickets I'm working on?``                  List all the in-progress tickets assgined to the asker
-    * ``How long has the issue has been stalled?``              Calculate the duration according to the timeline of the transition activity
-    * ``Show me the changes since yesterday.``                  List all the tickets whose status have changed since yesterday
+       * _What are the tickets in progress/stalled/completed?_
+       * _What tickets need testing?_
+       * _What are the tickets I'm working on?_              
+       * _How long has the issue has been stalled?_         
+       * _Show me the changes since yesterday._             
 
 2. Incorporate questions for modifying information on JIRA:
-    * ``Please stall YOUR_TICKET_KEY_HERE``
-    * ``Please move YOUR_TICKET_KEY_HERE to completed``
-    * ``Can you resolve all sub-tasks of POET-1?``
-    * ``Please assign YOUR_TICKET_KEY_HERE to YOUR_TEAM_MEMBER_NAME_HERE.``
+       * _Please stall YOUR_TICKET_KEY_HERE_
+       * _Please move YOUR_TICKET_KEY_HERE to completed_
+       * _Can you resolve all sub-tasks of POET-1?_
+       * _Please assign YOUR_TICKET_KEY_HERE to YOUR_TEAM_MEMBER_NAME_HERE._
    
-        *There is a two-way communication function in Slack, which allows the users to make a further modification of their command.
 
 
 ### Contributors
@@ -99,8 +134,6 @@ Team Members:
 
 ### Acknowledgements
 The authors would like to thank [Agile Digital](http://www.agiledigital.com.au/) for the proposal and guidance.
-
-To ask questions or report issues please post on Stack Overflow with the tag syntaxnet or open an issue on the tensorflow/models issues tracker. Please assign SyntaxNet issues to @calberti or @andorardo.
 
 ### Licence
 This work is licensed under the Apache License Version 2.0 (APLv2).
