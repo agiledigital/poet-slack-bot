@@ -1,6 +1,8 @@
 package services;
 
 import models.LuisResponse;
+import models.ResponseToClient;
+import play.libs.Json;
 import play.libs.ws.WSClient;
 import play.mvc.Result;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
@@ -45,7 +47,7 @@ public class ServicesManager {
         luisResponse.intent.equals("IssueStatus")) {
         return jiraServiceProvider.readTicket(luisResponse.intent, luisResponse.entityName);
       } else if (luisResponse.intent.equals("AllQuestions")) {
-        return CompletableFuture.supplyAsync(() -> ok(questionsDBServiceProvider.getAllStoredQuestions()));
+        return CompletableFuture.supplyAsync(() -> ok(Json.toJson(new ResponseToClient("success", questionsDBServiceProvider.getAllStoredQuestions()))));
       } else {
         // TODO: updating operations go here
         throw new NotImplementedException();
