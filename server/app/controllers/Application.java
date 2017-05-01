@@ -11,19 +11,19 @@ import java.util.concurrent.CompletionStage;
 
 public class Application extends Controller {
 
-    @Inject
-    WSClient ws;
+  @Inject
+  WSClient ws;
 
-    public Result index() {
-        return ok("Hi!");
-    }
+  public Result index() {
+    return ok("Hi!");
+  }
 
-    public CompletionStage<Result> show(String query)
-            throws IOException, ClassNotFoundException,
-            NoSuchMethodException, InvocationTargetException,
-            IllegalAccessException {
+  public CompletionStage<Result> show(String query)
+    throws IOException, ClassNotFoundException,
+    NoSuchMethodException, InvocationTargetException,
+    IllegalAccessException {
 
-        ServicesManager servicesManager = new ServicesManager(ws);
-        return servicesManager.interpretQueryAndActOnJira(query);
-    }
+    ServicesManager servicesManager = new ServicesManager(ws);
+    return servicesManager.interpretQueryAndActOnJira(query);
+  }
 }

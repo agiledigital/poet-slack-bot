@@ -7,11 +7,13 @@ import play.api.Play;
 
 public class ConfigUtilities {
 
-    private static Configuration configuration = Play.current().injector().instanceOf(Configuration.class);;
+  private static Configuration configuration = Play.current().injector().instanceOf(Configuration.class);
 
-    public static JiraAuth getJiraAuth() {
-        return new JiraAuth(configuration.getString("jira.username"), configuration.getString("jira.password"));
-    }
+  public static JiraAuth getJiraAuth() {
+    return new JiraAuth(configuration.getString("jira.username"), configuration.getString("jira.password"));
+  }
 
-    public static String getString(String name){ return configuration.getString(name); }
+  public static String getString(String name) {
+    return configuration.getString(name);
+  }
 }

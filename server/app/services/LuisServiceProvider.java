@@ -49,13 +49,12 @@ public class LuisServiceProvider {
    * Connects to LuisServiceProvider API using HTTPS request.
    * LuisServiceProvider API processes the query.
    *
-   * @param query
+   * @param query A string showing question asked by user.
    * @return intent and entities as JSON object
    */
   private CompletionStage<JsonNode> fetchLuisApi(String query) {
 
     String luisurl = ConfigUtilities.getString("luis.url");
-    // String appid = ConfigUtilities.getString("luis.appId");
     String key = ConfigUtilities.getString("luis.subscription-key");
 
     WSRequest request = ws.url(luisurl);
@@ -84,7 +83,6 @@ public class LuisServiceProvider {
     } else {
       entityName = null;
       entityType = null;
-      //throw new NullPointerException();
     }
     return new LuisResponse(topScoringIntent, entityType, entityName);
   }
