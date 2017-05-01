@@ -9,18 +9,18 @@ import play.libs.ws.WSClient;
 import play.libs.ws.WSRequest;
 import play.libs.ws.WSResponse;
 import play.mvc.Result;
-import services.JiraInfo;
-import services.Response;
+import services.models.JiraUserCredentials;
+import services.models.BotResponse;
 import services.Utils;
 import services.languageProcessor.Processor;
-
+import services.languageProcessor.TaskMap;
 import java.util.concurrent.CompletionStage;
 
 import static play.mvc.Results.ok;
 
 public class QueryHandler {
   private Configuration configuration = Play.current().injector().instanceOf(Configuration.class);
-  private JiraInfo jiraInfo = Utils.getJiraInfo(configuration);
+  private JiraUserCredentials jiraUserCredentials = Utils.getJiraInfo(configuration);
 
   private String query;
   private WSClient ws;
@@ -52,7 +52,11 @@ public class QueryHandler {
     }
 
     return responsePromise.thenApply(response -> {
-      if(questionMapping != "NoQuestionFound") {
+      if(questionMapping.equals("getQuestions")){
+        System.out.println("Displaying all questions in DB");
+        return ok(processResponse(questionMapping));
+      }
+      else if(questionMapping != "NoQuestionFound") {
         return ok(processResponse(response, questionMapping, ticketNo));
       }
       else {
@@ -66,7 +70,7 @@ public class QueryHandler {
     String[] requestConfig = configTicketRequest();
 
     WSRequest request = ws.url(requestConfig[0] + requestConfig[1] + ticketId);
-    WSRequest complexRequest = request.setAuth(jiraInfo.username, jiraInfo.password, WSAuthScheme.BASIC);
+    WSRequest complexRequest = request.setAuth(jiraUserCredentials.username, jiraUserCredentials.password, WSAuthScheme.BASIC);
 
     return complexRequest.get().thenApply(WSResponse:: asJson);
   }
@@ -91,15 +95,20 @@ public class QueryHandler {
     return jsonNode;
   }
 
+  private JsonNode processResponse(String questionMapping){
+
+    JsonNode jsonNode = null;
+    try {
+      jsonNode = services.languageProcessor.TaskMap.questionMapping(questionMapping);
+    } catch (Exception e){
+      e.getMessage();
+    }
+
+    return jsonNode;
+  }
+
   public JsonNode parseErrorToJson(String message) {
-
-    Response response = new Response();
-    response.status = "fail";
-    response.message = message;
-
-    JsonNode msg = Json.toJson(response);
-
-    return msg;
+    return TaskMap.botResponseToJson("fail", message);
   }
 
 

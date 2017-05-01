@@ -17,7 +17,6 @@
       httpRequest().doGET(message).then(function (response) {
         if (response) {
           if (response.status == "success") {
-
             // Wrap the message into 'attachments' so that slack channel could process it.
             msg =
             {
