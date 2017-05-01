@@ -31,6 +31,7 @@ public class QuestionsDao {
 
   /**
    * This method contains the SQL statement to get stored data from questionsasked table.
+   *
    * @return
    */
   public String getQuestions() {

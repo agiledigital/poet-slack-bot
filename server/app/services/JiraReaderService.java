@@ -124,10 +124,10 @@ public class JiraReaderService {
     if (responseBody.get("errorMessages") != null) {
       return false;
     } else {
-      this.messageToReturn = "The status of "
+      this.messageToReturn = hyperlinkTicketNo("The status of "
         + ticketNo
         + " is "
-        + responseBody.get("fields").get("status").get("name").textValue();
+        + responseBody.get("fields").get("status").get("name").textValue());
       return true;
     }
   }
