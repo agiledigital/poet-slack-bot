@@ -87,9 +87,9 @@ public class JiraReaderService {
     if (responseBody.get("errorMessages") != null) {
       return false;
     } else {
-      this.messageToReturn = responseBody.get("fields").get("assignee").get("displayName").textValue()
+      this.messageToReturn = hyperlinkTicketNo(responseBody.get("fields").get("assignee").get("displayName").textValue()
         + " is working on "
-        + ticketNo + ".";
+        + ticketNo + ".");
       return true;
     }
   }
