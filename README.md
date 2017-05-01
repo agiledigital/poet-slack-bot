@@ -70,22 +70,22 @@ Import POET into [LUIS](https://www.luis.ai/home/index) and train it. A good tut
 --- 
 Set-up environment variables for your Atlassian JIRA instance:
 
-1. JIRA\_USERNAME = "JIRA username"
-2. JIRA\_PASSWORD = "JIRA password" (Your password will not be visible to other users or developers).
-3. JIRA\_BASE\_URL = "JIRA server domain"
+1. JIRA\_USERNAME="JIRA username"
+2. JIRA\_PASSWORD="JIRA password" (Your password will not be visible to other users or developers).
+3. JIRA\_BASE\_URL="JIRA server domain"
 
 Set-up environment variables for Postgress Database:
 
-1. DB_HOST = "database host"
-2. DB_NAME = "database name"
-3. DB_USERNAME = "database username"
-4. DB_PASSWORD= "database password"
+1. DB_HOST="database host"
+2. DB_NAME="database name"
+3. DB_USERNAME="database username"
+4. DB_PASSWORD="database password"
 
 Set-up environment variables for LUIS:
 
-1. LUIS_URL = "LUIS app url"
-2. LUIS_APPID = "LUIS app id"
-3. LUIS_SUBSCRIPTION_KEY = "LUIS subscription key"
+1. LUIS_URL="LUIS app url"
+2. LUIS_APPID="LUIS app id"
+3. LUIS_SUBSCRIPTION_KEY="LUIS subscription key"
 
 ### Installation
 ---
