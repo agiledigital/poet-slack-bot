@@ -50,15 +50,15 @@ Now you can invite the bot to the channel you want, but the bot is inactive and 
 
 5. To create a database
 
-   `postgres=# CREATE DATABASE database_name_here`
+   `postgres=# CREATE DATABASE database_name_here;`
 
 6. To create a user
 
-   `postgres=# Create USER user_name_here WITH PASSWORD 'user_password_here'`
+   `postgres=# Create USER user_name_here WITH PASSWORD 'user_password_here';`
 
 7. To set or change the owner of the database
  
-    `postgres=# ALTER DATABASE database_name_here OWNER TO user_name_here`
+    `postgres=# ALTER DATABASE database_name_here OWNER TO user_name_here;`
 
 #### Import POET to LUIS 
 
