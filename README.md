@@ -16,7 +16,9 @@ This project was proposed and supported by [Agile Digital](https://agiledigital.
 #### Install the following packages
 * Download [Activator](https://www.lightbend.com/activator/download) and add it to your PATH.
 
-* Donwload and install [Node.js](https://nodejs.org/en/)
+* Donwload and install [Node.js](https://nodejs.org/en/) and [npm](https://www.npmjs.com/)
+
+* Install Hubot by run `npm install -g yo generator-hubot` in your terminal
 
 * Download and install [Docker](https://www.docker.com/).
 
