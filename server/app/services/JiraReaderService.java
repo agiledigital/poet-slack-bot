@@ -59,10 +59,20 @@ public class JiraReaderService {
       .setQueryParameter("jql", "assignee=" + jiraUsername + " and status='in progress'");
     WSRequest complexRequest = request.setAuth(jiraAuth.username, jiraAuth.password, WSAuthScheme.BASIC);
     return complexRequest.get().thenApply(WSResponse::asJson);
+  }
 
-    /*
-    %27in%20progress%27%20and%20assignee=qxtian
-     */
+  /**
+   * To request information based on status via REST API. A non-blocking call.
+   *
+   * @param status status of issue in string.
+   * @return info page encoded in JSON.
+   */
+  public CompletionStage<JsonNode> fetchIssuesForStatusByApi(String status) {
+
+    WSRequest request = ws.url("https://jira.agiledigital.com.au/rest/api/2/search")
+      .setQueryParameter("jql", "status='" + status +"'");
+    WSRequest complexRequest = request.setAuth(jiraAuth.username, jiraAuth.password, WSAuthScheme.BASIC);
+    return complexRequest.get().thenApply(WSResponse::asJson);
   }
 
   /**
@@ -75,7 +85,6 @@ public class JiraReaderService {
    */
   public JsonNode read(JsonNode response, String intent, String entity) {
     Boolean isSuccess = false;
-
     switch (intent) {
       case "IssueBrief":
         isSuccess = readDescription(entity, response);
@@ -89,7 +98,9 @@ public class JiraReaderService {
       case "AssigneeIssues":
         isSuccess = readIssues(entity, response);
         break;
-
+      case "IssuesForStatus":
+        isSuccess = readIssuesForStatus(entity, response);
+        break;
     }
 
     if (isSuccess) {
@@ -189,6 +200,39 @@ public class JiraReaderService {
     return true;
   }
 
+  /**
+   * This method reads status of the ticket.
+   *
+   * @param assignee is the username of assignee of type string which was mentioned in the query by the user.
+   * @param responseBody is the JSON object received from JIRA Rest API.
+   * @return true if success, otherwise if no such ticket exists, false.
+   */
+  private Boolean readIssuesForStatus(String status, JsonNode responseBody) {
+    if (responseBody.get("errorMessages") != null) {
+      return false;
+    } else {
+      int issueCount = Integer.parseInt(responseBody.get("total").toString());
+      if (issueCount > 0) {
+        StringBuffer issues = new StringBuffer();
+        for (int i = 0, j = 0; i < issueCount; i++) {
+          String string = responseBody.get("issues").findValues("key").get(j).textValue();
+          StringBuffer tmp;
+          if (i < issueCount - 1)
+            tmp = new StringBuffer(string + ", ");
+          else
+            tmp = new StringBuffer(string + ".");
+          issues.append(tmp);
+          j = j + 6;
+        }
+        this.messageToReturn = hyperlinkTicketNo(status + " issues are " + issues.toString());
+      } else {
+        this.messageToReturn = "There are no issues " + status + ".";
+      }
+    }
+    return true;
+  }
+
+
 
 
   /**
@@ -211,8 +255,6 @@ public class JiraReaderService {
     String hyperlink = "<" + issueUrl + "$1|$1>";
 
     issueDescription = issueDescription.replaceAll(pattern, hyperlink);
-
-    System.out.println(issueDescription);
     return issueDescription;
   }
 

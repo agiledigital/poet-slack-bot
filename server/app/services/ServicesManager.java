@@ -49,6 +49,8 @@ public class ServicesManager {
         return jiraServiceProvider.readTicket(luisResponse.intent, luisResponse.entityName);
       } else if (luisResponse.intent.equals("AssigneeIssues")) {
         return jiraServiceProvider.readAssingeeInfo(luisResponse.intent, luisResponse.entityName);
+      } else if (luisResponse.intent.equals("IssuesForStatus")) {
+        return jiraServiceProvider.readIssuesbyStatus(luisResponse.intent, luisResponse.entityName);
       } else if (luisResponse.intent.equals("AllQuestions")) {
         return CompletableFuture.supplyAsync(() -> ok(Json.toJson(new ResponseToClient("success", questionsDBServiceProvider.getAllStoredQuestions()))));
       } else {

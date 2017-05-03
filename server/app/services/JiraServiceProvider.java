@@ -63,6 +63,21 @@ public class JiraServiceProvider {
     });
   }
 
+  public CompletionStage<Result> readIssuesbyStatus(String intent, String status) {
+    // requests for JIRA page using API
+    CompletionStage<JsonNode> responsePromise = jiraReaderService.fetchIssuesForStatusByApi(status);
+
+    return responsePromise.thenApply(response -> {
+      if (!intent.equals(JiraServiceProvider.NOT_FOUND_ERROR)) {
+        // extracts relevant info
+        return ok(jiraReaderService.read(response, intent, status));
+      } else {
+        // gives an error back if no question found
+        return ok(encodeErrorInJson(ConfigUtilities.getString("error-message.invalid-question")));
+      }
+    });
+  }
+
   public JsonNode encodeErrorInJson(String message) {
     return Json.toJson(new ResponseToClient(REQUEST_FAILURE, message));
   }
