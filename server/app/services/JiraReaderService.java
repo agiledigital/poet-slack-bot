@@ -13,8 +13,8 @@ import utils.ConfigUtilities;
 import java.util.concurrent.CompletionStage;
 
 /**
- *  The class is for all "reading actions" on JIRA.
- *  Extracting fields from raw response on need.
+ * The class is for all "reading actions" on JIRA.
+ * Extracting fields from raw response on need.
  */
 public class JiraReaderService {
   private String messageToReturn;
@@ -56,13 +56,18 @@ public class JiraReaderService {
   public CompletionStage<JsonNode> fetchAssigneeInfoByApi(String jiraUsername) {
 
     WSRequest request = ws.url("https://jira.agiledigital.com.au/rest/api/2/search")
-      .setQueryParameter("jql", "assignee=" + jiraUsername);
+      .setQueryParameter("jql", "assignee=" + jiraUsername + " and status='in progress'");
     WSRequest complexRequest = request.setAuth(jiraAuth.username, jiraAuth.password, WSAuthScheme.BASIC);
     return complexRequest.get().thenApply(WSResponse::asJson);
+
+    /*
+    %27in%20progress%27%20and%20assignee=qxtian
+     */
   }
 
   /**
    * //TODO : comment this.
+   *
    * @param response
    * @param intent
    * @param entity
@@ -72,16 +77,16 @@ public class JiraReaderService {
     Boolean isSuccess = false;
 
     switch (intent) {
-      case "IssueBrief" :
+      case "IssueBrief":
         isSuccess = readDescription(entity, response);
         break;
-      case "IssueAssignee" :
+      case "IssueAssignee":
         isSuccess = readAssignee(entity, response);
         break;
-      case "IssueStatus" :
+      case "IssueStatus":
         isSuccess = readStatus(entity, response);
         break;
-      case "AssigneeIssues" :
+      case "AssigneeIssues":
         isSuccess = readIssues(entity, response);
         break;
 
@@ -103,7 +108,7 @@ public class JiraReaderService {
    * @return true if success, otherwise if no such ticket exists, false.
    */
   private Boolean readAssignee(String ticketNo, JsonNode responseBody) {
-    if (responseBody.get("errorMessages") != null){
+    if (responseBody.get("errorMessages") != null) {
       return false;
     } else {
       this.messageToReturn = responseBody.get("fields").get("assignee").get("displayName").textValue()
@@ -144,7 +149,7 @@ public class JiraReaderService {
     if (responseBody.get("errorMessages") != null) {
       return false;
     } else {
-      this.messageToReturn =hyperlinkTicketNo("The status of "
+      this.messageToReturn = hyperlinkTicketNo("The status of "
         + ticketNo
         + " is "
         + responseBody.get("fields").get("status").get("name").textValue());
@@ -155,7 +160,7 @@ public class JiraReaderService {
   /**
    * This method reads status of the ticket.
    *
-   * @param ticketNo     is the IssueID of type string which was mentioned in the query by the user.
+   * @param assignee is the username of assignee of type string which was mentioned in the query by the user.
    * @param responseBody is the JSON object received from JIRA Rest API.
    * @return true if success, otherwise if no such ticket exists, false.
    */
@@ -164,21 +169,27 @@ public class JiraReaderService {
       return false;
     } else {
       int issueCount = Integer.parseInt(responseBody.get("total").toString());
-      StringBuffer issues = new StringBuffer();
-      for (int i=0, j=0; i<issueCount; i++){
-        String string = responseBody.get("issues").findValues("key").get(j).textValue();
-        StringBuffer tmp;
-        if(i<issueCount-1)
-          tmp = new StringBuffer(string + ", ");
-        else
-          tmp = new StringBuffer(string + ".");
-        issues.append(tmp);
-        j=j+6;
+      if (issueCount > 0) {
+        StringBuffer issues = new StringBuffer();
+        for (int i = 0, j = 0; i < issueCount; i++) {
+          String string = responseBody.get("issues").findValues("key").get(j).textValue();
+          StringBuffer tmp;
+          if (i < issueCount - 1)
+            tmp = new StringBuffer(string + ", ");
+          else
+            tmp = new StringBuffer(string + ".");
+          issues.append(tmp);
+          j = j + 6;
+        }
+        this.messageToReturn = hyperlinkTicketNo(assignee + " is working on " + issues.toString());
+      } else {
+        this.messageToReturn = assignee + " is currently not working on any issue.";
       }
-      this.messageToReturn = hyperlinkTicketNo(assignee + " is working on " + issues.toString());
-      return true;
     }
+    return true;
   }
+
+
 
   /**
    * The methods hyperlinks the ticket number appearing in the
