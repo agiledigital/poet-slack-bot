@@ -47,11 +47,12 @@ public class JiraReaderService {
    * A facade to determine what ticket info to readTicketInfo. Then call
    * related methods below.
    *
-   * @param response
-   * @param intent
-   * @param ticketNo
-   * @return
+   * @param response response body from HTTP request via JIRA REST API.
+   * @param intent one field defined in LUIS response, describe the type of question.
+   * @param ticketNo one field defined in LUIS response, originally named as entityName.
    *
+   * @return a JsonNode contains the info users requiring. This will eventually be
+   * returned to client side and posted to slack channel.
    */
   public JsonNode readTicketInfo(JsonNode response, String intent, String ticketNo) {
     Boolean isSuccess = false;
@@ -153,8 +154,6 @@ public class JiraReaderService {
     String hyperlink = "<" + issueUrl + "$1|$1>";
 
     issueDescription = issueDescription.replaceAll(pattern, hyperlink);
-
-    System.out.println(issueDescription);
     return issueDescription;
   }
 

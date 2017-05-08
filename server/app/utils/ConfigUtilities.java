@@ -4,6 +4,11 @@ import models.JiraAuth;
 import play.Configuration;
 import play.api.Play;
 
+/**
+ * This class is a utility class holding a static configuration
+ * instance for project getting configurations from
+ * conf/application.conf.
+ */
 
 public class ConfigUtilities {
 
