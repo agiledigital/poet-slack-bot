@@ -43,7 +43,7 @@ public class ServicesManager {
       LuisResponse luisResponse = luisServiceProvider.interpretQuery(query);
 
       // reading operations go here
-      if (luisResponse.intent.equals("IssueBrief") ||
+      if (luisResponse.intent.equals("IssueDescription") ||
         luisResponse.intent.equals("IssueAssignee") ||
         luisResponse.intent.equals("IssueStatus")) {
         return jiraServiceProvider.readTicket(luisResponse.intent, luisResponse.entityName);

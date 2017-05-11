@@ -85,8 +85,9 @@ public class JiraReaderService {
    */
   public JsonNode read(JsonNode response, String intent, String entity) {
     Boolean isSuccess = false;
+    System.out.println(intent + " " + entity);
     switch (intent) {
-      case "IssueBrief":
+      case "IssueDescription":
         isSuccess = readDescription(entity, response);
         break;
       case "IssueAssignee":
@@ -208,9 +209,11 @@ public class JiraReaderService {
    * @return true if success, otherwise if no such ticket exists, false.
    */
   private Boolean readIssuesForStatus(String status, JsonNode responseBody) {
+    System.out.println(responseBody);
     if (responseBody.get("errorMessages") != null) {
       return false;
     } else {
+      //System.out.println(responseBody);
       int issueCount = Integer.parseInt(responseBody.get("total").toString());
       if (issueCount > 0) {
         StringBuffer issues = new StringBuffer();

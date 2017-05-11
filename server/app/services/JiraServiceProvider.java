@@ -64,13 +64,14 @@ public class JiraServiceProvider {
   }
 
   public CompletionStage<Result> readIssuesbyStatus(String intent, String status) {
+    final String updatedStatus = updatedStatus(status);
     // requests for JIRA page using API
-    CompletionStage<JsonNode> responsePromise = jiraReaderService.fetchIssuesForStatusByApi(status);
+    CompletionStage<JsonNode> responsePromise = jiraReaderService.fetchIssuesForStatusByApi(updatedStatus);
 
     return responsePromise.thenApply(response -> {
       if (!intent.equals(JiraServiceProvider.NOT_FOUND_ERROR)) {
         // extracts relevant info
-        return ok(jiraReaderService.read(response, intent, status));
+        return ok(jiraReaderService.read(response, intent, updatedStatus));
       } else {
         // gives an error back if no question found
         return ok(encodeErrorInJson(ConfigUtilities.getString("error-message.invalid-question")));
@@ -80,5 +81,21 @@ public class JiraServiceProvider {
 
   public JsonNode encodeErrorInJson(String message) {
     return Json.toJson(new ResponseToClient(REQUEST_FAILURE, message));
+  }
+
+  public String updatedStatus(String status){
+    String updatedStatus = null;
+    if(status.equals("inprogress"))
+      updatedStatus = "in progress";
+    else if(status.equals("completed"))
+      updatedStatus = "closed";
+    else if(status.equals("scoped"))
+      updatedStatus = "READY";
+    else if(status.equals("ReleaseReady"))
+      updatedStatus = "closed";
+    else
+      updatedStatus = status;
+
+    return updatedStatus;
   }
 }
