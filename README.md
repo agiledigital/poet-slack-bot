@@ -11,6 +11,10 @@
 ### Motivation
 This project was proposed and supported by [Agile Digital](https://agiledigital.com.au/) as part of the Australian National University's TechLauncher initiative.
 
+### Overall Architecture
+
+<img width="900" alt="architecture" src="https://cloud.githubusercontent.com/assets/20938140/25935016/4d15dc6a-3664-11e7-906e-691fd35baaa5.png"> 
+
 ### Preparation
 ---
 #### Install the following packages
