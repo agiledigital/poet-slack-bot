@@ -1,13 +1,13 @@
 package services.languageProcessor;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import services.models.BotResponse;
 import play.Configuration;
 import play.api.Play;
 import play.libs.Json;
 
-import services.Response;
 import services.queryHandler.Extractor;
-import services.Utils;
+import services.questions.QuestionService;
 
 import java.lang.reflect.*;
 
@@ -36,13 +36,35 @@ public class TaskMap {
       return returnVal;
 
     } catch (NoSuchMethodException e) {
-      return taskMap.parseToJson("fail", e.getMessage());
+      return taskMap.botResponseToJson("fail", e.getMessage());
     } catch (InvocationTargetException e) {
-      return taskMap.parseToJson("fail", e.getMessage());
+      return taskMap.botResponseToJson("fail", e.getMessage());
     } catch (IllegalAccessException e) {
-      return taskMap.parseToJson("fail", e.getMessage());
+      return taskMap.botResponseToJson("fail", e.getMessage());
     } catch (NullPointerException e) {
-      return taskMap.parseToJson("fail", e.getMessage());
+      return taskMap.botResponseToJson("fail", e.getMessage());
+    }
+  }
+
+  public static JsonNode questionMapping(String methodName) {
+
+    TaskMap taskMap = new TaskMap();
+
+    try {
+
+      //call the method at runtime according to the argument "methodName"
+      Method method = TaskMap.class.getMethod(methodName);
+      JsonNode returnVal = (JsonNode) method.invoke(taskMap);
+      return returnVal;
+
+    } catch (NoSuchMethodException e) {
+      return taskMap.botResponseToJson("fail", e.getMessage());
+    } catch (InvocationTargetException e) {
+      return taskMap.botResponseToJson("fail", e.getMessage());
+    } catch (IllegalAccessException e) {
+      return taskMap.botResponseToJson("fail", e.getMessage());
+    } catch (NullPointerException e) {
+      return taskMap.botResponseToJson("fail", e.getMessage());
     }
   }
 
@@ -54,7 +76,7 @@ public class TaskMap {
    */
   public JsonNode getTicketDescription(String issueKey, JsonNode responseBody) {
     if (Extractor.extractString(responseBody, "description").equals("[\"Issue Does Not Exist\"]")) {
-      return parseToJson("fail", configuration.getString("error-message.issue-not-found"));
+      return botResponseToJson("fail", configuration.getString("error-message.issue-not-found"));
     } else {
       String IssueId = responseBody.get("key").toString().replaceAll("\"", "");
       String IssueUrl = "http://jira.agiledigital.com.au/browse/" + IssueId;
@@ -62,7 +84,7 @@ public class TaskMap {
 
       String answer = "Description of " + Hyperlink + " is as follows: \n" +
         Extractor.extractString(responseBody, "description");
-      return parseToJson("success", answer);
+      return botResponseToJson("success", answer);
     }
 
   }
@@ -75,7 +97,7 @@ public class TaskMap {
    */
   public JsonNode getTicketAssignee(String issueKey, JsonNode responseBody) {
     if (Extractor.extractString(responseBody, "assignee").equals("[\"Issue Does Not Exist\"]")) {
-      return parseToJson("fail", configuration.getString("error-message.issue-not-found"));
+      return botResponseToJson("fail", configuration.getString("error-message.issue-not-found"));
     } else {
       String IssueId = responseBody.get("key").toString().replaceAll("\"", "");
       String IssueUrl = "http://jira.agiledigital.com.au/browse/" + IssueId;
@@ -83,7 +105,7 @@ public class TaskMap {
 
       String answer = Extractor.extractString(responseBody, "assignee") + " is working on " + Hyperlink + ".";
       System.out.println(answer);
-      return parseToJson("success", answer);
+      return botResponseToJson("success", answer);
     }
   }
 
@@ -93,15 +115,25 @@ public class TaskMap {
    * @param message
    * @return
    */
-  public static JsonNode parseToJson(String status, String message) {
+  public static JsonNode botResponseToJson(String status, String message) {
 
-    Response response = new Response();
-    response.status = status;
-    response.message = message;
-    System.out.println("Response: " + response.message);
-    JsonNode answer = Json.toJson(response);
+    BotResponse botResponse = new BotResponse();
+    botResponse.status = status;
+    botResponse.message = message;
+    System.out.println("BotResponse: " + botResponse.message);
+    JsonNode answer = Json.toJson(botResponse);
 
     return answer;
 
+  }
+
+  /** This method fetches all stored questions from the database and returns a JSON object
+   *
+   * @return
+   */
+  public JsonNode getQuestions(){
+    QuestionService questionService = new QuestionService();
+    String message = questionService.getAllStoredQuestions();
+    return botResponseToJson("success", message);
   }
 }
