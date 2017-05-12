@@ -137,7 +137,7 @@ Here is a list of features that were already developed.
    
 <img width="400" alt="sayhi" src="https://cloud.githubusercontent.com/assets/20938140/25305387/a01f953c-27bd-11e7-97d3-e881e8b76f55.png">
 
-   2. POET is now able to fetch three types of information of project from JIRA:
+   2. POET is now able to fetch four types of information of project from JIRA:
    
    
        1. To know the description of a ticket, there are various question forms the users can ask the bot. The example below shows the query about the description of a ticket, for example, POET-45, which is a ticket in POET project.
@@ -158,16 +158,15 @@ Here is a list of features that were already developed.
         <img width="400" alt="questionsformsassignee" src="https://cloud.githubusercontent.com/assets/20938140/25305401/c9bc9480-27bd-11e7-8baa-d52f4d3657bc.png">
         
         
-       3. POET can also understand the query about the status of a ticket in various forms and fetch the status information about the ticket.
+       3. POET can understand the query about the status of a ticket in various forms and fetch the status information about the ticket.
        
        <img width="400" alt="ticketstatus" src="https://cloud.githubusercontent.com/assets/20938140/25305402/d2d1c464-27bd-11e7-9e67-1f5083751442.png">
-  
-  
-   3. POET is also able to fetch the tickets a person is currently working on from JIRA:
+       
+       4. POET can fetch a list of tickets a person is currently working on from JIRA:
+       
+       <img width="400" alt="image" src="https://cloud.githubusercontent.com/assets/20938140/25660992/0efa1904-3052-11e7-80f9-1086c2f5cab6.png">
    
-   <img width="400" alt="image" src="https://cloud.githubusercontent.com/assets/20938140/25660992/0efa1904-3052-11e7-80f9-1086c2f5cab6.png">
-   
-   4. When POET cannot understand a question or cannot find the information, it will reply the users.
+   3. When POET cannot understand a question or cannot find the information, it will also reply the users.
    
    
    <img width="400" alt="cannotfindissu" src="https://cloud.githubusercontent.com/assets/20938140/25305408/e82b15c2-27bd-11e7-9b1c-01e3c12e6acb.png">
@@ -175,7 +174,7 @@ Here is a list of features that were already developed.
    <img width="400" alt="cannotunderstandissue" src="https://cloud.githubusercontent.com/assets/20938140/25305412/f14f655e-27bd-11e7-9c64-853bbde02ed1.png">
    
    
-   5. POET is able to store all the questions the users asked in database, which will help improve it’s performance through later analysing and training with the dataset.
+   4. POET can store all the questions the users asked in database, which will help improve it’s performance through later analysing and training with the dataset.
    
    
    <img width="400" alt="questionlist" src="https://cloud.githubusercontent.com/assets/20938140/25312816/a66086d8-2865-11e7-84a0-695218e8e8ef.jpg">
