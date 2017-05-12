@@ -16,8 +16,20 @@
 
       httpRequest().doGET(message).then(function (response) {
         if (response) {
-            return res.send("@" + res.envelope.user.name + " " + response.message);
+          if (response.status == "success") {
+            // Wrap the message into 'attachments' so that slack channel could process it.
+            msg =
+            {
+              "attachments": [
+              {
+                'title' : "@" + res.envelope.user.name,
+                "text": response.message
+              }
+            ]
+            }
 
+            return res.send(msg);
+          }
         }
       });
 
@@ -27,7 +39,6 @@
 }).call(this);
 
 ///
-
 
 // Connect to JIRA through httprequest
 
