@@ -137,7 +137,7 @@ Here is a list of features that were already developed.
    
 <img width="400" alt="sayhi" src="https://cloud.githubusercontent.com/assets/20938140/25305387/a01f953c-27bd-11e7-97d3-e881e8b76f55.png">
 
-   2. POET is now able to fetch four types of information of project from JIRA:
+   2. POET is now able to fetch five types of information of project from JIRA:
    
    
        1. To know the description of a ticket, there are various question forms the users can ask the bot. The example below shows the query about the description of a ticket, for example, POET-45, which is a ticket in POET project.
@@ -165,6 +165,17 @@ Here is a list of features that were already developed.
        4. POET can fetch a list of tickets a person is currently working on from JIRA:
        
        <img width="400" alt="image" src="https://cloud.githubusercontent.com/assets/20938140/25660992/0efa1904-3052-11e7-80f9-1086c2f5cab6.png">
+       
+       5. POET can also fetch tickets in a given status by users from JIRA:
+        
+           For example, to ask for the completed tickets:
+           
+           <img width="531" alt="image" src="https://cloud.githubusercontent.com/assets/20938140/25993049/08ef2e5e-374c-11e7-8253-539c6bc93dbe.png">
+           
+           Or ask for the in-progress tickets:
+           
+           <img width="531" alt="in progress" src="https://cloud.githubusercontent.com/assets/20938140/25993054/0b367ec4-374c-11e7-91f6-3e88798cd544.png">
+
    
    3. When POET cannot understand a question or cannot find the information, it will also reply the users.
    
@@ -178,6 +189,7 @@ Here is a list of features that were already developed.
    
    
    <img width="400" alt="questionlist" src="https://cloud.githubusercontent.com/assets/20938140/25312816/a66086d8-2865-11e7-84a0-695218e8e8ef.jpg">
+
 
 
 ### Future Features
