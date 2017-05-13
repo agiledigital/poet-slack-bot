@@ -46,6 +46,7 @@ public class JiraReaderService {
    * A facade to determine what ticket info to readTicketsFromJira. Then call
    * related methods below.
    *
+<<<<<<< ead3eaba2534f0aa5369ea5de11bf03b40b92146
    * @param response response body from HTTP request via JIRA REST API.
    * @param intent one field defined in LUIS response, describe the type of question.
    * @param entity one field defined in LUIS response, originally named as entityName.
@@ -229,6 +230,8 @@ public class JiraReaderService {
     }
     return issues;
   }
+
+
 
   /**
    * The methods hyperlinks the ticket number appearing in the
