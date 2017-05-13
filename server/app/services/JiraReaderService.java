@@ -43,7 +43,7 @@ public class JiraReaderService {
   }
 
   /**
-   * A facade to determine what ticket info to readTicketInfo. Then call
+   * A facade to determine what ticket info to readTicketsFromJira. Then call
    * related methods below.
    *
    * @param response response body from HTTP request via JIRA REST API.
@@ -53,26 +53,28 @@ public class JiraReaderService {
    * @return a JsonNode contains the info users requiring. This will eventually be
    * returned to client side and posted to slack channel.
    */
-  public JsonNode readTicketInfo(JsonNode response, String intent, String entity) {
+  public JsonNode readTicketsFromJira(JsonNode response, String intent, String entity) {
     Boolean isSuccess = false;
 
     switch (intent) {
-      case "IssueDescription":
+      case ServicesManager.LUIS_INTENT_ISSUE_DESCRIPTION:
         isSuccess = readDescription(entity, response);
         break;
-      case "IssueAssignee":
+      case ServicesManager.LUIS_INTENT_ISSUE_ASSIGNEE:
         isSuccess = readAssignee(entity, response);
         break;
-      case "IssueStatus":
+      case ServicesManager.LUIS_INTENT_ISSUE_STATUS:
         isSuccess = readStatus(entity, response);
         break;
-      case "AssigneeIssues" :
-        isSuccess = readIssues(entity, response);
+      case ServicesManager.LUIS_INTENT_ISSUES_OF_ASSIGNEE:
+        isSuccess = readIssuesOfAssignee(entity, response);
+        break;
+      case ServicesManager.LUIS_INTENT_ISSUES_ON_STATUS:
+        isSuccess = readIssuesForStatus(entity, response);
         break;
       default:
         isSuccess = false;
     }
-
     if (isSuccess) {
       return Json.toJson(new ResponseToClient(JiraServiceProvider.REQUEST_SUCCESS, messageToReturn));
     } else {
@@ -87,9 +89,22 @@ public class JiraReaderService {
    * @return info page encoded in JSON.
    */
   public CompletionStage<JsonNode> fetchAssigneeInfoByApi(String jiraUsername) {
+    WSRequest request = ws.url(ConfigUtilities.getString("jira.assigneeEndpoint") + jiraUsername);
+    WSRequest complexRequest = request.setAuth(jiraAuth.username, jiraAuth.password, WSAuthScheme.BASIC);
+    return complexRequest.get().thenApply(WSResponse::asJson);
+  }
 
-    WSRequest request = ws.url("https://jira.agiledigital.com.au/rest/api/2/search")
-      .setQueryParameter("jql", "assignee=" + jiraUsername);
+  /**
+   * To request information based on status via REST API. A non-blocking call.
+   *
+   * @param status status of issue in string.
+   * @return info page encoded in JSON.
+   */
+  public CompletionStage<JsonNode> fetchIssuesForStatusByApi(String status) {
+    WSRequest request = ws.url(ConfigUtilities.getString("jira.statusEndpoint") +
+      "'" + status + "'");
+//    WSRequest request = ws.url("https://jira.agiledigital.com.au/rest/api/2/search")
+//      .setQueryParameter("jql", "status='" + status +"'");
     WSRequest complexRequest = request.setAuth(jiraAuth.username, jiraAuth.password, WSAuthScheme.BASIC);
     return complexRequest.get().thenApply(WSResponse::asJson);
   }
@@ -130,6 +145,7 @@ public class JiraReaderService {
     }
   }
 
+
   /**
    * This method reads status of the ticket.
    *
@@ -157,25 +173,61 @@ public class JiraReaderService {
    * @param responseBody is the JSON object received from JIRA Rest API.
    * @return true if success, otherwise if no such assignee name exists, false.
    */
-  private Boolean readIssues(String assignee, JsonNode responseBody) {
+  private Boolean readIssuesOfAssignee(String assignee, JsonNode responseBody) {
+    if (responseBody.get("errorMessages") != null) {
+      return false;
+    } else {
+      StringBuffer issues = extractTicketNumbersFromResponse(responseBody);
+      this.messageToReturn = hyperlinkTicketNo(assignee + " is working on " + issues.toString());
+      return true;
+    }
+  }
+
+  /**
+   * This method reads status of the ticket.
+   *
+   * @param status is the status mentioned in the query by the user.
+   *               Currently restricted to internal use of AgileDigital as
+   *               the workflow on JIRA board can be customized by users.
+   * @param responseBody is the JSON object received from JIRA Rest API.
+   * @return true if success, otherwise if no such ticket exists, false.
+   */
+  private Boolean readIssuesForStatus(String status, JsonNode responseBody) {
+    System.out.println(responseBody);
     if (responseBody.get("errorMessages") != null) {
       return false;
     } else {
       int issueCount = Integer.parseInt(responseBody.get("total").toString());
-      StringBuffer issues = new StringBuffer();
-      for (int i=0, j=0; i<issueCount; i++){
-        String string = responseBody.get("issues").findValues("key").get(j).textValue();
-        StringBuffer tmp;
-        if(i<issueCount-1)
-          tmp = new StringBuffer(string + ", ");
-        else
-          tmp = new StringBuffer(string + ".");
-        issues.append(tmp);
-        j=j+6;
+      if (issueCount > 0) {
+        StringBuffer issues = extractTicketNumbersFromResponse(responseBody);
+        this.messageToReturn = hyperlinkTicketNo(status + " issues are " + issues.toString());
+      } else {
+        this.messageToReturn = "There are no issues " + status + ".";
       }
-      this.messageToReturn = hyperlinkTicketNo(assignee + " is working on " + issues.toString());
-      return true;
     }
+    return true;
+  }
+
+  /**
+   *  Extract ticket numbers from the response from JIRA rest api.
+   *
+   * @param responseBody response body from JIRA rest api as a JsonNode.
+   * @return A string buffer concatenating ticket numbers with dot points.
+   */
+  private StringBuffer extractTicketNumbersFromResponse(JsonNode responseBody){
+    int issueCount = Integer.parseInt(responseBody.get("total").toString());
+    StringBuffer issues = new StringBuffer();
+    for (int i=0, j=0; i<issueCount; i++){
+      String string = responseBody.get("issues").findValues("key").get(j).textValue();
+      StringBuffer tmp;
+      if(i<issueCount-1)
+        tmp = new StringBuffer(string + ", ");
+      else
+        tmp = new StringBuffer(string + ".");
+      issues.append(tmp);
+      j=j+6;
+    }
+    return issues;
   }
 
   /**

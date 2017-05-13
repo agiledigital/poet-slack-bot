@@ -18,6 +18,7 @@ import java.lang.InterruptedException;
 
 public class LuisServiceProvider {
 
+
   private WSClient ws;
 
   /**

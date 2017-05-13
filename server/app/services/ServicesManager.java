@@ -24,6 +24,13 @@ import static play.mvc.Results.ok;
  * @see JiraReaderService
  */
 public class ServicesManager {
+  // These strings must comply with how they are defined in LUIS strictly.
+  static final String LUIS_INTENT_ISSUE_DESCRIPTION = "IssueDescription";
+  static final String LUIS_INTENT_ISSUE_ASSIGNEE = "IssueAssignee";
+  static final String LUIS_INTENT_ISSUE_STATUS = "IssueStatus";
+  static final String LUIS_INTENT_ISSUES_ON_STATUS = "IssuesForStatus";
+  static final String LUIS_INTENT_ISSUES_OF_ASSIGNEE = "AssigneeIssues";
+  static final String LUIS_INTENT_LIST_ALL_QUESTIONS = "AllQuestions";
 
   private LuisServiceProvider luisServiceProvider;
   private JiraServiceProvider jiraServiceProvider;
@@ -41,15 +48,22 @@ public class ServicesManager {
       //Add question to database
       questionsDBServiceProvider.addQuestion(query);
       LuisResponse luisResponse = luisServiceProvider.interpretQuery(query);
+
       // reading operations go here
-      if (luisResponse.intent.equals("IssueDescription") ||
-        luisResponse.intent.equals("IssueAssignee") ||
-        luisResponse.intent.equals("IssueStatus")) {
+      if (luisResponse.intent.equals(ServicesManager.LUIS_INTENT_ISSUE_DESCRIPTION) ||
+        luisResponse.intent.equals(ServicesManager.LUIS_INTENT_ISSUE_ASSIGNEE) ||
+        luisResponse.intent.equals(ServicesManager.LUIS_INTENT_ISSUE_STATUS)) {
         return jiraServiceProvider.readTicket(luisResponse.intent, luisResponse.entityName);
-      } else if (luisResponse.intent.equals("AssigneeIssues")) {
+      } else if (luisResponse.intent.equals(ServicesManager.LUIS_INTENT_ISSUES_OF_ASSIGNEE)) {
         return jiraServiceProvider.readAssingeeInfo(luisResponse.intent, luisResponse.entityName);
-      } else if (luisResponse.intent.equals("AllQuestions")) {
-        return CompletableFuture.supplyAsync(() -> ok(Json.toJson(new ResponseToClient("success", questionsDBServiceProvider.getAllStoredQuestions()))));
+      } else if (luisResponse.intent.equals(LUIS_INTENT_ISSUES_ON_STATUS)) {
+        return jiraServiceProvider.readIssuesbyStatus(luisResponse.intent, luisResponse.entityName);
+      } else if (luisResponse.intent.equals(ServicesManager.LUIS_INTENT_LIST_ALL_QUESTIONS)) {
+        return CompletableFuture.supplyAsync(() -> ok(Json.toJson(
+          new ResponseToClient(JiraServiceProvider.REQUEST_SUCCESS,
+            questionsDBServiceProvider.getAllStoredQuestions()))
+          )
+        );
       } else {
         // TODO: updating operations go here
         throw new NotImplementedException();
