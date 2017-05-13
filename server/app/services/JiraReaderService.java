@@ -58,7 +58,7 @@ public class JiraReaderService {
     Boolean isSuccess = false;
 
     switch (intent) {
-      case "IssueBrief":
+      case "IssueDescription":
         isSuccess = readDescription(ticketNo, response);
         break;
       case "IssueAssignee":
