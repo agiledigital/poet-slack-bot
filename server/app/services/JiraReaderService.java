@@ -34,7 +34,6 @@ public class JiraReaderService {
    * @return info page encoded in JSON.
    */
   public CompletionStage<JsonNode> fetchTicketByApi(String ticketId) {
-
     WSRequest request = ws.url(ConfigUtilities.getString("jira.baseUrl")
       + ConfigUtilities.getString("jira.issueEndpoint")
       + ticketId);
@@ -49,24 +48,54 @@ public class JiraReaderService {
    *
    * @param response response body from HTTP request via JIRA REST API.
    * @param intent one field defined in LUIS response, describe the type of question.
-   * @param ticketNo one field defined in LUIS response, originally named as entityName.
+   * @param entity one field defined in LUIS response, originally named as entityName.
    *
    * @return a JsonNode contains the info users requiring. This will eventually be
    * returned to client side and posted to slack channel.
    */
-  public JsonNode readTicketInfo(JsonNode response, String intent, String ticketNo) {
+  public JsonNode readTicketInfo(JsonNode response, String intent, String entity) {
     Boolean isSuccess = false;
 
     switch (intent) {
       case "IssueDescription":
-        isSuccess = readDescription(ticketNo, response);
+        isSuccess = readDescription(entity, response);
         break;
       case "IssueAssignee":
-        isSuccess = readAssignee(ticketNo, response);
+        isSuccess = readAssignee(entity, response);
         break;
       case "IssueStatus":
-        isSuccess = readStatus(ticketNo, response);
+        isSuccess = readStatus(entity, response);
         break;
+      case "AssigneeIssues" :
+        isSuccess = readIssues(entity, response);
+        break;
+//=======
+//
+//  /**
+//   * //TODO : comment this.
+//   * @param response
+//   * @param intent
+//   * @param entity
+//   * @return
+//   */
+//  public JsonNode read(JsonNode response, String intent, String entity) {
+//    Boolean isSuccess = false;
+//
+//    switch (intent) {
+//      case "IssueBrief" :
+//        isSuccess = readDescription(entity, response);
+//        break;
+//      case "IssueAssignee" :
+//        isSuccess = readAssignee(entity, response);
+//        break;
+//      case "IssueStatus" :
+//        isSuccess = readStatus(entity, response);
+//        break;
+//      case "AssigneeIssues" :
+//        isSuccess = readIssues(entity, response);
+//        break;
+//
+//>>>>>>> Query issues based on assignee username.
     }
 
     if (isSuccess) {
@@ -77,6 +106,19 @@ public class JiraReaderService {
     }
   }
 
+   /** To request information based on username via REST API. A non-blocking call.
+   *
+   * @param jiraUsername jira username in string.
+   * @return info page encoded in JSON.
+   */
+  public CompletionStage<JsonNode> fetchAssigneeInfoByApi(String jiraUsername) {
+
+    WSRequest request = ws.url("https://jira.agiledigital.com.au/rest/api/2/search")
+      .setQueryParameter("jql", "assignee=" + jiraUsername);
+    WSRequest complexRequest = request.setAuth(jiraAuth.username, jiraAuth.password, WSAuthScheme.BASIC);
+    return complexRequest.get().thenApply(WSResponse::asJson);
+  }
+
   /**
    * This method reads assignee of the ticket.
    *
@@ -85,12 +127,41 @@ public class JiraReaderService {
    * @return true if success, otherwise if no such ticket exists, false.
    */
   private Boolean readAssignee(String ticketNo, JsonNode responseBody) {
+//<<<<<<< 86ff40ed28d3ca84edde8f1fee053bc011c7b19d
     if (responseBody.get("errorMessages") != null) {
       return false;
     } else {
       this.messageToReturn = hyperlinkTicketNo(responseBody.get("fields").get("assignee").get("displayName").textValue()
         + " is working on "
         + ticketNo + ".");
+//=======
+//    if (responseBody.get("errorMessages") != null){
+//      return false;
+//    } else {
+//      this.messageToReturn = responseBody.get("fields").get("assignee").get("displayName").textValue()
+//        + " is working on "
+//        + ticketNo + ".";
+//      return true;
+//    }
+//  }
+//
+//  /**
+//   * This method reads description of the ticket.
+//   *
+//   * @param responseBody is the JSON object received from JIRA Rest API.
+//   * @return true if success, otherwise if no such ticket exists, false.
+//   */
+//  private Boolean readDescription(String ticketNo, JsonNode responseBody) {
+//    if (responseBody.get("errorMessages") != null) {
+//      return false;
+//    } else {
+//      this.messageToReturn = hyperlinkTicketNo("Description of "
+//        //  + '<' + "http://google.com" +'|' +ticketNo+  '>' // replace google by the actual ticket page
+//        + ticketNo
+//        + " is as follows: \n"
+//        + responseBody.get("fields").get("description").textValue());
+//
+//>>>>>>> Query issues based on assignee username.
       return true;
     }
   }
@@ -110,6 +181,22 @@ public class JiraReaderService {
         + " is as follows: \n"
         + responseBody.get("fields").get("description").textValue());
 
+//=======
+//   * This method reads status of the ticket.
+//   *
+//   * @param ticketNo     is the IssueID of type string which was mentioned in the query by the user.
+//   * @param responseBody is the JSON object received from JIRA Rest API.
+//   * @return true if success, otherwise if no such ticket exists, false.
+//   */
+//  private Boolean readStatus(String ticketNo, JsonNode responseBody) {
+//    if (responseBody.get("errorMessages") != null) {
+//      return false;
+//    } else {
+//      this.messageToReturn =hyperlinkTicketNo("The status of "
+//        + ticketNo
+//        + " is "
+//        + responseBody.get("fields").get("status").get("name").textValue());
+//>>>>>>> Query issues based on assignee username.
       return true;
     }
   }
@@ -121,6 +208,7 @@ public class JiraReaderService {
    * @param responseBody is the JSON object received from JIRA Rest API.
    * @return true if success, otherwise if no such ticket exists, false.
    */
+//<<<<<<< 86ff40ed28d3ca84edde8f1fee053bc011c7b19d
   private Boolean readStatus(String ticketNo, JsonNode responseBody) {
     if (responseBody.get("errorMessages") != null) {
       return false;
@@ -133,6 +221,28 @@ public class JiraReaderService {
     }
   }
 
+//=======
+  private Boolean readIssues(String assignee, JsonNode responseBody) {
+    if (responseBody.get("errorMessages") != null) {
+      return false;
+    } else {
+      int issueCount = Integer.parseInt(responseBody.get("total").toString());
+      StringBuffer issues = new StringBuffer();
+      for (int i=0, j=0; i<issueCount; i++){
+        String string = responseBody.get("issues").findValues("key").get(j).textValue();
+        StringBuffer tmp;
+        if(i<issueCount-1)
+          tmp = new StringBuffer(string + ", ");
+        else
+          tmp = new StringBuffer(string + ".");
+        issues.append(tmp);
+        j=j+6;
+      }
+      this.messageToReturn = hyperlinkTicketNo(assignee + " is working on " + issues.toString());
+//>>>>>>> Query issues based on assignee username.
+      return true;
+    }
+  }
 
   /**
    * The methods hyperlinks the ticket number appearing in the

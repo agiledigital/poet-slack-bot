@@ -41,11 +41,14 @@ public class ServicesManager {
       //Add question to database
       questionsDBServiceProvider.addQuestion(query);
       LuisResponse luisResponse = luisServiceProvider.interpretQuery(query);
+
       // reading operations go here
       if (luisResponse.intent.equals("IssueDescription") ||
         luisResponse.intent.equals("IssueAssignee") ||
         luisResponse.intent.equals("IssueStatus")) {
         return jiraServiceProvider.readTicket(luisResponse.intent, luisResponse.entityName);
+      } else if (luisResponse.intent.equals("AssigneeIssues")) {
+        return jiraServiceProvider.readAssingeeInfo(luisResponse.intent, luisResponse.entityName);
       } else if (luisResponse.intent.equals("AllQuestions")) {
         return CompletableFuture.supplyAsync(() -> ok(Json.toJson(new ResponseToClient("success", questionsDBServiceProvider.getAllStoredQuestions()))));
       } else {
