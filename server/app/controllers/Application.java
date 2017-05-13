@@ -2,8 +2,7 @@ package controllers;
 
 import play.libs.ws.WSClient;
 import play.mvc.*;
-
-import services.queryHandler.QueryHandler;
+import services.ServicesManager;
 
 import javax.inject.Inject;
 import java.io.IOException;
@@ -19,11 +18,12 @@ public class Application extends Controller {
     return ok("Hi!");
   }
 
-  public CompletionStage<Result> getAnwser(String query) throws IOException,
-    ClassNotFoundException, NoSuchMethodException,
-    InvocationTargetException, IllegalAccessException {
+  public CompletionStage<Result> show(String query)
+    throws IOException, ClassNotFoundException,
+    NoSuchMethodException, InvocationTargetException,
+    IllegalAccessException {
 
-    QueryHandler queryHandler = new QueryHandler(query, ws);
-    return queryHandler.handleQuery();
+    ServicesManager servicesManager = new ServicesManager(ws);
+    return servicesManager.interpretQueryAndActOnJira(query);
   }
 }
