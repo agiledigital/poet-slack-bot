@@ -46,6 +46,8 @@ public class ServicesManager {
         luisResponse.intent.equals("IssueAssignee") ||
         luisResponse.intent.equals("IssueStatus")) {
         return jiraServiceProvider.readTicket(luisResponse.intent, luisResponse.entityName);
+      } else if (luisResponse.intent.equals("AssigneeIssues")) {
+        return jiraServiceProvider.readAssingeeInfo(luisResponse.intent, luisResponse.entityName);
       } else if (luisResponse.intent.equals("AllQuestions")) {
         return CompletableFuture.supplyAsync(() -> ok(Json.toJson(new ResponseToClient("success", questionsDBServiceProvider.getAllStoredQuestions()))));
       } else {
@@ -54,8 +56,12 @@ public class ServicesManager {
       }
     } catch (Exception e) {
       // TODO: questions not understood go here
-      return CompletableFuture.supplyAsync(() -> ok(jiraServiceProvider.encodeErrorInJson(
-        ConfigUtilities.getString("error-message.luis-error"))));
+      return CompletableFuture.supplyAsync(() ->
+        ok(Json.toJson(
+          new ResponseToClient(JiraServiceProvider.REQUEST_FAILURE,
+            ConfigUtilities.getString("error-message.luis-error")))
+        )
+      );
     }
   }
 }
