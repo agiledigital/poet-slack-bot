@@ -46,7 +46,6 @@ public class JiraReaderService {
    * A facade to determine what ticket info to readTicketsFromJira. Then call
    * related methods below.
    *
-<<<<<<< ead3eaba2534f0aa5369ea5de11bf03b40b92146
    * @param response response body from HTTP request via JIRA REST API.
    * @param intent one field defined in LUIS response, describe the type of question.
    * @param entity one field defined in LUIS response, originally named as entityName.
@@ -56,7 +55,6 @@ public class JiraReaderService {
    */
   public JsonNode readTicketsFromJira(JsonNode response, String intent, String entity) {
     Boolean isSuccess = false;
-
     switch (intent) {
       case ServicesManager.LUIS_INTENT_ISSUE_DESCRIPTION:
         isSuccess = readDescription(entity, response);
@@ -230,7 +228,6 @@ public class JiraReaderService {
     }
     return issues;
   }
-
 
 
   /**
