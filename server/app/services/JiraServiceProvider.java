@@ -11,14 +11,6 @@ import java.util.concurrent.CompletionStage;
 
 import static play.mvc.Results.ok;
 
-/**
- * The class manages instance of jiraReaderService
- * and jiraWriterService (not there yet).
- * <p>
- * First, readOrUpdateJIra() decides readTicketInfo or update
- * operations should be done. Then call Writer/Reader
- * to update/readTicketInfo JIRA.
- */
 public class JiraServiceProvider {
 
   static final String NOT_FOUND_ERROR = "NoQuestionFound";
@@ -31,20 +23,40 @@ public class JiraServiceProvider {
     this.jiraReaderService = new JiraReaderService(ws, ConfigUtilities.getJiraAuth());
   }
 
+  /**
+   * This method is related to read certain field from JIRA ticket queried.
+   * Now supports status, description and assignee.
+   *
+   * @param intent one field defined in LUIS response, describe the type of question.
+   * @param ticketNo one field defined in LUIS response, originally as entityName.
+   *                 Here as we are querying ticket, thus entityName is just ticket
+   *                 number.
+   * @return JsonNode contains required info if success, otherwise an error message.
+   *
+   */
   public CompletionStage<Result> readTicket(String intent, String ticketNo) {
     // requests for JIRA page using API
-//<<<<<<< 86ff40ed28d3ca84edde8f1fee053bc011c7b19d
     return jiraReaderService.fetchTicketByApi(ticketNo).thenApply(response -> {
         if (!intent.equals(JiraServiceProvider.NOT_FOUND_ERROR)) {
           // extracts relevant info
           return ok(jiraReaderService.readTicketInfo(response, intent, ticketNo));
         } else {
-          return ok(encodeErrorInJson(ConfigUtilities.getString("error-message.invalid-question")));
+          return ok(Json.toJson(new ResponseToClient(REQUEST_FAILURE, ConfigUtilities.getString("error-message.invalid-question"))));
         }
       });
   }
-//=======
 
+  /**
+   * This method is related to read certain field from JIRA ticket queried.
+   * Now supports status, description and assignee.
+   *
+   * @param intent one field defined in LUIS response, describe the type of question.
+   * @param jiraUsername one field defined in LUIS response, originally as entityName.
+   *                     Here we are querying tickets by assignee JIRA user name, thus
+   *                     the entity name is JIRA user name.
+   * @return JsonNode contains required info if success, otherwise an error message.
+   *
+   */
   public CompletionStage<Result> readAssingeeInfo(String intent, String jiraUsername) {
     // requests for JIRA page using API
     CompletionStage<JsonNode> responsePromise = jiraReaderService.fetchAssigneeInfoByApi(jiraUsername);
@@ -53,15 +65,10 @@ public class JiraServiceProvider {
       if (!intent.equals(JiraServiceProvider.NOT_FOUND_ERROR)) {
         // extracts relevant info
         return ok(jiraReaderService.readTicketInfo(response, intent, jiraUsername));
-//>>>>>>> Query issues based on assignee username.
       } else {
         // gives an error back if no question found
-        return ok(encodeErrorInJson(ConfigUtilities.getString("error-message.invalid-question")));
-      }
+        return ok(Json.toJson(new ResponseToClient(REQUEST_FAILURE, ConfigUtilities.getString("error-message.invalid-question"))));
+        }
     });
-  }
-
-  public JsonNode encodeErrorInJson(String message) {
-    return Json.toJson(new ResponseToClient(REQUEST_FAILURE, message));
   }
 }

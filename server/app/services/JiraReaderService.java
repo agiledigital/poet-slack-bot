@@ -69,33 +69,6 @@ public class JiraReaderService {
       case "AssigneeIssues" :
         isSuccess = readIssues(entity, response);
         break;
-//=======
-//
-//  /**
-//   * //TODO : comment this.
-//   * @param response
-//   * @param intent
-//   * @param entity
-//   * @return
-//   */
-//  public JsonNode read(JsonNode response, String intent, String entity) {
-//    Boolean isSuccess = false;
-//
-//    switch (intent) {
-//      case "IssueBrief" :
-//        isSuccess = readDescription(entity, response);
-//        break;
-//      case "IssueAssignee" :
-//        isSuccess = readAssignee(entity, response);
-//        break;
-//      case "IssueStatus" :
-//        isSuccess = readStatus(entity, response);
-//        break;
-//      case "AssigneeIssues" :
-//        isSuccess = readIssues(entity, response);
-//        break;
-//
-//>>>>>>> Query issues based on assignee username.
     }
 
     if (isSuccess) {
@@ -127,41 +100,12 @@ public class JiraReaderService {
    * @return true if success, otherwise if no such ticket exists, false.
    */
   private Boolean readAssignee(String ticketNo, JsonNode responseBody) {
-//<<<<<<< 86ff40ed28d3ca84edde8f1fee053bc011c7b19d
     if (responseBody.get("errorMessages") != null) {
       return false;
     } else {
       this.messageToReturn = hyperlinkTicketNo(responseBody.get("fields").get("assignee").get("displayName").textValue()
         + " is working on "
         + ticketNo + ".");
-//=======
-//    if (responseBody.get("errorMessages") != null){
-//      return false;
-//    } else {
-//      this.messageToReturn = responseBody.get("fields").get("assignee").get("displayName").textValue()
-//        + " is working on "
-//        + ticketNo + ".";
-//      return true;
-//    }
-//  }
-//
-//  /**
-//   * This method reads description of the ticket.
-//   *
-//   * @param responseBody is the JSON object received from JIRA Rest API.
-//   * @return true if success, otherwise if no such ticket exists, false.
-//   */
-//  private Boolean readDescription(String ticketNo, JsonNode responseBody) {
-//    if (responseBody.get("errorMessages") != null) {
-//      return false;
-//    } else {
-//      this.messageToReturn = hyperlinkTicketNo("Description of "
-//        //  + '<' + "http://google.com" +'|' +ticketNo+  '>' // replace google by the actual ticket page
-//        + ticketNo
-//        + " is as follows: \n"
-//        + responseBody.get("fields").get("description").textValue());
-//
-//>>>>>>> Query issues based on assignee username.
       return true;
     }
   }
@@ -180,23 +124,6 @@ public class JiraReaderService {
         + ticketNo
         + " is as follows: \n"
         + responseBody.get("fields").get("description").textValue());
-
-//=======
-//   * This method reads status of the ticket.
-//   *
-//   * @param ticketNo     is the IssueID of type string which was mentioned in the query by the user.
-//   * @param responseBody is the JSON object received from JIRA Rest API.
-//   * @return true if success, otherwise if no such ticket exists, false.
-//   */
-//  private Boolean readStatus(String ticketNo, JsonNode responseBody) {
-//    if (responseBody.get("errorMessages") != null) {
-//      return false;
-//    } else {
-//      this.messageToReturn =hyperlinkTicketNo("The status of "
-//        + ticketNo
-//        + " is "
-//        + responseBody.get("fields").get("status").get("name").textValue());
-//>>>>>>> Query issues based on assignee username.
       return true;
     }
   }
@@ -208,7 +135,6 @@ public class JiraReaderService {
    * @param responseBody is the JSON object received from JIRA Rest API.
    * @return true if success, otherwise if no such ticket exists, false.
    */
-//<<<<<<< 86ff40ed28d3ca84edde8f1fee053bc011c7b19d
   private Boolean readStatus(String ticketNo, JsonNode responseBody) {
     if (responseBody.get("errorMessages") != null) {
       return false;
@@ -221,7 +147,14 @@ public class JiraReaderService {
     }
   }
 
-//=======
+  /**
+   * This method give a list of tickets one person is working on.
+   *
+   * @param assignee assignee's account of JIRA board, rather display name.
+   *                 This may needs to be improved in later version.
+   * @param responseBody is the JSON object received from JIRA Rest API.
+   * @return true if success, otherwise if no such assignee name exists, false.
+   */
   private Boolean readIssues(String assignee, JsonNode responseBody) {
     if (responseBody.get("errorMessages") != null) {
       return false;
@@ -239,7 +172,6 @@ public class JiraReaderService {
         j=j+6;
       }
       this.messageToReturn = hyperlinkTicketNo(assignee + " is working on " + issues.toString());
-//>>>>>>> Query issues based on assignee username.
       return true;
     }
   }

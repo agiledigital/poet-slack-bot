@@ -41,7 +41,6 @@ public class ServicesManager {
       //Add question to database
       questionsDBServiceProvider.addQuestion(query);
       LuisResponse luisResponse = luisServiceProvider.interpretQuery(query);
-
       // reading operations go here
       if (luisResponse.intent.equals("IssueDescription") ||
         luisResponse.intent.equals("IssueAssignee") ||
@@ -57,8 +56,12 @@ public class ServicesManager {
       }
     } catch (Exception e) {
       // TODO: questions not understood go here
-      return CompletableFuture.supplyAsync(() -> ok(jiraServiceProvider.encodeErrorInJson(
-        ConfigUtilities.getString("error-message.luis-error"))));
+      return CompletableFuture.supplyAsync(() ->
+        ok(Json.toJson(
+          new ResponseToClient(JiraServiceProvider.REQUEST_FAILURE,
+            ConfigUtilities.getString("error-message.luis-error")))
+        )
+      );
     }
   }
 }

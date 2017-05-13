@@ -28,7 +28,6 @@ public class QuestionsDao {
     }
   }
 
-
   /**
    * This method contains the SQL statement to get stored data from questionsasked table.
    * It returns an arrayList of UserQuestion objects.
