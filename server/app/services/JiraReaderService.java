@@ -69,6 +69,8 @@ public class JiraReaderService {
       case "AssigneeIssues" :
         isSuccess = readIssues(entity, response);
         break;
+      default:
+        isSuccess = false;
     }
 
     if (isSuccess) {
@@ -79,7 +81,7 @@ public class JiraReaderService {
     }
   }
 
-   /** To request information based on username via REST API. A non-blocking call.
+   /** Fetches Assignee Info from JIRA API.
    *
    * @param jiraUsername jira username in string.
    * @return info page encoded in JSON.
