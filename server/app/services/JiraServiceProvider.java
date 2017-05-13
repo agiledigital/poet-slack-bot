@@ -46,7 +46,8 @@ public class JiraServiceProvider {
           // extracts relevant info
           return ok(jiraReaderService.readTicketsFromJira(response, intent, ticketNo));
         } else {
-          return ok(Json.toJson(new ResponseToClient(REQUEST_FAILURE, ConfigUtilities.getString("error-message.invalid-question"))));
+          return ok(Json.toJson(new ResponseToClient(REQUEST_FAILURE,
+            ConfigUtilities.getString("error-message.invalid-question"))));
         }
       });
   }

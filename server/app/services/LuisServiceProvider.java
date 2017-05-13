@@ -85,6 +85,7 @@ public class LuisServiceProvider {
       entityName = null;
       entityType = null;
     }
+
     return new LuisResponse(topScoringIntent, entityType, entityName);
   }
 }

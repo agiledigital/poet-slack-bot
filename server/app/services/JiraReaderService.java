@@ -55,6 +55,7 @@ public class JiraReaderService {
    */
   public JsonNode readTicketsFromJira(JsonNode response, String intent, String entity) {
     Boolean isSuccess = false;
+    System.out.println(intent + " " + entity);
     switch (intent) {
       case ServicesManager.LUIS_INTENT_ISSUE_DESCRIPTION:
         isSuccess = readDescription(entity, response);
