@@ -55,7 +55,7 @@ public class JiraReaderService {
    */
   public JsonNode readTicketsFromJira(JsonNode response, String intent, String entity) {
     Boolean isSuccess = false;
-    System.out.println(intent + " " + entity);
+    System.out.println(intent + entity);
     switch (intent) {
       case ServicesManager.LUIS_INTENT_ISSUE_DESCRIPTION:
         isSuccess = readDescription(entity, response);
@@ -89,8 +89,14 @@ public class JiraReaderService {
    * @return info page encoded in JSON.
    */
   public CompletionStage<JsonNode> fetchAssigneeInfoByApi(String jiraUsername) {
-    WSRequest request = ws.url(ConfigUtilities.getString("jira.assigneeEndpoint") + jiraUsername);
+    System.out.println(ConfigUtilities.getString("jira.baseUrl")
+      + ConfigUtilities.getString("jira.searchTicketEndpoint"));
+
+    WSRequest request = ws.url(ConfigUtilities.getString("jira.baseUrl")
+      + ConfigUtilities.getString("jira.searchTicketEndpoint"))
+      .setQueryParameter("jql", "assignee=" + jiraUsername + " and status='in progress'");
     WSRequest complexRequest = request.setAuth(jiraAuth.username, jiraAuth.password, WSAuthScheme.BASIC);
+
     return complexRequest.get().thenApply(WSResponse::asJson);
   }
 
@@ -101,10 +107,9 @@ public class JiraReaderService {
    * @return info page encoded in JSON.
    */
   public CompletionStage<JsonNode> fetchIssuesForStatusByApi(String status) {
-    WSRequest request = ws.url(ConfigUtilities.getString("jira.statusEndpoint") +
-      "'" + status + "'");
-//    WSRequest request = ws.url("https://jira.agiledigital.com.au/rest/api/2/search")
-//      .setQueryParameter("jql", "status='" + status +"'");
+    WSRequest request = ws.url(ConfigUtilities.getString("jira.baseUrl")
+      + ConfigUtilities.getString("jira.searchTicketEndpoint")
+    ).setQueryParameter("jql", "status='" + status + "'");
     WSRequest complexRequest = request.setAuth(jiraAuth.username, jiraAuth.password, WSAuthScheme.BASIC);
     return complexRequest.get().thenApply(WSResponse::asJson);
   }
